@@ -3,203 +3,233 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LRK Mokymai | Ataskaitos</title>
+<title>Atspari Lietuva — Ataskaitos ir dashboard'ai</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;600;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --lrk-red:#e2231a;
-  --lrk-dark-green:#1a4d3e;
-  --lrk-blue:#2b6ca3;
-  --lrk-orange:#f39c12;
-  --bg:#f7f7f5; --card:#ffffff; --border:#e6e6e2;
-  --text:#2b2b2b; --muted:#6b6b68;
-  --shadow:0 4px 14px rgba(17,24,39,.06);
-}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:'Atkinson Hyperlegible', sans-serif;font-size:15px;line-height:1.45}
-.header{background:#fff;border-bottom:1px solid var(--border);padding:16px 22px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:30;box-shadow:0 2px 8px rgba(0,0,0,.04)}
-.brand{display:flex;gap:12px;align-items:center}
-.logo{background:var(--lrk-red);color:#fff;font-weight:700;letter-spacing:.08em;padding:5px 10px;border-radius:4px;font-size:11px;font-family:'Figtree', sans-serif}
-h1{font-family:'Figtree', sans-serif;font-size:20px;margin:0 0 2px;font-weight:700;letter-spacing:-.01em;color:var(--lrk-dark-green)}
-.sub{font-size:12px;color:var(--muted)}
-
-.tabs{background:#fff;display:flex;gap:6px;border-bottom:2px solid var(--border);padding:0 18px;position:sticky;top:62px;z-index:25;box-shadow:0 1px 4px rgba(0,0,0,.03);overflow-x:auto}
-.tab{font-family:'Figtree', sans-serif;padding:14px 18px 12px;cursor:pointer;font-weight:600;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-2px;font-size:15px;white-space:nowrap;background:none;border-top:none;border-left:none;border-right:none;transition:color .15s ease, border-color .15s ease}
-.tab:hover{color:var(--lrk-dark-green)}
-.tab.act{color:var(--lrk-red);border-bottom-color:var(--lrk-red)}
-
-.main{padding:24px 20px 60px;max-width:1100px;margin:0 auto}
-
-.search-wrap{margin-bottom:22px}
-.search-input{
-  width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:8px;
-  font-size:15px;font-family:'Atkinson Hyperlegible', sans-serif;background:var(--card);box-shadow:var(--shadow);
-  color:var(--text);
-}
-.search-input:focus{outline:2px solid var(--lrk-blue);outline-offset:-1px}
-
-.sec-label{display:flex;align-items:center;gap:10px;color:var(--lrk-dark-green);font-family:'Figtree', sans-serif;font-weight:600;letter-spacing:.04em;text-transform:uppercase;font-size:13px;margin:26px 0 12px}
-.sec-label:after{content:"";height:1px;background:var(--border);flex:1}
-.year-group:first-of-type .sec-label{margin-top:0}
-
-.report-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
-.report-card{
-  background:var(--bg);border:1px solid var(--border);border-radius:8px;
-  padding:16px 14px;display:flex;flex-direction:column;align-items:center;gap:6px;
-  text-decoration:none;color:var(--text);transition:.15s ease;text-align:center;
-}
-.report-card:hover{border-color:var(--lrk-blue);background:#eef4f9}
-.report-card:hover .report-date{color:var(--lrk-blue)}
-.report-icon{font-size:18px;line-height:1}
-.report-date{font-family:'Figtree', sans-serif;font-weight:600;font-size:15px;color:var(--text)}
-
-.empty-msg{padding:30px;text-align:center;color:var(--muted);font-size:14px;display:none}
-
-.footer-note{color:var(--muted);font-size:12px;margin-top:30px;text-align:center}
-
-@media(max-width:600px){
-  .main{padding:16px 14px 40px}
-  .tab{padding:12px 14px;font-size:14px}
-}
+  :root{
+    --lrk-red:#e2231a;
+    --lrk-dark-green:#1a4d3e;
+    --lrk-blue:#2b6ca3;
+    --lrk-orange:#f39c12;
+    --bg:#f7f7f5;
+    --card:#ffffff;
+    --border:#e6e6e2;
+    --text:#2b2b2b;
+    --muted:#6b6b68;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Atkinson Hyperlegible', sans-serif;
+    padding:32px 24px 64px;
+  }
+  header{
+    max-width:960px;
+    margin:0 auto 28px;
+  }
+  header h1{
+    font-family:'Figtree', sans-serif;
+    font-weight:700;
+    font-size:28px;
+    margin:0 0 4px;
+    color:var(--lrk-dark-green);
+  }
+  header p{
+    margin:0;
+    color:var(--muted);
+    font-size:15px;
+  }
+  .wrap{
+    max-width:960px;
+    margin:0 auto;
+  }
+  .tabs{
+    display:flex;
+    gap:6px;
+    border-bottom:2px solid var(--border);
+    margin-bottom:24px;
+    flex-wrap:wrap;
+  }
+  .tab-btn{
+    font-family:'Figtree', sans-serif;
+    font-weight:600;
+    font-size:15px;
+    background:none;
+    border:none;
+    padding:12px 18px;
+    cursor:pointer;
+    color:var(--muted);
+    border-bottom:3px solid transparent;
+    margin-bottom:-2px;
+    transition:color .15s ease, border-color .15s ease;
+  }
+  .tab-btn:hover{
+    color:var(--lrk-dark-green);
+  }
+  .tab-btn.active{
+    color:var(--lrk-red);
+    border-bottom-color:var(--lrk-red);
+  }
+  .tab-panel{
+    display:none;
+  }
+  .tab-panel.active{
+    display:block;
+  }
+  .section{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:20px 22px;
+    margin-bottom:16px;
+  }
+  .section h2{
+    font-family:'Figtree', sans-serif;
+    font-weight:600;
+    font-size:17px;
+    margin:0 0 12px;
+    color:var(--lrk-dark-green);
+  }
+  .link-list{
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .link-list a{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    color:var(--text);
+    background:var(--bg);
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:10px 14px;
+    font-size:15px;
+    transition:border-color .15s ease, background .15s ease;
+  }
+  .link-list a:hover{
+    border-color:var(--lrk-blue);
+    background:#eef4f9;
+  }
+  .link-list a::before{
+    content:"📄";
+    font-size:14px;
+  }
+  .empty{
+    color:var(--muted);
+    font-size:14px;
+    font-style:italic;
+    margin:0;
+  }
 </style>
 </head>
 <body>
 
-<div class="header">
-  <div class="brand">
-    <div class="logo">LRK</div>
-    <div>
-      <h1>Mokymai | Ataskaitos</h1>
-      <div class="sub">Visos ataskaitos vienoje vietoje</div>
+<header>
+  <h1>Atspari Lietuva</h1>
+  <p>Ataskaitų ir dashboard'ų navigacija</p>
+</header>
+
+<div class="wrap">
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="mokymai">Mokymai</button>
+    <button class="tab-btn" data-tab="savanoriai">Savanoriai</button>
+    <button class="tab-btn" data-tab="pes">PES</button>
+    <button class="tab-btn" data-tab="programos">Programos</button>
+  </div>
+
+  <!-- MOKYMAI -->
+  <div class="tab-panel active" id="mokymai">
+
+    <div class="section">
+      <h2>Bendruomenės</h2>
+      <ul class="link-list">
+        <li><a href="Mokymai/bendruomenes-06.25.html">Bendruomenės ataskaita — 2026-06-25</a></li>
+        <li><a href="Mokymai/bendruomenes-07.28.html">Bendruomenės ataskaita — 2026-07-28</a></li>
+      </ul>
     </div>
+
+    <div class="section">
+      <h2>Renginių planavimas</h2>
+      <p class="empty">Failų dar nėra — pridėk nuorodą pagal šabloną žemiau.</p>
+      <!--
+      <ul class="link-list">
+        <li><a href="Mokymai/failo-vardas.html">Nuorodos pavadinimas</a></li>
+      </ul>
+      -->
+    </div>
+
+    <div class="section">
+      <h2>Plano vykdymas</h2>
+      <p class="empty">Failų dar nėra — pridėk nuorodą pagal šabloną žemiau.</p>
+      <!--
+      <ul class="link-list">
+        <li><a href="Mokymai/failo-vardas.html">Nuorodos pavadinimas</a></li>
+      </ul>
+      -->
+    </div>
+
   </div>
-</div>
 
-<div class="tabs" id="tabsBar"></div>
+  <!-- SAVANORIAI -->
+  <div class="tab-panel" id="savanoriai">
 
-<div class="main">
+    <div class="section">
+      <h2>Savanorių įveiklinimas</h2>
+      <ul class="link-list">
+        <li><a href="Savanoriai/tendencijos-01-05.html">Savanorių tendencijos — 01-05</a></li>
+      </ul>
+    </div>
 
-  <div class="search-wrap">
-    <input type="text" class="search-input" id="searchBox" placeholder="Ieškoti ataskaitos (pvz. data arba mėnuo)..." oninput="filterReports()">
   </div>
 
-  <div id="reportsContainer"></div>
-  <div class="empty-msg" id="emptyMsg">Nerasta ataskaitų pagal paieškos žodį.</div>
+  <!-- PES -->
+  <div class="tab-panel" id="pes">
 
-  <div class="footer-note">Lietuvos Raudonasis Kryžius</div>
+    <div class="section">
+      <h2>PES</h2>
+      <ul class="link-list">
+        <li><a href="PES/PES_iveiklinimas-Q2-geguze.html">PES įveiklinimas — Q2 (gegužė)</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- PROGRAMOS -->
+  <div class="tab-panel" id="programos">
+
+    <div class="section">
+      <h2>Programos</h2>
+      <ul class="link-list">
+        <li><a href="Programos/Senjoru-klubai-2026.01-04.html">Senjorų klubai — 2026 01-04</a></li>
+      </ul>
+    </div>
+
+  </div>
 
 </div>
 
 <script>
-/* ============================================================
-   REPORTS REGISTRY
-   Add a new entry here every time a new dashboard file is
-   uploaded to this GitHub directory.
-   - file: exact filename in this directory
-   - label: date shown to the user (YYYY-MM-DD recommended for correct sorting)
-   - section: which tab this report belongs to (see SECTIONS below)
-   ============================================================ */
-const SECTIONS = [
-  { key: "kalendorius", label: "Mokymų kalendorius", sub: "Savaitinės ataskaitos" },
-  { key: "planas",      label: "Mokymų plano vykdymas", sub: "" },
-  { key: "įveiklinimas",      label: "Įveiklinimas", sub: "" },
-  { key: "mokymai",      label: "Privalomi mokymai", sub: "" },
-  { key: "bendruomenes",label: "Bendruomenių bazė", sub: "" }
-];
+  const buttons = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.tab-panel');
 
-const REPORTS = [
-  { file: "mokymu-kalendorius-savaitinis-06.23.html", label: "2026-06-23", section: "kalendorius" },
-  { file: "mokymu-kalendorius-savaitinis-06.16.html", label: "2026-06-16", section: "kalendorius" },
-  { file: "mokymu-kalendorius-savaitinis-06.09.html", label: "2026-06-09", section: "kalendorius" },
-  { file: "mokymu-kalendorius-savaitinis-06.02.html", label: "2026-06-02", section: "kalendorius" },
-  { file: "mokymu-kalendorius-savaitinis-06.30.html", label: "2026-06-30", section: "kalendorius" },
-  { file: "rezultatai-renginiai-Q2-04-05.html", label: "2026-Q2 | Balandis-Gegužė", section: "planas" },
-  { file: "pasirengimo-savanoriu-iveiklinimas-Q2-geguze.html", label: "2026-Q2 | Gegužė", section: "įveiklinimas" },
-  { file: "savanoriu-mokymai-06.19.html", label: "2026-06-19", section: "mokymai" },
-  { file: "bendruomenes-05.27.html", label: "2026-05-27",    section: "bendruomenes" },
-  { file: "bendruomenes-06.03.html", label: "2026-06-03",    section: "bendruomenes" },
-  { file: "bendruomenes-06.10.html", label: "2026-06-10",    section: "bendruomenes" },
-  { file: "bendruomenes-06.16.html", label: "2026-06-16",    section: "bendruomenes" },
-  { file: "bendruomenes-06.25.html", label: "2026-06-25",    section: "bendruomenes" },
-  ];
-
-let activeSection = SECTIONS[0].key;
-
-function renderTabs() {
-  const bar = document.getElementById('tabsBar');
-  bar.innerHTML = SECTIONS.map(s =>
-    `<button class="tab ${s.key === activeSection ? 'act' : ''}" onclick="switchSection('${s.key}')">${s.label}</button>`
-  ).join('');
-}
-
-function switchSection(key) {
-  activeSection = key;
-  renderTabs();
-  document.getElementById('searchBox').value = '';
-  renderReports('');
-}
-
-function groupByYear(reports) {
-  const groups = {};
-  reports.forEach(r => {
-    const year = (r.label.match(/^\d{4}/) || ["Kiti"])[0];
-    if (!groups[year]) groups[year] = [];
-    groups[year].push(r);
-  });
-  return groups;
-}
-
-function renderReports(filterText) {
-  const container = document.getElementById('reportsContainer');
-  const emptyMsg = document.getElementById('emptyMsg');
-  const term = (filterText || '').trim().toLowerCase();
-
-  let filtered = REPORTS.filter(r => r.section === activeSection);
-  if (term) {
-    filtered = filtered.filter(r =>
-      r.label.toLowerCase().includes(term) || r.file.toLowerCase().includes(term)
-    );
-  }
-
-  // newest first
-  filtered.sort((a, b) => b.label.localeCompare(a.label));
-
-  if (filtered.length === 0) {
-    container.innerHTML = '';
-    emptyMsg.style.display = 'block';
-    return;
-  }
-  emptyMsg.style.display = 'none';
-
-  const groups = groupByYear(filtered);
-  const years = Object.keys(groups).sort((a, b) => b.localeCompare(a));
-
-  let html = '';
-  years.forEach(year => {
-    html += `<div class="year-group">
-      <div class="sec-label">${year}</div>
-      <div class="report-grid">`;
-    groups[year].forEach(r => {
-      html += `
-        <a class="report-card" href="${r.file}">
-          <div class="report-icon">📄</div>
-          <div class="report-date">${r.label}</div>
-        </a>`;
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
     });
-    html += `</div></div>`;
   });
-
-  container.innerHTML = html;
-}
-
-function filterReports() {
-  renderReports(document.getElementById('searchBox').value);
-}
-
-renderTabs();
-renderReports('');
 </script>
 
 </body>
