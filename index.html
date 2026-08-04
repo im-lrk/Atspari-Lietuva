@@ -3,233 +3,274 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Atspari Lietuva — Ataskaitos ir dashboard'ai</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;600;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<title>LRK Ataskaitų Portalas</title>
 <style>
-  :root{
-    --lrk-red:#e2231a;
-    --lrk-dark-green:#1a4d3e;
-    --lrk-blue:#2b6ca3;
-    --lrk-orange:#f39c12;
-    --bg:#f7f7f5;
-    --card:#ffffff;
-    --border:#e6e6e2;
-    --text:#2b2b2b;
-    --muted:#6b6b68;
-  }
-  *{box-sizing:border-box;}
-  body{
-    margin:0;
-    background:var(--bg);
-    color:var(--text);
-    font-family:'Atkinson Hyperlegible', sans-serif;
-    padding:32px 24px 64px;
-  }
-  header{
-    max-width:960px;
-    margin:0 auto 28px;
-  }
-  header h1{
-    font-family:'Figtree', sans-serif;
-    font-weight:700;
-    font-size:28px;
-    margin:0 0 4px;
-    color:var(--lrk-dark-green);
-  }
-  header p{
-    margin:0;
-    color:var(--muted);
-    font-size:15px;
-  }
-  .wrap{
-    max-width:960px;
-    margin:0 auto;
-  }
-  .tabs{
-    display:flex;
-    gap:6px;
-    border-bottom:2px solid var(--border);
-    margin-bottom:24px;
-    flex-wrap:wrap;
-  }
-  .tab-btn{
-    font-family:'Figtree', sans-serif;
-    font-weight:600;
-    font-size:15px;
-    background:none;
-    border:none;
-    padding:12px 18px;
-    cursor:pointer;
-    color:var(--muted);
-    border-bottom:3px solid transparent;
-    margin-bottom:-2px;
-    transition:color .15s ease, border-color .15s ease;
-  }
-  .tab-btn:hover{
-    color:var(--lrk-dark-green);
-  }
-  .tab-btn.active{
-    color:var(--lrk-red);
-    border-bottom-color:var(--lrk-red);
-  }
-  .tab-panel{
-    display:none;
-  }
-  .tab-panel.active{
-    display:block;
-  }
-  .section{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:10px;
-    padding:20px 22px;
-    margin-bottom:16px;
-  }
-  .section h2{
-    font-family:'Figtree', sans-serif;
-    font-weight:600;
-    font-size:17px;
-    margin:0 0 12px;
-    color:var(--lrk-dark-green);
-  }
-  .link-list{
-    list-style:none;
-    margin:0;
-    padding:0;
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-  }
-  .link-list a{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    text-decoration:none;
-    color:var(--text);
-    background:var(--bg);
-    border:1px solid var(--border);
-    border-radius:8px;
-    padding:10px 14px;
-    font-size:15px;
-    transition:border-color .15s ease, background .15s ease;
-  }
-  .link-list a:hover{
-    border-color:var(--lrk-blue);
-    background:#eef4f9;
-  }
-  .link-list a::before{
-    content:"📄";
-    font-size:14px;
-  }
-  .empty{
-    color:var(--muted);
-    font-size:14px;
-    font-style:italic;
-    margin:0;
-  }
+:root {
+  --red:#C8102E; --red2:#e00035; --bg:#F3F4F7; --card:#fff; --border:rgba(20,24,40,.11);
+  --text:#111827; --muted:#5A5D72; --muted2:#777B90;
+  --shadow:0 4px 14px rgba(17,24,39,.08);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif;font-size:15px;line-height:1.45}
+.header{background:#fff;border-bottom:1px solid var(--border);padding:16px 22px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:30;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{background:var(--red);color:#fff;font-weight:800;letter-spacing:.08em;padding:5px 10px;border-radius:4px;font-size:11px}
+h1{font-size:20px;margin:0 0 2px;font-weight:800;letter-spacing:-.02em}
+.sub{font-size:12px;color:var(--muted);font-family:Arial,sans-serif}
+
+/* Pagrindinės navigacijos (3 dalys) stiliai */
+.main-nav{background:#111827;display:flex;gap:4px;padding:0 18px;position:sticky;top:62px;z-index:26;overflow-x:auto}
+.main-group-btn{padding:12px 20px;cursor:pointer;font-weight:700;color:#9CA3AF;background:none;border:none;border-bottom:3px solid transparent;font-size:14px;white-space:nowrap;font-family:Arial,sans-serif}
+.main-group-btn:hover{color:#fff}
+.main-group-btn.act{color:#fff;border-bottom-color:var(--red2)}
+
+/* Skyrių tab'ų stiliai */
+.tabs{background:#fff;display:flex;gap:6px;border-bottom:1px solid var(--border);padding:0 18px;position:sticky;top:109px;z-index:25;box-shadow:0 1px 4px rgba(0,0,0,.04);overflow-x:auto}
+.tab{padding:12px 18px;cursor:pointer;font-weight:800;color:#606277;border-bottom:3px solid transparent;font-size:14px;white-space:nowrap;background:none;border-top:none;border-left:none;border-right:none;font-family:Arial,sans-serif}
+.tab:hover{color:#30374f}
+.tab.act{color:var(--red2);border-bottom-color:var(--red2)}
+
+.main{padding:22px 20px 60px;max-width:1100px;margin:0 auto}
+
+.search-wrap{margin-bottom:22px}
+.search-input{
+  width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:10px;
+  font-size:15px;font-family:Arial,sans-serif;background:#fff;box-shadow:var(--shadow);
+  color:var(--text);
+}
+.search-input:focus{outline:2px solid var(--red2);outline-offset:-1px}
+
+.cat-block{margin-bottom:30px}
+.cat-title{
+  display:flex;align-items:center;gap:10px;color:#111827;font-weight:900;font-size:16px;
+  margin:0 0 14px;padding-bottom:10px;border-bottom:2px solid var(--red2);
+}
+.cat-title .bar{width:5px;height:18px;background:var(--red2);border-radius:2px;flex-shrink:0}
+
+.sec-label{display:flex;align-items:center;gap:10px;color:#30374f;font-weight:900;letter-spacing:.08em;text-transform:uppercase;font-size:12px;margin:18px 0 10px}
+.sec-label:after{content:"";height:1px;background:var(--border);flex:1}
+.year-group:first-of-type .sec-label{margin-top:0}
+
+.report-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.report-card{
+  background:#fff;border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow);
+  padding:16px 14px;display:flex;flex-direction:column;align-items:center;gap:6px;
+  text-decoration:none;color:var(--text);transition:.12s;text-align:center;
+}
+.report-card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(17,24,39,.12);border-color:rgba(200,16,46,.35)}
+.report-card:hover .report-date{color:var(--red2)}
+.report-icon{font-size:20px;line-height:1}
+.report-date{font-weight:800;font-size:15px;color:var(--text)}
+
+.empty-msg{padding:30px;text-align:center;color:var(--muted);font-size:14px;display:none}
+.footer-note{color:var(--muted);font-size:12px;margin-top:30px;text-align:center}
+
+@media(max-width:600px){
+  .main{padding:16px 14px 40px}
+  .tab, .main-group-btn{padding:10px 12px;font-size:13px}
+  .main-nav{top:62px}
+  .tabs{top:103px}
+}
 </style>
 </head>
 <body>
 
-<header>
-  <h1>Atspari Lietuva</h1>
-  <p>Ataskaitų ir dashboard'ų navigacija</p>
-</header>
+<div class="header">
+  <div class="brand">
+    <div class="logo">LRK</div>
+    <div>
+      <h1 id="pageTitle">Ataskaitos</h1>
+      <div class="sub">Visos ataskaitos vienoje vietoje</div>
+    </div>
+  </div>
+</div>
 
-<div class="wrap">
+<!-- 1 LYGIS: 3 Pagrindinės dalys -->
+<div class="main-nav" id="mainNav"></div>
 
-  <div class="tabs">
-    <button class="tab-btn active" data-tab="mokymai">Mokymai</button>
-    <button class="tab-btn" data-tab="savanoriai">Savanoriai</button>
-    <button class="tab-btn" data-tab="pes">PES</button>
-    <button class="tab-btn" data-tab="programos">Programos</button>
+<!-- 2 LYGIS: Sub-skyriai -->
+<div class="tabs" id="tabsBar"></div>
+
+<div class="main">
+  <div class="search-wrap">
+    <input type="text" class="search-input" id="searchBox" placeholder="Ieškoti ataskaitos (pvz. data arba mėnuo)..." oninput="filterReports()">
   </div>
 
-  <!-- MOKYMAI -->
-  <div class="tab-panel active" id="mokymai">
+  <div id="reportsContainer"></div>
+  <div class="empty-msg" id="emptyMsg">Nerasta ataskaitų pagal paieškos žodį.</div>
 
-    <div class="section">
-      <h2>Bendruomenės</h2>
-      <ul class="link-list">
-        <li><a href="Mokymai/bendruomenes-06.25.html">Bendruomenės ataskaita — 2026-06-25</a></li>
-        <li><a href="Mokymai/bendruomenes-07.28.html">Bendruomenės ataskaita — 2026-07-28</a></li>
-      </ul>
-    </div>
-
-    <div class="section">
-      <h2>Renginių planavimas</h2>
-      <p class="empty">Failų dar nėra — pridėk nuorodą pagal šabloną žemiau.</p>
-      <!--
-      <ul class="link-list">
-        <li><a href="Mokymai/failo-vardas.html">Nuorodos pavadinimas</a></li>
-      </ul>
-      -->
-    </div>
-
-    <div class="section">
-      <h2>Plano vykdymas</h2>
-      <p class="empty">Failų dar nėra — pridėk nuorodą pagal šabloną žemiau.</p>
-      <!--
-      <ul class="link-list">
-        <li><a href="Mokymai/failo-vardas.html">Nuorodos pavadinimas</a></li>
-      </ul>
-      -->
-    </div>
-
-  </div>
-
-  <!-- SAVANORIAI -->
-  <div class="tab-panel" id="savanoriai">
-
-    <div class="section">
-      <h2>Savanorių įveiklinimas</h2>
-      <ul class="link-list">
-        <li><a href="Savanoriai/tendencijos-01-05.html">Savanorių tendencijos — 01-05</a></li>
-      </ul>
-    </div>
-
-  </div>
-
-  <!-- PES -->
-  <div class="tab-panel" id="pes">
-
-    <div class="section">
-      <h2>PES</h2>
-      <ul class="link-list">
-        <li><a href="PES/PES_iveiklinimas-Q2-geguze.html">PES įveiklinimas — Q2 (gegužė)</a></li>
-      </ul>
-    </div>
-
-  </div>
-
-  <!-- PROGRAMOS -->
-  <div class="tab-panel" id="programos">
-
-    <div class="section">
-      <h2>Programos</h2>
-      <ul class="link-list">
-        <li><a href="Programos/Senjoru-klubai-2026.01-04.html">Senjorų klubai — 2026 01-04</a></li>
-      </ul>
-    </div>
-
-  </div>
-
+  <div class="footer-note">Lietuvos Raudonasis Kryžius</div>
 </div>
 
 <script>
-  const buttons = document.querySelectorAll('.tab-btn');
-  const panels = document.querySelectorAll('.tab-panel');
+/* ============================================================
+   1. PAGRINDINĖS DALYS (3 DALYS)
+   ============================================================ */
+const MAIN_GROUPS = [
+  { key: "lp",       label: "Lėšų pritraukimas" },
+  { key: "mokymai", label: "Mokymai" },
+  { key: "pes",     label: "PES" }
+];
 
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      buttons.forEach(b => b.classList.remove('active'));
-      panels.forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById(btn.dataset.tab).classList.add('active');
-    });
+/* ============================================================
+   2. SKYRIAI (KIEKVIENOJE DALYS EANČIŲ SKYRIŲ SĄRAŠAS)
+   - mainGroup: priklauso vienai iš 3 pagrindinių dalių
+   ============================================================ */
+const SECTIONS = [
+  // Lėšų pritraukimas skyriai:
+  { key: "f2f",           label: "F2F",           mainGroup: "lp" },
+  { key: "verslo-parama", label: "Verslo parama", mainGroup: "lp" },
+  { key: "1.2-proc",      label: "1,2% parama",   mainGroup: "lp" },
+
+  // Mokymai skyriai:
+  { key: "savanoriai",    label: "Savanoriai",    mainGroup: "mokymai" },
+  { key: "darbuotojai",   label: "Darbuotojai",   mainGroup: "mokymai" },
+
+  // PES skyriai:
+  { key: "pes-bendri",    label: "Bendros ataskaitos", mainGroup: "pes" }
+];
+
+/* ============================================================
+   3. ATASKAITŲ REGISTRAS
+   ============================================================ */
+const REPORTS = [
+  { file: "verslo-parama/LP_JA_dashboard_Q1-Q2_2026_01-04-(06.10).html", label: "2026 | 01-04", section: "verslo-parama", icon: "🤝" },
+  { file: "f2f/Lokacijų_Efektyvumas_2026.04-05.html", label: "2026 | 04-05", section: "f2f", category: "Lokacijų ir facerių efektyvumas", icon: "🗺️" },
+  { file: "f2f/Remeju-Portfelis-iki-2026-05.html", label: "2026 | iki 05", section: "f2f", category: "Rėmėjų portfelis", icon: "👥" },
+  { file: "f2f/Remeju-Portfelis-iki-2026-02.html", label: "2026 | iki 02", section: "f2f", category: "Rėmėjų portfelis", icon: "👥" },
+  { file: "f2f/Churn-Retention-iki-2026-04.html", label: "2026 | iki 04", section: "f2f", category: "Portfelio išlaikymo rodikliai", icon: "🤝" },
+  { file: "f2f/Valdybai-iki-2026-06.html", label: "2026 | iki 06", section: "f2f", category: "Valdybai", icon: "🎯" },
+  { file: "f2f/NeoPay-palyginimas-2018-2024-vs-2025.html", label: "2025 vs 2018-2024", section: "f2f", category: "Įvairūs", icon: "📈" },
+  { file: "https://app.powerbi.com/links/A5EA2AVq7s?ctid=948caf07-051a-4da2-92e7-28164bde7516&pbi_source=linkShare", label: "2026 | 1,2% parama PBI", section: "1.2-proc", category: "Power BI ataskaitos", icon: "📊" },
+  { file: "savanoriai/Mokymai_Savaitinis_08.04.html", label: "2026 | 08.04", section: "savanoriai", category: "Savanorių mokymai", icon: "🗺️" }
+];
+
+let activeMainGroup = MAIN_GROUPS[0].key;
+let activeSection = SECTIONS.find(s => s.mainGroup === activeMainGroup)?.key || '';
+
+function renderMainNav() {
+  const nav = document.getElementById('mainNav');
+  nav.innerHTML = MAIN_GROUPS.map(g =>
+    `<button class="main-group-btn ${g.key === activeMainGroup ? 'act' : ''}" onclick="switchMainGroup('${g.key}')">${g.label}</button>`
+  ).join('');
+}
+
+function switchMainGroup(groupKey) {
+  activeMainGroup = groupKey;
+  const availableSections = SECTIONS.filter(s => s.mainGroup === activeMainGroup);
+  activeSection = availableSections.length > 0 ? availableSections[0].key : '';
+  
+  const groupObj = MAIN_GROUPS.find(g => g.key === activeMainGroup);
+  document.getElementById('pageTitle').innerText = `${groupObj.label} | Ataskaitos`;
+
+  renderMainNav();
+  renderTabs();
+  document.getElementById('searchBox').value = '';
+  renderReports('');
+}
+
+function renderTabs() {
+  const bar = document.getElementById('tabsBar');
+  const availableSections = SECTIONS.filter(s => s.mainGroup === activeMainGroup);
+  
+  bar.innerHTML = availableSections.map(s =>
+    `<button class="tab ${s.key === activeSection ? 'act' : ''}" onclick="switchSection('${s.key}')">${s.label}</button>`
+  ).join('');
+}
+
+function switchSection(key) {
+  activeSection = key;
+  renderTabs();
+  document.getElementById('searchBox').value = '';
+  renderReports('');
+}
+
+function groupByYear(reports) {
+  const groups = {};
+  reports.forEach(r => {
+    const year = (r.label.match(/^\d{4}/) || ["Kiti"])[0];
+    if (!groups[year]) groups[year] = [];
+    groups[year].push(r);
   });
+  return groups;
+}
+
+function renderYearGroups(reports) {
+  const groups = groupByYear(reports);
+  const years = Object.keys(groups).sort((a, b) => b.localeCompare(a));
+  let html = '';
+  years.forEach(year => {
+    html += `<div class="year-group">
+      <div class="sec-label">${year}</div>
+      <div class="report-grid">`;
+    groups[year].forEach(r => {
+      const isExternal = r.file.startsWith('http');
+      const targetAttr = isExternal ? ' target="_blank" rel="noopener noreferrer"' : '';
+      html += `
+        <a class="report-card" href="${r.file}"${targetAttr}>
+          <div class="report-icon">${r.icon || '📊'}</div>
+          <div class="report-date">${r.label}</div>
+        </a>`;
+    });
+    html += `</div></div>`;
+  });
+  return html;
+}
+
+function renderReports(filterText) {
+  const container = document.getElementById('reportsContainer');
+  const emptyMsg = document.getElementById('emptyMsg');
+  const term = (filterText || '').trim().toLowerCase();
+
+  let filtered = REPORTS.filter(r => r.section === activeSection);
+  if (term) {
+    filtered = filtered.filter(r =>
+      r.label.toLowerCase().includes(term) ||
+      r.file.toLowerCase().includes(term) ||
+      (r.category && r.category.toLowerCase().includes(term))
+    );
+  }
+
+  filtered.sort((a, b) => b.label.localeCompare(a.label));
+
+  if (filtered.length === 0) {
+    container.innerHTML = '';
+    emptyMsg.style.display = 'block';
+    return;
+  }
+  emptyMsg.style.display = 'none';
+
+  const hasCategories = filtered.some(r => r.category);
+
+  let html = '';
+  if (hasCategories) {
+    const cats = [];
+    filtered.forEach(r => {
+      const c = r.category || 'Kita';
+      if (!cats.includes(c)) cats.push(c);
+    });
+    cats.forEach(cat => {
+      const subset = filtered.filter(r => (r.category || 'Kita') === cat);
+      html += `<div class="cat-block">
+        <div class="cat-title"><span class="bar"></span>${cat}</div>
+        ${renderYearGroups(subset)}
+      </div>`;
+    });
+  } else {
+    html = renderYearGroups(filtered);
+  }
+
+  container.innerHTML = html;
+}
+
+function filterReports() {
+  renderReports(document.getElementById('searchBox').value);
+}
+
+// Inicijuojame puslapį
+renderMainNav();
+renderTabs();
+renderReports('');
 </script>
 
 </body>
