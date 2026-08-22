@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LRK · Savanorių įveiklinimas 2025–2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{--red:#C8102E;--ink:#1c1a19;--mut:#6b6560;--bg:#FBF8F5;--card:#fff;--line:#e8e2db;
+--g:#1D9E75;--y:#E8A33D;--r:#E24B4A;--b:#2E74B5;--r2:8px;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Figtree,system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.45}
+.wrap{max-width:1280px;margin:0 auto;padding:20px 18px 48px}
+header{border-bottom:3px solid var(--red);padding-bottom:12px;margin-bottom:16px}
+h1{font-size:23px;font-weight:800;color:var(--red);letter-spacing:-.3px}
+.sub{color:var(--mut);font-size:12.5px;margin-top:3px}
+.tabs{display:flex;gap:6px;margin:16px 0 18px;flex-wrap:wrap}
+.tab{padding:9px 17px;border:1px solid var(--line);background:var(--card);border-radius:var(--r2);
+cursor:pointer;font-weight:600;font-size:13.5px;color:var(--mut);transition:.12s}
+.tab:hover{border-color:var(--red)}
+.tab.on{background:var(--red);color:#fff;border-color:var(--red)}
+.tab.warn.on{background:var(--y);border-color:var(--y);color:#3d2a00}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:11px;margin-bottom:16px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:var(--r2);padding:13px 15px}
+.kpi .lb{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.4px;font-weight:600}
+.kpi .vl{font-size:27px;font-weight:800;margin-top:3px;white-space:nowrap;letter-spacing:-.5px}
+.kpi .nt{font-size:11.5px;color:var(--mut);margin-top:2px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r2);padding:15px 17px;margin-bottom:14px}
+.card h2{font-size:15px;font-weight:700;margin-bottom:3px}
+.card .d{font-size:12.5px;color:var(--mut);margin-bottom:11px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:880px){.grid2{grid-template-columns:1fr}}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;padding:7px 9px;background:#f6f2ee;font-weight:700;font-size:11.5px;
+text-transform:uppercase;letter-spacing:.3px;color:var(--mut);border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:7px 9px;border-bottom:1px solid #f2ede7}
+tr:last-child td{border-bottom:none}
+td.n{text-align:center;font-variant-numeric:tabular-nums;white-space:nowrap}
+th.n{text-align:center}
+.pill{display:inline-block;padding:2px 8px;border-radius:11px;font-size:11.5px;font-weight:700}
+.rg{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;
+border-radius:4px;font-size:11px;font-weight:800;color:#fff;margin-right:6px;vertical-align:-3px;
+letter-spacing:0;flex:0 0 auto}
+.rg.sec{opacity:.55;width:16px;height:16px;font-size:10px;margin-left:-3px;margin-right:6px}
+.rgleg{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--mut);margin-bottom:10px;align-items:center}
+.pg{background:#e3f5ed;color:#0d6b4d}.py{background:#fdf1dc;color:#8a5c10}.pr{background:#fde8e8;color:#9c2020}
+.bar{height:7px;background:#eee9e3;border-radius:4px;overflow:hidden;min-width:52px}
+.bar i{display:block;height:100%}
+.note{background:#fdf6e9;border-left:3px solid var(--y);padding:10px 13px;border-radius:6px;
+font-size:12.5px;color:#6b5220;margin-top:11px}
+.note b{color:#4a3810}
+.ch{position:relative;height:255px}
+.ch.sm{height:210px}
+.legend{display:flex;gap:13px;flex-wrap:wrap;font-size:12px;color:var(--mut);margin-top:8px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:-1px}
+footer{margin-top:24px;padding-top:12px;border-top:1px solid var(--line);font-size:11.5px;color:var(--mut)}
+.hide{display:none}
+.dt{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:10px}
+.dt th{padding:5px 8px;font-size:10.5px;background:#f6f2ee}
+.dt td{padding:5px 8px;border-bottom:1px solid #f4efe9}
+.dt tr:last-child td{border-bottom:none}
+.dt td.n,.dt th.n{text-align:center;font-variant-numeric:tabular-nums;white-space:nowrap}
+.dt .sw{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.dt tfoot td{font-weight:700;border-top:1px solid var(--line);background:#faf7f4}
+.scroll{overflow-x:auto;margin-top:10px;-webkit-overflow-scrolling:touch}
+.scroll .dt{min-width:760px}
+.scroll .dt td.n,.scroll .dt th.n{text-align:center}
+.scroll .dt td:first-child,.scroll .dt th:first-child{position:sticky;left:0;background:#fff;font-weight:600}
+.scroll .dt th:first-child{background:#f6f2ee}
+.tog{font-size:11.5px;color:var(--b);cursor:pointer;font-weight:600;margin-top:9px;display:inline-block;
+border:1px solid var(--line);padding:4px 10px;border-radius:6px;background:#fff}
+.tog:hover{border-color:var(--b)}
+.ttl{font-size:12px;color:var(--mut);margin-bottom:5px;font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Savanorių įveiklinimas ir koordinatorių darbo kokybė</h1>
+  <div class="sub">Laikotarpis: 2025 sausis – 2026 liepa · Duomenys: Salesforce · Parengė: Sonata, Duomenų valdymo vadovė</div>
+</header>
+
+<div class="tabs">
+  <div class="tab on" data-t="pes">PES savanoriai</div>
+  <div class="tab" data-t="kiti">Kiti savanoriai</div>
+  <div class="tab warn" data-t="pat">⚠ Reikia patikslinti</div>
+</div>
+
+<div id="main"></div>
+
+<div id="pat" class="hide">
+  <div class="card">
+    <h2>Savanoriai, kurių duomenyse yra spragų</h2>
+    <div class="d">Šie žmonės Salesforce turi statusą <b>„Savanoris"</b>, bet apie juos nėra <b>jokių duomenų</b>:
+    nei vienos užfiksuotos veiklos, nei savanorystės pradžios datos, nei pasirašytos sutarties.
+    Todėl jie neįtraukti į jokius šios ataskaitos skaičius.</div>
+    <div id="patTable"></div>
+    <div class="note">
+      <b>Ką reikėtų aptarti su Inga ir Rūta M.:</b><br>
+      1. Ar šie žmonės realiai savanoriauja? Jei taip — kodėl veiklos nefiksuojamos?<br>
+      2. Jei nesavanoriauja — statusą reikia pakeisti į „Neaktyvus", kad nekiltų netikslumų ataskaitose.<br>
+      3. Visi jų dokumentai yra <b>„Nepasirašyta"</b> — ar onboarding procesas nebuvo užbaigtas?<br>
+      4. Susitarti, kas ir per kokį terminą sutvarko, ir kaip užtikrinsime, kad tokių „skylių" nebeatsirastų.
+    </div>
+  </div>
+</div>
+
+<footer>
+  Įveiklinimas = savanorių, turėjusių bent vieną užfiksuotą veiklą, dalis nuo aktyvaus sąrašo.
+  Aktyvus sąrašas = savanoris, kuris tą mėnesį jau buvo prisijungęs ir dar nebuvo nutraukęs veiklos
+  (turėjo veiklų vėliau arba galiojo sutartis). Neįtraukti mokymų dalyviai iš visuomenės (be statuso ir koordinatoriaus).
+</footer>
+</div>
+
+<script>const D={"pes":{"label":"PES savanoriai","n":366,"months":[{"m":"2025-01","roster":118,"active":97,"hrs":1195,"eng":82,"joined":48,"left":0},{"m":"2025-02","roster":137,"active":105,"hrs":787,"eng":77,"joined":21,"left":1},{"m":"2025-03","roster":221,"active":176,"hrs":2058,"eng":80,"joined":91,"left":5},{"m":"2025-04","roster":227,"active":123,"hrs":922,"eng":54,"joined":18,"left":12},{"m":"2025-05","roster":219,"active":99,"hrs":1603,"eng":45,"joined":2,"left":8},{"m":"2025-06","roster":231,"active":144,"hrs":2296,"eng":62,"joined":16,"left":4},{"m":"2025-07","roster":226,"active":130,"hrs":2106,"eng":58,"joined":1,"left":7},{"m":"2025-08","roster":216,"active":61,"hrs":335,"eng":28,"joined":0,"left":8},{"m":"2025-09","roster":226,"active":145,"hrs":3466,"eng":64,"joined":12,"left":1},{"m":"2025-10","roster":228,"active":142,"hrs":1480,"eng":62,"joined":4,"left":2},{"m":"2025-11","roster":238,"active":117,"hrs":622,"eng":49,"joined":11,"left":4},{"m":"2025-12","roster":237,"active":80,"hrs":508,"eng":34,"joined":3,"left":6},{"m":"2026-01","roster":239,"active":125,"hrs":774,"eng":52,"joined":2,"left":4},{"m":"2026-02","roster":245,"active":140,"hrs":1601,"eng":57,"joined":0,"left":0},{"m":"2026-03","roster":246,"active":136,"hrs":1008,"eng":55,"joined":2,"left":1},{"m":"2026-04","roster":279,"active":160,"hrs":2004,"eng":57,"joined":33,"left":0},{"m":"2026-05","roster":302,"active":168,"hrs":2745,"eng":56,"joined":26,"left":2},{"m":"2026-06","roster":301,"active":156,"hrs":3813,"eng":52,"joined":1,"left":3},{"m":"2026-07","roster":300,"active":146,"hrs":2384,"eng":49,"joined":1,"left":0}],"buckets":[36,153,57,41,22],"inactive":[34,61,96,118],"cur":309,"leavers":[52,27,16],"gone":95,"coords":[{"co":"Elvinas Staškus","n":172,"act":150,"hrs":8372,"eng":87,"zero":22,"gone":52,"avg":48.7,"regs":[{"r":"Rytų regionas","n":139,"p":81},{"r":"Vakarų regionas","n":32,"p":19}]},{"co":"Mantas Kazlauskas","n":85,"act":75,"hrs":3530,"eng":88,"zero":10,"gone":27,"avg":41.5,"regs":[{"r":"Pietų regionas","n":83,"p":98}]},{"co":"Edita Cinkutienė","n":52,"act":48,"hrs":2441,"eng":92,"zero":4,"gone":12,"avg":46.9,"regs":[{"r":"Šiaurės regionas","n":50,"p":96}]}],"regions":[{"reg":"Rytų regionas","n":140,"act":122,"hrs":7085,"eng":87},{"reg":"Pietų regionas","n":83,"act":73,"hrs":3405,"eng":88},{"reg":"Šiaurės regionas","n":51,"act":47,"hrs":2483,"eng":92},{"reg":"Vakarų regionas","n":34,"act":31,"hrs":1369,"eng":91},{"reg":"NĖRA MAPPING","n":1,"act":0,"hrs":0,"eng":0}],"lag":[275,14,1,2],"conc":26},"kiti":{"label":"Kiti savanoriai","n":1301,"months":[{"m":"2025-01","roster":471,"active":425,"hrs":5301,"eng":90,"joined":330,"left":0},{"m":"2025-02","roster":532,"active":377,"hrs":4092,"eng":71,"joined":83,"left":23},{"m":"2025-03","roster":586,"active":418,"hrs":4828,"eng":71,"joined":84,"left":30},{"m":"2025-04","roster":623,"active":477,"hrs":5369,"eng":77,"joined":69,"left":32},{"m":"2025-05","roster":649,"active":452,"hrs":5330,"eng":70,"joined":68,"left":41},{"m":"2025-06","roster":637,"active":419,"hrs":5966,"eng":66,"joined":35,"left":47},{"m":"2025-07","roster":624,"active":356,"hrs":4392,"eng":57,"joined":24,"left":37},{"m":"2025-08","roster":634,"active":401,"hrs":4812,"eng":63,"joined":43,"left":32},{"m":"2025-09","roster":642,"active":425,"hrs":4796,"eng":66,"joined":35,"left":28},{"m":"2025-10","roster":712,"active":550,"hrs":6534,"eng":77,"joined":97,"left":28},{"m":"2025-11","roster":706,"active":551,"hrs":5664,"eng":78,"joined":39,"left":46},{"m":"2025-12","roster":702,"active":509,"hrs":5186,"eng":73,"joined":33,"left":37},{"m":"2026-01","roster":701,"active":481,"hrs":4046,"eng":69,"joined":38,"left":39},{"m":"2026-02","roster":707,"active":466,"hrs":4929,"eng":66,"joined":37,"left":28},{"m":"2026-03","roster":740,"active":548,"hrs":5995,"eng":74,"joined":45,"left":12},{"m":"2026-04","roster":749,"active":534,"hrs":5850,"eng":71,"joined":32,"left":21},{"m":"2026-05","roster":740,"active":513,"hrs":5957,"eng":69,"joined":14,"left":15},{"m":"2026-06","roster":744,"active":416,"hrs":4277,"eng":56,"joined":18,"left":4},{"m":"2026-07","roster":749,"active":417,"hrs":4522,"eng":56,"joined":13,"left":3}],"buckets":[28,495,219,72,49],"inactive":[161,201,215,286],"cur":863,"leavers":[291,177,126],"gone":594,"coords":[{"co":"Silvestras Pinskij","n":95,"act":92,"hrs":3728,"eng":97,"zero":3,"gone":60,"avg":39.2,"regs":[{"r":"Šiaurės regionas","n":95,"p":100}]},{"co":"Gabrielė Vaitulionytė","n":79,"act":78,"hrs":2180,"eng":99,"zero":1,"gone":59,"avg":27.6,"regs":[{"r":"Pietų regionas","n":79,"p":100}]},{"co":"Rasa Kulevičienė","n":76,"act":75,"hrs":3682,"eng":99,"zero":1,"gone":44,"avg":48.4,"regs":[{"r":"Rytų regionas","n":76,"p":100}]},{"co":"Anželika Bukataja","n":67,"act":62,"hrs":2386,"eng":93,"zero":5,"gone":72,"avg":35.6,"regs":[{"r":"Rytų regionas","n":67,"p":100}]},{"co":"Vilma Okaitė","n":59,"act":58,"hrs":4436,"eng":98,"zero":1,"gone":0,"avg":75.2,"regs":[{"r":"Vakarų regionas","n":59,"p":100}]},{"co":"Lina Frankemoell","n":53,"act":51,"hrs":2284,"eng":96,"zero":2,"gone":16,"avg":43.1,"regs":[{"r":"Pietų regionas","n":53,"p":100}]},{"co":"Urtė Vaškevičienė","n":47,"act":45,"hrs":1516,"eng":96,"zero":2,"gone":47,"avg":32.3,"regs":[{"r":"Rytų regionas","n":47,"p":100}]},{"co":"Edita Kudarauskienė","n":40,"act":40,"hrs":2541,"eng":100,"zero":0,"gone":10,"avg":63.5,"regs":[{"r":"Pietų regionas","n":40,"p":100}]},{"co":"Edita Valiulienė","n":37,"act":37,"hrs":1006,"eng":100,"zero":0,"gone":18,"avg":27.2,"regs":[{"r":"Šiaurės regionas","n":37,"p":100}]},{"co":"Grėta Visminienė","n":37,"act":37,"hrs":1635,"eng":100,"zero":0,"gone":7,"avg":44.2,"regs":[{"r":"Šiaurės regionas","n":37,"p":100}]},{"co":"Irina Lopuchova","n":36,"act":34,"hrs":1625,"eng":94,"zero":2,"gone":6,"avg":45.1,"regs":[{"r":"Vakarų regionas","n":36,"p":100}]},{"co":"Jolita Ziekė","n":35,"act":34,"hrs":1862,"eng":97,"zero":1,"gone":3,"avg":53.2,"regs":[{"r":"Vakarų regionas","n":35,"p":100}]},{"co":"Ugnė Stelmokienė","n":29,"act":29,"hrs":1232,"eng":100,"zero":0,"gone":9,"avg":42.5,"regs":[{"r":"Pietų regionas","n":29,"p":100}]},{"co":"Ingrida Toleikienė","n":28,"act":28,"hrs":1336,"eng":100,"zero":0,"gone":27,"avg":47.7,"regs":[{"r":"Šiaurės regionas","n":28,"p":100}]},{"co":"Zita Milkamanovič","n":26,"act":23,"hrs":446,"eng":88,"zero":3,"gone":8,"avg":17.2,"regs":[{"r":"Rytų regionas","n":26,"p":100}]},{"co":"Žaneta Kučinskienė","n":21,"act":21,"hrs":1828,"eng":100,"zero":0,"gone":2,"avg":87.0,"regs":[{"r":"Šiaurės regionas","n":21,"p":100}]},{"co":"Indra Ramanauskienė","n":19,"act":17,"hrs":152,"eng":89,"zero":2,"gone":1,"avg":8.0,"regs":[{"r":"Šiaurės regionas","n":19,"p":100}]},{"co":"Dovilė Grickevičiūtė","n":18,"act":18,"hrs":725,"eng":100,"zero":0,"gone":6,"avg":40.3,"regs":[{"r":"Pietų regionas","n":18,"p":100}]},{"co":"Roberta Gasiūnaitė","n":16,"act":16,"hrs":363,"eng":100,"zero":0,"gone":3,"avg":22.7,"regs":[{"r":"Pietų regionas","n":16,"p":100}]},{"co":"Jolita Cironkienė","n":13,"act":13,"hrs":273,"eng":100,"zero":0,"gone":19,"avg":21.0,"regs":[{"r":"Rytų regionas","n":13,"p":100}]},{"co":"Alma Kurmauskienė","n":9,"act":5,"hrs":41,"eng":56,"zero":4,"gone":5,"avg":4.6,"regs":[{"r":"Pietų regionas","n":9,"p":100}]},{"co":"Karolis Jurkevičius","n":9,"act":9,"hrs":197,"eng":100,"zero":0,"gone":0,"avg":21.9,"regs":[{"r":"Pietų regionas","n":9,"p":100}]},{"co":"Agnė Tonkūnaitė","n":8,"act":8,"hrs":98,"eng":100,"zero":0,"gone":22,"avg":12.2,"regs":[{"r":"Šiaurės regionas","n":8,"p":100}]},{"co":"Valda Piščikienė","n":3,"act":2,"hrs":3,"eng":67,"zero":1,"gone":9,"avg":1.0,"regs":[{"r":"Šiaurės regionas","n":3,"p":100}]},{"co":"Karolina Pinkevičiūtė","n":1,"act":1,"hrs":2,"eng":100,"zero":0,"gone":16,"avg":2.0,"regs":[{"r":"Pietų regionas","n":1,"p":100}]},{"co":"Diana Vybornienė","n":1,"act":1,"hrs":4,"eng":100,"zero":0,"gone":18,"avg":4.0,"regs":[{"r":"Pietų regionas","n":1,"p":100}]},{"co":"Gabrielė Songailė","n":1,"act":1,"hrs":6,"eng":100,"zero":0,"gone":15,"avg":6.0,"regs":[{"r":"Rytų regionas","n":1,"p":100}]}],"regions":[{"reg":"Pietų regionas","n":255,"act":248,"hrs":9569,"eng":97},{"reg":"Šiaurės regionas","n":248,"act":242,"hrs":9785,"eng":98},{"reg":"Rytų regionas","n":230,"act":219,"hrs":8310,"eng":95},{"reg":"Vakarų regionas","n":130,"act":126,"hrs":7923,"eng":97}],"lag":[1118,21,5,5],"conc":26},"patikslinti":[{"cid":"003P400000y8fJf","vardas":"Judita Antanaitytė","koord":"Anželika Bukataja","reg":"Rytų regionas","sav":"Vilniaus m. sav.","dok":4,"dokst":"Nepasirašyta: 4","tipai":"LRK savanoriškos veiklos sutartis; Priedas Nr.1 - Konfidenciali informacija; Priedas Nr.2 - Integracijos savanoriškos vei"},{"cid":"003P400000zLstX","vardas":"Barbara Charyton","koord":"Anželika Bukataja","reg":"Rytų regionas","sav":"Vilniaus m. sav.","dok":5,"dokst":"Nepasirašyta: 5","tipai":"LRK savanoriškos veiklos sutartis; Priedas Nr.1 - Konfidenciali informacija; Priedas Nr.2 - Integracijos savanoriškos vei"},{"cid":"003P4000012nkb8","vardas":"Saulė Marija GEDRIMAITĖ","koord":"Anželika Bukataja","reg":"Rytų regionas","sav":"Vilniaus m. sav.","dok":4,"dokst":"Nepasirašyta: 4","tipai":"LRK savanoriškos veiklos sutartis; Priedas Nr.1 - Konfidenciali informacija; Priedas Nr.2 - Integracijos savanoriškos vei"},{"cid":"003P400000ze63a","vardas":"Petr Ivanov","koord":"Anželika Bukataja","reg":"Rytų regionas","sav":"Vilniaus r. sav.","dok":4,"dokst":"Nepasirašyta: 4","tipai":"LRK savanoriškos veiklos sutartis; Priedas Nr.1 - Konfidenciali informacija; Priedas Nr.2 - Integracijos savanoriškos vei"},{"cid":"003P4000011UYo8","vardas":"Živilė Miežytė","koord":"Anželika Bukataja","reg":"Rytų regionas","sav":"Vilniaus m. sav.","dok":4,"dokst":"Nepasirašyta: 4","tipai":"LRK savanoriškos veiklos sutartis; Priedas Nr.1 - Konfidenciali informacija; Priedas Nr.2 - Civilinės saugos savanoriškos"},{"cid":"003P40000115M24","vardas":"Gabrielė Oksaitė","koord":"Anželika Bukataja","reg":"Rytų regionas","sav":"Vilniaus m. sav.","dok":4,"dokst":"Nepasirašyta: 4","tipai":"LRK savanoriškos veiklos sutartis; Priedas Nr.1 - Konfidenciali informacija; Priedas Nr.2 - Civilinės saugos savanoriškos"},{"cid":"003P4000011q15P","vardas":"Andrius Volungevičius","koord":"Anželika Bukataja","reg":"Rytų regionas","sav":"Vilniaus m. sav.","dok":4,"dokst":"Nepasirašyta: 4","tipai":"LRK savanoriškos veiklos sutartis; Priedas Nr.1 - Konfidenciali informacija; Priedas Nr.2 - Civilinės saugos savanoriškos"},{"cid":"003P4000012Sugj","vardas":"Dovilė Žvalionienė","koord":"Anželika Bukataja","reg":"Rytų regionas","sav":"Vilniaus m. sav.","dok":4,"dokst":"Nepasirašyta: 4","tipai":"LRK savanoriškos veiklos sutartis; Priedas Nr.1 - Konfidenciali informacija; Priedas Nr.2 - Civilinės saugos savanoriškos"},{"cid":"003P400000yBfZz","vardas":"Kotryna Gumauskaitė","koord":"Dovilė Grickevičiūtė","reg":"Pietų regionas","sav":"Kauno m. sav.","dok":4,"dokst":"Nepasirašyta: 4","tipai":"LRK savanoriškos veiklos sutartis; Priedas Nr.1 - Konfidenciali informacija; Priedas Nr.2 - Civilinės saugos savanoriškos"},{"cid":"003P4000011w5W7","vardas":"Klaudija Filipova","koord":"Edita Valiulienė","reg":"Šiaurės regionas","sav":"Utenos r. sav.","dok":4,"dokst":"Nepasirašyta: 4","tipai":"LRK savanoriškos veiklos sutartis; Priedas Nr.1 - Konfidenciali informacija; Priedas Nr.2 - Integracijos savanoriškos vei"},{"cid":"003P400000s9JE4","vardas":"Samanta Kisieliūtė","koord":"Lina Frankemoell","reg":"Pietų regionas","sav":"Marijampolės sav.","dok":4,"dokst":"Nepasirašyta: 4","tipai":"LRK savanoriškos veiklos sutartis; Priedas Nr.1 - Konfidenciali informacija; Priedas Nr.2 - Civilinės saugos savanoriškos"},{"cid":"003P4000010eDSf","vardas":"Kęstutis Šlapkauskas","koord":"Roberta Gasiūnaitė","reg":"Pietų regionas","sav":"Šakių r. sav.","dok":4,"dokst":"Nepasirašyta: 4","tipai":"LRK savanoriškos veiklos sutartis; Priedas Nr.1 - Konfidenciali informacija; Priedas Nr.2 - Civilinės saugos savanoriškos"},{"cid":"003P400000vrMEV","vardas":"Violeta Dumskienė","koord":"Ugnė Stelmokienė","reg":"Pietų regionas","sav":"Druskininkų sav.","dok":4,"dokst":"Nepasirašyta: 4","tipai":"LRK savanoriškos veiklos sutartis; Priedas Nr.1 - Konfidenciali informacija; Priedas Nr.2 - Pirmos pagalbos savanoriškos "},{"cid":"003P4000012WgiP","vardas":"Natalija Mikalajūnė","koord":"Urtė Vaškevičienė","reg":"Rytų regionas","sav":"Vilniaus r. sav.","dok":4,"dokst":"Nepasirašyta: 4","tipai":"LRK savanoriškos veiklos sutartis; Priedas Nr.1 - Konfidenciali informacija; Priedas Nr.2 - Civilinės saugos savanoriškos"},{"cid":"003P4000012Sw4D","vardas":"Agnė Vaitulionienė","koord":"Urtė Vaškevičienė","reg":"Rytų regionas","sav":"Vilniaus m. sav.","dok":4,"dokst":"Nepasirašyta: 4","tipai":"LRK savanoriškos veiklos sutartis; Priedas Nr.1 - Konfidenciali informacija; Priedas Nr.2 - Pirmos pagalbos savanoriškos "},{"cid":"003P4000012SmWM","vardas":"Elvyra Milaševičiūtė","koord":"Zita Milkamanovič","reg":"Rytų regionas","sav":"Vilniaus m. sav.","dok":4,"dokst":"Nepasirašyta: 4","tipai":"LRK savanoriškos veiklos sutartis; Priedas Nr.1 - Konfidenciali informacija; Priedas Nr.2 - Civilinės saugos savanoriškos"},{"cid":"003P4000011EZpe","vardas":"Ugnius Zikas","koord":"Zita Milkamanovič","reg":"Rytų regionas","sav":"Vilniaus m. sav.","dok":4,"dokst":"Nepasirašyta: 4","tipai":"LRK savanoriškos veiklos sutartis; Priedas Nr.1 - Konfidenciali informacija; Priedas Nr.2 - Pirmos pagalbos savanoriškos "},{"cid":"003P400000xmE7v","vardas":"Rūta Šekštele","koord":"Zita Milkamanovič","reg":"Rytų regionas","sav":"Vilniaus m. sav.","dok":5,"dokst":"Nepasirašyta: 5","tipai":"LRK savanoriškos veiklos sutartis; Priedas Nr.1 - Konfidenciali informacija; Priedas Nr.2 - Civilinės saugos savanoriškos"}]};</script>
+<script>
+const C={red:'#C8102E',g:'#1D9E75',y:'#E8A33D',r:'#E24B4A',b:'#2E74B5',mut:'#6b6560',line:'#e8e2db'};
+let charts=[];
+// Reiksmiu etiketes ant stulpeliu: "36 (12%)"
+const valLbl={id:'valLbl',afterDatasetsDraw(ch,args,o){
+  const ds=ch.data.datasets[0]; if(!ds) return;
+  const tot=ds.data.reduce((a,b)=>a+(b||0),0);
+  const ctx=ch.ctx; ctx.save();
+  ctx.font='700 12px Figtree,sans-serif'; ctx.fillStyle='#1c1a19';
+  ch.getDatasetMeta(0).data.forEach((el,i)=>{
+    const v=ds.data[i]||0, p=tot?Math.round(v/tot*100):0, t=nf(v)+'  ('+p+'%)';
+    if(o&&o.horizontal){ctx.textAlign='left';ctx.textBaseline='middle';ctx.fillText(t,el.x+7,el.y);}
+    else {ctx.textAlign='center';ctx.textBaseline='bottom';ctx.fillText(t,el.x,el.y-6);}
+  });
+  ctx.restore();
+}};
+const kill=()=>{charts.forEach(c=>c.destroy());charts=[];};
+const pc=v=>v>=80?'pg':v>=60?'py':'pr';
+const REG={'Rytų regionas':{l:'R',c:'#2E74B5'},'Vakarų regionas':{l:'V',c:'#1D9E75'},
+           'Šiaurės regionas':{l:'Š',c:'#8E5AA8'},'Pietų regionas':{l:'P',c:'#E8A33D'}};
+function regBadge(regs){
+  if(!regs||!regs.length) return '<span class="rg" style="background:#c9c3bc" title="Regionas nenurodytas">–</span>';
+  return regs.map((x,i)=>{
+    const m=REG[x.r]||{l:'?',c:'#c9c3bc'};
+    return `<span class="rg${i?' sec':''}" style="background:${m.c}" title="${x.r}: ${x.n} sav. (${x.p}%)">${m.l}</span>`;
+  }).join('');
+}
+const bc=v=>v>=80?C.g:v>=60?C.y:C.r;
+const nf=n=>n.toLocaleString('lt-LT');
+// maza duomenu lentele po grafiku
+function dt(rows,tot,cols){
+  const c=cols||['Kategorija','Kiekis','Dalis'];
+  return `<table class="dt"><thead><tr><th>${c[0]}</th><th class="n">${c[1]}</th><th class="n">${c[2]}</th></tr></thead><tbody>
+  ${rows.map(r=>`<tr><td><span class="sw" style="background:${r[2]}"></span>${r[0]}</td>
+  <td class="n">${nf(r[1])}</td><td class="n">${tot?Math.round(r[1]/tot*100)+'%':'—'}</td></tr>`).join('')}
+  </tbody><tfoot><tr><td>Iš viso</td><td class="n">${nf(tot)}</td><td class="n">100%</td></tr></tfoot></table>`;
+}
+function monTable(M,dyn){
+  const rows = dyn
+    ? [['Prisijungė',m=>m.joined],['Išėjo',m=>m.left],['Grynas pokytis',m=>m.joined-m.left]]
+    : [['Sąraše',m=>m.roster],['Veikė',m=>m.active],['Įveiklinimas %',m=>m.eng+'%'],['Valandos',m=>nf(m.hrs)]];
+  return `<table class="dt"><thead><tr><th>Rodiklis</th>${M.map(m=>`<th class="n">${m.m.slice(2)}</th>`).join('')}</tr></thead>
+  <tbody>${rows.map(r=>`<tr><td>${r[0]}</td>${M.map(m=>{
+    const v=r[1](m);
+    const col = r[0]==='Grynas pokytis' ? (v>0?C.g:v<0?C.r:C.mut) : '';
+    return `<td class="n" style="${col?'color:'+col+';font-weight:600':''}">${typeof v==='number'&&r[0]==='Grynas pokytis'&&v>0?'+'+v:v}</td>`;
+  }).join('')}</tr>`).join('')}</tbody></table>`;
+}
+function togg(id){const e=document.getElementById(id);const b=event.target;
+  const h=e.classList.toggle('hide');b.textContent=h?'▾ Rodyti duomenų lentelę':'▴ Slėpti duomenų lentelę';}
+
+function render(k){
+  kill();
+  const d=D[k], M=d.months, L=M.map(x=>x.m.replace('2025-','').replace('2026-',''));
+  const last=M[M.length-1], first=M[0];
+  const totH=M.reduce((s,x)=>s+x.hrs,0);
+  const joined=M.reduce((s,x)=>s+x.joined,0), left=M.reduce((s,x)=>s+x.left,0);
+
+  document.getElementById('main').innerHTML=`
+  <div class="kpis">
+    <div class="kpi"><div class="lb">Sąraše dabar</div><div class="vl">${nf(last.roster)}</div>
+      <div class="nt">2025-01 buvo ${nf(first.roster)}</div></div>
+    <div class="kpi"><div class="lb">Įveiklinimas (2026-07)</div>
+      <div class="vl" style="color:${bc(last.eng)}">${last.eng}%</div>
+      <div class="nt">2025-01 buvo ${first.eng}%</div></div>
+    <div class="kpi"><div class="lb">Valandos per periodą</div><div class="vl">${nf(totH)}</div>
+      <div class="nt">vid. ${nf(Math.round(totH/M.length))} / mėn.</div></div>
+    <div class="kpi"><div class="lb">Prisijungė / išėjo</div>
+      <div class="vl"><span style="color:${C.g}">+${joined}</span> <span style="color:${C.mut};font-size:19px">/</span> <span style="color:${C.r}">−${left}</span></div>
+      <div class="nt">grynas pokytis ${joined-left>0?'+':''}${joined-left}</div></div>
+    <div class="kpi"><div class="lb">Neįveiklinti (2026)</div>
+      <div class="vl" style="color:${d.buckets[0]/d.cur>0.1?C.r:C.y}">${d.buckets[0]}</div>
+      <div class="nt">${Math.round(d.buckets[0]/d.cur*100)}% nuo ${nf(d.cur)}</div></div>
+  </div>
+
+  <div class="card">
+    <h2>Sąrašo dydis ir įveiklinimas per mėnesį</h2>
+    <div class="d">Stulpeliai — kiek savanorių buvo sąraše ir kiek realiai veikė. Linija — įveiklinimo procentas.</div>
+    <div class="ch"><canvas id="c1"></canvas></div>
+    <span class="tog" onclick="togg('t1')">▾ Rodyti duomenų lentelę</span>
+    <div id="t1" class="scroll hide">${monTable(M)}</div>
+    <div class="note">Skaičiai apima ir tuos savanorius, kurie jau išėję — todėl praeities mėnesiai rodomi tokie,
+    kokie buvo <b>tuo metu</b>, o ne pagal šiandienos sąrašą.</div>
+  </div>
+
+  <div class="grid2">
+    <div class="card"><h2>Vidutinės valandos per mėnesį</h2>
+      <div class="d">2026 sausis–liepa, ${nf(d.cur)} savanorių</div>
+      <div class="ch sm"><canvas id="c2"></canvas></div>
+      <div class="ttl" style="margin-top:9px">Iš viso ${nf(d.cur)} savanorių</div></div>
+    <div class="card"><h2>Kiek mėnesių savanoris neveikė</h2>
+      <div class="d">Iš 7 mėnesių (2026 sausis–liepa)</div>
+      <div class="ch sm"><canvas id="c3"></canvas></div>
+      <div class="note">${d.inactive[3]} savanoriai (${Math.round(d.inactive[3]/d.cur*100)}%) neveikė 5 ar daugiau mėnesių iš 7.</div></div>
+  </div>
+
+  <div class="card">
+    <h2>Prisijungimų ir išėjimų dinamika</h2>
+    <div class="d">Kiek savanorių kas mėnesį prisijungė ir kiek nustojo veikti</div>
+    <div class="ch"><canvas id="c4"></canvas></div>
+    <span class="tog" onclick="togg('t4')">▾ Rodyti duomenų lentelę</span>
+    <div id="t4" class="scroll hide">${monTable(M,true)}</div>
+    <div class="note"><b>Paskutinių 2 mėnesių „išėjo" skaičius yra preliminarus</b> — žmogaus, kurio paskutinė
+    veikla birželį ar liepą, dar negalime laikyti išėjusiu.</div>
+  </div>
+
+  <div class="grid2">
+    <div class="card"><h2>Kas išeina?</h2>
+      <div class="d">Iš ${d.gone} išėjusių savanorių</div>
+      <div class="ch sm"><canvas id="c5"></canvas></div>
+      ${dt([['Trumpai pabuvo (1–2 mėn.)',d.leavers[0],C.r],['Buvo silpnai įveiklinti',d.leavers[1],C.y],
+            ['Buvo aktyvūs (≥8 val./mėn.)',d.leavers[2],C.b]],d.gone,['Grupė','Savanorių','Dalis'])}
+      <div class="note">${Math.round((d.leavers[0]+d.leavers[1])/d.gone*100)}% išėjusių buvo neįveiklinti arba
+      silpnai įveiklinti — <b>tai pirmiausia įveiklinimo, o ne išlaikymo problema</b>.
+      Bet ${d.leavers[2]} aktyvūs savanoriai prarasti jau po realaus indėlio — jų priežastis verta atskiro pokalbio.</div></div>
+    <div class="card"><h2>Naujokų startas</h2>
+      <div class="d">Per kiek laiko nuo prisijungimo naujas savanoris gauna pirmą veiklą (nuo 2025 m.)</div>
+      <div class="ch sm"><canvas id="c6"></canvas></div>
+      <div class="note">Kuo ilgiau naujokas laukia pirmos veiklos, tuo didesnė rizika, kad iškris.</div></div>
+  </div>
+
+  <div class="card">
+    <h2>Koordinatorių palyginimas</h2>
+    <div class="d">2026 sausis–liepa. „Nulinių" — savanoriai, kurie per visą periodą neturėjo nė vienos veiklos.</div>
+    <div class="rgleg">${Object.entries(REG).map(([k,v])=>
+      `<span><span class="rg" style="background:${v.c}">${v.l}</span>${k.replace(' regionas','')}</span>`).join('')}
+      <span style="color:#9a938c">· antra raidė = koordinatorius dirba ir kitame regione (užvedus rodo tikslų pasiskirstymą)</span></div>
+    <table><thead><tr><th>Koordinatorius</th><th class="n">Savanorių</th><th class="n">Veikė</th>
+    <th>Įveiklinimas</th><th class="n">Nulinių</th><th class="n">Valandos</th><th class="n">Vid. val./sav.</th><th class="n">Išėjo</th></tr></thead>
+    <tbody>${d.coords.map(c=>`<tr><td style="white-space:nowrap">${regBadge(c.regs)}<b>${c.co}</b></td><td class="n">${c.n}</td><td class="n">${c.act}</td>
+    <td><span class="pill ${pc(c.eng)}">${c.eng}%</span></td>
+    <td class="n" style="color:${c.zero>0?C.r:C.mut};font-weight:${c.zero>0?700:400}">${c.zero}</td>
+    <td class="n">${nf(c.hrs)}</td><td class="n">${c.avg}</td><td class="n">${c.gone}</td></tr>`).join('')}</tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Regionai</h2>
+    <table><thead><tr><th>Regionas</th><th class="n">Savanorių</th><th class="n">Veikė</th><th style="width:150px">Įveiklinimas</th><th class="n">Valandos</th></tr></thead>
+    <tbody>${d.regions.filter(r=>r.n>1).map(r=>`<tr><td><b>${r.reg}</b></td><td class="n">${r.n}</td><td class="n">${r.act}</td>
+    <td><div style="display:flex;align-items:center;gap:8px"><div class="bar"><i style="width:${r.eng}%;background:${bc(r.eng)}"></i></div>
+    <span style="font-weight:700;font-size:12px">${r.eng}%</span></div></td><td class="n">${nf(r.hrs)}</td></tr>`).join('')}</tbody></table>
+    <div class="note">Priklausomybė nuo aktyviausių: <b>5% aktyviausių savanorių sukuria ${d.conc}% visų valandų</b>.</div>
+  </div>`;
+
+  const gopt={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+    scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#f2ede7'}}}};
+
+  charts.push(new Chart(c1,{data:{labels:L,datasets:[
+    {type:'bar',label:'Sąraše',data:M.map(x=>x.roster),backgroundColor:'#dfe9f3',order:3},
+    {type:'bar',label:'Veikė',data:M.map(x=>x.active),backgroundColor:C.b,order:2},
+    {type:'line',label:'Įveiklinimas %',data:M.map(x=>x.eng),borderColor:C.red,backgroundColor:C.red,
+     yAxisID:'y1',tension:.3,borderWidth:2.5,pointRadius:3,order:1}]},
+    options:{...gopt,plugins:{legend:{display:true,position:'bottom',labels:{boxWidth:11,font:{size:11.5}}}},
+    scales:{x:{grid:{display:false},stacked:false},y:{beginAtZero:true,grid:{color:'#f2ede7'},title:{display:true,text:'Savanorių',font:{size:11}}},
+    y1:{position:'right',beginAtZero:true,max:100,grid:{display:false},ticks:{callback:v=>v+'%'}}}}}));
+
+  charts.push(new Chart(c2,{type:'bar',plugins:[valLbl],
+    data:{labels:['0 val.','1–5','6–10','11–20','20+'],
+    datasets:[{data:d.buckets,backgroundColor:[C.r,C.y,'#9ac4e0',C.b,C.g]}]},
+    options:{...gopt,layout:{padding:{top:22}},
+    plugins:{legend:{display:false},valLbl:{},tooltip:{enabled:false}},
+    scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#f2ede7'},grace:'12%'}}}}));
+
+  charts.push(new Chart(c3,{type:'bar',plugins:[valLbl],
+    data:{labels:['0 mėn.','1–2','3–4','5+'],
+    datasets:[{data:d.inactive,backgroundColor:[C.g,'#9ac4e0',C.y,C.r]}]},
+    options:{...gopt,layout:{padding:{top:22}},
+    plugins:{legend:{display:false},valLbl:{},tooltip:{enabled:false}},
+    scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#f2ede7'},grace:'12%'}}}}));
+
+  charts.push(new Chart(c4,{data:{labels:L,datasets:[
+    {type:'bar',label:'Prisijungė',data:M.map(x=>x.joined),backgroundColor:C.g},
+    {type:'bar',label:'Išėjo',data:M.map(x=>-x.left),backgroundColor:C.r}]},
+    options:{...gopt,plugins:{legend:{display:true,position:'bottom',labels:{boxWidth:11,font:{size:11.5}}},
+    tooltip:{callbacks:{label:c=>c.dataset.label+': '+Math.abs(c.parsed.y)}}},
+    scales:{x:{grid:{display:false},stacked:true},y:{stacked:true,grid:{color:'#f2ede7'},ticks:{callback:v=>Math.abs(v)}}}}}));
+
+  charts.push(new Chart(c5,{type:'doughnut',data:{labels:['Trumpai pabuvo (1–2 mėn.)','Buvo silpnai įveiklinti','Buvo aktyvūs (≥8 val./mėn.)'],
+    datasets:[{data:d.leavers,backgroundColor:[C.r,C.y,C.b],borderWidth:2,borderColor:'#fff'}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'52%',
+    plugins:{legend:{position:'bottom',labels:{boxWidth:11,font:{size:11.5},padding:9}},
+    tooltip:{callbacks:{label:c=>c.label+': '+c.parsed+' ('+Math.round(c.parsed/d.gone*100)+'%)'}}}}}));
+
+  const lagT=d.lag.reduce((a,b)=>a+b,0);
+  charts.push(new Chart(c6,{type:'bar',plugins:[valLbl],
+    data:{labels:['Per 1 mėn.','Per 2–3 mėn.','Vėliau','Niekada'],
+    datasets:[{data:d.lag,backgroundColor:[C.g,'#9ac4e0',C.y,C.r]}]},
+    options:{...gopt,indexAxis:'y',layout:{padding:{right:78}},
+    plugins:{legend:{display:false},valLbl:{horizontal:true},tooltip:{enabled:false}},
+    scales:{x:{beginAtZero:true,grid:{color:'#f2ede7'},grace:'8%'},y:{grid:{display:false}}}}}));
+}
+
+function renderPat(){
+  const P=D.patikslinti;
+  const byCo={};P.forEach(p=>{(byCo[p.koord]=byCo[p.koord]||[]).push(p)});
+  document.getElementById('patTable').innerHTML=`
+  <div class="kpis" style="margin-bottom:13px">
+    <div class="kpi"><div class="lb">Savanorių</div><div class="vl" style="color:${C.y}">${P.length}</div>
+      <div class="nt">su statusu „Savanoris"</div></div>
+    <div class="kpi"><div class="lb">Koordinatorių</div><div class="vl">${Object.keys(byCo).length}</div>
+      <div class="nt">kurių sąrašuose jie yra</div></div>
+    <div class="kpi"><div class="lb">Pasirašytų sutarčių</div><div class="vl" style="color:${C.r}">0</div>
+      <div class="nt">visi dokumentai nepasirašyti</div></div>
+  </div>
+  <table><thead><tr><th>Vardas Pavardė</th><th>Koordinatorius</th><th>Regionas</th><th>Savivaldybė</th>
+  <th class="n">Dok.</th><th>Dokumentų būsena</th></tr></thead><tbody>
+  ${P.map(p=>`<tr><td><b>${p.vardas}</b></td><td>${p.koord}</td><td>${p.reg||'—'}</td><td>${p.sav||'—'}</td>
+  <td class="n">${p.dok}</td><td><span class="pill pr">${p.dokst}</span></td></tr>`).join('')}
+  </tbody></table>`;
+}
+
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+  t.classList.add('on');
+  const k=t.dataset.t;
+  const isPat=k==='pat';
+  document.getElementById('main').classList.toggle('hide',isPat);
+  document.getElementById('pat').classList.toggle('hide',!isPat);
+  if(isPat){kill();renderPat();}else{render(k);}
+});
+render('pes');
+</script>
+</body>
+</html>
