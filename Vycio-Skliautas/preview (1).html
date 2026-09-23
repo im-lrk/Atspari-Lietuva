@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="lt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LRK KOBO evakuacijos anketų įgyvendinimo planas</title>
+  <style>
+    :root {
+      --ink:#17233c; --muted:#5e6c84; --line:#d7e1ef; --paper:#f4f7fb;
+      --card:#fff; --blue:#1167b1; --blue2:#eaf4ff; --navy:#153a68;
+      --green:#17765a; --green2:#e9f8f2; --amber:#9a5b00; --amber2:#fff5df;
+      --red:#a83838; --red2:#fff0f0; --shadow:0 10px 30px rgba(20,55,95,.09);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+    header{background:linear-gradient(135deg,#0b5798,#173b6a);color:#fff;padding:44px 22px 54px}
+    header .wrap{max-width:1160px;margin:auto}
+    h1{font-size:clamp(28px,4vw,46px);line-height:1.1;margin:0 0 12px;max-width:900px}
+    header p{max-width:820px;margin:0;color:#dcecff;font-size:18px}
+    main{max-width:1160px;margin:-26px auto 60px;padding:0 18px}
+    .panel{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:24px;margin-bottom:20px}
+    .eyebrow{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);font-weight:700}
+    h2{font-size:26px;line-height:1.2;margin:5px 0 16px;color:var(--navy)}
+    h3{font-size:20px;margin:20px 0 10px;color:var(--navy)}
+    p{margin:8px 0 12px}.muted{color:var(--muted)}
+    .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    button{border:0;border-radius:9px;padding:10px 14px;font-weight:650;cursor:pointer;background:var(--navy);color:#fff}
+    button.secondary{background:#e7eef7;color:var(--navy)}
+    button:hover{filter:brightness(.96)}
+    .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;align-items:stretch;margin-top:18px}
+    .flow-card{position:relative;background:var(--blue2);border:1px solid #b9dafa;border-radius:14px;padding:16px;min-height:128px}
+    .flow-card:not(:last-child)::after{content:"→";position:absolute;right:-20px;top:43%;z-index:2;color:var(--blue);font-size:25px;font-weight:800}
+    .flow-no{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--blue);font-weight:750;margin-bottom:9px}
+    .flow-card .flow-no,.step-num{color:#fff !important}
+    .flow-card b{display:block;color:var(--navy);margin-bottom:5px}.flow-card span{font-size:14px;color:#40516d}
+    .rule{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:15px}
+    .rule div{border-radius:12px;padding:14px;background:#f7f9fc;border:1px solid var(--line)}
+    .rule b{display:block;color:var(--blue);font-size:14px;margin-bottom:4px}
+    .decision-wrap{margin-top:24px;padding-top:22px;border-top:1px solid var(--line)}
+    .decision-title{text-align:center;color:var(--navy);font-size:19px;font-weight:750;margin-bottom:14px}
+    .decision-tree{max-width:780px;margin:auto;display:grid;gap:12px;text-align:center}
+    .decision-node{background:var(--blue2);border:1px solid #b9dafa;border-radius:13px;padding:13px 15px;color:var(--navy);font-weight:650}
+    .decision-node.root{max-width:300px;margin:auto;background:#dcedfb}
+    .decision-branches{display:grid;grid-template-columns:1fr 1.35fr;gap:34px;position:relative}
+    .decision-branch{display:grid;gap:10px;align-content:start}
+    .decision-label{justify-self:center;border:1px solid #bdd7ee;border-radius:99px;background:#fff;color:var(--navy);padding:3px 12px;font-size:13px}
+    .decision-arrow{height:16px;color:#9db4c9;font-size:19px;line-height:16px}
+    .decision-results{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .decision-note{max-width:850px;margin:14px auto 0;color:var(--muted);font-size:14px;text-align:center}
+    .steps{display:grid;gap:14px}
+    details{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+    summary{cursor:pointer;list-style:none;padding:17px 54px 17px 18px;font-weight:700;color:var(--navy);position:relative}
+    summary::-webkit-details-marker{display:none}
+    summary::after{content:"+";position:absolute;right:18px;top:50%;transform:translateY(-50%);width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:var(--blue2);color:var(--blue);font-size:21px}
+    details[open]>summary::after{content:"−"}
+    details[open]>summary{border-bottom:1px solid var(--line);background:#fbfdff}
+    .detail-body{padding:17px 18px 20px}
+    details details{margin:10px 0;background:#fbfdff;border-radius:10px}
+    details details summary{padding:13px 48px 13px 15px;font-size:15px}
+    details details .detail-body{padding:13px 15px 16px}
+    details details details{background:#fff;border-left:4px solid #b6d9f8}
+    .step-title{display:flex;gap:12px;align-items:center}
+    .step-num{flex:0 0 auto;display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--blue);color:#fff}
+    .step-short{font-weight:450;color:var(--muted);margin-left:8px}
+    table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+    th,td{text-align:left;vertical-align:top;padding:10px 9px;border-bottom:1px solid var(--line)}
+    th{background:#eef5fc;color:var(--navy);font-weight:700}
+    tr:last-child td{border-bottom:0}
+    code{background:#eef3f8;color:#173b67;padding:2px 5px;border-radius:5px;font-size:.92em}
+    pre{white-space:pre-wrap;background:#132b49;color:#eaf5ff;padding:14px;border-radius:10px;overflow:auto}
+    ul,ol{padding-left:22px}li{margin:5px 0}
+    .note,.warning,.ok{border-radius:11px;padding:13px 15px;margin:12px 0;border-left:5px solid}
+    .note{background:var(--blue2);border-color:var(--blue)}
+    .warning{background:var(--amber2);border-color:var(--amber)}
+    .ok{background:var(--green2);border-color:var(--green)}
+    .badge{display:inline-block;padding:3px 8px;border-radius:99px;background:var(--blue2);color:var(--blue);font-size:12px;font-weight:700;margin-right:5px}
+    .checklist{list-style:none;padding:0}.checklist li{padding-left:28px;position:relative}.checklist li::before{content:"□";position:absolute;left:2px;color:var(--blue);font-size:19px;top:-2px}
+    .sources a{color:var(--blue)}
+    footer{text-align:center;color:var(--muted);font-size:13px;padding:10px 20px 35px}
+    @media(max-width:900px){.flow{grid-template-columns:1fr 1fr}.flow-card:not(:last-child)::after{display:none}.rule{grid-template-columns:1fr}}
+    @media(max-width:590px){header{padding-top:30px}.panel{padding:17px}.flow{grid-template-columns:1fr}.decision-branches,.decision-results{grid-template-columns:1fr}.decision-branches{gap:18px}.step-short{display:none}th,td{padding:8px 6px;font-size:13px}.toolbar button{width:100%}}
+    @media print{body{background:#fff}header{padding:24px;color:#000;background:#fff;border-bottom:2px solid #000}header p{color:#333}main{margin:0;max-width:none}.toolbar{display:none}.panel,details{box-shadow:none;break-inside:avoid}.flow-card{min-height:auto}details:not([open])>.detail-body{display:block}details>summary::after{display:none}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="eyebrow" style="color:#bfe1ff">Lietuvos Raudonasis Kryžius</div>
+      <h1>KOBO evakuacijos registravimo anketų planas</h1>
+      <p>Dvi susietos anketos: trumpa namų ūkio registracija surinkimo punkte ir individuali registracija su Rapid ENA laikino apgyvendinimo centre.</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel">
+      <div class="eyebrow">Trumpa versija</div>
+      <h2>Kaip veiks visas procesas</h2>
+      <div class="flow" aria-label="Evakuacijos registravimo proceso schema">
+        <div class="flow-card"><span class="flow-no">1</span><b>Apyrankės</b><span>Kiekvienas žmogus gauna unikalų, ranka įvedamą Person ID.</span></div>
+        <div class="flow-card"><span class="flow-no">2</span><b>Parent anketa</b><span>Surinkimo punkte registruojamas tik namų ūkio atstovas ir bendras žmonių skaičius.</span></div>
+        <div class="flow-card"><span class="flow-no">3</span><b>Pervežimas</b><span>Žmonės vyksta į priėmimo arba laikino apgyvendinimo centrą.</span></div>
+        <div class="flow-card"><span class="flow-no">4</span><b>Child anketa</b><span>Kiekvienam žmogui pildomas atskiras įrašas ir Rapid ENA.</span></div>
+        <div class="flow-card"><span class="flow-no">5</span><b>Suvestinė</b><span>Pagal Household ID lyginama: kiek tikėtasi ir kiek užregistruota.</span></div>
+      </div>
+      <div class="rule">
+        <div><b>Atstovas</b><code>person_id = household_id</code></div>
+        <div><b>Namų ūkio narys</b>turi savo <code>person_id</code>, o jo <code>household_id</code> yra atstovo apyrankės numeris.</div>
+        <div><b>Pagrindinė taisyklė</b>Parent neradimas niekada nestabdo žmogaus registracijos.</div>
+      </div>
+      <div class="decision-wrap">
+        <div class="decision-title">HH atstovo nustatymas per pirmąsias pratybas</div>
+        <div class="decision-tree" role="img" aria-label="Jei žinomas atstovo apyrankės ID, įvedamas HH ID. Jei nežinomas, įvedami atstovo vardas, pavardė ir gimimo metai, o koordinatorius ieško KOBO lentelėje. Radus priskiriamas HH ID, neradus sukuriamas laikinas HH ID ir atliekama patikra vėliau.">
+          <div class="decision-node root">Ar žinomas atstovo apyrankės ID?</div>
+          <div class="decision-branches">
+            <div class="decision-branch">
+              <div class="decision-label">Taip</div><div class="decision-arrow">↓</div>
+              <div class="decision-node">Įvesti HH ID</div>
+            </div>
+            <div class="decision-branch">
+              <div class="decision-label">Ne</div><div class="decision-arrow">↓</div>
+              <div class="decision-node">Įvesti atstovo vardą, pavardę ir gimimo metus</div>
+              <div class="decision-arrow">↓</div>
+              <div class="decision-node">Koordinatorius ieško KOBO lentelėje</div>
+              <div class="decision-arrow">↓</div>
+              <div class="decision-results">
+                <div class="decision-branch"><div class="decision-label">Rastas</div><div class="decision-node">Priskirti rastą HH ID</div></div>
+                <div class="decision-branch"><div class="decision-label">Nerastas</div><div class="decision-node">Laikinas HH ID ir patikra vėliau</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="decision-note">Registracija nestabdoma net tada, kai atstovo įrašo nepavyksta rasti iš karto.</div>
+      </div>
+      <div class="toolbar">
+        <button type="button" id="openAll">Išskleisti viską</button>
+        <button type="button" class="secondary" id="closeAll">Suskleisti viską</button>
+        <button type="button" class="secondary" onclick="window.print()">Spausdinti / išsaugoti PDF</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="eyebrow">Detalus planas</div>
+      <h2>Įgyvendinimas nuo pradžios iki pabaigos</h2>
+      <p class="muted">Paspauskite žingsnį, tada prireikus išskleiskite gilesnius paaiškinimus.</p>
+
+      <div class="steps">
+        <details>
+          <summary><span class="step-title"><span class="step-num">1</span><span>Patvirtinti proceso taisykles <span class="step-short">Kas yra ID, kas registruojama ir ką darome išimties atveju</span></span></span></summary>
+          <div class="detail-body">
+            <div class="ok"><strong>Jau sutarta:</strong> visi apyrankių numeriai yra skirtingi, tarp įvykių nesikartoja ir savanoriai juos įveda ranka.</div>
+            <details>
+              <summary>Apyrankių ir Household ID taisyklės</summary>
+              <div class="detail-body">
+                <ul>
+                  <li>Kiekvienos apyrankės numeris saugomas kaip tekstas, kad neišnyktų priekyje esantys nuliai.</li>
+                  <li>Mėlyną apyrankę gavusio atstovo <code>person_id</code> kartu yra <code>household_id</code>.</li>
+                  <li>Geltoną apyrankę gavęs narys turi savo <code>person_id</code>, bet bendrą atstovo <code>household_id</code>.</li>
+                  <li><code>incident_id</code> paliekamas abiejose anketose ataskaitoms ir filtravimui.</li>
+                </ul>
+                <div class="note">Kadangi numeriai įvedami ranka, po įvedimo reikia parodyti numerį dideliu tekstu ir paklausti: „Ar numeris įvestas teisingai?“</div>
+              </div>
+            </details>
+            <details>
+              <summary>Įvykiai ir vietos</summary>
+              <div class="detail-body">
+                <p>Parengti uždarus pasirinkimų sąrašus. Savanoriai neturi kurti vietų laisvu tekstu.</p>
+                <table><thead><tr><th>Sąrašas</th><th>Pavyzdinis kodas</th><th>Rodomas pavadinimas</th></tr></thead><tbody>
+                  <tr><td><code>incident</code></td><td><code>pratybos_2026</code></td><td>2026 m. evakuacijos pratybos</td></tr>
+                  <tr><td><code>assembly_point</code></td><td><code>sp_01</code></td><td>Surinkimo punktas Nr. 1</td></tr>
+                  <tr><td><code>reception_center</code></td><td><code>lac_01</code></td><td>Laikino apgyvendinimo centras Nr. 1</td></tr>
+                </tbody></table>
+              </div>
+            </details>
+            <details>
+              <summary>Narys atvyksta be atstovo</summary>
+              <div class="detail-body">
+                <ol>
+                  <li>Jei žinomas atstovo apyrankės numeris – jis įvedamas kaip <code>household_id</code>.</li>
+                  <li>Jei numeris nežinomas – įvedami atstovo vardas, pavardė ir gimimo metai, o įrašas pažymimas <code>unverified</code>.</li>
+                  <li>Koordinatorius ieško atstovo KOBO Parent ir Child duomenų lentelėse.</li>
+                  <li>Jei atstovo iš karto nustatyti negalima – registracija tęsiama su laikinu HH ID ir būsena <code>temporary</code>.</li>
+                </ol>
+                <p>Pavyzdinis laikinas numeris: <code>TEMP-LAC01-0001</code>.</p>
+              </div>
+            </details>
+          </div>
+        </details>
+
+        <details>
+          <summary><span class="step-title"><span class="step-num">2</span><span>Sukurti Parent anketą <span class="step-short">Trumpa registracija surinkimo punkte</span></span></span></summary>
+          <div class="detail-body">
+            <p>Vienas Parent pateikimas reiškia vieną namų ūkį. Registruojamas tik atstovas.</p>
+            <details>
+              <summary>Parent anketos laukai</summary>
+              <div class="detail-body">
+                <table><thead><tr><th>Laukas</th><th>Tipas</th><th>Paskirtis</th></tr></thead><tbody>
+                  <tr><td><code>incident_id</code></td><td>select_one</td><td>Įvykio kodas.</td></tr>
+                  <tr><td><code>assembly_point</code></td><td>select_one</td><td>Surinkimo punktas.</td></tr>
+                  <tr><td><code>person_id</code></td><td>text</td><td>Atstovo mėlynos apyrankės numeris.</td></tr>
+                  <tr><td><code>id_confirmed</code></td><td>select_one</td><td>Patvirtinama, kad numeris įvestas teisingai.</td></tr>
+                  <tr><td><code>hh_role</code></td><td>calculate</td><td>Automatiškai <code>lead</code>.</td></tr>
+                  <tr><td><code>household_id</code></td><td>calculate</td><td>Automatiškai lygu <code>person_id</code>.</td></tr>
+                  <tr><td><code>first_name</code></td><td>text</td><td>Atstovo vardas.</td></tr>
+                  <tr><td><code>last_name</code></td><td>text</td><td>Atstovo pavardė.</td></tr>
+                  <tr><td><code>birth_year</code></td><td>integer</td><td>Gimimo metai – greičiau nei pilna data.</td></tr>
+                  <tr><td><code>phone</code></td><td>text, neprivalomas</td><td>Kontaktui, bet ne kaip unikalus raktas.</td></tr>
+                  <tr><td><code>household_size</code></td><td>integer</td><td>Visi žmonės, įskaitant atstovą.</td></tr>
+                  <tr><td><code>urgent_help_now</code></td><td>select_one</td><td>Ar pagalbos reikia dabar?</td></tr>
+                  <tr><td><code>urgent_referral_type</code></td><td>select_multiple</td><td>Rodomas tik pasirinkus „Taip“.</td></tr>
+                </tbody></table>
+              </div>
+            </details>
+            <details>
+              <summary>Automatinė logika ir validacijos</summary>
+              <div class="detail-body">
+                <pre>hh_role = 'lead'
+household_id = person_id
+parent_sync_key = person_id</pre>
+                <ul>
+                  <li><code>household_size</code>: nuo 1 iki 50.</li>
+                  <li><code>birth_year</code>: logiška apatinė riba iki einamųjų metų.</li>
+                  <li><code>person_id</code>: tik leistinas simbolių formatas; saugomas kaip tekstas.</li>
+                  <li>Jeigu reikia skubios pagalbos, rodoma aiški nukreipimo instrukcija pagal SOP.</li>
+                </ul>
+                <div class="warning">KOBO formato patikra neužtikrina numerio globalios unikalumo kontrolės tarp kelių neprisijungusių įrenginių. Todėl pratybose reikia valdyti fizinių apyrankių išdavimą.</div>
+              </div>
+            </details>
+            <details>
+              <summary>Kaip techniškai sukurti</summary>
+              <div class="detail-body">
+                <ol>
+                  <li>Sukurti XLSForm su lapais <code>survey</code>, <code>choices</code> ir <code>settings</code>.</li>
+                  <li>Įkelti jį į naują bandomąjį KOBO projektą.</li>
+                  <li>Peržiūrėti Web formoje ir KoboCollect telefone.</li>
+                  <li>Testuoti, pataisyti ir tik tada pažymėti versiją <code>Parent_v01</code>.</li>
+                </ol>
+              </div>
+            </details>
+          </div>
+        </details>
+
+        <details>
+          <summary><span class="step-title"><span class="step-num">3</span><span>Sukurti Child anketą <span class="step-short">Vienas individualus įrašas kiekvienam žmogui</span></span></span></summary>
+          <div class="detail-body">
+            <p>Child anketa pildoma kiekvienam asmeniui atskirai. Repeat group nenaudojamas kaip pagrindinis asmenų registras.</p>
+            <details>
+              <summary>Registracijos ir Household susiejimo laukai</summary>
+              <div class="detail-body">
+                <table><thead><tr><th>Grupė</th><th>Laukai</th><th>Kas vyksta</th></tr></thead><tbody>
+                  <tr><td>Meta</td><td><code>incident_id</code>, <code>reception_center</code>, GPS</td><td>Nurodoma, kuriame įvykyje ir centre registruojama.</td></tr>
+                  <tr><td>Asmuo</td><td><code>person_id</code>, patvirtinimas</td><td>Įvedamas individualios apyrankės numeris.</td></tr>
+                  <tr><td>Atvykimas</td><td><code>arrival_route</code></td><td>Per surinkimo punktą / savarankiškai / kita.</td></tr>
+                  <tr><td>Rolė</td><td><code>hh_role</code></td><td>Atstovas arba narys.</td></tr>
+                  <tr><td>Atstovas</td><td><code>parent_match</code>, <code>household_size</code></td><td>Jei atvyko per punktą, tikrinamas Parent.</td></tr>
+                  <tr><td>Narys</td><td><code>lead_id_known</code>, <code>lead_person_id</code></td><td>Atstovo ID tampa nario Household ID.</td></tr>
+                  <tr><td>Fallback</td><td>vardas, pavardė, gimimo metai, laikinas ID</td><td>Naudojama, kai atstovo numeris nežinomas.</td></tr>
+                  <tr><td>Ryšio būsena</td><td><code>household_link_status</code></td><td><code>verified</code>, <code>unverified</code> arba <code>temporary</code>.</td></tr>
+                </tbody></table>
+              </div>
+            </details>
+            <details>
+              <summary>Rapid ENA klausimų blokai</summary>
+              <div class="detail-body">
+                <details><summary>Funkciniai ir specifiniai poreikiai</summary><div class="detail-body"><p>Judėjimas, rega, klausa, bendravimas / supratimas, apsitarnavimas, nėštumas, kūdikis ar mažas vaikas, vyresnio žmogaus pagalba, kita. Jei yra poreikių – klausiama, kokios praktinės pagalbos reikia.</p></div></details>
+                <details><summary>Sveikata ir vaistai</summary><div class="detail-body"><p>Ar reikia pagalbos dabar arba tęstinės priežiūros, pagalbos skubumas ir tipas, ar vartojami vaistai, kurių negalima saugiai nutraukti, ir kiek laiko jų liko.</p><p><span class="badge">Skubu</span> Jei vaistų nėra arba liko mažiau nei 24 val.</p></div></details>
+                <details><summary>Apgyvendinimas ir transportas</summary><div class="detail-body"><p>Ar žmogus turi saugią vietą, ar reikia laikino apgyvendinimo, keliems žmonėms ir kokių sąlygų. Atskirai klausiama apie transportą, kryptį ir specialias transportavimo sąlygas.</p></div></details>
+                <details><summary>Gyvūnai, kalba ir ryšys su artimaisiais</summary><div class="detail-body"><p>Gyvūno tipas ir skaičius, ar jis riboja sprendimą; pageidaujama kalba ir vertėjo poreikis; ar žmogus gali susisiekti su artimaisiais ir ar nori RFL pagalbos.</p></div></details>
+                <details><summary>Kiti poreikiai ir saugumas</summary><div class="detail-body"><p>Maistas, vanduo, higiena, drabužiai, medicinos pagalba, emocinė parama, dokumentai, šeimos pagalba ir kita. Saugumo klausime nerinkti incidento detalių – tik parodyti SOP instrukciją ir nukreipti specialistui.</p></div></details>
+                <details><summary>Savanorio sprendimai</summary><div class="detail-body"><p>Prioritetas, reali nukreipimo kryptis, ar reikia follow-up, jo tipas, terminas ir trumpa pastaba.</p></div></details>
+              </div>
+            </details>
+            <details>
+              <summary>Privalomi „Kita“ ir išskirtinių pasirinkimų patikrinimai</summary>
+              <div class="detail-body">
+                <p>Pridėti atskirus patikslinimo laukus visiems svarbiems pasirinkimams „Kita“: funkciniams poreikiams, sveikatos pagalbai, apgyvendinimui, transportui, gyvūnui, nukreipimui ir follow-up.</p>
+                <p>„Nėra“, „Daugiau nereikia“ ir „Nukreipimo nereikia“ negali būti pasirenkami kartu su kitais atsakymais.</p>
+              </div>
+            </details>
+          </div>
+        </details>
+
+        <details>
+          <summary><span class="step-title"><span class="step-num">4</span><span>Susieti Parent ir Child <span class="step-short">Dynamic Data Attachment ir saugus fallback</span></span></span></summary>
+          <div class="detail-body">
+            <details>
+              <summary>Techninis susiejimas</summary>
+              <div class="detail-body">
+                <ol>
+                  <li>Parent projekte įjungti <strong>Settings → Connect Projects → Data sharing</strong>.</li>
+                  <li>Dalintis tik: ID, vardu, pavarde, gimimo metais, Household dydžiu ir surinkimo punktu.</li>
+                  <li>Child XLSForm pridėti <code>xml-external parent</code>.</li>
+                  <li>Child projekte pasirinkti Parent projektą ir prijungti jį vardu <code>parent</code>.</li>
+                  <li>Pagal įvestą atstovo ID parodyti rastus Parent duomenis ir paprašyti patvirtinti.</li>
+                </ol>
+              </div>
+            </details>
+            <details>
+              <summary>Pasirinktas procesas pirmosioms pratyboms</summary>
+              <div class="detail-body">
+                <div class="ok"><strong>Pirmosioms pratyboms pasirinktas A variantas:</strong> pagrindinis ryšys yra atstovo apyrankės ID. Jei jis nežinomas, duomenų koordinatorius ieško KOBO lentelėje pagal vardą, pavardę ir gimimo metus.</div>
+                <ol>
+                  <li>Savanoris pažymi, ar atstovo apyrankės ID žinomas.</li>
+                  <li>Jei žinomas – įveda jį kaip <code>household_id</code>.</li>
+                  <li>Jei nežinomas – įveda atstovo vardą, pavardę ir gimimo metus.</li>
+                  <li>Įrašui automatiškai suteikiama būsena <code>unverified</code>, o koordinatorius gauna užduotį jį patikrinti.</li>
+                  <li>Koordinatorius KOBO Parent ir Child duomenų lentelėse ieško tinkamo atstovo.</li>
+                  <li>Radęs įrašo teisingą <code>household_id</code> ir pakeičia būseną į <code>verified</code>.</li>
+                  <li>Neradęs palieka laikiną HH ID ir įrašą vėlesnei patikrai.</li>
+                </ol>
+                <div class="note"><strong>Ateityje:</strong> jei pratybos parodys didelį tokios paieškos poreikį, galima kurti automatiškai atnaujinamą kandidatų sąrašą arba atskirą paieškos sprendimą. Pirmoje versijoje jų nediegiame.</div>
+              </div>
+            </details>
+            <details>
+              <summary>Darbas be interneto</summary>
+              <div class="detail-body">
+                <div class="warning">Dinaminiai Parent duomenys nėra realaus laiko registras. Naujas Parent įrašas Child įrenginyje gali dar nebūti matomas.</div>
+                <ul>
+                  <li>Parent neradimas niekada neblokuoja Child pateikimo.</li>
+                  <li>Leidžiamas rankinis arba laikinas Household ID.</li>
+                  <li>Tokiam įrašui automatiškai keliamas patikros signalas.</li>
+                  <li>Įrenginiuose periodiškai atnaujinamos formos ir susieti Parent duomenys.</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+        </details>
+
+        <details>
+          <summary><span class="step-title"><span class="step-num">5</span><span>Nustatyti vartotojus ir teises <span class="step-short">Minimalios teisės savanoriams, platesnės koordinatoriui</span></span></span></summary>
+          <div class="detail-body">
+            <table><thead><tr><th>Vaidmuo</th><th>Parent</th><th>Child</th><th>Atsakomybė</th></tr></thead><tbody>
+              <tr><td>1–2 administratoriai</td><td>Visos teisės</td><td>Visos teisės</td><td>Formos, teisės, ryšiai, eksportas, trynimas.</td></tr>
+              <tr><td>Surinkimo punkto savanoris</td><td>Add submissions</td><td>Nėra</td><td>Tik pildo Parent.</td></tr>
+              <tr><td>Priėmimo centro savanoris</td><td>Nėra</td><td>Add submissions</td><td>Tik pildo Child.</td></tr>
+              <tr><td>2–3 duomenų koordinatoriai</td><td>View, Edit, Validate</td><td>View, Edit, Validate</td><td>Ieško atstovų, taiso ryšius ir dublikatus.</td></tr>
+              <tr><td>Operacijos vadovas</td><td>View</td><td>View arba tik suvestinė</td><td>Stebi situaciją, bet nekeičia duomenų.</td></tr>
+            </tbody></table>
+            <details>
+              <summary>Paskyros pirmoms pratyboms</summary>
+              <div class="detail-body">
+                <p>Praktiškas kompromisas – viena paskyra vienam fiziniam įrenginiui, pvz. <code>sp01_device01</code> ir <code>lac01_device01</code>. Administratoriai ir koordinatoriai naudoja individualias paskyras.</p>
+                <p>Anketose papildomai įrašomas savanorio kodas <code>volunteer_code</code>.</p>
+              </div>
+            </details>
+            <details>
+              <summary>Saugumo nustatymai</summary>
+              <div class="detail-body">
+                <ul>
+                  <li>Reikalauti prisijungimo.</li>
+                  <li>Neleisti pateikti anketų bet kam, turinčiam nuorodą.</li>
+                  <li>Neviešinti formų ir pateiktų duomenų.</li>
+                  <li>Savanoriams nerodyti visų pateikimų.</li>
+                  <li><code>Delete submissions</code> palikti tik administratoriams.</li>
+                  <li>Po pratybų nuspręsti, kiek laiko saugoti bandomuosius asmens duomenis.</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+        </details>
+
+        <details>
+          <summary><span class="step-title"><span class="step-num">6</span><span>Sukurti automatinius signalus ir suvestinę <span class="step-short">Poreikių eilės ir Expected–Registered kontrolė</span></span></span></summary>
+          <div class="detail-body">
+            <details>
+              <summary>Formoje saugomi automatiniai signalai</summary>
+              <div class="detail-body">
+                <p>Signalus saugoti kaip <code>0/1</code> skaičiavimo laukus:</p>
+                <p><span class="badge">HEALTH</span><span class="badge">MEDICATION</span><span class="badge">MEDICATION_URGENT</span><span class="badge">ACCOMMODATION</span><span class="badge">TRANSPORT</span><span class="badge">INTERPRETER</span><span class="badge">RFL</span><span class="badge">PROTECTION</span><span class="badge">FOLLOW_UP</span></p>
+                <div class="note">Signalai jungiami OR principu: vienas neigiamas atsakymas negali panaikinti kitoje anketos dalyje nustatyto poreikio.</div>
+              </div>
+            </details>
+            <details>
+              <summary>Household sutikrinimo lentelė</summary>
+              <div class="detail-body">
+                <pre>Expected = patvirtinto atstovo household_size
+Registered = unikalių Child person_id skaičius pagal household_id
+Gap = Expected - Registered</pre>
+                <table><thead><tr><th>Sąlyga</th><th>Būsena</th></tr></thead><tbody>
+                  <tr><td>Registered = Expected</td><td>Registracija sutampa</td></tr>
+                  <tr><td>Registered &lt; Expected</td><td>Registruota mažiau</td></tr>
+                  <tr><td>Registered &gt; Expected</td><td>Galimas dublikatas arba neatitikimas</td></tr>
+                  <tr><td>Expected nežinomas</td><td>Neįmanoma sutikrinti</td></tr>
+                </tbody></table>
+                <div class="warning">Teigiamas skirtumas yra proceso indikatorius. Jis nėra oficialus patvirtinimas, kad žmogus dingo.</div>
+              </div>
+            </details>
+            <details>
+              <summary>Kur daryti suvestinę</summary>
+              <div class="detail-body">
+                <p><strong>Pirmoms pratyboms:</strong> Excel / Power Query. Jei vėliau reikės beveik realaus laiko vaizdo, galima jungti Power BI arba KOBO API.</p>
+                <p>Child formos viduje <code>hh_registered</code> neskaičiuoti kaip paprasto XLSForm lauko, nes forma patikimai nemato visų kitų įrenginių naujausių įrašų.</p>
+              </div>
+            </details>
+          </div>
+        </details>
+
+        <details>
+          <summary><span class="step-title"><span class="step-num">7</span><span>Ištestuoti <span class="step-short">Pirmiausia atskirai, tada kartu ir be interneto</span></span></span></summary>
+          <div class="detail-body">
+            <details>
+              <summary>Testavimo tvarka</summary>
+              <div class="detail-body">
+                <ol>
+                  <li>Patikrinti Parent kaip atskirą anketą.</li>
+                  <li>Patikrinti Child be Parent susiejimo.</li>
+                  <li>Prijungti Parent ir išbandyti susiejimą.</li>
+                  <li>Testuoti keliuose įrenginiuose vienu metu.</li>
+                  <li>Išjungti internetą, surinkti duomenis, tada sinchronizuoti.</li>
+                  <li>Patikrinti suvestinę ir visas automatines darbo eiles.</li>
+                </ol>
+              </div>
+            </details>
+            <details>
+              <summary>Būtini scenarijai</summary>
+              <div class="detail-body">
+                <ul class="checklist">
+                  <li>Vienas žmogus ir šeima su keliais nariais.</li>
+                  <li>Atstovas atvyksta pirmas ir narys atvyksta pirmas.</li>
+                  <li>Narys neturi atstovo apyrankės numerio.</li>
+                  <li>Atstovas atvyko savarankiškai, todėl Parent neegzistuoja.</li>
+                  <li>Šeimos nariai atvyksta į skirtingus centrus.</li>
+                  <li>Parent įrašas dar nesinchronizuotas.</li>
+                  <li>Ta pati apyrankė įvedama antrą kartą.</li>
+                  <li>Registered yra mažiau, tiek pat ir daugiau už Expected.</li>
+                  <li>Vaistų liko mažiau nei 24 valandos.</li>
+                  <li>Žmogus atsako, kad nesijaučia saugiai.</li>
+                  <li>Automatinis kritinis signalas, bet savanoris pažymi, kad follow-up nereikia.</li>
+                </ul>
+              </div>
+            </details>
+            <details>
+              <summary>Ką matuoti per bandomąjį testą</summary>
+              <div class="detail-body">
+                <ul>
+                  <li>Parent anketos pildymo trukmę.</li>
+                  <li>Child anketos pildymo trukmę.</li>
+                  <li>Klaidingai įvestų apyrankių numerių skaičių.</li>
+                  <li>Nepatvirtintų Household ryšių skaičių.</li>
+                  <li>Dublikatų skaičių.</li>
+                  <li>Kaip dažnai realiai prireikė paieškos pagal vardą ir pavardę.</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+        </details>
+
+        <details>
+          <summary><span class="step-title"><span class="step-num">8</span><span>Parengti pratybų versiją <span class="step-short">Užšaldyti formas, paruošti įrenginius ir instrukcijas</span></span></span></summary>
+          <div class="detail-body">
+            <ol class="checklist">
+              <li>Sukurti 10–20 bandomųjų namų ūkių.</li>
+              <li>Testuoti bent dviem surinkimo punkto ir dviem priėmimo centro įrenginiais.</li>
+              <li>Sutvarkyti kritines klaidas ir užšaldyti anketų versiją.</li>
+              <li>Įrenginiuose iš anksto atsisiųsti formas ir susietus duomenis.</li>
+              <li>Parengti vieno puslapio instrukcijas Parent ir Child savanoriams.</li>
+              <li>Atskirai apmokyti duomenų koordinatorius spręsti nepatvirtintus HH ryšius.</li>
+              <li>Prieš startą atlikti trumpą bendrą bandomąją registraciją.</li>
+              <li>Po pratybų aptarti, kas veikė, ir tik tada projektuoti 2 versiją.</li>
+            </ol>
+            <div class="ok"><strong>Pirmos versijos tikslas:</strong> patikimai surinkti duomenis ir pamatyti realų procesą. Pažangi vardų paieška bei beveik realaus laiko dashboardas gali būti antros versijos darbai.</div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="eyebrow">Rekomenduojama darbų seka</div>
+      <h2>Ką daryti praktiškai</h2>
+      <table><thead><tr><th>Eilė</th><th>Darbas</th><th>Rezultatas</th></tr></thead><tbody>
+        <tr><td>1</td><td>Patvirtinti vietų kodus, SOP ir išimčių taisykles</td><td>Užbaigta funkcinė specifikacija</td></tr>
+        <tr><td>2</td><td>Parengti Parent XLSForm</td><td>Veikianti trumpa anketa</td></tr>
+        <tr><td>3</td><td>Ištestuoti Parent atskirai</td><td>Stabili <code>Parent_v01</code></td></tr>
+        <tr><td>4</td><td>Parengti Child XLSForm be susiejimo</td><td>Veikianti individuali registracija ir Rapid ENA</td></tr>
+        <tr><td>5</td><td>Pridėti automatinius signalus</td><td>Darbo eilių duomenys</td></tr>
+        <tr><td>6</td><td>Prijungti Parent prie Child</td><td>HH patvirtinimas pagal atstovo ID</td></tr>
+        <tr><td>7</td><td>Parengti Excel / Power Query suvestinę</td><td>Expected–Registered ir poreikių kontrolė</td></tr>
+        <tr><td>8</td><td>Atlikti kelių įrenginių ir offline testą</td><td>Sprendimas parengtas pratyboms</td></tr>
+      </tbody></table>
+    </section>
+
+    <section class="panel sources">
+      <div class="eyebrow">Naudinga oficiali dokumentacija</div>
+      <h2>Nuorodos į KOBO pagalbą</h2>
+      <ul>
+        <li><a href="https://support.kobotoolbox.org/dynamic_data_attachment.html" target="_blank" rel="noopener">Dynamic data attachments in XLSForm</a></li>
+        <li><a href="https://support.kobotoolbox.org/getting_started_xlsform.html" target="_blank" rel="noopener">Getting started with XLSForm</a></li>
+        <li><a href="https://support.kobotoolbox.org/managing_permissions.html" target="_blank" rel="noopener">Sharing projects with user-level permissions</a></li>
+        <li><a href="https://support.kobotoolbox.org/constraints_xls.html" target="_blank" rel="noopener">Adding constraints in XLSForm</a></li>
+        <li><a href="https://support.kobotoolbox.org/select_from_file_xls.html" target="_blank" rel="noopener">Selecting options from an external file</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>Parengta pagal „LRK registracijos ir Rapid ENA specifikacija v3“ ir aptartus pirmųjų pratybų sprendimus.</footer>
+
+  <script>
+    const allDetails = [...document.querySelectorAll('details')];
+    document.getElementById('openAll').addEventListener('click', () => allDetails.forEach(d => d.open = true));
+    document.getElementById('closeAll').addEventListener('click', () => {
+      allDetails.forEach(d => d.open = false);
+      document.querySelector('.steps').scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  </script>
+</body>
+</html>
