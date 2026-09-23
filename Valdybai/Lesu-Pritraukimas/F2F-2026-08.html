@@ -177,7 +177,6 @@ table.cohorttable td.grand-total{background:#a7f3d0;color:#064e3b;font-size:14px
   <button class="tabbtn active" onclick="showTab(0)">2026 m. rugpjūtis</button>
   <button class="tabbtn" onclick="showTab(1)">Visas periodas (2018–2026)</button>
   <button class="tabbtn" onclick="showTab(2)">Rėmėjų analitika</button>
-  <button class="tabbtn" onclick="showTab(3)">Reikia aptarti</button>
 </div>
 
 <div class="main">
@@ -732,70 +731,6 @@ table.cohorttable td.grand-total{background:#a7f3d0;color:#064e3b;font-size:14px
     </tbody>
   </table>
   <div class="note">ABC pagal bank&#261; (kryžmin&#279; lentel&#279;) Statistikos lape n&#279;ra i&#353; anksto suskai&#269;iuota &ndash; turime tik sumas pagal bank&#261; × trukm&#279;s grup&#281; (ne pagal ABC &#382;ym&#281;). Jei reikia tikslios ABC × Bankas lentel&#279;s, reik&#279;t&#371; papildomo pjūvio i&#353; Statistikos lapo.</div>
-</div>
-
-</div>
-
-<div id="tabpanel-3" class="tabpanel">
-
-<div class="insight-box">
-  &#8505; Ingridos pateiktame galim&#371; ataskaitos pjūvi&#371; sąra&#353;e (FIZINIAI_ANALITIKA.docx) ir UPGRADE/WIN-BACK tvarkos apra&#353;e yra punkt&#371;, kuri&#371; &#353;iuo metu <strong>neį&#382;traukiame</strong> į dashboard'ą &ndash; arba tr&#363;ksta duomen&#371;, arba tr&#363;ksta suderinto apibr&#279;&#382;imo. S&#261;ra&#353;as &#382;emiau, kad nepamir&#353;tume, ir kad b&#363;t&#371; ai&#353;ku, ko konkre&#269;iai reikia.
-</div>
-
-<div class="sh">Reikalauja Ingridos / komandos sprendimo</div>
-
-<div class="topic-card">
-  <div class="topic-title"><span class="topic-num">1</span>Pritraukimo kanalas, efektyvumas ir kaina</div>
-  <div class="topic-why">Ingrida norėjo matyti naujų rėmėjų pritraukimo šaltinį, efektyvumą pagal kanalą ir vieno naujo rėmėjo pritraukimo kainą. Šiuo metu tiksliai žinome tik LP ambasadorių (FacerID) kanalą – neaišku, ar yra ir kitų kanalų (online, DM ir pan.), kuriuos reiktų atskirti.</div>
-  <div class="topic-need">Ko reikia: patikslinti su Ingrida, kokius kanalus ji turi omenyje, ir gauti rinkodaros/kampanijų išlaidų sumas kainai apskaičiuoti.</div>
-  <div class="topic-owner">Atsakinga: Ingrida (patikslins)</div>
-</div>
-
-<div class="topic-card">
-  <div class="topic-title"><span class="topic-num">2</span>Nubyrėjimo priežastis: nepavykęs mokėjimas vs savanoriškas nutraukimas</div>
-  <div class="topic-why">UPGRADE/WIN-BACK apraše (XII.3) nutrūkimo priežastys (finansinė situacija, pasikeitusi kortelė/sąskaita, techninė klaida, savanoriškas atsisakymas ir kt.) fiksuojamos <strong>tik WIN-BACK pokalbio metu</strong> – tai CRM pokalbio rezultatas, ne automatiškai išvedama iš mokėjimų duomenų.</div>
-  <div class="topic-need">Ko reikia: CRM/Excel WIN-BACK kontaktų išklotinė su užfiksuota nutrūkimo priežastimi, jei norime šį pjūvį matyti dashboard'e.</div>
-  <div class="topic-owner">Atsakinga: Ingrida / kampanijos vykdytojas</div>
-</div>
-
-<div class="topic-card">
-  <div class="topic-title"><span class="topic-num">3</span>UPGRADE / WIN-BACK kampanijų faktiniai rezultatai (CRM)</div>
-  <div class="topic-why">Aprašas apibrėžia "Answer Status" sąrašą (Sutarta Upgrade, Sutarta Winback ir kt.) – tai leistų matyti tikrą kampanijos konversiją (kontaktuota → sutiko → faktiškai įvykdyta), o ne tik bendrą mokėjimo sumos pasikeitimą. Iš vien mokėjimų duomenų galime matyti tik <em>elgesio požymį</em> (suma padidėjo / rėmėjas vėl pradėjo mokėti), bet ne ar tai kampanijos rezultatas.</div>
-  <div class="topic-need">Ko reikia: CRM/Excel su Answer Status reikšmėmis ir datomis, susietomis su konkrečiu rėmėju.</div>
-  <div class="topic-owner">Atsakinga: Ingrida / kampanijos vykdytojas</div>
-</div>
-
-<div class="topic-card">
-  <div class="topic-title"><span class="topic-num">4</span>Nesėkmingų mokėjimų analitika</div>
-  <div class="topic-why">Ingrida pati pažymėjo šią sekciją kaip "vėliau įsidėsim". Reikalauja mokėjimo statuso / klaidos kodo lauko (sėkmingas/nesėkmingas mokėjimas), kurio dabartiniuose duomenyse nematome – turime tik faktiškai gautas įmokas.</div>
-  <div class="topic-need">Ko reikia: mokėjimo statuso/klaidos kodo laukas iš Agmio arba SF (jei toks fiksuojamas).</div>
-  <div class="topic-owner">Atsakinga: Ingrida / Vaida (Agmis)</div>
-</div>
-
-<div class="topic-card">
-  <div class="topic-title"><span class="topic-num">5</span>Miestas / regionas</div>
-  <div class="topic-why">"Rėmėjų pasiskirstymas pagal miestą ar regioną" – šiuo metu Miestas laukas žinomas tik LP ambasadorių (FacerID) anketose, neaišku, ar jis pildomas visiems rėmėjams nepriklausomai nuo kanalo.</div>
-  <div class="topic-need">Ko reikia: patikrinti su Vaida, ar Miestas/regionas laukas yra pilnai užpildytas visai rėmėjų bazei.</div>
-  <div class="topic-owner">Atsakinga: Vaida</div>
-</div>
-
-<div class="topic-card">
-  <div class="topic-title"><span class="topic-num">6</span>Suma prieš / po UPGRADE</div>
-  <div class="topic-why">Pati Ingrida pažymėjo šiuos punktus kaip "čia vėliau įsidėsim". Reikia susieti konkretaus rėmėjo sumą prieš ir po UPGRADE įvykio (ne tik dabartinę sumą) – tam reikalingas UPGRADE įvykio žymėjimas su abiem sumomis.</div>
-  <div class="topic-need">Ko reikia: UPGRADE įvykio data + suma prieš + suma po (galima gauti iš SF "Status Update Reason: Upgrade" žymos, jei ji nuosekliai pildoma).</div>
-  <div class="topic-owner">Atsakinga: Vaida</div>
-</div>
-
-<div class="topic-card">
-  <div class="topic-title"><span class="topic-num">7</span>Pritraukimo kanalų analitika (platesnė)</div>
-  <div class="topic-why">Pati Ingrida pažymėjo šią sekciją kaip "vėliau įsidėsim" – apima kanalo atsiperkamumą, rėmėjo vertę pagal kanalą ir pan. Priklauso nuo 1 punkto (kanalo lauko) išsprendimo.</div>
-  <div class="topic-need">Ko reikia: žr. 1 punktą.</div>
-  <div class="topic-owner">Atsakinga: Ingrida</div>
-</div>
-
-<div class="sh">Jau paskai&#269;iuota &ndash; &#382;r. tab&#261; &quot;R&#279;m&#279;j&#371; analitika&quot;</div>
-<div class="insight-box">
-  &#8505; UPGRADE/WIN-BACK apra&#353;o gyvenimo ciklo apibr&#279;&#382;imai (NEW – pirmi 3 mėn., AKTYVUS – nuo 3-ios įmokos iki 90 d. be mokėjimo, NEAKTYVUS/LAPSED – 90+ d. be mokėjimo) <strong>tiksliai sutampa</strong> su šio dashboard'o Pajamos/Nauji/Churn metodologija – papildomo derinimo nereikia. Iš <em>Rėmėjai</em> lapo <strong>jau paskaičiuota</strong> (žr. tabą „Rėmėjų analitika"): rėmėjų klasifikacija (Naujas/Aktyvūs/Neaktyvūs), i&#353;laikymo (retencijos) kreiv&#279; po 1/3/6/12 mėn., r&#279;m&#279;jo vert&#279; (LTV) pagal kohort&#261;, ABC segmentacija, pasiskirstymas pagal lyt&#303; ir bank&#261;. Elgesio požymis "suma padidėjo" / "rėmėjas grįžo po pertraukos" (be kampanijos priskyrimo – žr. 3 punktą aukščiau) dar neįtrauktas.
 </div>
 
 </div>
