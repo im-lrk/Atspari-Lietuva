@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valdybai · LRK</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red:      #C0392B;
+  --navy:     #1B2A4A;
+  --teal:     #0098A5;
+  --amber:    #D9A521;
+  --gray-05:  #F5F6F8;
+  --gray-10:  #EAECEE;
+  --gray-30:  #BFC9CA;
+  --gray-50:  #7F8C8D;
+  --gray-80:  #2C3E50;
+  --font:     'Source Sans 3', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font); background: var(--gray-05); color: var(--gray-80); }
+
+.header {
+  background: var(--navy);
+  padding: 0 36px;
+  display: flex; align-items: center; gap: 13px;
+  min-height: 66px;
+}
+.rk-logo {
+  width: 36px; height: 36px; background: var(--red); border-radius: 5px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  font-weight: 900; font-size: 13px; color: white; letter-spacing: .3px;
+}
+.brand-main { font-size: 16px; font-weight: 700; color: white; }
+.brand-sub  { font-size: 13px; color: rgba(255,255,255,.45); margin-top: 2px; letter-spacing: .3px; }
+
+.page { padding: 32px 36px 48px; max-width: 900px; margin: 0 auto; }
+.page-title h1 { font-size: 26px; font-weight: 900; color: var(--navy); letter-spacing: -.3px; }
+.page-title h1 span { color: var(--red); }
+.page-title .meta { font-size: 14px; color: var(--gray-50); margin-top: 6px; line-height: 1.5; }
+
+.section { margin-top: 30px; }
+.section-title {
+  font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px;
+  color: var(--gray-50); margin-bottom: 10px; display: flex; align-items: center; gap: 10px;
+}
+.section-title::after { content: ''; flex: 1; height: 1px; background: var(--gray-10); }
+
+.card-list { display: flex; flex-direction: column; gap: 10px; }
+.doc-card {
+  display: flex; align-items: center; gap: 14px;
+  background: white; border-radius: 9px; padding: 14px 18px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  border-left: 4px solid var(--gray-30);
+  text-decoration: none; color: inherit;
+  transition: box-shadow .15s, transform .15s;
+}
+.doc-card:hover { box-shadow: 0 3px 10px rgba(0,0,0,.10); transform: translateY(-1px); }
+.doc-card.c-teal  { border-left-color: var(--teal); }
+.doc-card.c-amber { border-left-color: var(--amber); }
+.doc-card.c-red   { border-left-color: var(--red); }
+.doc-icon { font-size: 22px; flex-shrink: 0; }
+.doc-body { flex: 1; min-width: 0; }
+.doc-title { font-size: 15.5px; font-weight: 700; color: var(--navy); }
+.doc-desc  { font-size: 13px; color: var(--gray-50); margin-top: 2px; }
+.doc-arrow { color: var(--gray-30); font-size: 18px; flex-shrink: 0; }
+
+.doc-card.placeholder {
+  border-left-style: dashed;
+  border-left-color: var(--gray-30);
+  cursor: default;
+  opacity: .7;
+}
+.doc-card.placeholder:hover { box-shadow: 0 1px 4px rgba(0,0,0,.06); transform: none; }
+.doc-card.placeholder .doc-title { color: var(--gray-50); }
+
+.footer {
+  margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--gray-10);
+  font-size: 12.5px; color: var(--gray-50);
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="rk-logo">LRK</div>
+  <div>
+    <div class="brand-main">Valdybai</div>
+    <div class="brand-sub">LIETUVOS RAUDONASIS KRYŽIUS</div>
+  </div>
+</div>
+
+<div class="page">
+
+  <div class="page-title">
+    <h1>Informacija <span>valdybos</span> nariams</h1>
+    <div class="meta">Čia rasite ataskaitas ir dokumentus, kuriuos sutarta reguliariai dalintis su valdyba, sugrupuotus pagal sritį.</div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       Kaip pridėti naują dokumentą:
+       1. Įkelkite .html (ar kito formato) failą į atitinkamą poaplankį
+          (pvz. Lesu-Pritraukimas/, Savanoriai/, ar naują poaplankį).
+       2. Nukopijuokite vieną <a class="doc-card ..."> bloką žemiau,
+          pakeiskite href, doc-title ir doc-desc.
+       3. Jei tai nauja sritis (ne Lėšų pritraukimas / Savanoriai),
+          nukopijuokite visą <div class="section">...</div> bloką
+          ir pakeiskite jo section-title.
+       ═══════════════════════════════════════════════════════════ -->
+
+  <div class="section">
+    <div class="section-title">Lėšų pritraukimas</div>
+    <div class="card-list">
+      <a class="doc-card c-teal" href="Lesu-Pritraukimas/Bendra-Ataskaita-2026-08.html">
+        <div class="doc-icon">📊</div>
+        <div class="doc-body">
+          <div class="doc-title">Bendra ataskaita — 2026-08</div>
+          <div class="doc-desc">LP departamento pajamų suvestinė: planas, faktas, palyginimas su 2025 m.</div>
+        </div>
+        <div class="doc-arrow">→</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Savanoriai</div>
+    <div class="card-list">
+      <!-- TODO (Sonata): įrašykite tikslų failo pavadinimą iš Savanoriai/ aplanko -->
+      <div class="doc-card placeholder">
+        <div class="doc-icon">🤝</div>
+        <div class="doc-body">
+          <div class="doc-title">Įveiklinimas / sutartys / mokymai</div>
+          <div class="doc-desc">Nuoroda dar neįterpta — pridėkite href į failą Savanoriai/ aplanke.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Vidinis puslapis valdybos nariams. Paskutinį kartą atnaujinta: 2026-09.
+  </div>
+
+</div>
+
+</body>
+</html>
