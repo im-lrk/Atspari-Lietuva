@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Komerciniai mokymai · 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root {
+  --red:      #C0392B;
+  --navy:     #1B2A4A;
+  --teal:     #2471A3;
+  --cyan:     #17A589;
+  --orange:   #E67E22;
+  --amber:    #D4AC0D;
+  --green:    #1E8449;
+  --gray-05:  #F5F6F8;
+  --gray-10:  #EAECEE;
+  --gray-30:  #BFC9CA;
+  --gray-50:  #7F8C8D;
+  --gray-80:  #2C3E50;
+  --font:     'Source Sans 3', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font); background: var(--gray-05); color: var(--gray-80); }
+
+/* HEADER */
+.header { background: var(--navy); padding: 0 36px; display: flex; align-items: stretch; justify-content: space-between; min-height: 66px; flex-wrap:wrap; }
+.header-brand { display: flex; align-items: center; gap: 13px; padding: 12px 0; }
+.rk-logo { width: 38px; height: 36px; background: var(--red); border-radius: 5px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: white; font-weight: 900; font-size: 13px; letter-spacing: -0.02em; }
+.brand-main { font-size: 16px; font-weight: 700; color: white; }
+.brand-sub  { font-size: 13px; color: rgba(255,255,255,.45); margin-top: 2px; letter-spacing: .3px; }
+.header-tabs { display: flex; align-items: stretch; }
+.htab { display: flex; align-items: center; padding: 0 22px; font-size: 15.5px; font-weight: 700; letter-spacing:.4px; color: rgba(255,255,255,.55); cursor: pointer; border-bottom: 3px solid transparent; border-top: 3px solid transparent; transition: all .14s; white-space: nowrap; }
+.htab:hover  { color: rgba(255,255,255,.78); background: rgba(255,255,255,.04); }
+.htab.active { color: white; border-bottom-color: var(--red); }
+
+/* PAGE */
+.page { padding: 22px 36px 44px; max-width: 1340px; margin: 0 auto; }
+.page-title { margin-bottom: 18px; }
+.page-title h1 { font-size: 26px; font-weight: 900; color: var(--navy); letter-spacing: -.3px; }
+.page-title h1 span { color: var(--red); }
+.page-title .meta { font-size: 13.5px; color: var(--gray-80); margin-top: 3px; }
+
+/* KPI STRIP */
+.kpi-strip { display: grid; grid-template-columns: repeat(6,1fr); gap: 9px; margin-bottom: 18px; }
+.kpi { background: white; border-radius: 7px; padding: 12px 14px 11px; border-top: 3px solid var(--gray-10); box-shadow: 0 1px 3px rgba(0,0,0,.05); }
+.kpi.c-red    { border-top-color: var(--red); }
+.kpi.c-blue   { border-top-color: var(--teal); }
+.kpi.c-cyan   { border-top-color: var(--cyan); }
+.kpi.c-orange { border-top-color: var(--orange); }
+.kpi.c-amber  { border-top-color: var(--amber); }
+.kpi.c-green  { border-top-color: var(--green); }
+.kpi-lbl { font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--gray-80); margin-bottom: 4px; }
+.kpi-val { font-size: 24px; font-weight: 900; line-height: 1; color: var(--gray-80); }
+.kpi-val.red   { color: var(--red); }
+.kpi-val.green { color: var(--green); }
+.kpi-sub { font-size: 11.5px; color: var(--gray-50); margin-top: 3px; line-height:1.35; }
+
+/* CARDS */
+.card { background: white; border-radius: 9px; box-shadow: 0 1px 4px rgba(0,0,0,.07); overflow: hidden; }
+.card-head { padding: 10px 16px 9px; border-bottom: 1px solid var(--gray-10); display: flex; align-items: center; justify-content: space-between; flex-wrap:wrap; gap:4px; }
+.card-title { font-size: 13.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .4px; color: var(--gray-80); }
+.card-sub { font-size:12px; color:var(--gray-50); }
+.card-body  { padding: 13px 16px; }
+.row-2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
+.row-2-uneven { display:grid; grid-template-columns:0.72fr 1.28fr; gap:14px; margin-bottom:14px; }
+.stack { display:flex; flex-direction:column; gap:14px; margin-bottom:18px; }
+.body-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 18px; align-items: start; margin-bottom: 18px; }
+
+/* DATA TABLE under charts */
+.dt-wrap { overflow-x: auto; }
+.dt { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 12.5px; }
+.dt td, .dt th { padding: 4px 6px; text-align: center; border: 1px solid var(--gray-10); white-space: nowrap; }
+.dt th { background: var(--gray-05); color: var(--gray-80); font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: .3px; }
+.dt td:first-child, .dt th:first-child { text-align: left; color: var(--gray-50); font-weight: 600; background: var(--gray-05); width: 110px; }
+
+/* STATUS-STYLE TABLE (dot + bar) */
+.st-table { width: 100%; border-collapse: collapse; }
+.st-table tr { border-bottom: 1px solid var(--gray-10); }
+.st-table tr:last-child { border-bottom: none; }
+.st-table td { padding: 8px 4px; font-size: 14px; vertical-align: middle; }
+.st-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 7px; }
+.st-count { font-weight: 700; text-align: right; white-space: nowrap; width: 56px; }
+.st-pct   { font-size: 13px; color: var(--gray-80); text-align: right; white-space: nowrap; width: 48px; }
+.st-bar-td { width: 90px; padding-left: 10px; }
+.st-bar-bg { background: var(--gray-10); border-radius: 3px; height: 5px; overflow: hidden; }
+.st-bar-fg { height: 100%; border-radius: 3px; }
+.st-total td { font-weight: 700; border-top: 2px solid var(--gray-10) !important; padding-top: 8px; }
+.st-table .st-total { border-bottom: none; }
+
+/* Insights */
+.insight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+.insight { background: var(--gray-05); border-radius: 7px; padding: 11px 13px; border-top: 3px solid var(--gray-10); }
+.insight.i-blue   { border-top-color: var(--teal); }
+.insight.i-orange { border-top-color: var(--orange); }
+.insight.i-green  { border-top-color: var(--green); }
+.insight.i-amber  { border-top-color: var(--amber); }
+.insight-pct { font-size: 28px; font-weight: 900; line-height: 1; }
+.insight-pct.blue   { color: var(--teal); }
+.insight-pct.orange { color: var(--orange); }
+.insight-pct.green  { color: var(--green); }
+.insight-pct.amber  { color: #97740E; }
+.insight-lbl { font-size: 12.5px; color: var(--gray-80); margin-top: 3px; line-height: 1.35; }
+.insight-formula { font-size: 11.5px; color: var(--gray-50); margin-top: 2px; }
+
+.note-box { background: var(--gray-05); border-radius: 7px; padding: 11px 14px; font-size: 13px; color: var(--gray-80); line-height: 1.55; border-left: 3px solid var(--navy); margin-top:10px; }
+.note-box.warn { border-left-color: var(--amber); background:#FEF9E7; color:#7D6608; }
+.note-box strong { color: var(--navy); }
+.note-box.warn strong { color:#7D6608; }
+
+.footer { margin-top: 24px; padding-top: 12px; border-top: 1px solid var(--gray-10); font-size: 13px; color: var(--gray-50); display: flex; gap: 18px; flex-wrap: wrap; max-width:1340px; margin-left:auto; margin-right:auto; padding-left:36px; padding-right:36px; }
+.footer strong { color: var(--gray-80); }
+
+.d-view { display: none; }
+.d-view.active { display: block; }
+
+@media (max-width: 1000px){
+  .kpi-strip{ grid-template-columns: repeat(3,1fr); }
+  .row-2, .body-grid, .insight-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-brand">
+    <div class="rk-logo">LRK</div>
+    <div>
+      <div class="brand-main">Komerciniai mokymai</div>
+      <div class="brand-sub">LIETUVOS RAUDONASIS KRYŽIUS · LP DEPARTAMENTAS · 2026 I–VIII mėn.</div>
+    </div>
+  </div>
+  <div class="header-tabs">
+    <div class="htab active" onclick="switchTab('pardavimai',this)">PARDAVIMAI</div>
+    <div class="htab" onclick="switchTab('kontaktai',this)">KONTAKTAI</div>
+  </div>
+</div>
+
+<!-- ============ PARDAVIMAI ============ -->
+<div class="d-view active" id="dv-pardavimai">
+<div class="page">
+  <div class="page-title">
+    <h1>Komerciniai mokymai <span>2026 1–8 mėn.</span></h1>
+    <div class="meta">Pajamos, mokymų programos ir instruktorių apkrova</div>
+  </div>
+
+  <div class="kpi-strip">
+    <div class="kpi c-red">
+      <div class="kpi-lbl">Bendros pajamos</div>
+      <div class="kpi-val red">103 816 €</div>
+      <div class="kpi-sub">477 mokymai · 8 mėn.</div>
+    </div>
+    <div class="kpi c-blue">
+      <div class="kpi-lbl">Mokymų skaičius</div>
+      <div class="kpi-val">477</div>
+      <div class="kpi-sub">vid. 60 / mėn.</div>
+    </div>
+    <div class="kpi c-cyan">
+      <div class="kpi-lbl">Dalyvių skaičius</div>
+      <div class="kpi-val">5 172</div>
+      <div class="kpi-sub">vid. 10,8 vienuose mokymuose</div>
+    </div>
+    <div class="kpi c-orange">
+      <div class="kpi-lbl">Vid. mokymų vertė</div>
+      <div class="kpi-val">218 €</div>
+      <div class="kpi-sub">103 816 € / 477</div>
+    </div>
+    <div class="kpi c-amber">
+      <div class="kpi-lbl">Geriausias mėnuo</div>
+      <div class="kpi-val">Balandis</div>
+      <div class="kpi-sub">22 864 € · 88 mokymai</div>
+    </div>
+    <div class="kpi c-green">
+      <div class="kpi-lbl">Aktyvūs instruktoriai</div>
+      <div class="kpi-val green">9</div>
+      <div class="kpi-sub">2 atneša 47 % pajamų</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:18px; border-top:3px solid var(--cyan);">
+    <div class="card-head">
+      <span class="card-title">🔮 Prognozė pagal suplanuotus mokymus · IX–XI</span>
+      <span class="card-sub">Lektorių grafiko sistema · patvirtinti + įvykę, be atšauktų</span>
+    </div>
+    <div class="card-body">
+      <div class="kpi-strip" style="grid-template-columns:repeat(4,1fr); margin-bottom:14px;">
+        <div class="kpi c-cyan">
+          <div class="kpi-lbl">Suplanuoti mokymai</div>
+          <div class="kpi-val">62</div>
+          <div class="kpi-sub">vnt., IX–XI</div>
+        </div>
+        <div class="kpi c-blue">
+          <div class="kpi-lbl">Prognozuojami dalyviai</div>
+          <div class="kpi-val">963</div>
+          <div class="kpi-sub">įskaitant CS (po 12 žm./mokymuose)</div>
+        </div>
+        <div class="kpi c-orange">
+          <div class="kpi-lbl">Prognozuojamos pajamos</div>
+          <div class="kpi-val">11 960 €</div>
+          <div class="kpi-sub">viso, IX–XI</div>
+        </div>
+        <div class="kpi c-amber">
+          <div class="kpi-lbl">Rugsėjis sudaro</div>
+          <div class="kpi-val">43,3 %</div>
+          <div class="kpi-sub">5 180 € iš 11 960 €</div>
+        </div>
+      </div>
+
+      <div class="row-2" style="margin-bottom:0;">
+        <div>
+          <div style="font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--gray-80);margin-bottom:6px;">Pagal mėnesį</div>
+          <div id="dt-forecast-month-holder" class="dt-wrap"></div>
+        </div>
+        <div>
+          <div style="font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--gray-80);margin-bottom:6px;">Pagal mokymų tipą</div>
+          <div id="dt-forecast-type-holder" class="dt-wrap"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row-2">
+    <div class="card">
+      <div class="card-head"><span class="card-title">📈 Pajamų dinamika</span><span class="card-sub">€ (stulp.) + mokymų sk. (linija)</span></div>
+      <div class="card-body" style="padding-bottom:6px;padding-top:10px;">
+        <div style="position:relative;height:200px;"><canvas id="chart-revenue"></canvas></div>
+        <div id="dt-revenue-holder"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-title">🎓 Mokymų programos</span><span class="card-sub">Pajamos, €</span></div>
+      <div class="card-body" style="padding-bottom:6px;padding-top:10px;">
+        <div style="position:relative;height:200px;"><canvas id="chart-course"></canvas></div>
+        <div id="dt-course-holder"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row-2-uneven">
+    <div class="card">
+      <div class="card-head"><span class="card-title">🏢 Kas užsako</span><span class="card-sub">Įmonė vs pavieniai asmenys</span></div>
+      <div class="card-body" style="padding-bottom:6px;padding-top:10px;">
+        <div style="position:relative;height:190px;"><canvas id="chart-client"></canvas></div>
+        <div id="dt-client-holder"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-title">👥 Grupių dydis · € / dalyvis</span><span class="card-sub">Pagal programą</span></div>
+      <div class="card-body" style="padding-bottom:6px;padding-top:10px;">
+        <div style="display:grid; grid-template-columns:1fr 250px; gap:16px; align-items:stretch;">
+          <div style="position:relative;height:190px;"><canvas id="chart-groupsize"></canvas></div>
+          <div class="note-box" style="margin-top:0;"><strong>Pastebėjimas:</strong> PP paskaita/pristatymas pasiekia daugiausiai žmonių (vid. 24 vienuose mokymuose), bet uždirba mažiausiai vienam dalyviui (13,3 €) — platus pasiekiamumas, ne pagrindinis pajamų šaltinis. Vaikų PP ir standartiniai PP mokymai — vertingiausi vienam dalyviui (~22–24 €).</div>
+        </div>
+        <div id="dt-groupsize-holder"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="body-grid">
+    <div class="card">
+      <div class="card-head">
+        <span class="card-title">🧑‍🏫 Instruktorių apkrova</span>
+        <span class="card-sub">Pajamos, mokymai, dalyviai</span>
+      </div>
+      <div class="card-body" style="padding-top:9px;">
+        <table class="st-table" id="st-instructors"></table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><span class="card-title">⚡ Pagrindinės įžvalgos</span></div>
+      <div class="card-body">
+        <div class="insight-grid">
+          <div class="insight i-orange">
+            <div class="insight-pct orange">47 %</div>
+            <div class="insight-lbl">pajamų atneša tik 2 instruktorės</div>
+            <div class="insight-formula">Sketerskienė + Kubilienė = 49 180 €</div>
+          </div>
+          <div class="insight i-amber">
+            <div class="insight-pct amber">74 %</div>
+            <div class="insight-lbl">pajamų iš įmonių, ne pavienių asmenų</div>
+            <div class="insight-formula">76 511 € iš 103 816 €</div>
+          </div>
+          <div class="insight i-blue">
+            <div class="insight-pct blue">68 %</div>
+            <div class="insight-lbl">metų pajamų sukoncentruota kovo–birželio mėn.</div>
+            <div class="insight-formula">70 661 € iš 103 816 €</div>
+          </div>
+          <div class="insight i-green">
+            <div class="insight-pct green">15,9</div>
+            <div class="insight-lbl">vid. grupės dydis pas Piliponienę E. (kolegų ~9–13)</div>
+            <div class="insight-formula">941 dalyviai / 59 mokymai</div>
+          </div>
+        </div>
+        <div class="note-box warn">
+          <strong>Verta patikslinti:</strong> Kriaučeliūnaitė Augustė mokymų turėjo tik sausio–kovo mėn. (6 703 €) ir nuo balandžio dingo iš sąrašo. Taip pat liepa–rugpjūtis pajamos krenta perpus, palyginti su pavasariu — tikėtina, atostogų sezonas įmonėse. Verta planuoti aktyvesnį pardavimą rugsėjį.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:18px;">
+    <div class="card-head"><span class="card-title">📊 Lektorių portfelis pagal programą</span><span class="card-sub">% nuo lektoriaus mokymų skaičiaus</span></div>
+    <div class="card-body" style="padding-bottom:6px;padding-top:10px;">
+      <div style="position:relative;height:320px;"><canvas id="chart-portfolio"></canvas></div>
+      <div id="dt-portfolio-holder" class="dt-wrap"></div>
+      <div class="note-box">
+        <strong>Pastebėjimas:</strong> Sketerskienė Regina išsiskiria iš visų kolegų — 54,5 % jos mokymų sudaro Higienos įgūdžių mokymai (kiti instruktoriai dirba beveik išimtinai su Pirmosios pagalbos mokymais). Tai jos specializacija — kiti lektoriai, tikėtina, tiesiog neturi licencijos vesti šiuos mokymus.
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ============ KONTAKTAI ============ -->
+<div class="d-view" id="dv-kontaktai">
+<div class="page">
+  <div class="page-title">
+    <h1>Dalios kontaktai <span>2026 1–8 mėn. (faktiniai)</span></h1>
+    <div class="meta">Skambučiai/laiškai ir jų rezultatai · rugsėjis–gruodis rodomas atskirai kaip suplanuoti</div>
+  </div>
+
+  <div class="kpi-strip">
+    <div class="kpi c-red">
+      <div class="kpi-lbl">Kontaktų (I–VIII)</div>
+      <div class="kpi-val red">1 621</div>
+      <div class="kpi-sub">faktiniai, sausis–rugpjūtis</div>
+    </div>
+    <div class="kpi c-blue">
+      <div class="kpi-lbl">Su fiksuotu rezultatu</div>
+      <div class="kpi-val">1 099</div>
+      <div class="kpi-sub">67,8 % visų kontaktų</div>
+    </div>
+    <div class="kpi c-green">
+      <div class="kpi-lbl">Sutarti mokymai</div>
+      <div class="kpi-val green">63</div>
+      <div class="kpi-sub">5,7 % nuo su rezultatu</div>
+    </div>
+    <div class="kpi c-amber">
+      <div class="kpi-lbl">Aktyviose derybose</div>
+      <div class="kpi-val">868</div>
+      <div class="kpi-sub">79,0 % nuo su rezultatu</div>
+    </div>
+    <div class="kpi c-cyan">
+      <div class="kpi-lbl">Suplanuoti kontaktai</div>
+      <div class="kpi-val">93</div>
+      <div class="kpi-sub">rugsėjis–gruodis (žr. žemiau)</div>
+    </div>
+    <div class="kpi c-orange">
+      <div class="kpi-lbl">Be pažymėto statuso</div>
+      <div class="kpi-val">522</div>
+      <div class="kpi-sub">32,2 % — žr. pastabą</div>
+    </div>
+  </div>
+
+  <div class="body-grid">
+    <div class="card">
+      <div class="card-head"><span class="card-title">📞 Kontaktų aktyvumas · faktiniai (I–VIII)</span><span class="card-sub">Iš viso vs su fiksuotu rezultatu</span></div>
+      <div class="card-body" style="padding-bottom:6px;padding-top:10px;">
+        <div style="position:relative;height:190px;"><canvas id="chart-contacts"></canvas></div>
+        <div id="dt-contacts-holder" class="dt-wrap"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><span class="card-title">🗓️ Suplanuoti kontaktai · IX–XII</span><span class="card-sub">Pagal „Kito kontakto data"</span></div>
+      <div class="card-body" style="padding-bottom:6px;padding-top:10px;">
+        <div style="position:relative;height:190px;"><canvas id="chart-planned"></canvas></div>
+        <div id="dt-planned-holder"></div>
+        <div class="note-box">Rugsėjo skaičius (76) tikėtina apima ir dalį jau realiai atliktų kontaktų — mėnuo dar nebaigtas duomenų surinkimo momentu. Spalis–gruodis (9/6/2) yra grynai suplanuoti tolimesni kontaktai.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="body-grid">
+    <div class="card">
+      <div class="card-head">
+        <span class="card-title">📊 Rezultatų pasiskirstymas</span>
+        <span class="card-sub">Kontaktai su fiksuotu Answer Status (1 099) · I–VIII</span>
+      </div>
+      <div class="card-body" style="padding-top:9px;">
+        <table class="st-table" id="st-status"></table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><span class="card-title">⚡ Pagrindinės konversijos</span></div>
+      <div class="card-body">
+        <div class="insight-grid">
+          <div class="insight i-blue">
+            <div class="insight-pct blue">67,8%</div>
+            <div class="insight-lbl">kontaktų turi fiksuotą rezultatą</div>
+            <div class="insight-formula">1 099 iš 1 621</div>
+          </div>
+          <div class="insight i-orange">
+            <div class="insight-pct orange">5,7%</div>
+            <div class="insight-lbl">konversija į sutartus mokymus (nuo su rezultatu)</div>
+            <div class="insight-formula">63 iš 1 099</div>
+          </div>
+          <div class="insight i-green">
+            <div class="insight-pct green">3,9%</div>
+            <div class="insight-lbl">galutinė konversija nuo visų faktinių kontaktų</div>
+            <div class="insight-formula">63 iš 1 621</div>
+          </div>
+          <div class="insight i-amber">
+            <div class="insight-pct amber">75,8%</div>
+            <div class="insight-lbl">unikalių įmonių niekada nepirko mokymų</div>
+            <div class="insight-formula">562 iš 741 — žr. lentelę žemiau</div>
+          </div>
+        </div>
+        <div class="note-box">
+          <strong>562 įmonės (75,8%) niekada nepirko mokymų</strong> — didžiausias neišnaudotas potencialas, bet reikalauja ilgesnio pardavimo ciklo (pirmas kontaktas, poreikio formavimas). <strong>66 įmonės (8,9%)</strong> yra „aukšto prioriteto" grupėje (13–24 mėn. be mokymų) — jos jau bent kartą pirko, tad pardavimo ciklas trumpesnis. Verta pradėti pakartotinius kontaktus būtent nuo šios grupės.
+        </div>
+        <div class="note-box" style="margin-top:10px;">
+          <strong>Verslas dominuoja</strong> tarp unikalių įmonių — 533 iš 741 (72,3%). Viešasis sektorius sudaro 186 (25,2%), NVO — tik 22 (3,0%). Kol kas tik įmonių skaičius, ne pajamos — CRM'e dar nesuvesti visi parduoti mokymai pagal segmentą, todėl € pjūvio pateikti negalima. Papildysime, kai duomenys bus sutvarkyti ateinančiais mėnesiais.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row-2">
+    <div class="card">
+      <div class="card-head">
+        <span class="card-title">🎯 Pakartotinio kontakto prioritetas</span>
+        <span class="card-sub">Unikalios įmonės (2025–2026 kontaktų bazė) pagal laiką nuo paskutinių pirktų mokymų</span>
+      </div>
+      <div class="card-body" style="padding-bottom:6px;padding-top:10px;">
+        <div style="position:relative;height:190px;"><canvas id="chart-priority"></canvas></div>
+        <div id="dt-priority-holder" class="dt-wrap"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-title">🏛️ Unikalios įmonės pagal segmentą</span><span class="card-sub">2025–2026 kontaktų bazė</span></div>
+      <div class="card-body" style="padding-bottom:6px;padding-top:10px;">
+        <div style="position:relative;height:190px;"><canvas id="chart-segment"></canvas></div>
+        <div id="dt-segment-holder" class="dt-wrap"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</div>
+
+<div class="footer">
+  <div><strong>Šaltinis:</strong> Komercinių mokymų CRM, Excel Pivot eksportas</div>
+  <div><strong>Atnaujinta:</strong> 2026-08</div>
+  <div><strong>Kitas atnaujinimas:</strong> įtraukus rugsėjo (IX) mėn. duomenis</div>
+</div>
+
+<script>
+function pct(a,b){ if(!b) return '—'; return (a/b*100).toFixed(1).replace('.',',')+'%'; }
+const ff = "'Source Sans 3', sans-serif";
+const gc = 'rgba(0,0,0,.05)';
+
+function buildDT(colLabels, rows, withTotal){
+  let html = '<table class="dt"><tr><th></th>';
+  colLabels.forEach(l=>html+=`<th>${l}</th>`);
+  if(withTotal) html += '<th>Viso</th>';
+  html += '</tr>';
+  rows.forEach(r=>{
+    html += `<tr><td>${r.label}</td>`;
+    r.values.forEach(v=>html+=`<td>${typeof v==='number'?v.toLocaleString('lt-LT'):v}</td>`);
+    if(withTotal){
+      let totalCell;
+      if(r.totalOverride !== undefined){
+        totalCell = r.totalOverride;
+      } else {
+        totalCell = r.values.reduce((a,b)=> a + (typeof b==='number'?b:0), 0).toLocaleString('lt-LT');
+      }
+      html += `<td><strong>${totalCell}</strong></td>`;
+    }
+    html += '</tr>';
+  });
+  return html + '</table>';
+}
+
+/* ============ PARDAVIMAI ============ */
+const P_MONTHS = ['Sau','Vas','Kov','Bal','Geg','Bir','Lie','Rgp'];
+const revenueEur   = [6860,10625,20522,22864,14060,14215,7300,7370];
+const revenueCount = [35,48,85,88,68,68,49,36];
+const revenuePart  = [393,453,944,1033,779,832,416,322];
+const revenuePlan  = [14500,16500,23600,23600,23600,16500,14500,12500];
+const revenueVykd  = revenueEur.map((a,i)=> Math.round(a/revenuePlan[i]*1000)/10);
+
+new Chart(document.getElementById('chart-revenue'), {
+  type:'bar',
+  data:{ labels:P_MONTHS, datasets:[
+    { label:'Planas (€)', data:revenuePlan, backgroundColor:'#EAECEE', borderRadius:4, order:3, yAxisID:'y' },
+    { label:'Pajamos (€)', data:revenueEur, backgroundColor:'#C0392B', borderRadius:4, order:2, yAxisID:'y' },
+    { label:'Mokymų sk.', data:revenueCount, type:'line', borderColor:'#1B2A4A', backgroundColor:'#1B2A4A', tension:.3, pointRadius:3, order:1, yAxisID:'y1' }
+  ]},
+  options:{ maintainAspectRatio:false, plugins:{ legend:{ position:'top', labels:{font:{family:ff,size:11.5},boxWidth:11,usePointStyle:true} } },
+    scales:{ y:{ position:'left', grid:{color:gc} }, y1:{ position:'right', grid:{display:false} }, x:{ grid:{display:false} } } }
+});
+document.getElementById('dt-revenue-holder').innerHTML = buildDT(P_MONTHS, [
+  {label:'Planas, €', values:revenuePlan},
+  {label:'Pajamos, €', values:revenueEur},
+  {label:'Vykdymas, %', values:revenueVykd.map(v=>v.toLocaleString('lt-LT')+' %'), totalOverride:'71,4 %'},
+  {label:'Mokymai, sk.', values:revenueCount},
+  {label:'Dalyviai, sk.', values:revenuePart},
+], true);
+
+/* ---- Forecast: planned trainings IX-XI ---- */
+document.getElementById('dt-forecast-month-holder').innerHTML = buildDT(['Rgs','Spa','Lap'], [
+  {label:'Mokymai, sk.', values:[28,18,16]},
+  {label:'Dalyviai, sk.', values:[567,204,192]},
+  {label:'Pajamos, €', values:[5180,3520,3260]},
+], true);
+
+document.getElementById('dt-forecast-type-holder').innerHTML = buildDT(['CS','PP','PPP','HG'], [
+  {label:'Mokymai, sk.', values:[30,26,'–',6]},
+  {label:'Dalyviai, sk.', values:[360,538,'–',65]},
+  {label:'Pajamos, €', values:[6000,5260,'–',700]},
+], true);
+
+new Chart(document.getElementById('chart-course'), {
+  type:'bar',
+  data:{ labels:['PP mokymai','Higienos įg.','PP paskaita','Vaikų PP','Renginys'],
+    datasets:[{ data:[84886,8400,7005,2525,1000], backgroundColor:'#C0392B', borderRadius:4 }] },
+  options:{ maintainAspectRatio:false, indexAxis:'y', plugins:{legend:{display:false}}, scales:{ x:{grid:{color:gc}}, y:{grid:{display:false},ticks:{font:{size:11.5}}} } }
+});
+document.getElementById('dt-course-holder').innerHTML = buildDT(['Sk.','%','€','Dalyviai'], [
+  {label:'Pirmosios pagalbos mokymai', values:[347,'72,7 %','84 886','3 781']},
+  {label:'Higienos įgūdžių mokymai', values:[97,'20,3 %','8 400','756']},
+  {label:'PP paskaita/pristatymas', values:[22,'4,6 %','7 005','528']},
+  {label:'Vaikų ir kūdikių PP', values:[8,'1,7 %','2 525','107']},
+  {label:'Renginys', values:[3,'0,6 %','1 000','–']},
+]);
+
+new Chart(document.getElementById('chart-client'), {
+  type:'doughnut',
+  data:{ labels:['Įmonė, organizacija','Pavieniai asmenys','Vidiniai LRKD mokymai'],
+    datasets:[{ data:[76511,27305,0], backgroundColor:['#C0392B','#2471A3','#EAECEE'], borderWidth:0 }] },
+  options:{ maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{font:{family:ff,size:11.5},boxWidth:11,usePointStyle:true,padding:12} } }, cutout:'62%' }
+});
+document.getElementById('dt-client-holder').innerHTML = buildDT(['Sk.','€','Dalyviai'], [
+  {label:'Įmonė, organizacija', values:[328,'76 511','3 706']},
+  {label:'Pavieniai asmenys', values:[140,'27 305','1 406']},
+  {label:'Vidiniai LRKD mokymai', values:[9,'0','60']},
+]);
+
+new Chart(document.getElementById('chart-groupsize'), {
+  type:'bar',
+  data:{ labels:['PP paskaita','Vaikų PP','PP mokymai','Higienos įg.'],
+    datasets:[
+      { label:'Vid. grupė (žm.)', data:[24.0,13.4,10.9,7.8], backgroundColor:'#2471A3', borderRadius:4, yAxisID:'y' },
+      { label:'€ / dalyvis', data:[13.3,23.6,22.5,11.1], backgroundColor:'#E67E22', borderRadius:4, yAxisID:'y1' },
+    ] },
+  options:{ maintainAspectRatio:false, plugins:{ legend:{ position:'top', labels:{font:{family:ff,size:11.5},boxWidth:11,usePointStyle:true} } },
+    scales:{ y:{position:'left',grid:{color:gc}}, y1:{position:'right',grid:{display:false}}, x:{grid:{display:false}} } }
+});
+document.getElementById('dt-groupsize-holder').innerHTML = buildDT(['Vid. grupė','Vid. suma € / mokymai','€ / dalyvis'], [
+  {label:'PP paskaita/pristatymas', values:['24,0','318','13,3']},
+  {label:'Vaikų ir kūdikių PP', values:['13,4','316','23,6']},
+  {label:'Pirmosios pagalbos mokymai', values:['10,9','245','22,5']},
+  {label:'Higienos įgūdžių mokymai', values:['7,8','87','11,1']},
+]);
+
+/* Instructors status-style table */
+const instructors = [
+  {name:'Sketerskienė Regina', count:165, eur:24864, part:1532, color:'#1E8449'},
+  {name:'Kubilienė Aušra', count:107, eur:24316, part:1143, color:'#2471A3'},
+  {name:'Piliponienė Eglė', count:59, eur:18818, part:941, color:'#17A589'},
+  {name:'Kalinaitis Egidijus', count:38, eur:10010, part:489, color:'#E67E22'},
+  {name:'Visockienė Daiva', count:29, eur:7715, part:290, color:'#D4AC0D'},
+  {name:'Urbutienė Alvyda', count:28, eur:4850, part:252, color:'#7F8C8D'},
+  {name:'Kriaučeliūnaitė Augustė', count:25, eur:6703, part:261, color:'#C0392B', note:'tik sau–kov'},
+  {name:'Koroliova Julija', count:14, eur:3870, part:164, color:'#566573'},
+  {name:'Zabelavičienė Jolanta', count:12, eur:2670, part:100, color:'#BFC9CA'},
+];
+const totalEur = 103816;
+const maxIns = Math.max(...instructors.map(i=>i.eur));
+let stInsHtml = instructors.map(ins=>{
+  const w = (ins.eur/maxIns*100).toFixed(1);
+  return `<tr>
+    <td><span class="st-dot" style="background:${ins.color}"></span>${ins.name}${ins.note?` <span style="font-size:11px;color:var(--gray-50)">(${ins.note})</span>`:''}
+      <div style="font-size:11.5px;color:var(--gray-50);margin-left:16px;">${ins.count} mok. · ${ins.part.toLocaleString('lt-LT')} dalyvių</div></td>
+    <td class="st-count">${ins.eur.toLocaleString('lt-LT')} €</td>
+    <td class="st-pct">${pct(ins.eur,totalEur)}</td>
+    <td class="st-bar-td"><div class="st-bar-bg"><div class="st-bar-fg" style="width:${w}%;background:${ins.color}"></div></div></td>
+  </tr>`;
+}).join('');
+stInsHtml += `<tr class="st-total"><td><strong>IŠ VISO</strong></td><td class="st-count">${totalEur.toLocaleString('lt-LT')} €</td><td class="st-pct">—</td><td></td></tr>`;
+document.getElementById('st-instructors').innerHTML = stInsHtml;
+
+/* Instructor portfolio by course (100% stacked) */
+const portfolioCourses = ['Pirmosios pagalbos mokymai','Higienos įgūdžių mokymai','PP paskaita/pristatymas','Vaikų ir kūdikių PP','Renginys'];
+const portfolioColors  = ['#C0392B','#2471A3','#E67E22','#D4AC0D','#7F8C8D'];
+const portfolioData = [
+  {name:'Sketerskienė Regina', pct:[45.5,54.5,0.0,0.0,0.0], counts:[75,90,0,0,0]},
+  {name:'Kubilienė Aušra', pct:[89.7,0.0,9.3,0.0,0.9], counts:[96,0,10,0,1]},
+  {name:'Piliponienė Eglė', pct:[88.1,0.0,10.2,1.7,0.0], counts:[52,0,6,1,0]},
+  {name:'Kalinaitis Egidijus', pct:[94.7,0.0,5.3,0.0,0.0], counts:[36,0,2,0,0]},
+  {name:'Visockienė Daiva', pct:[82.8,0.0,10.3,0.0,6.9], counts:[24,0,3,0,2]},
+  {name:'Urbutienė Alvyda', pct:[75.0,25.0,0.0,0.0,0.0], counts:[21,7,0,0,0]},
+  {name:'Kriaučeliūnaitė Augustė', pct:[88.0,0.0,0.0,12.0,0.0], counts:[22,0,0,3,0]},
+  {name:'Koroliova Julija', pct:[64.3,0.0,7.1,28.6,0.0], counts:[9,0,1,4,0]},
+  {name:'Zabelavičienė Jolanta', pct:[100.0,0.0,0.0,0.0,0.0], counts:[12,0,0,0,0]},
+];
+new Chart(document.getElementById('chart-portfolio'), {
+  type:'bar',
+  data:{
+    labels: portfolioData.map(d=>d.name),
+    datasets: portfolioCourses.map((c,i)=>({
+      label:c,
+      data: portfolioData.map(d=>d.pct[i]),
+      backgroundColor: portfolioColors[i],
+      borderRadius:2,
+    }))
+  },
+  options:{
+    maintainAspectRatio:false,
+    indexAxis:'y',
+    plugins:{ legend:{ position:'top', labels:{font:{family:ff,size:11.5},boxWidth:11,usePointStyle:true} },
+      tooltip:{ callbacks:{ label: ctx => `${ctx.dataset.label}: ${ctx.raw}%` } } },
+    scales:{
+      x:{ stacked:true, min:0, max:100, ticks:{ callback:v=>v+'%' }, grid:{color:gc} },
+      y:{ stacked:true, grid:{display:false}, ticks:{font:{size:12}} }
+    }
+  }
+});
+document.getElementById('dt-portfolio-holder').innerHTML = buildDT(portfolioCourses, portfolioData.map(d=>({
+  label: d.name,
+  values: d.counts.map(c=> c===0 ? '–' : c)
+})));
+
+/* ============ KONTAKTAI ============ */
+const C_MONTHS = ['Sau','Vas','Kov','Bal','Geg','Bir','Lie','Rgp'];
+const contactsTotal  = [80,196,180,313,204,282,194,172];
+const contactsStatus = [28,104,109,205,123,193,165,172];
+const contactsSutarti= [2,5,16,10,12,8,1,9];
+
+new Chart(document.getElementById('chart-contacts'), {
+  type:'bar',
+  data:{ labels:C_MONTHS, datasets:[
+    { label:'Iš viso kontaktų', data:contactsTotal, backgroundColor:'#EAECEE', borderRadius:4, order:2 },
+    { label:'Su fiksuotu rezultatu', data:contactsStatus, backgroundColor:'#C0392B', borderRadius:4, order:1 }
+  ]},
+  options:{ maintainAspectRatio:false, plugins:{ legend:{ position:'top', labels:{font:{family:ff,size:11.5},boxWidth:11,usePointStyle:true} } },
+    scales:{ x:{grid:{display:false}}, y:{grid:{color:gc}} } }
+});
+document.getElementById('dt-contacts-holder').innerHTML = buildDT(C_MONTHS, [
+  {label:'Iš viso kontaktų', values:contactsTotal},
+  {label:'Su rezultatu', values:contactsStatus},
+  {label:'Sutarti mokymai', values:contactsSutarti},
+], true);
+
+const PL_MONTHS = ['Rgs','Spa','Lap','Gruod'];
+const plannedCounts = [76,9,6,2];
+new Chart(document.getElementById('chart-planned'), {
+  type:'bar',
+  data:{ labels:PL_MONTHS, datasets:[{ label:'Suplanuoti kontaktai', data:plannedCounts, backgroundColor:'#17A589', borderRadius:4 }] },
+  options:{ maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{ x:{grid:{display:false}}, y:{grid:{color:gc}} } }
+});
+document.getElementById('dt-planned-holder').innerHTML = buildDT(PL_MONTHS, [
+  {label:'Suplanuoti kontaktai', values:plannedCounts},
+]);
+
+/* Status breakdown table (Jan-Aug, with-status only) */
+const ST_ROWS = [
+  {name:'Derybos', v:868, color:'#D4AC0D'},
+  {name:'Išsiųstas pasiūlymas', v:81, color:'#E67E22'},
+  {name:'Sutarti mokymai', v:63, color:'#1E8449'},
+  {name:'Perskambinti', v:32, color:'#17A589'},
+  {name:'Nekėlė', v:32, color:'#7F8C8D'},
+  {name:'Atsisakė', v:18, color:'#C0392B'},
+  {name:'Neaktualu / nedomina', v:4, color:'#BFC9CA'},
+  {name:'Neprileidžia prie atsakingo', v:1, color:'#EAECEE'},
+];
+const stTotal = 1099;
+const maxSt = Math.max(...ST_ROWS.map(r=>r.v));
+let stHtml = ST_ROWS.map(r=>{
+  const w=(r.v/maxSt*100).toFixed(1);
+  return `<tr><td><span class="st-dot" style="background:${r.color}"></span>${r.name}</td>
+    <td class="st-count">${r.v}</td><td class="st-pct">${pct(r.v,stTotal)}</td>
+    <td class="st-bar-td"><div class="st-bar-bg"><div class="st-bar-fg" style="width:${w}%;background:${r.color}"></div></div></td></tr>`;
+}).join('');
+stHtml += `<tr class="st-total"><td><strong>IŠ VISO (su rezultatu)</strong></td><td class="st-count">${stTotal}</td><td class="st-pct">—</td><td></td></tr>`;
+document.getElementById('st-status').innerHTML = stHtml;
+
+/* Priority bucket (time since last training, unique companies) */
+new Chart(document.getElementById('chart-priority'), {
+  type:'bar',
+  data:{ labels:['Nėra parduota mokymų','13–24 mėn. (aukštas prior.)','7–12 mėn. (pagr. langas)','0–3 mėn. (per anksti)','4–6 mėn. (lengvas primin.)'],
+    datasets:[{ data:[562,66,51,35,27], backgroundColor:['#7F8C8D','#C0392B','#E67E22','#BFC9CA','#D4AC0D'], borderRadius:4 }] },
+  options:{ maintainAspectRatio:false, indexAxis:'y', plugins:{legend:{display:false}}, scales:{ x:{grid:{color:gc}}, y:{grid:{display:false},ticks:{font:{size:11.5}}} } }
+});
+document.getElementById('dt-priority-holder').innerHTML = buildDT(['Įmonių sk.','%'], [
+  {label:'0–3 mėn. - per anksti', values:[35,'4,7 %']},
+  {label:'4–6 mėn. - lengvas priminimas', values:[27,'3,6 %']},
+  {label:'7–12 mėn. - pagrindinis langas', values:[51,'6,9 %']},
+  {label:'13–24 mėn. - aukštas prioritetas', values:[66,'8,9 %']},
+  {label:'Nėra parduota mokymų', values:[562,'75,8 %']},
+]);
+
+/* Segment breakdown donut (unique companies, 2025-2026) */
+new Chart(document.getElementById('chart-segment'), {
+  type:'doughnut',
+  data:{ labels:['Verslas','Viešasis sektorius','NVO'],
+    datasets:[{ data:[533,186,22], backgroundColor:['#C0392B','#2471A3','#D4AC0D'], borderWidth:0 }] },
+  options:{ maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{font:{family:ff,size:11.5},boxWidth:11,usePointStyle:true,padding:12} } }, cutout:'62%' }
+});
+document.getElementById('dt-segment-holder').innerHTML = buildDT(['Įmonių sk.','%'], [
+  {label:'Verslas', values:[533,'72,3 %']},
+  {label:'Viešasis sektorius', values:[186,'25,2 %']},
+  {label:'NVO', values:[22,'3,0 %']},
+]);
+
+function switchTab(key, el){
+  document.querySelectorAll('.d-view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.htab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('dv-'+key).classList.add('active');
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>
