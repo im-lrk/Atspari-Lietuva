@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="lt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Vyčio Skliautas</title>
+
+  <style>
+    :root {
+      --background: #f4f7fb;
+      --card: #ffffff;
+      --text: #17233c;
+      --muted: #5e6c84;
+      --blue: #1167b1;
+      --blue-dark: #153a68;
+      --blue-light: #eaf4ff;
+      --border: #d7e1ef;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--background);
+      color: var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+
+    header {
+      padding: 48px 20px;
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      color: white;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0 0 10px;
+      font-size: clamp(30px, 5vw, 48px);
+    }
+
+    header p {
+      margin: 0;
+      color: #dcecff;
+      font-size: 18px;
+    }
+
+    main {
+      width: min(900px, calc(100% - 32px));
+      margin: 36px auto;
+    }
+
+    .pages {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .page-card {
+      display: block;
+      padding: 24px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      color: var(--text);
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(20, 55, 95, 0.08);
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .page-card:hover,
+    .page-card:focus-visible {
+      transform: translateY(-3px);
+      border-color: var(--blue);
+      box-shadow: 0 12px 30px rgba(20, 55, 95, 0.14);
+      outline: none;
+    }
+
+    .page-card h2 {
+      margin: 0 0 10px;
+      color: var(--blue-dark);
+      font-size: 21px;
+    }
+
+    .page-card p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .open {
+      color: var(--blue);
+      font-weight: 700;
+    }
+
+    footer {
+      padding: 20px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Vyčio Skliautas</h1>
+    <p>Pratybų ir evakuacijos medžiaga</p>
+  </header>
+
+  <main>
+    <div class="pages">
+
+      <a class="page-card" href="./KOBO-anketos.html">
+        <h2>KOBO anketos</h2>
+        <p>
+          KOBO evakuacijos registravimo anketų įgyvendinimo
+          planas ir proceso paaiškinimas.
+        </p>
+        <span class="open">Atidaryti →</span>
+      </a>
+
+      <a class="page-card" href="./livex-evakuacija-1.html">
+        <h2>LiveX evakuacija</h2>
+        <p>
+          Evakuacijos scenarijaus ir proceso medžiaga.
+        </p>
+        <span class="open">Atidaryti →</span>
+      </a>
+
+      <a class="page-card" href="./pratybos-vycio-skliautas.html">
+        <h2>Vyčio Skliauto pratybos</h2>
+        <p>
+          Pratybų informacija, eiga ir susijusi medžiaga.
+        </p>
+        <span class="open">Atidaryti →</span>
+      </a>
+
+    </div>
+  </main>
+
+  <footer>
+    Lietuvos Raudonasis Kryžius
+  </footer>
+</body>
+</html>
