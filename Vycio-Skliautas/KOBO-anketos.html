@@ -9,7 +9,8 @@
       --ink:#17233c; --muted:#5e6c84; --line:#d7e1ef; --paper:#f4f7fb;
       --card:#fff; --blue:#1167b1; --blue2:#eaf4ff; --navy:#153a68;
       --green:#17765a; --green2:#e9f8f2; --amber:#9a5b00; --amber2:#fff5df;
-      --red:#a83838; --red2:#fff0f0; --shadow:0 10px 30px rgba(20,55,95,.09);
+      --red:#a83838; --red2:#fff0f0; --purple:#6c4bb3; --purple2:#f2edff;
+      --shadow:0 10px 30px rgba(20,55,95,.09);
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -44,7 +45,11 @@
     .decision-node.root{max-width:300px;margin:auto;background:#dcedfb}
     .decision-branches{display:grid;grid-template-columns:1fr 1.35fr;gap:34px;position:relative}
     .decision-branch{display:grid;gap:10px;align-content:start}
-    .decision-label{justify-self:center;border:1px solid #bdd7ee;border-radius:99px;background:#fff;color:var(--navy);padding:3px 12px;font-size:13px}
+    .decision-label{justify-self:center;border:1px solid #bdd7ee;border-radius:99px;background:#fff;color:var(--navy);padding:3px 12px;font-size:13px;font-weight:750}
+    .decision-label.yes{background:#dff6e9;border-color:#8bd1b1;color:#116447}
+    .decision-label.no{background:#fff0bd;border-color:#e5c45b;color:#754700}
+    .decision-node.success{background:#e6f8ef;border-color:#8bd1b1;color:#116447}
+    .decision-node.caution{background:#fff5d8;border-color:#e5c45b;color:#754700}
     .decision-arrow{height:16px;color:#9db4c9;font-size:19px;line-height:16px}
     .decision-results{display:grid;grid-template-columns:1fr 1fr;gap:12px}
     .decision-note{max-width:850px;margin:14px auto 0;color:var(--muted);font-size:14px;text-align:center}
@@ -74,7 +79,12 @@
     .note{background:var(--blue2);border-color:var(--blue)}
     .warning{background:var(--amber2);border-color:var(--amber)}
     .ok{background:var(--green2);border-color:var(--green)}
-    .badge{display:inline-block;padding:3px 8px;border-radius:99px;background:var(--blue2);color:var(--blue);font-size:12px;font-weight:700;margin-right:5px}
+    .badge{display:inline-block;padding:3px 8px;border-radius:99px;background:var(--blue2);color:var(--blue);font-size:12px;font-weight:700;margin:2px 5px 2px 0}
+    .badge.green,.status.green{background:var(--green2);color:var(--green)}
+    .badge.amber,.status.amber{background:var(--amber2);color:var(--amber)}
+    .badge.red,.status.red{background:var(--red2);color:var(--red)}
+    .badge.purple{background:var(--purple2);color:var(--purple)}
+    .status{display:inline-block;padding:4px 9px;border-radius:7px;font-weight:700}
     .checklist{list-style:none;padding:0}.checklist li{padding-left:28px;position:relative}.checklist li::before{content:"□";position:absolute;left:2px;color:var(--blue);font-size:19px;top:-2px}
     .sources a{color:var(--blue)}
     footer{text-align:center;color:var(--muted);font-size:13px;padding:10px 20px 35px}
@@ -114,18 +124,18 @@
           <div class="decision-node root">Ar žinomas atstovo apyrankės ID?</div>
           <div class="decision-branches">
             <div class="decision-branch">
-              <div class="decision-label">Taip</div><div class="decision-arrow">↓</div>
-              <div class="decision-node">Įvesti HH ID</div>
+              <div class="decision-label yes">Taip</div><div class="decision-arrow">↓</div>
+              <div class="decision-node success">Įvesti HH ID</div>
             </div>
             <div class="decision-branch">
-              <div class="decision-label">Ne</div><div class="decision-arrow">↓</div>
+              <div class="decision-label no">Ne</div><div class="decision-arrow">↓</div>
               <div class="decision-node">Įvesti atstovo vardą, pavardę ir gimimo metus</div>
               <div class="decision-arrow">↓</div>
               <div class="decision-node">Koordinatorius ieško KOBO lentelėje</div>
               <div class="decision-arrow">↓</div>
               <div class="decision-results">
-                <div class="decision-branch"><div class="decision-label">Rastas</div><div class="decision-node">Priskirti rastą HH ID</div></div>
-                <div class="decision-branch"><div class="decision-label">Nerastas</div><div class="decision-node">Laikinas HH ID ir patikra vėliau</div></div>
+                <div class="decision-branch"><div class="decision-label yes">Rastas</div><div class="decision-node success">Priskirti rastą HH ID</div></div>
+                <div class="decision-branch"><div class="decision-label no">Nerastas</div><div class="decision-node caution">Laikinas HH ID ir patikra vėliau</div></div>
               </div>
             </div>
           </div>
@@ -263,7 +273,7 @@ parent_sync_key = person_id</pre>
               <summary>Rapid ENA klausimų blokai</summary>
               <div class="detail-body">
                 <details><summary>Funkciniai ir specifiniai poreikiai</summary><div class="detail-body"><p>Judėjimas, rega, klausa, bendravimas / supratimas, apsitarnavimas, nėštumas, kūdikis ar mažas vaikas, vyresnio žmogaus pagalba, kita. Jei yra poreikių – klausiama, kokios praktinės pagalbos reikia.</p></div></details>
-                <details><summary>Sveikata ir vaistai</summary><div class="detail-body"><p>Ar reikia pagalbos dabar arba tęstinės priežiūros, pagalbos skubumas ir tipas, ar vartojami vaistai, kurių negalima saugiai nutraukti, ir kiek laiko jų liko.</p><p><span class="badge">Skubu</span> Jei vaistų nėra arba liko mažiau nei 24 val.</p></div></details>
+                <details><summary>Sveikata ir vaistai</summary><div class="detail-body"><p>Ar reikia pagalbos dabar arba tęstinės priežiūros, pagalbos skubumas ir tipas, ar vartojami vaistai, kurių negalima saugiai nutraukti, ir kiek laiko jų liko.</p><p><span class="badge red">Skubu</span> Jei vaistų nėra arba liko mažiau nei 24 val.</p></div></details>
                 <details><summary>Apgyvendinimas ir transportas</summary><div class="detail-body"><p>Ar žmogus turi saugią vietą, ar reikia laikino apgyvendinimo, keliems žmonėms ir kokių sąlygų. Atskirai klausiama apie transportą, kryptį ir specialias transportavimo sąlygas.</p></div></details>
                 <details><summary>Gyvūnai, kalba ir ryšys su artimaisiais</summary><div class="detail-body"><p>Gyvūno tipas ir skaičius, ar jis riboja sprendimą; pageidaujama kalba ir vertėjo poreikis; ar žmogus gali susisiekti su artimaisiais ir ar nori RFL pagalbos.</p></div></details>
                 <details><summary>Kiti poreikiai ir saugumas</summary><div class="detail-body"><p>Maistas, vanduo, higiena, drabužiai, medicinos pagalba, emocinė parama, dokumentai, šeimos pagalba ir kita. Saugumo klausime nerinkti incidento detalių – tik parodyti SOP instrukciją ir nukreipti specialistui.</p></div></details>
@@ -366,7 +376,7 @@ parent_sync_key = person_id</pre>
               <summary>Formoje saugomi automatiniai signalai</summary>
               <div class="detail-body">
                 <p>Signalus saugoti kaip <code>0/1</code> skaičiavimo laukus:</p>
-                <p><span class="badge">HEALTH</span><span class="badge">MEDICATION</span><span class="badge">MEDICATION_URGENT</span><span class="badge">ACCOMMODATION</span><span class="badge">TRANSPORT</span><span class="badge">INTERPRETER</span><span class="badge">RFL</span><span class="badge">PROTECTION</span><span class="badge">FOLLOW_UP</span></p>
+                <p><span class="badge red">HEALTH</span><span class="badge amber">MEDICATION</span><span class="badge red">MEDICATION_URGENT</span><span class="badge">ACCOMMODATION</span><span class="badge">TRANSPORT</span><span class="badge purple">INTERPRETER</span><span class="badge purple">RFL</span><span class="badge red">PROTECTION</span><span class="badge amber">FOLLOW_UP</span></p>
                 <div class="note">Signalai jungiami OR principu: vienas neigiamas atsakymas negali panaikinti kitoje anketos dalyje nustatyto poreikio.</div>
               </div>
             </details>
@@ -377,10 +387,10 @@ parent_sync_key = person_id</pre>
 Registered = unikalių Child person_id skaičius pagal household_id
 Gap = Expected - Registered</pre>
                 <table><thead><tr><th>Sąlyga</th><th>Būsena</th></tr></thead><tbody>
-                  <tr><td>Registered = Expected</td><td>Registracija sutampa</td></tr>
-                  <tr><td>Registered &lt; Expected</td><td>Registruota mažiau</td></tr>
-                  <tr><td>Registered &gt; Expected</td><td>Galimas dublikatas arba neatitikimas</td></tr>
-                  <tr><td>Expected nežinomas</td><td>Neįmanoma sutikrinti</td></tr>
+                  <tr><td>Registered = Expected</td><td><span class="status green">Registracija sutampa</span></td></tr>
+                  <tr><td>Registered &lt; Expected</td><td><span class="status amber">Registruota mažiau</span></td></tr>
+                  <tr><td>Registered &gt; Expected</td><td><span class="status red">Galimas dublikatas arba neatitikimas</span></td></tr>
+                  <tr><td>Expected nežinomas</td><td><span class="status amber">Neįmanoma sutikrinti</span></td></tr>
                 </tbody></table>
                 <div class="warning">Teigiamas skirtumas yra proceso indikatorius. Jis nėra oficialus patvirtinimas, kad žmogus dingo.</div>
               </div>
