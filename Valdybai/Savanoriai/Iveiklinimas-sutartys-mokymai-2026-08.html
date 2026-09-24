@@ -291,14 +291,6 @@ function render(k){
     <div class="card"><h2>Privalomi mokymai</h2>
       <div class="d">Kiek iš 6 bazinių modulių savanoris yra baigęs · iš ${nf(d.cur)} periodo sąrašo savanorių</div>
       <div class="ch sm"><canvas id="c8"></canvas></div>
-      <div class="note">Visus 6 modulius baigę <b>${d.trainings.buckets[6]} (${Math.round(d.trainings.buckets[6]/d.cur*100)}%)</b>,
-      nė vieno — <b>${d.trainings.buckets[0]} (${Math.round(d.trainings.buckets[0]/d.cur*100)}%)</b>.</div>
-      <div class="cs-note" style="background:#eef4fa;border-left-color:#2E74B5;color:#2b4a68">
-        <b>Kodėl tiek daug su 0 modulių?</b> Iš ${d.zeroSplit.zero} tokių savanorių
-        <b>${d.zeroSplit.noreg} (${Math.round(d.zeroSplit.noreg/d.zeroSplit.zero*100)}%) SF apskritai nėra užregistruoti nė vienam mokymui</b> —
-        tai ne „nebaigė", o <b>nėra įrašo</b>. Tikrai registruotų, bet nebaigusių yra tik ${d.zeroSplit.reg}.
-        Dauguma jų (${d.zeroSplit.iseje}) jau nebeturi statuso „Savanoris" — t.y. tai daugiausia trumpai pabuvę ir iškritę žmonės,
-        kurie iki mokymų taip ir nepriėjo. ${d.zeroSplit.nauji} iš jų prisijungė tik 2026 m. ir dar gali būti eilėje.
       </div>
     </div>
   </div>
@@ -450,6 +442,17 @@ function render(k){
     scales:{x:{beginAtZero:true,grid:{color:'#f2ede7'},grace:'8%'},y:{grid:{display:false}}}}}));
 }
 
+function maskPavarde(vardas){
+  const dalys=vardas.trim().split(/\s+/);
+  if(dalys.length<2)return vardas;
+  const pavarde=dalys[dalys.length-1];
+  const vardai=dalys.slice(0,-1).join(' ');
+  const liktiRaidziu=4;
+  if(pavarde.length<=liktiRaidziu)return vardai+' '+pavarde;
+  const maskuota=pavarde.slice(0,liktiRaidziu)+'*'.repeat(pavarde.length-liktiRaidziu);
+  return vardai+' '+maskuota;
+}
+
 function renderPat(){
   const P=D.patikslinti;
   const byCo={};P.forEach(p=>{(byCo[p.koord]=byCo[p.koord]||[]).push(p)});
@@ -464,7 +467,7 @@ function renderPat(){
   </div>
   <table><thead><tr><th>Vardas Pavardė</th><th>Koordinatorius</th><th>Regionas</th><th>Savivaldybė</th>
   <th class="n">Dok.</th><th>Dokumentų būsena</th></tr></thead><tbody>
-  ${P.map(p=>`<tr><td><b>${p.vardas}</b></td><td>${p.koord}</td><td>${p.reg||'—'}</td><td>${p.sav||'—'}</td>
+  ${P.map(p=>`<tr><td><b>${maskPavarde(p.vardas)}</b></td><td>${p.koord}</td><td>${p.reg||'—'}</td><td>${p.sav||'—'}</td>
   <td class="n">${p.dok}</td><td><span class="pill pr">${p.dokst}</span></td></tr>`).join('')}
   </tbody></table>`;
 }
