@@ -16,6 +16,8 @@
       --blue-dark: #153a68;
       --blue-light: #eaf4ff;
       --border: #d7e1ef;
+      --red: #c0392b;
+      --red-light: #fdf0ef;
     }
 
     * {
@@ -49,8 +51,21 @@
     }
 
     main {
-      width: min(900px, calc(100% - 32px));
+      width: min(960px, calc(100% - 32px));
       margin: 36px auto;
+    }
+
+    .section-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 36px 0 12px;
+    }
+
+    .section-label:first-child {
+      margin-top: 0;
     }
 
     .pages {
@@ -94,6 +109,63 @@
       line-height: 1.55;
     }
 
+    /* Multi-link card (no <a> wrapper — links inside) */
+    .multi-card {
+      padding: 24px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(20, 55, 95, 0.08);
+    }
+
+    .multi-card h2 {
+      margin: 0 0 6px;
+      color: var(--blue-dark);
+      font-size: 21px;
+    }
+
+    .multi-card .desc {
+      margin: 0 0 16px;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 15px;
+    }
+
+    .link-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .link-list a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--blue);
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    .link-list a:hover {
+      text-decoration: underline;
+    }
+
+    .link-list .tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: var(--blue-light);
+      color: var(--blue-dark);
+      border-radius: 6px;
+      padding: 2px 7px;
+      white-space: nowrap;
+    }
+
     .open {
       color: var(--blue);
       font-weight: 700;
@@ -115,6 +187,9 @@
   </header>
 
   <main>
+
+    <!-- ── Pratybos ─────────────────────────────────────────────── -->
+    <p class="section-label">Pratybos</p>
     <div class="pages">
 
       <a class="page-card" href="./livex-evakuacija-1.html">
@@ -135,6 +210,57 @@
       </a>
 
     </div>
+
+    <!-- ── ENA registracija ──────────────────────────────────────── -->
+    <p class="section-label">ENA registracija (KOBO)</p>
+    <div class="pages">
+
+      <div class="multi-card">
+        <h2>KOBO anketos</h2>
+        <p class="desc">Evakuuotų namų ūkių registravimo anketos pildymui lauke.</p>
+        <ul class="link-list">
+          <li>
+            <a href="https://ee.ifrc.org/x/h25mxnlf" target="_blank" rel="noopener">
+              <span class="tag">Pirminė</span>
+              Parent anketa →
+            </a>
+          </li>
+          <li>
+            <a href="https://ee.ifrc.org/x/q7Mhc9BA" target="_blank" rel="noopener">
+              <span class="tag">Detali</span>
+              Child anketa →
+            </a>
+          </li>
+          <li>
+            <a href="#" target="_blank" rel="noopener">
+              <span class="tag">Excel</span>
+              Anketų suvestinė →
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="multi-card">
+        <h2>Poreikių valdymo mechanizmas</h2>
+        <p class="desc">Poreikių ir informacijos reagavimo vietose fiksavimas.</p>
+        <ul class="link-list">
+          <li>
+            <a href="#" target="_blank" rel="noopener">
+              <span class="tag">Anketa</span>
+              Poreikių anketa →
+            </a>
+          </li>
+          <li>
+            <a href="#" target="_blank" rel="noopener">
+              <span class="tag">Excel</span>
+              Poreikių anketų suvestinė →
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
   </main>
 
   <footer>
