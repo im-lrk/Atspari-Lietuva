@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>LRK KOBO evakuacijos anketų įgyvendinimo planas</title>
+  <title>LRK KOBO evakuacijos anketų techninis planas</title>
   <style>
     :root {
       --ink:#17233c; --muted:#5e6c84; --line:#d7e1ef; --paper:#f4f7fb;
@@ -29,7 +29,7 @@
     button{border:0;border-radius:9px;padding:10px 14px;font-weight:650;cursor:pointer;background:var(--navy);color:#fff}
     button.secondary{background:#e7eef7;color:var(--navy)}
     button:hover{filter:brightness(.96)}
-    .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;align-items:stretch;margin-top:18px}
+    .flow{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;align-items:stretch;margin-top:18px}
     .flow-card{position:relative;background:var(--blue2);border:1px solid #b9dafa;border-radius:14px;padding:16px;min-height:128px}
     .flow-card:not(:last-child)::after{content:"→";position:absolute;right:-20px;top:43%;z-index:2;color:var(--blue);font-size:25px;font-weight:800}
     .flow-no{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--blue);font-weight:750;margin-bottom:9px}
@@ -88,6 +88,7 @@
     .checklist{list-style:none;padding:0}.checklist li{padding-left:28px;position:relative}.checklist li::before{content:"□";position:absolute;left:2px;color:var(--blue);font-size:19px;top:-2px}
     .sources a{color:var(--blue)}
     footer{text-align:center;color:var(--muted);font-size:13px;padding:10px 20px 35px}
+    @media(max-width:1000px){.flow{grid-template-columns:repeat(3,1fr)}.flow-card:not(:last-child)::after{display:none}}
     @media(max-width:900px){.flow{grid-template-columns:1fr 1fr}.flow-card:not(:last-child)::after{display:none}.rule{grid-template-columns:1fr}}
     @media(max-width:590px){header{padding-top:30px}.panel{padding:17px}.flow{grid-template-columns:1fr}.decision-branches,.decision-results{grid-template-columns:1fr}.decision-branches{gap:18px}.step-short{display:none}th,td{padding:8px 6px;font-size:13px}.toolbar button{width:100%}}
     @media print{body{background:#fff}header{padding:24px;color:#000;background:#fff;border-bottom:2px solid #000}header p{color:#333}main{margin:0;max-width:none}.toolbar{display:none}.panel,details{box-shadow:none;break-inside:avoid}.flow-card{min-height:auto}details:not([open])>.detail-body{display:block}details>summary::after{display:none}}
@@ -97,8 +98,8 @@
   <header>
     <div class="wrap">
       <div class="eyebrow" style="color:#bfe1ff">Lietuvos Raudonasis Kryžius</div>
-      <h1>KOBO evakuacijos registravimo anketų planas</h1>
-      <p>Dvi susietos anketos: trumpa namų ūkio registracija surinkimo punkte ir individuali registracija su Rapid ENA laikino apgyvendinimo centre.</p>
+      <h1>KOBO evakuacijos registravimo anketų techninis planas</h1>
+      <p>Trys susietos anketos: namų ūkio registracija surinkimo punkte, individuali registracija su Rapid ENA apgyvendinimo centre ir išvykimo registracija. Duomenys automatiškai surenkami į Excel suvestinę, o agreguoti skaičiai skelbiami dashboard'e.</p>
     </div>
   </header>
 
@@ -107,16 +108,17 @@
       <div class="eyebrow">Trumpa versija</div>
       <h2>Kaip veiks visas procesas</h2>
       <div class="flow" aria-label="Evakuacijos registravimo proceso schema">
-        <div class="flow-card"><span class="flow-no">1</span><b>Apyrankės</b><span>Kiekvienas žmogus gauna unikalų, ranka įvedamą Person ID.</span></div>
-        <div class="flow-card"><span class="flow-no">2</span><b>Parent anketa</b><span>Surinkimo punkte registruojamas tik namų ūkio atstovas ir bendras žmonių skaičius.</span></div>
-        <div class="flow-card"><span class="flow-no">3</span><b>Pervežimas</b><span>Žmonės vyksta į priėmimo arba laikino apgyvendinimo centrą.</span></div>
-        <div class="flow-card"><span class="flow-no">4</span><b>Child anketa</b><span>Kiekvienam žmogui pildomas atskiras įrašas ir Rapid ENA.</span></div>
-        <div class="flow-card"><span class="flow-no">5</span><b>Suvestinė</b><span>Pagal Household ID lyginama: kiek tikėtasi ir kiek užregistruota.</span></div>
+        <div class="flow-card"><span class="flow-no">1</span><b>Apyrankės</b><span>Kiekvienas žmogus gauna unikalų apyrankės numerį – jo <code>person_id</code>.</span></div>
+        <div class="flow-card"><span class="flow-no">2</span><b>Surinkimo punktas</b><span>Parent anketa: namų ūkio atstovas ir bendras žmonių skaičius.</span></div>
+        <div class="flow-card"><span class="flow-no">3</span><b>Apgyvendinimo centras</b><span>Child anketa: kiekvienas žmogus atskirai ir Rapid ENA.</span></div>
+        <div class="flow-card"><span class="flow-no">4</span><b>Išvykimas</b><span>Išvykimo anketa: išvykstantis žmogus arba visas namų ūkis.</span></div>
+        <div class="flow-card"><span class="flow-no">5</span><b>Excel suvestinė</b><span>Power Query per KOBO API sujungia visas tris anketas.</span></div>
+        <div class="flow-card"><span class="flow-no">6</span><b>Dashboard</b><span>Tik agreguoti skaičiai, be asmens duomenų.</span></div>
       </div>
       <div class="rule">
         <div><b>Atstovas</b><code>person_id = household_id</code></div>
         <div><b>Namų ūkio narys</b>turi savo <code>person_id</code>, o jo <code>household_id</code> yra atstovo apyrankės numeris.</div>
-        <div><b>Pagrindinė taisyklė</b>Parent neradimas niekada nestabdo žmogaus registracijos.</div>
+        <div><b>Pagrindinė taisyklė</b>Įrašo neradimas susietoje anketoje niekada nestabdo registracijos – neatitikimai sprendžiami suvestinės patikrose.</div>
       </div>
       <div class="decision-wrap">
         <div class="decision-title">HH atstovo nustatymas per pirmąsias pratybas</div>
@@ -166,7 +168,7 @@
                   <li>Kiekvienos apyrankės numeris saugomas kaip tekstas, kad neišnyktų priekyje esantys nuliai.</li>
                   <li>Mėlyną apyrankę gavusio atstovo <code>person_id</code> kartu yra <code>household_id</code>.</li>
                   <li>Geltoną apyrankę gavęs narys turi savo <code>person_id</code>, bet bendrą atstovo <code>household_id</code>.</li>
-                  <li><code>incident_id</code> paliekamas abiejose anketose ataskaitoms ir filtravimui.</li>
+                  <li><code>incident_id</code> paliekamas visose trijose anketose ataskaitoms ir filtravimui.</li>
                 </ul>
                 <div class="note">Kadangi numeriai įvedami ranka, po įvedimo reikia parodyti numerį dideliu tekstu ir paklausti: „Ar numeris įvestas teisingai?“</div>
               </div>
@@ -298,10 +300,10 @@ parent_sync_key = person_id</pre>
               <div class="detail-body">
                 <ol>
                   <li>Parent projekte įjungti <strong>Settings → Connect Projects → Data sharing</strong>.</li>
-                  <li>Dalintis tik: ID, vardu, pavarde, gimimo metais, Household dydžiu ir surinkimo punktu.</li>
-                  <li>Child XLSForm pridėti <code>xml-external parent</code>.</li>
-                  <li>Child projekte pasirinkti Parent projektą ir prijungti jį vardu <code>parent</code>.</li>
-                  <li>Pagal įvestą atstovo ID parodyti rastus Parent duomenis ir paprašyti patvirtinti.</li>
+                  <li>Dalintis tik: <code>household_id</code>, vardu, pavarde, gimimo metais, <code>household_size</code> ir <code>assembly_point_final</code>.</li>
+                  <li>Child XLSForm yra eilutė <code>xml-external parent_registry</code>.</li>
+                  <li>Child projekte <strong>Import other project data</strong> → pasirinkti Parent ir pavadinti tiksliai <code>parent_registry</code>.</li>
+                  <li>Pagal įvestą atstovo ID parodomi rasti Parent duomenys, ir savanoris juos patvirtina.</li>
                 </ol>
               </div>
             </details>
@@ -337,12 +339,63 @@ parent_sync_key = person_id</pre>
         </details>
 
         <details>
-          <summary><span class="step-title"><span class="step-num">5</span><span>Nustatyti vartotojus ir teises <span class="step-short">Minimalios teisės savanoriams, platesnės koordinatoriui</span></span></span></summary>
+          <summary><span class="step-title"><span class="step-num">5</span><span>Išvykimo anketa <span class="step-short">Kas ir kada išvyko iš apgyvendinimo centro</span></span></span></summary>
+          <div class="detail-body">
+            <p>Viena išvykimo anketa = vienas išvykimo įvykis. Jei kartu išvyksta visas namų ūkis, pakanka vieno įrašo; jei išvyksta tik dalis narių – pildoma kiekvienam išvykstančiam atskirai.</p>
+            <details>
+              <summary>Išvykimo anketos laukai</summary>
+              <div class="detail-body">
+                <table><thead><tr><th>Laukas</th><th>Tipas</th><th>Paskirtis</th></tr></thead><tbody>
+                  <tr><td><code>apyranke_nr</code></td><td>text</td><td>Išvykstančio žmogaus apyrankė, 1–6 skaitmenys (galima be pradinių nulių).</td></tr>
+                  <tr><td><code>person_id</code></td><td>calculate</td><td><code>VS26-</code> + numeris, papildytas nuliais iki 6 skaitmenų – taip pat kaip Child anketoje.</td></tr>
+                  <tr><td><code>child_*</code></td><td>calculate</td><td>Iš Child paimami vardas, pavardė, gimimo metai, <code>household_id</code> ir centras – parodomi patikrai.</td></tr>
+                  <tr><td><code>hh_count</code>, <code>hh_names</code></td><td>calculate</td><td>Kiek šio namų ūkio narių užregistruota centruose ir jų vardai.</td></tr>
+                  <tr><td><code>apyranke_ok</code></td><td>select_one</td><td>Savanoris patvirtina, kad numeris ir žmogus sutampa.</td></tr>
+                  <tr><td><code>kas_isvyksta</code></td><td>select_one</td><td><code>tik_sis</code> – tik šis žmogus; <code>visas_nu</code> – visas namų ūkis kartu.</td></tr>
+                  <tr><td><code>isvykimo_laikas</code></td><td>dateTime</td><td>Automatiškai įrašomas dabartinis laikas, galima pakeisti.</td></tr>
+                  <tr><td><code>isvykimo_tipas</code></td><td>select_one</td><td>Grįžta namo / pas artimuosius / kitas centras / hospitalizuojamas / išvyko nepranešęs / kita.</td></tr>
+                  <tr><td><code>fiksuoja</code></td><td>text</td><td>Išvykimą fiksavusio savanorio vardas arba kodas.</td></tr>
+                </tbody></table>
+              </div>
+            </details>
+            <details>
+              <summary>Automatinės patikros formoje</summary>
+              <div class="detail-body">
+                <ul>
+                  <li>Apyrankė rasta – rodomas žmogaus vardas, namų ūkis ir centras; nerasta arba rasta kelis kartus – rodomas įspėjimas, bet pateikti leidžiama.</li>
+                  <li>Pažymėjus „Visas namų ūkis kartu“, parodoma, kurie namų ūkio nariai užregistruoti centruose, kad savanoris pamatytų, jei kas nors lieka.</li>
+                  <li>„Visas namų ūkis kartu“ neleidžiamas, jei žmogus nesusietas su namų ūkiu (<code>TEMP-</code> ID) arba nerastas registracijoje.</li>
+                  <li>„Hospitalizuojamas“ negali būti pasirinktas kartu su „Visas namų ūkis kartu“.</li>
+                  <li>Pastabų laukelyje primenama nerašyti sveikatos ar kitos jautrios informacijos.</li>
+                </ul>
+              </div>
+            </details>
+            <details>
+              <summary>Techninis susiejimas su Child</summary>
+              <div class="detail-body">
+                <ol>
+                  <li>Child projekte <strong>Settings → Connect Projects → Data sharing</strong> pažymėti tik 6 laukus: <code>identity_group/person_id</code>, <code>identity_group/household_id</code>, <code>person_group/first_name</code>, <code>person_group/last_name</code>, <code>person_group/birth_year</code>, <code>location_group/registration_center_final</code>.</li>
+                  <li>Išvykimo XLSForm yra eilutė <code>xml-external child</code>.</li>
+                  <li>Pirmiausia išvykimo anketą <strong>deployinti</strong>, tik tada jungti projektus.</li>
+                  <li>Išvykimo projekte <strong>Import other project data</strong> → pasirinkti Child, pavadinti tiksliai <code>child</code> → pažymėti tuos pačius 6 laukus.</li>
+                  <li>Testuoti per anketos nuorodą, ne per „Preview“.</li>
+                </ol>
+                <div class="warning"><strong>Child laukai yra grupėse</strong> (<code>identity_group</code>, <code>person_group</code>, <code>location_group</code>), todėl formulėse kelias rašomas su grupe, pvz.
+                  <code>instance('child')/root/data[identity_group/person_id = current()/../person_id]/person_group/first_name</code>.</div>
+                <div class="note"><strong>Dažnos klaidos:</strong> „Can't find child.xml“ peržiūroje – projektai dar nesujungti; vardas tuščias – importe nepažymėti <code>person_group</code> laukai. Importo laukų sąrašas savaime neatsinaujina: pakeitus Child dalinimąsi, importą reikia redaguoti ir pažymėti iš naujo.</div>
+              </div>
+            </details>
+          </div>
+        </details>
+
+        <details>
+          <summary><span class="step-title"><span class="step-num">6</span><span>Nustatyti vartotojus ir teises <span class="step-short">Minimalios teisės savanoriams, platesnės koordinatoriui</span></span></span></summary>
           <div class="detail-body">
             <table><thead><tr><th>Vaidmuo</th><th>Parent</th><th>Child</th><th>Atsakomybė</th></tr></thead><tbody>
-              <tr><td>1–2 administratoriai</td><td>Visos teisės</td><td>Visos teisės</td><td>Formos, teisės, ryšiai, eksportas, trynimas.</td></tr>
+              <tr><td>1–2 administratoriai</td><td>Visos teisės</td><td>Visos teisės</td><td>Visų trijų anketų formos, teisės, ryšiai, eksportas, trynimas.</td></tr>
               <tr><td>Surinkimo punkto savanoris</td><td>Add submissions</td><td>Nėra</td><td>Tik pildo Parent.</td></tr>
               <tr><td>Priėmimo centro savanoris</td><td>Nėra</td><td>Add submissions</td><td>Tik pildo Child.</td></tr>
+              <tr><td>Išvykimą fiksuojantis savanoris</td><td>Nėra</td><td>Nėra (Išvykimo anketoje – Add submissions)</td><td>Tik pildo Išvykimo anketą.</td></tr>
               <tr><td>2–3 duomenų koordinatoriai</td><td>View, Edit, Validate</td><td>View, Edit, Validate</td><td>Ieško atstovų, taiso ryšius ir dublikatus.</td></tr>
               <tr><td>Operacijos vadovas</td><td>View</td><td>View arba tik suvestinė</td><td>Stebi situaciją, bet nekeičia duomenų.</td></tr>
             </tbody></table>
@@ -370,7 +423,7 @@ parent_sync_key = person_id</pre>
         </details>
 
         <details>
-          <summary><span class="step-title"><span class="step-num">6</span><span>Sukurti automatinius signalus ir suvestinę <span class="step-short">Poreikių eilės ir Expected–Registered kontrolė</span></span></span></summary>
+          <summary><span class="step-title"><span class="step-num">7</span><span>Automatiniai signalai ir Excel suvestinė <span class="step-short">KOBO API + Power Query: registracija, išvykimai, patikros</span></span></span></summary>
           <div class="detail-body">
             <details>
               <summary>Formoje saugomi automatiniai signalai</summary>
@@ -396,17 +449,59 @@ Gap = Expected - Registered</pre>
               </div>
             </details>
             <details>
-              <summary>Kur daryti suvestinę</summary>
+              <summary>Excel suvestinė: kaip veikia</summary>
               <div class="detail-body">
-                <p><strong>Pirmoms pratyboms:</strong> Excel / Power Query. Jei vėliau reikės beveik realaus laiko vaizdo, galima jungti Power BI arba KOBO API.</p>
-                <p>Child formos viduje <code>hh_registered</code> neskaičiuoti kaip paprasto XLSForm lauko, nes forma patikimai nemato visų kitų įrenginių naujausių įrašų.</p>
+                <p>Failas <code>VS2026_KOBO_API_valdymo_suvestine.xlsx</code> (Krizių valdymo aplankas, ribota prieiga). Duomenys traukiami tiesiai iš KOBO API, atnaujinama <strong>Data → Refresh All</strong>. KOBO sinchronizacija gali vėluoti apie 5 min.</p>
+                <table><thead><tr><th>Užklausa</th><th>Ką daro</th></tr></thead><tbody>
+                  <tr><td><code>fnKoboData</code>, <code>p_APIKey</code></td><td>Bendra funkcija, kuri pagal anketos UID paima visus įrašus.</td></tr>
+                  <tr><td><code>Parent</code>, <code>Child</code>, <code>Departures</code></td><td>Trijų anketų duomenys, iš kurių paimami tik reikalingi laukai.</td></tr>
+                  <tr><td><code>ChildStatus</code></td><td>Kiekvienam Child žmogui: „Centre“ arba „Išvykęs“ (pagal apyrankę arba viso namų ūkio išvykimą).</td></tr>
+                  <tr><td><code>Households</code></td><td>Namų ūkiai: planuota / užregistruota / trūksta / išvyko / liko centre.</td></tr>
+                  <tr><td><code>Occupancy</code>, <code>NeedsByCenter</code></td><td>Užimtumas ir poreikiai pagal centrą.</td></tr>
+                  <tr><td><code>Timeline</code>, <code>TimelineDaily</code></td><td>Registracijos ir išvykimai pagal valandą ir dieną, Lietuvos laiku.</td></tr>
+                  <tr><td><code>Checks</code></td><td>Patikros: TEMP ryšiai, pasikartojančios apyrankės, HH ID be Parent, per daug užregistruota, išvykimas be registracijos, pasikartojantis išvykimas.</td></tr>
+                  <tr><td><code>Summary</code></td><td>Pagrindiniai rodikliai su nurodytu šaltiniu (Parent / Child / Išvykimas).</td></tr>
+                  <tr><td><code>Eksportas</code></td><td>Tik agreguoti skaičiai dashboard'ui – be vardų ir apyrankių.</td></tr>
+                </tbody></table>
+                <div class="warning"><strong>API raktas atveria visą KOBO paskyrą</strong>, ne vieną anketą. Kas turi Excel failą, gali nusikopijuoti raktą ir pasiekti visas tos paskyros anketas bei asmens duomenis. Todėl: failas tik ribotos prieigos aplanke, nesiunčiamas el. paštu; realiai operacijai naudoti atskirą serviso paskyrą, kuri turi tik „View submissions“ teisę į reikalingas anketas; po pratybų raktą pakeisti.</div>
+                <p>Child formos viduje <code>hh_registered</code> neskaičiuoti kaip XLSForm lauko – forma nemato kitų įrenginių naujausių įrašų. Visi sutikrinimai daromi suvestinėje.</p>
               </div>
             </details>
           </div>
         </details>
 
         <details>
-          <summary><span class="step-title"><span class="step-num">7</span><span>Ištestuoti <span class="step-short">Pirmiausia atskirai, tada kartu ir be interneto</span></span></span></summary>
+          <summary><span class="step-title"><span class="step-num">8</span><span>Dashboard GitHub'e <span class="step-short">Agreguoti skaičiai visiems subjektams</span></span></span></summary>
+          <div class="detail-body">
+            <p>Puslapis <code>suvestine.html</code> rodo užimtumą pagal centrą, poreikius pagal centrą, žmonių skaičių centruose laike ir srautus per valandą. Jame <strong>nėra asmens duomenų</strong> – tik skaičiai.</p>
+            <details>
+              <summary>Kaip atnaujinami duomenys</summary>
+              <div class="detail-body">
+                <ol>
+                  <li>Excel: <strong>Data → Refresh All</strong>.</li>
+                  <li>Lape „Eksportas“ pažymėti lentelę (<strong>Ctrl+A</strong>) ir nukopijuoti (<strong>Ctrl+C</strong>).</li>
+                  <li>GitHub: atidaryti <code>suvestine_duomenys.tsv</code> → ✏️ → <strong>Ctrl+A, Ctrl+V</strong> → <strong>Commit changes</strong>.</li>
+                  <li>Po 1–2 min. visi, atsidarę nuorodą, mato naujus skaičius ir atnaujinimo laiką.</li>
+                </ol>
+                <p>Dashboard'as skaito tik failą <code>suvestine_duomenys.tsv</code> (stulpeliai: Rodinys, Centras, Laikas, Rodiklis, Reikšmė). Raktas lieka Excel'yje – į GitHub jis nepatenka.</p>
+              </div>
+            </details>
+            <details>
+              <summary>Saugumas ir tolesni žingsniai</summary>
+              <div class="detail-body">
+                <div class="warning"><strong>GitHub Pages yra viešas.</strong> Pratybų (simuliaciniams) duomenims tinka. Realiai operacijai net agreguoti skaičiai (kiek žmonių kuriame centre) yra jautri informacija – tą patį puslapį reikia talpinti Azure Static Web App su prisijungimu per LRK paskyras.</div>
+                <ul>
+                  <li><strong>Automatizavimas:</strong> vėliau „Eksportą“ gali formuoti GitHub Actions kas 15–30 min., raktą saugant GitHub Secrets. Dashboard'o keisti nereikės.</li>
+                  <li><strong>Skaitomumas:</strong> dideli užrašai, paryškinti raktiniai žodžiai, Verdana šriftas – dashboard'as turi būti lengvai skaitomas ir žmonėms su disleksija ar dėmesio sutrikimais.</li>
+                  <li><strong>Terminai:</strong> visur naudojamas „namų ūkis“, ne „šeima“.</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+        </details>
+
+        <details>
+          <summary><span class="step-title"><span class="step-num">9</span><span>Ištestuoti <span class="step-short">Pirmiausia atskirai, tada kartu ir be interneto</span></span></span></summary>
           <div class="detail-body">
             <details>
               <summary>Testavimo tvarka</summary>
@@ -417,7 +512,8 @@ Gap = Expected - Registered</pre>
                   <li>Prijungti Parent ir išbandyti susiejimą.</li>
                   <li>Testuoti keliuose įrenginiuose vienu metu.</li>
                   <li>Išjungti internetą, surinkti duomenis, tada sinchronizuoti.</li>
-                  <li>Patikrinti suvestinę ir visas automatines darbo eiles.</li>
+                  <li>Patikrinti Išvykimo anketą su esamomis ir neegzistuojančiomis apyrankėmis.</li>
+                  <li>Patikrinti suvestinę, patikras ir dashboard'o eksportą.</li>
                 </ol>
               </div>
             </details>
@@ -436,6 +532,10 @@ Gap = Expected - Registered</pre>
                   <li>Vaistų liko mažiau nei 24 valandos.</li>
                   <li>Žmogus atsako, kad nesijaučia saugiai.</li>
                   <li>Automatinis kritinis signalas, bet savanoris pažymi, kad follow-up nereikia.</li>
+                  <li>Išvyksta visas namų ūkis vienu įrašu.</li>
+                  <li>Išvyksta tik dalis namų ūkio narių.</li>
+                  <li>Išvykimas žmogui su <code>TEMP-</code> ID.</li>
+                  <li>Tas pats žmogus pažymimas išvykusiu du kartus.</li>
                 </ul>
               </div>
             </details>
@@ -456,19 +556,19 @@ Gap = Expected - Registered</pre>
         </details>
 
         <details>
-          <summary><span class="step-title"><span class="step-num">8</span><span>Parengti pratybų versiją <span class="step-short">Užšaldyti formas, paruošti įrenginius ir instrukcijas</span></span></span></summary>
+          <summary><span class="step-title"><span class="step-num">10</span><span>Parengti pratybų versiją <span class="step-short">Užšaldyti formas, paruošti įrenginius ir instrukcijas</span></span></span></summary>
           <div class="detail-body">
             <ol class="checklist">
               <li>Sukurti 10–20 bandomųjų namų ūkių.</li>
               <li>Testuoti bent dviem surinkimo punkto ir dviem priėmimo centro įrenginiais.</li>
               <li>Sutvarkyti kritines klaidas ir užšaldyti anketų versiją.</li>
               <li>Įrenginiuose iš anksto atsisiųsti formas ir susietus duomenis.</li>
-              <li>Parengti vieno puslapio instrukcijas Parent ir Child savanoriams.</li>
+              <li>Parengti vieno puslapio instrukcijas Parent, Child ir Išvykimo savanoriams.</li>
               <li>Atskirai apmokyti duomenų koordinatorius spręsti nepatvirtintus HH ryšius.</li>
               <li>Prieš startą atlikti trumpą bendrą bandomąją registraciją.</li>
               <li>Po pratybų aptarti, kas veikė, ir tik tada projektuoti 2 versiją.</li>
             </ol>
-            <div class="ok"><strong>Pirmos versijos tikslas:</strong> patikimai surinkti duomenis ir pamatyti realų procesą. Pažangi vardų paieška bei beveik realaus laiko dashboardas gali būti antros versijos darbai.</div>
+            <div class="ok"><strong>Pirmos versijos tikslas:</strong> patikimai surinkti duomenis ir pamatyti realų procesą. Pažangi vardų paieška ir automatinis dashboard'o atnaujinimas gali būti antros versijos darbai.</div>
           </div>
         </details>
       </div>
@@ -484,8 +584,10 @@ Gap = Expected - Registered</pre>
         <tr><td>4</td><td>Parengti Child XLSForm be susiejimo</td><td>Veikianti individuali registracija ir Rapid ENA</td></tr>
         <tr><td>5</td><td>Pridėti automatinius signalus</td><td>Darbo eilių duomenys</td></tr>
         <tr><td>6</td><td>Prijungti Parent prie Child</td><td>HH patvirtinimas pagal atstovo ID</td></tr>
-        <tr><td>7</td><td>Parengti Excel / Power Query suvestinę</td><td>Expected–Registered ir poreikių kontrolė</td></tr>
-        <tr><td>8</td><td>Atlikti kelių įrenginių ir offline testą</td><td>Sprendimas parengtas pratyboms</td></tr>
+        <tr><td>7</td><td>Parengti Išvykimo XLSForm ir prijungti Child</td><td>Išvykimai pagal apyrankę arba visą namų ūkį</td></tr>
+        <tr><td>8</td><td>Parengti Excel / Power Query suvestinę</td><td>Registracija, išvykimai, užimtumas, poreikiai, patikros</td></tr>
+        <tr><td>9</td><td>Parengti „Eksportą“ ir dashboard'ą</td><td>Agreguoti skaičiai visiems subjektams</td></tr>
+        <tr><td>10</td><td>Atlikti kelių įrenginių ir offline testą</td><td>Sprendimas parengtas pratyboms</td></tr>
       </tbody></table>
     </section>
 
@@ -498,11 +600,13 @@ Gap = Expected - Registered</pre>
         <li><a href="https://support.kobotoolbox.org/managing_permissions.html" target="_blank" rel="noopener">Sharing projects with user-level permissions</a></li>
         <li><a href="https://support.kobotoolbox.org/constraints_xls.html" target="_blank" rel="noopener">Adding constraints in XLSForm</a></li>
         <li><a href="https://support.kobotoolbox.org/select_from_file_xls.html" target="_blank" rel="noopener">Selecting options from an external file</a></li>
+        <li><a href="https://support.kobotoolbox.org/api.html" target="_blank" rel="noopener">Getting started with the API</a></li>
+        <li><a href="https://support.kobotoolbox.org/project_sharing_settings.html" target="_blank" rel="noopener">Project sharing settings and ownership transfer</a></li>
       </ul>
     </section>
   </main>
 
-  <footer>Parengta pagal „LRK registracijos ir Rapid ENA specifikacija v3“ ir aptartus pirmųjų pratybų sprendimus.</footer>
+  <footer>Lietuvos Raudonasis Kryžius · Vyčio Skliautas 2026</footer>
 
   <script>
     const allDetails = [...document.querySelectorAll('details')];
