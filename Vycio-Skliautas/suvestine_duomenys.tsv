@@ -1,0 +1,149 @@
+Rodinys	Centras	Laikas	Rodiklis	Reikšmė
+META			atnaujinta	2026-10-02 16:45
+KPI			surinkimo_namu_ukiai	41
+KPI			surinkimo_zmones	112
+KPI			centruose_uzregistruota	98
+KPI			isvyko	21
+KPI			centruose_dabar	77
+KPI			namu_ukiai_visi	19
+KPI			namu_ukiai_truksta	22
+CENTRAS	Kauno r. sav.		uzregistruota	46
+CENTRAS	Kauno r. sav.		isvyko	9
+CENTRAS	Kauno r. sav.		dabar	37
+CENTRAS	Anykščių r. sav.		uzregistruota	21
+CENTRAS	Anykščių r. sav.		isvyko	4
+CENTRAS	Anykščių r. sav.		dabar	17
+CENTRAS	Telšių r. sav.		uzregistruota	14
+CENTRAS	Telšių r. sav.		isvyko	2
+CENTRAS	Telšių r. sav.		dabar	12
+CENTRAS	Pakruojo r. sav.		uzregistruota	17
+CENTRAS	Pakruojo r. sav.		isvyko	6
+CENTRAS	Pakruojo r. sav.		dabar	11
+POREIKIAI_DABAR	Kauno r. sav.		flag_health	3
+POREIKIAI_DABAR	Kauno r. sav.		flag_medication_urgent	1
+POREIKIAI_DABAR	Kauno r. sav.		flag_accommodation	8
+POREIKIAI_DABAR	Kauno r. sav.		flag_transport	5
+POREIKIAI_DABAR	Kauno r. sav.		flag_interpreter	1
+POREIKIAI_DABAR	Kauno r. sav.		flag_rfl	3
+POREIKIAI_DABAR	Kauno r. sav.		flag_protection	1
+POREIKIAI_DABAR	Kauno r. sav.		flag_follow_up	13
+POREIKIAI_DABAR	Anykščių r. sav.		flag_health	2
+POREIKIAI_DABAR	Anykščių r. sav.		flag_medication_urgent	1
+POREIKIAI_DABAR	Anykščių r. sav.		flag_accommodation	4
+POREIKIAI_DABAR	Anykščių r. sav.		flag_transport	2
+POREIKIAI_DABAR	Anykščių r. sav.		flag_interpreter	1
+POREIKIAI_DABAR	Anykščių r. sav.		flag_rfl	1
+POREIKIAI_DABAR	Anykščių r. sav.		flag_protection	0
+POREIKIAI_DABAR	Anykščių r. sav.		flag_follow_up	6
+POREIKIAI_DABAR	Telšių r. sav.		flag_health	2
+POREIKIAI_DABAR	Telšių r. sav.		flag_medication_urgent	1
+POREIKIAI_DABAR	Telšių r. sav.		flag_accommodation	3
+POREIKIAI_DABAR	Telšių r. sav.		flag_transport	2
+POREIKIAI_DABAR	Telšių r. sav.		flag_interpreter	1
+POREIKIAI_DABAR	Telšių r. sav.		flag_rfl	1
+POREIKIAI_DABAR	Telšių r. sav.		flag_protection	0
+POREIKIAI_DABAR	Telšių r. sav.		flag_follow_up	4
+POREIKIAI_DABAR	Pakruojo r. sav.		flag_health	2
+POREIKIAI_DABAR	Pakruojo r. sav.		flag_medication_urgent	0
+POREIKIAI_DABAR	Pakruojo r. sav.		flag_accommodation	3
+POREIKIAI_DABAR	Pakruojo r. sav.		flag_transport	2
+POREIKIAI_DABAR	Pakruojo r. sav.		flag_interpreter	1
+POREIKIAI_DABAR	Pakruojo r. sav.		flag_rfl	1
+POREIKIAI_DABAR	Pakruojo r. sav.		flag_protection	0
+POREIKIAI_DABAR	Pakruojo r. sav.		flag_follow_up	2
+POREIKIAI_VISI	Kauno r. sav.		flag_health	7
+POREIKIAI_VISI	Kauno r. sav.		flag_medication_urgent	3
+POREIKIAI_VISI	Kauno r. sav.		flag_accommodation	11
+POREIKIAI_VISI	Kauno r. sav.		flag_transport	7
+POREIKIAI_VISI	Kauno r. sav.		flag_interpreter	3
+POREIKIAI_VISI	Kauno r. sav.		flag_rfl	4
+POREIKIAI_VISI	Kauno r. sav.		flag_protection	2
+POREIKIAI_VISI	Kauno r. sav.		flag_follow_up	16
+POREIKIAI_VISI	Anykščių r. sav.		flag_health	2
+POREIKIAI_VISI	Anykščių r. sav.		flag_medication_urgent	1
+POREIKIAI_VISI	Anykščių r. sav.		flag_accommodation	5
+POREIKIAI_VISI	Anykščių r. sav.		flag_transport	3
+POREIKIAI_VISI	Anykščių r. sav.		flag_interpreter	1
+POREIKIAI_VISI	Anykščių r. sav.		flag_rfl	1
+POREIKIAI_VISI	Anykščių r. sav.		flag_protection	1
+POREIKIAI_VISI	Anykščių r. sav.		flag_follow_up	4
+POREIKIAI_VISI	Telšių r. sav.		flag_health	1
+POREIKIAI_VISI	Telšių r. sav.		flag_medication_urgent	1
+POREIKIAI_VISI	Telšių r. sav.		flag_accommodation	3
+POREIKIAI_VISI	Telšių r. sav.		flag_transport	2
+POREIKIAI_VISI	Telšių r. sav.		flag_interpreter	1
+POREIKIAI_VISI	Telšių r. sav.		flag_rfl	1
+POREIKIAI_VISI	Telšių r. sav.		flag_protection	1
+POREIKIAI_VISI	Telšių r. sav.		flag_follow_up	3
+POREIKIAI_VISI	Pakruojo r. sav.		flag_health	2
+POREIKIAI_VISI	Pakruojo r. sav.		flag_medication_urgent	1
+POREIKIAI_VISI	Pakruojo r. sav.		flag_accommodation	4
+POREIKIAI_VISI	Pakruojo r. sav.		flag_transport	2
+POREIKIAI_VISI	Pakruojo r. sav.		flag_interpreter	1
+POREIKIAI_VISI	Pakruojo r. sav.		flag_rfl	2
+POREIKIAI_VISI	Pakruojo r. sav.		flag_protection	0
+POREIKIAI_VISI	Pakruojo r. sav.		flag_follow_up	5
+EIGA		2026-09-26 08:00	surinkimo_namu_ukiai	3
+EIGA		2026-09-26 08:00	atvyko_i_centrus	0
+EIGA		2026-09-26 08:00	isvyko	0
+EIGA		2026-09-26 08:00	centruose_tuo_metu	0
+EIGA		2026-09-26 09:00	surinkimo_namu_ukiai	6
+EIGA		2026-09-26 09:00	atvyko_i_centrus	2
+EIGA		2026-09-26 09:00	isvyko	0
+EIGA		2026-09-26 09:00	centruose_tuo_metu	2
+EIGA		2026-09-26 10:00	surinkimo_namu_ukiai	8
+EIGA		2026-09-26 10:00	atvyko_i_centrus	5
+EIGA		2026-09-26 10:00	isvyko	0
+EIGA		2026-09-26 10:00	centruose_tuo_metu	7
+EIGA		2026-09-26 11:00	surinkimo_namu_ukiai	7
+EIGA		2026-09-26 11:00	atvyko_i_centrus	9
+EIGA		2026-09-26 11:00	isvyko	0
+EIGA		2026-09-26 11:00	centruose_tuo_metu	16
+EIGA		2026-09-26 12:00	surinkimo_namu_ukiai	6
+EIGA		2026-09-26 12:00	atvyko_i_centrus	14
+EIGA		2026-09-26 12:00	isvyko	1
+EIGA		2026-09-26 12:00	centruose_tuo_metu	29
+EIGA		2026-09-26 13:00	surinkimo_namu_ukiai	4
+EIGA		2026-09-26 13:00	atvyko_i_centrus	12
+EIGA		2026-09-26 13:00	isvyko	2
+EIGA		2026-09-26 13:00	centruose_tuo_metu	39
+EIGA		2026-09-26 14:00	surinkimo_namu_ukiai	3
+EIGA		2026-09-26 14:00	atvyko_i_centrus	10
+EIGA		2026-09-26 14:00	isvyko	2
+EIGA		2026-09-26 14:00	centruose_tuo_metu	47
+EIGA		2026-09-26 15:00	surinkimo_namu_ukiai	2
+EIGA		2026-09-26 15:00	atvyko_i_centrus	8
+EIGA		2026-09-26 15:00	isvyko	3
+EIGA		2026-09-26 15:00	centruose_tuo_metu	52
+EIGA		2026-09-26 16:00	surinkimo_namu_ukiai	1
+EIGA		2026-09-26 16:00	atvyko_i_centrus	6
+EIGA		2026-09-26 16:00	isvyko	2
+EIGA		2026-09-26 16:00	centruose_tuo_metu	56
+EIGA		2026-09-26 17:00	surinkimo_namu_ukiai	1
+EIGA		2026-09-26 17:00	atvyko_i_centrus	4
+EIGA		2026-09-26 17:00	isvyko	1
+EIGA		2026-09-26 17:00	centruose_tuo_metu	59
+EIGA		2026-09-26 18:00	surinkimo_namu_ukiai	0
+EIGA		2026-09-26 18:00	atvyko_i_centrus	2
+EIGA		2026-09-26 18:00	isvyko	0
+EIGA		2026-09-26 18:00	centruose_tuo_metu	61
+EIGA		2026-09-27 09:00	surinkimo_namu_ukiai	0
+EIGA		2026-09-27 09:00	atvyko_i_centrus	3
+EIGA		2026-09-27 09:00	isvyko	2
+EIGA		2026-09-27 09:00	centruose_tuo_metu	62
+EIGA		2026-09-27 10:00	surinkimo_namu_ukiai	0
+EIGA		2026-09-27 10:00	atvyko_i_centrus	6
+EIGA		2026-09-27 10:00	isvyko	3
+EIGA		2026-09-27 10:00	centruose_tuo_metu	65
+EIGA		2026-09-27 11:00	surinkimo_namu_ukiai	0
+EIGA		2026-09-27 11:00	atvyko_i_centrus	8
+EIGA		2026-09-27 11:00	isvyko	2
+EIGA		2026-09-27 11:00	centruose_tuo_metu	71
+EIGA		2026-09-27 12:00	surinkimo_namu_ukiai	0
+EIGA		2026-09-27 12:00	atvyko_i_centrus	6
+EIGA		2026-09-27 12:00	isvyko	3
+EIGA		2026-09-27 12:00	centruose_tuo_metu	74
+EIGA		2026-09-27 13:00	surinkimo_namu_ukiai	0
+EIGA		2026-09-27 13:00	atvyko_i_centrus	3
+EIGA		2026-09-27 13:00	isvyko	0
+EIGA		2026-09-27 13:00	centruose_tuo_metu	77
