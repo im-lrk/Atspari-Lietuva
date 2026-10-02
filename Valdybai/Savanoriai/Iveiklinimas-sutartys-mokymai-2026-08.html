@@ -12,9 +12,23 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:Figtree,system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.45}
 .wrap{max-width:1280px;margin:0 auto;padding:20px 18px 48px}
-header{border-bottom:3px solid var(--red);padding-bottom:12px;margin-bottom:16px}
+header{border-bottom:3px solid var(--red);padding-bottom:13px;margin-bottom:14px}
+.brand{display:flex;align-items:center;gap:13px;flex-wrap:wrap}
+.lrk{background:var(--red);color:#fff;font-weight:800;font-size:20px;letter-spacing:.8px;
+padding:10px 13px;border-radius:7px;line-height:1;flex:0 0 auto}
 h1{font-size:23px;font-weight:800;color:var(--red);letter-spacing:-.3px}
 .sub{color:var(--mut);font-size:12.5px;margin-top:3px}
+.per{margin-left:auto;display:flex;align-items:center;gap:14px;background:#fff;
+border:2px solid var(--red);border-radius:10px;padding:8px 18px;flex:0 0 auto}
+.per .plb{font-size:10.5px;text-transform:uppercase;letter-spacing:.6px;color:var(--mut);font-weight:700}
+.per .big{font-size:31px;font-weight:800;color:var(--red);letter-spacing:-1px;line-height:1.05;white-space:nowrap}
+.per .mn{text-align:center;border-left:1px solid var(--line);padding-left:14px}
+.per .mn b{display:block;font-size:24px;font-weight:800;line-height:1.05;letter-spacing:-.5px}
+.per .mn span{font-size:11px;color:var(--mut)}
+.pstrip{background:#fff;border:1px solid var(--line);border-left:4px solid var(--red);border-radius:var(--r2);
+padding:9px 14px;font-size:12.5px;color:#4a4540;margin-bottom:14px}
+.pstrip b{color:var(--ink)}
+@media(max-width:760px){.per{margin-left:0;width:100%;justify-content:space-between}}
 .tabs{display:flex;gap:6px;margin:16px 0 18px;flex-wrap:wrap}
 .tab{padding:9px 17px;border:1px solid var(--line);background:var(--card);border-radius:var(--r2);
 cursor:pointer;font-weight:600;font-size:13.5px;color:var(--mut);transition:.12s}
@@ -81,20 +95,38 @@ font-family:ui-monospace,monospace}
 .dt tfoot td{font-weight:700;border-top:1px solid var(--line);background:#faf7f4}
 .scroll{overflow-x:auto;margin-top:10px;-webkit-overflow-scrolling:touch}
 .scroll .dt{min-width:760px}
+.scroll>table{min-width:880px}
+.scroll>table td:first-child,.scroll>table th:first-child{position:sticky;left:0;background:#fff;z-index:1}
+.scroll>table th:first-child{background:#f6f2ee}
 .scroll .dt td.n,.scroll .dt th.n{text-align:center}
 .scroll .dt td:first-child,.scroll .dt th:first-child{position:sticky;left:0;background:#fff;font-weight:600}
 .scroll .dt th:first-child{background:#f6f2ee}
 .tog{font-size:11.5px;color:var(--b);cursor:pointer;font-weight:600;margin-top:9px;display:inline-block;
 border:1px solid var(--line);padding:4px 10px;border-radius:6px;background:#fff}
 .tog:hover{border-color:var(--b)}
+.vsw{display:inline-flex;gap:0;border:1px solid var(--line);border-radius:7px;overflow:hidden;margin-bottom:10px}
+.vsw button{border:0;background:#fff;padding:6px 13px;font:600 12px Figtree,sans-serif;color:var(--mut);cursor:pointer}
+.vsw button+button{border-left:1px solid var(--line)}
+.vsw button.on{background:var(--b);color:#fff}
 .ttl{font-size:12px;color:var(--mut);margin-bottom:5px;font-weight:600}
 </style>
 </head>
 <body>
 <div class="wrap">
 <header>
-  <h1>Savanorių įveiklinimas</h1>
-  <div class="sub">Laikotarpis: 2025 sausis – 2026 rugpjūtis · Duomenys: Salesforce</div>
+  <div class="brand">
+    <span class="lrk">LRK</span>
+    <div>
+      <h1>Savanorių įveiklinimas</h1>
+      <div class="sub">Lietuvos Raudonasis Kryžius · duomenys: Salesforce</div>
+    </div>
+    <div class="per">
+      <div>
+        <div class="plb">Ataskaitinis laikotarpis</div>
+        <div class="big">2026 m. 01–08</div>
+      </div>
+    </div>
+  </div>
 </header>
 
 <div class="tabs">
@@ -102,6 +134,10 @@ border:1px solid var(--line);padding:4px 10px;border-radius:6px;background:#fff}
   <div class="tab" data-t="kiti">Kiti savanoriai</div>
   <div class="tab warn" data-t="pat">⚠ Reikia patikslinti</div>
 </div>
+
+<div class="pstrip">Pagrindiniai rodikliai — <b>už 2026 m. sausio–rugpjūčio mėn. (8 mėn.)</b>:
+savanorių sąrašas, valandų pasiskirstymas, įveiklinimas, sutartys ir mokymai.
+Mėnesinėje dinamikoje papildomai rodoma ir <b>2025 m.</b> istorija — palyginimui.</div>
 
 <div id="main"></div>
 
@@ -159,6 +195,7 @@ function regBadge(regs){
 }
 const bc=v=>v>=80?C.g:v>=60?C.y:C.r;
 const nf=n=>n.toLocaleString('lt-LT');
+const d1=n=>n.toLocaleString('lt-LT',{minimumFractionDigits:1,maximumFractionDigits:1});
 // maza duomenu lentele po grafiku
 function dt(rows,tot,cols){
   const c=cols||['Kategorija','Kiekis','Dalis'];
@@ -181,26 +218,74 @@ function monTable(M,dyn){
 function togg(id){const e=document.getElementById(id);const b=event.target;
   const h=e.classList.toggle('hide');b.textContent=h?'▾ Rodyti duomenų lentelę':'▴ Slėpti duomenų lentelę';}
 
+let MV='time', CURK='pes';
+const MN=['01','02','03','04','05','06','07','08','09','10','11','12'];
+const MNL=['Sau','Vas','Kov','Bal','Geg','Bir','Lie','Rugp','Rugs','Spa','Lap','Gru'];
+function setMV(v){MV=v;render(CURK);}
+function pick(M,y,mm){return M.find(x=>x.m===y+'-'+mm);}
+function mkC1(M,L,gopt){
+  const dsc=document.getElementById('c1d'), ntc=document.getElementById('c1n');
+  if(MV==='time'){
+    dsc.textContent='Stulpeliai — kiek savanorių buvo sąraše ir kiek realiai veikė. Linija — įveiklinimo procentas.';
+    ntc.innerHTML='Skaičiai apima ir tuos savanorius, kurie jau išėję — todėl praeities mėnesiai rodomi tokie, kokie buvo <b>tuo metu</b>, o ne pagal šiandienos sąrašą.';
+    return new Chart(c1,{data:{labels:L,datasets:[
+      {type:'bar',label:'Sąraše',data:M.map(x=>x.roster),backgroundColor:'#dfe9f3',order:3},
+      {type:'bar',label:'Veikė',data:M.map(x=>x.active),backgroundColor:C.b,order:2},
+      {type:'line',label:'Įveiklinimas %',data:M.map(x=>x.eng),borderColor:C.red,backgroundColor:C.red,
+       yAxisID:'y1',tension:.3,borderWidth:2.5,pointRadius:3,order:1}]},
+      options:{...gopt,plugins:{legend:{display:true,position:'bottom',labels:{boxWidth:11,font:{size:11.5}}}},
+      scales:{x:{grid:{display:false},stacked:false},y:{beginAtZero:true,grid:{color:'#f2ede7'},title:{display:true,text:'Savanorių',font:{size:11}}},
+      y1:{position:'right',beginAtZero:true,max:100,grid:{display:false},ticks:{callback:v=>v+'%'}}}}});
+  }
+  dsc.textContent='Tie patys mėnesiai vienas šalia kito: šviesus stulpelis — 2025 m., tamsus — 2026 m. Linijos — įveiklinimo procentas (punktyras — 2025 m.).';
+  const a25=MN.map(m=>{const x=pick(M,'2025',m);return x?x.active:null;});
+  const a26=MN.map(m=>{const x=pick(M,'2026',m);return x?x.active:null;});
+  const e25=MN.map(m=>{const x=pick(M,'2025',m);return x?x.eng:null;});
+  const e26=MN.map(m=>{const x=pick(M,'2026',m);return x?x.eng:null;});
+  const got=a26.filter(v=>v!==null).length;
+  ntc.innerHTML='Lyginama, kiek savanorių tą patį mėnesį realiai veikė. 2026 m. kol kas yra <b>'+got+' mėn.</b> duomenų — likę mėnesiai tušti. Procentai rodomi nuo to mėnesio sąrašo, todėl augantis sąrašas gali mažinti procentą net ir didėjant veikiančiųjų skaičiui.';
+  return new Chart(c1,{data:{labels:MNL,datasets:[
+    {type:'bar',label:'Veikė 2025',data:a25,backgroundColor:'#bcd7ea',order:2},
+    {type:'bar',label:'Veikė 2026',data:a26,backgroundColor:C.b,order:3},
+    {type:'line',label:'Įveiklinimas 2025 %',data:e25,borderColor:'#eda6a5',backgroundColor:'#eda6a5',
+     borderDash:[5,4],yAxisID:'y1',tension:.3,borderWidth:2,pointRadius:2.5,order:1},
+    {type:'line',label:'Įveiklinimas 2026 %',data:e26,borderColor:C.red,backgroundColor:C.red,
+     yAxisID:'y1',tension:.3,borderWidth:2.5,pointRadius:3,order:0,spanGaps:false}]},
+    options:{...gopt,plugins:{legend:{display:true,position:'bottom',labels:{boxWidth:11,font:{size:11.5}}},
+      tooltip:{callbacks:{label:c=>c.dataset.label+': '+(c.parsed.y===null?'—':c.parsed.y+(c.dataset.yAxisID?'%':''))}}},
+    scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#f2ede7'},title:{display:true,text:'Veikė savanorių',font:{size:11}}},
+    y1:{position:'right',beginAtZero:true,max:100,grid:{display:false},ticks:{callback:v=>v+'%'}}}}});
+}
+function cmpTable(M){
+  const rows=[['Sąraše','roster'],['Veikė','active'],['Įveiklinimas %','eng'],['Valandos','hrs']];
+  return `<table class="dt"><thead><tr><th>Rodiklis</th><th class="n">Metai</th>${MNL.map(m=>`<th class="n">${m}</th>`).join('')}</tr></thead><tbody>
+  ${rows.map(r=>['2025','2026'].map(y=>`<tr><td>${y==='2025'?r[0]:''}</td><td class="n" style="color:${y==='2026'?C.b:C.mut};font-weight:600">${y}</td>
+  ${MN.map(m=>{const x=pick(M,y,m); if(!x) return '<td class="n" style="color:#c9c3bc">—</td>';
+    const v=x[r[1]]; return `<td class="n">${r[1]==='eng'?v+'%':nf(v)}</td>`;}).join('')}</tr>`).join('')).join('')}
+  </tbody></table>`;
+}
 function render(k){
+  CURK=k;
   kill();
   const d=D[k], M=d.months, L=M.map(x=>x.m.replace('2025-','').replace('2026-',''));
   const last=M[M.length-1], first=M[0];
   const totH=M.reduce((s,x)=>s+x.hrs,0);
   const joined=M.reduce((s,x)=>s+x.joined,0), left=M.reduce((s,x)=>s+x.left,0);
+  const PER=M.filter(x=>x.m.startsWith('2026')).length;
 
   document.getElementById('main').innerHTML=`
   <div class="kpis">
-    <div class="kpi"><div class="lb">Sąraše dabar</div><div class="vl">${nf(last.roster)}</div>
+    <div class="kpi"><div class="lb">Sąraše (${last.m})</div><div class="vl">${nf(last.roster)}</div>
       <div class="nt">2025-01 buvo ${nf(first.roster)}</div></div>
-    <div class="kpi"><div class="lb">Įveiklinimas (2026-07)</div>
+    <div class="kpi"><div class="lb">Įveiklinimas (${last.m})</div>
       <div class="vl" style="color:${bc(last.eng)}">${last.eng}%</div>
       <div class="nt">2025-01 buvo ${first.eng}%</div></div>
-    <div class="kpi"><div class="lb">Valandos per periodą</div><div class="vl">${nf(totH)}</div>
+    <div class="kpi"><div class="lb">Valandos 2025-01–2026-08</div><div class="vl">${nf(totH)}</div>
       <div class="nt">vid. ${nf(Math.round(totH/M.length))} / mėn.</div></div>
     <div class="kpi"><div class="lb">Prisijungė / išėjo</div>
       <div class="vl"><span style="color:${C.g}">+${joined}</span> <span style="color:${C.mut};font-size:19px">/</span> <span style="color:${C.r}">−${left}</span></div>
-      <div class="nt">grynas pokytis ${joined-left>0?'+':''}${joined-left}</div></div>
-    <div class="kpi"><div class="lb">Neįveiklinti (2026)</div>
+      <div class="nt">2025-01–2026-08 · grynas ${joined-left>0?'+':''}${joined-left}</div></div>
+    <div class="kpi"><div class="lb">Neįveiklinti (2026 01–08)</div>
       <div class="vl" style="color:${d.buckets[0]/d.cur>0.1?C.r:C.y}">${d.buckets[0]}</div>
       <div class="nt">${Math.round(d.buckets[0]/d.cur*100)}% nuo ${nf(d.cur)}</div></div>
   </div>
@@ -215,12 +300,15 @@ function render(k){
 
   <div class="card">
     <h2>Sąrašo dydis ir įveiklinimas per mėnesį</h2>
-    <div class="d">Stulpeliai — kiek savanorių buvo sąraše ir kiek realiai veikė. Linija — įveiklinimo procentas.</div>
+    <div class="d" id="c1d">Stulpeliai — kiek savanorių buvo sąraše ir kiek realiai veikė. Linija — įveiklinimo procentas.</div>
+    <div class="vsw">
+      <button id="vsw1" class="${MV==='time'?'on':''}" onclick="setMV('time')">Eilutė laike (20 mėn.)</button>
+      <button id="vsw2" class="${MV==='cmp'?'on':''}" onclick="setMV('cmp')">2025 vs 2026 pagal mėnesį</button>
+    </div>
     <div class="ch"><canvas id="c1"></canvas></div>
     <span class="tog" onclick="togg('t1')">▾ Rodyti duomenų lentelę</span>
-    <div id="t1" class="scroll hide">${monTable(M)}</div>
-    <div class="note">Skaičiai apima ir tuos savanorius, kurie jau išėję — todėl praeities mėnesiai rodomi tokie,
-    kokie buvo <b>tuo metu</b>, o ne pagal šiandienos sąrašą.</div>
+    <div id="t1" class="scroll hide">${MV==='cmp'?cmpTable(M):monTable(M)}</div>
+    <div class="note" id="c1n"></div>
   </div>
 
   <div class="grid2">
@@ -262,16 +350,18 @@ function render(k){
 
   <div class="card">
     <h2>Koordinatorių palyginimas</h2>
-    <div class="d">2026 sausis–rugpjūtis · iš ${nf(d.cur)} periodo sąrašo savanorių. „Nulinių" — kurie per visą periodą neturėjo nė vienos veiklos.</div>
+    <div class="d">2026 sausis–rugpjūtis · iš ${nf(d.cur)} periodo sąrašo savanorių. „Nulinių" — kurie per visą periodą neturėjo nė vienos veiklos. „Vid. val. savanoriui" — visos periodo valandos, padalintos iš savanorių skaičiaus; šalia tas pats skaičius per vieną mėnesį.</div>
     <div class="rgleg">${Object.entries(REG).map(([k,v])=>
       `<span><span class="rg" style="background:${v.c}">${v.l}</span>${k.replace(' regionas','')}</span>`).join('')}
       <span style="color:#9a938c">· antra raidė = koordinatorius dirba ir kitame regione (užvedus rodo tikslų pasiskirstymą)</span></div>
+    <div class="scroll">
     <table><thead><tr><th>Koordinatorius</th><th class="n">Savanorių</th><th class="n">Veikė</th>
-    <th>Įveiklinimas</th><th class="n">Nulinių</th><th class="n">Valandos</th><th class="n">Vid. val./sav.</th><th class="n">Išėjo</th></tr></thead>
+    <th>Įveiklinimas</th><th class="n">Nulinių</th><th class="n">Valandos</th><th class="n">Vid. val. savanoriui (${PER} mėn.)</th><th class="n">Vid. val./mėn.</th><th class="n">Išėjo</th></tr></thead>
     <tbody>${d.coords.map(c=>`<tr><td style="white-space:nowrap">${regBadge(c.regs)}<b>${c.co}</b></td><td class="n">${c.n}</td><td class="n">${c.act}</td>
     <td><span class="pill ${pc(c.eng)}">${c.eng}%</span></td>
     <td class="n" style="color:${c.zero>0?C.r:C.mut};font-weight:${c.zero>0?700:400}">${c.zero}</td>
-    <td class="n">${nf(c.hrs)}</td><td class="n">${c.avg}</td><td class="n">${c.gone}</td></tr>`).join('')}</tbody></table>
+    <td class="n">${nf(c.hrs)}</td><td class="n">${d1(c.avg)}</td><td class="n">${d1(c.avg/PER)}</td><td class="n">${c.gone}</td></tr>`).join('')}</tbody></table>
+    </div>
   </div>
 
   <div class="grid2">
@@ -312,10 +402,13 @@ function render(k){
 
   <div class="card">
     <h2>Regionai</h2>
-    <table><thead><tr><th>Regionas</th><th class="n">Savanorių</th><th class="n">Veikė</th><th style="width:150px">Įveiklinimas</th><th class="n">Valandos</th></tr></thead>
+    <div class="scroll">
+    <table><thead><tr><th>Regionas</th><th class="n">Savanorių</th><th class="n">Veikė</th><th style="width:150px">Įveiklinimas</th><th class="n">Valandos</th><th class="n">Vid. val. savanoriui (${PER} mėn.)</th><th class="n">Vid. val./mėn.</th></tr></thead>
     <tbody>${d.regions.filter(r=>r.n>1).map(r=>`<tr><td><b>${r.reg}</b></td><td class="n">${r.n}</td><td class="n">${r.act}</td>
     <td><div style="display:flex;align-items:center;gap:8px"><div class="bar"><i style="width:${r.eng}%;background:${bc(r.eng)}"></i></div>
-    <span style="font-weight:700;font-size:12px">${r.eng}%</span></div></td><td class="n">${nf(r.hrs)}</td></tr>`).join('')}</tbody></table>
+    <span style="font-weight:700;font-size:12px">${r.eng}%</span></div></td><td class="n">${nf(r.hrs)}</td>
+    <td class="n">${d1(r.hrs/r.n)}</td><td class="n">${d1(r.hrs/r.n/PER)}</td></tr>`).join('')}</tbody></table>
+    </div>
     <div class="note">Priklausomybė nuo aktyviausių: <b>5% aktyviausių savanorių sukuria ${d.conc}% visų valandų</b>.</div>
   </div>
 
@@ -377,14 +470,7 @@ function render(k){
   const gopt={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
     scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#f2ede7'}}}};
 
-  charts.push(new Chart(c1,{data:{labels:L,datasets:[
-    {type:'bar',label:'Sąraše',data:M.map(x=>x.roster),backgroundColor:'#dfe9f3',order:3},
-    {type:'bar',label:'Veikė',data:M.map(x=>x.active),backgroundColor:C.b,order:2},
-    {type:'line',label:'Įveiklinimas %',data:M.map(x=>x.eng),borderColor:C.red,backgroundColor:C.red,
-     yAxisID:'y1',tension:.3,borderWidth:2.5,pointRadius:3,order:1}]},
-    options:{...gopt,plugins:{legend:{display:true,position:'bottom',labels:{boxWidth:11,font:{size:11.5}}}},
-    scales:{x:{grid:{display:false},stacked:false},y:{beginAtZero:true,grid:{color:'#f2ede7'},title:{display:true,text:'Savanorių',font:{size:11}}},
-    y1:{position:'right',beginAtZero:true,max:100,grid:{display:false},ticks:{callback:v=>v+'%'}}}}}));
+  charts.push(mkC1(M,L,gopt));
 
   charts.push(new Chart(c2,{type:'bar',plugins:[valLbl],
     data:{labels:['0 val.','1–5','6–10','11–20','20+'],
