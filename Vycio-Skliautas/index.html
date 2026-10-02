@@ -174,6 +174,83 @@
       text-align: center;
       font-size: 13px;
     }
+
+    .steps {
+      list-style: none;
+      margin: 0 0 18px;
+      padding: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .steps li {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .steps .num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--blue-light);
+      color: var(--blue-dark);
+      font-weight: 700;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .steps a {
+      color: var(--blue);
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    .steps a:hover {
+      text-decoration: underline;
+    }
+
+    .steps .what {
+      display: block;
+      color: var(--muted);
+      font-size: 13.5px;
+      line-height: 1.45;
+      margin-top: 1px;
+    }
+
+    .divider {
+      border: 0;
+      border-top: 1px solid var(--border);
+      margin: 4px 0 16px;
+    }
+
+    .pages.two {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      margin-top: 18px;
+    }
+
+    .wide {
+      grid-column: 1 / -1;
+    }
+
+    .scenario {
+      margin: -4px 0 14px;
+      color: var(--muted);
+      font-size: 14.5px;
+      line-height: 1.55;
+    }
+
+    .page-card.tech {
+      box-shadow: none;
+    }
+
+    .page-card.tech h2 {
+      font-size: 18px;
+    }
   </style>
 </head>
 
@@ -190,66 +267,64 @@
     <div class="pages">
 
       <a class="page-card" href="./livex-evakuacija-1.html">
-        <h2>Evakuacijos maršrutai | LiveX | (2026.09.26-2026.10.03)</h2>
+        <h2>Evakuacijos maršrutai | LiveX | (2026.09.26–2026.10.03)</h2>
         <p>
           Evakuacijos scenarijaus ir proceso medžiaga.
         </p>
         <span class="open">Atidaryti →</span>
       </a>
 
-      <a class="page-card" href="./KOBO-anketos.html">
-        <h2>KOBO anketos</h2>
-        <p>
-          KOBO evakuacijos registravimo anketų įgyvendinimo
-          planas ir proceso paaiškinimas.
-        </p>
-        <span class="open">Atidaryti →</span>
-      </a>
-
     </div>
 
-    <!-- ── Kitos anketos ────────────────────────────────────────── -->
-    <p class="section-label">Kitos anketos</p>
+    <!-- ── Evakuotų registracija ───────────────────────────────── -->
+    <p class="section-label">Evakuotų registracija (KOBO)</p>
     <div class="pages">
 
-      <a class="page-card" href="https://docs.google.com/forms/d/1jfx3p7iWMtjI6c7LGKicAqegl7EjfQ8itERcQWBjoIs/edit?ts=6ab65a17" target="_blank" rel="noopener">
-        <h2>Registracija prieš ir po švarinimo</h2>
-        <p>
-          Cheminės taršos atvejo anketa (Google Forms).
-        </p>
-        <span class="open">Atidaryti →</span>
-      </a>
-
-    </div>
-
-    <!-- ── ENA registracija ──────────────────────────────────────── -->
-    <p class="section-label">ENA registracija (KOBO)</p>
-    <div class="pages">
-
-      <div class="multi-card">
-        <h2>KOBO anketos</h2>
-        <p class="desc">Evakuotų namų ūkių registravimo anketos pildymui lauke.</p>
-        <ul class="link-list">
+      <div class="multi-card wide">
+        <h2>Namų ūkių registracija: nuo surinkimo punkto iki išvykimo</h2>
+        <p class="desc">Trys susietos KOBO anketos. Žmogus atpažįstamas pagal apyrankės numerį, todėl jo duomenys iš vienos anketos matomi kitoje.</p>
+        <ol class="steps">
           <li>
-            <a href="https://ee.ifrc.org/x/h25mxnlf" target="_blank" rel="noopener">
-              <span class="tag">Pirminė</span>
-              Parent anketa →
-            </a>
+            <span class="num">1</span>
+            <span>
+              <a href="https://ee.ifrc.org/x/h25mxnlf" target="_blank" rel="noopener">Surinkimo punktai →</a>
+              <span class="what">Namų ūkio registracija: atstovas, kiek žmonių, ar reikia skubios pagalbos.</span>
+            </span>
           </li>
           <li>
-            <a href="https://ee.ifrc.org/x/q7Mhc9BA" target="_blank" rel="noopener">
-              <span class="tag">Detali</span>
-              Child anketa →
+            <span class="num">2</span>
+            <span>
+              <a href="https://ee.ifrc.org/x/q7Mhc9BA" target="_blank" rel="noopener">Apgyvendinimo centrai →</a>
+              <span class="what">Kiekvieno žmogaus registracija ir poreikių vertinimas (Rapid ENA).</span>
+            </span>
+          </li>
+          <li>
+            <span class="num">3</span>
+            <span>
+              <a href="https://ee.ifrc.org/x/vc2Ey9E1" target="_blank" rel="noopener">Išvykimas →</a>
+              <span class="what">Išvykstančio žmogaus arba viso namų ūkio pažymėjimas.</span>
+            </span>
+          </li>
+        </ol>
+        <hr class="divider">
+        <ul class="link-list">
+          <li>
+            <a href="./suvestine.html">
+              <span class="tag">Ataskaita</span>
+              Evakavimo ir apgyvendinimo suvestinė →
             </a>
           </li>
           <li>
             <a href="https://redcross046.sharepoint.com/:x:/r/sites/PES989/_layouts/15/Doc.aspx?sourcedoc=%7B0231823E-BBF2-41E6-8241-431C787BB513%7D&file=VS2026_KOBO_API_valdymo_suvestine.xlsx&action=default&mobileredirect=true" target="_blank" rel="noopener">
               <span class="tag">Excel</span>
-              Anketų suvestinė →
+              Registracijos valdymo suvestinė (ribota prieiga) →
             </a>
           </li>
         </ul>
       </div>
+
+    </div>
+    <div class="pages two">
 
       <div class="multi-card">
         <h2>Poreikių valdymo mechanizmas</h2>
@@ -269,6 +344,55 @@
           </li>
         </ul>
       </div>
+
+      <a class="page-card" href="https://docs.google.com/forms/d/1jfx3p7iWMtjI6c7LGKicAqegl7EjfQ8itERcQWBjoIs/edit?ts=6ab65a17" target="_blank" rel="noopener">
+        <h2>Registracija prieš ir po švarinimo</h2>
+        <p>
+          Cheminės taršos atvejo anketa (Google Forms).
+        </p>
+        <span class="open">Atidaryti →</span>
+      </a>
+
+    </div>
+
+    <!-- ── LV + EE evakuacija ──────────────────────────────────── -->
+    <p class="section-label">Latvijos ir Estijos gyventojų evakuacija į Lietuvą · stalo pratybos</p>
+    <p class="scenario">
+      Per 24–48 val. į Lietuvą gali atvykti iki 50 000 Latvijos ir Estijos gyventojų.
+      Savivaldybės steigia laikinas civilinės saugos stovyklas, gyventojai apgyvendinami kolektyvinės apsaugos statiniuose.
+    </p>
+    <div class="pages">
+
+      <a class="page-card" href="https://docs.google.com/spreadsheets/d/1wcc1Pj5wzdYb8jshBw_wLSpwbFw1c2gmeDg7eLUFul0/edit?gid=1949201477#gid=1949201477" target="_blank" rel="noopener">
+        <h2>LRK pajėgumų registracija</h2>
+        <p>
+          Skyrių darbuotojai, savanoriai, transportas ir įranga pagal savivaldybes,
+          ir kokioms funkcijoms galime prisidėti per 48 ir 72 val.
+        </p>
+        <span class="open">Atidaryti →</span>
+      </a>
+
+      <a class="page-card" href="https://docs.google.com/spreadsheets/d/1jiaOyJU-1Jj0SjphUnSblFxMz77zGKWGwgfPkFLcMz0/edit?gid=967664901#gid=967664901" target="_blank" rel="noopener">
+        <h2>Pamainų grafikas</h2>
+        <p>
+          Savanorių ir darbuotojų registracija į pamainas pagal centrą, dieną ir komandą.
+        </p>
+        <span class="open">Atidaryti →</span>
+      </a>
+
+    </div>
+
+    <!-- ── Techninė informacija ────────────────────────────────── -->
+    <p class="section-label">Techninė informacija</p>
+    <div class="pages">
+
+      <a class="page-card tech" href="./KOBO-anketos.html">
+        <h2>KOBO anketų techninis planas</h2>
+        <p>
+          Anketų sandara, susiejimas ir duomenų srautai. Skirta anketų administratoriams.
+        </p>
+        <span class="open">Atidaryti →</span>
+      </a>
 
     </div>
 
