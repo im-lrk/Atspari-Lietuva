@@ -33,35 +33,39 @@
     --qt1:#ffffff; --qt2:#ffffff; --qt3:#ffffff; --qt4:#ffffff; --qt5:#ffffff; --qt6:#0b0b0b;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 "Segoe UI",system-ui,-apple-system,sans-serif}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 Verdana,"Segoe UI",system-ui,-apple-system,sans-serif}
 .wrap{max-width:1180px;margin:0 auto;padding:20px 16px 48px}
 header{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;margin-bottom:18px}
 .logo{background:var(--lrk);color:#fff;font-weight:700;padding:7px 9px;border-radius:4px;letter-spacing:.5px}
 h1{font-size:20px;margin:0;font-weight:650}
 .upd{margin-left:auto;font-size:13px;color:var(--ink2);background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:4px 12px;white-space:nowrap}
 .upd b{color:var(--ink)}
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:12px}
-.kpis.two{grid-template-columns:repeat(3,1fr);margin-bottom:22px}
-.tile{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
-.tile .k{font-size:12.5px;color:var(--ink2);line-height:1.3}
-.tile .v{font-size:30px;font-weight:650;line-height:1.15;margin-top:6px;font-variant-numeric:tabular-nums}
-.tile.hero{border-color:var(--s1);box-shadow:inset 0 3px 0 var(--s1)}
-.tile.hero .v{font-size:36px}
-.tile .src{font-size:11.5px;color:var(--ink3);margin-top:4px}
+.kgroup{margin-bottom:18px}
+.kh{font-size:16px;font-weight:700;color:var(--ink);margin:0 0 8px;letter-spacing:.01em}
+.kpis{display:grid;gap:12px}
+.kpis.k2{grid-template-columns:repeat(2,1fr)}
+.kpis.k3{grid-template-columns:repeat(3,1fr)}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 20px}
+.tile .k{font-size:17px;font-weight:400;color:var(--ink);line-height:1.4}
+.tile .k b{font-weight:700}
+.tile .v{font-size:38px;font-weight:700;line-height:1.1;margin-top:6px;font-variant-numeric:tabular-nums;color:var(--ink)}
+.tile.hero{border:2px solid var(--s1)}
+.tile.hero .v{font-size:44px}
+.tile .src{font-size:15px;color:var(--ink);opacity:.75;margin-top:4px;line-height:1.4}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;min-width:0}
 .card.full{grid-column:1/-1}
-.card h2{font-size:15px;margin:0 0 2px;font-weight:650}
-.card .sub{font-size:12.5px;color:var(--ink2);margin:0 0 12px}
-.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--ink2);margin-bottom:10px}
+.card h2{font-size:17px;margin:0 0 2px;font-weight:650}
+.card .sub{font-size:14px;color:var(--ink);opacity:.8;margin:0 0 12px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:14px;color:var(--ink);margin-bottom:10px}
 .legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
 .seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-bottom:12px}
 .seg button{border:0;background:transparent;color:var(--ink2);font:inherit;font-size:12.5px;padding:5px 12px;cursor:pointer}
 .seg button[aria-pressed="true"]{background:var(--ink);color:var(--surface)}
 /* centre bars */
-.crow{display:grid;grid-template-columns:150px 1fr 54px;align-items:center;gap:10px;margin:9px 0}
-.crow .nm{font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.crow .tot{font-size:13px;color:var(--ink2);text-align:right;font-variant-numeric:tabular-nums}
+.crow{display:grid;grid-template-columns:170px 1fr 54px;align-items:center;gap:10px;margin:9px 0}
+.crow .nm{font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.crow .tot{font-size:14px;font-weight:700;color:var(--ink);text-align:right;font-variant-numeric:tabular-nums}
 .bar{display:flex;height:22px;gap:2px;background:transparent}
 .bar span{display:block;height:100%;min-width:0}
 .bar span:first-child{border-radius:4px 0 0 4px}
@@ -74,8 +78,8 @@ h1{font-size:20px;margin:0;font-weight:650}
 .chartscroll{overflow-x:auto}
 .chartscroll svg{min-width:520px}
 #flows svg{min-width:760px}
-table.hm{border-collapse:separate;border-spacing:2px;width:100%;font-size:12.5px;font-variant-numeric:tabular-nums}
-.hm th{font-weight:600;color:var(--ink2);text-align:center;padding:4px 6px;vertical-align:bottom;line-height:1.25}
+table.hm{border-collapse:separate;border-spacing:2px;width:100%;font-size:14px;font-variant-numeric:tabular-nums}
+.hm th{font-weight:700;color:var(--ink);text-align:center;padding:4px 6px;vertical-align:bottom;line-height:1.25}
 .hm th.rl{text-align:left}
 .hm td{text-align:center;padding:7px 6px;border-radius:4px;min-width:62px}
 .hm td.rl{text-align:left;background:transparent;font-weight:500;min-width:130px;white-space:nowrap}
@@ -83,7 +87,7 @@ table.hm{border-collapse:separate;border-spacing:2px;width:100%;font-size:12.5px
 .hm td.zero{color:var(--ink3);background:var(--track)}
 /* svg charts */
 svg{display:block;width:100%;height:auto;overflow:visible}
-.axis text{fill:var(--ink3);font-size:11px}
+.axis text{fill:var(--ink2);font-size:12px}
 .gridline{stroke:var(--grid);stroke-width:1}
 .baseline{stroke:var(--line);stroke-width:1}
 .tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--surface);font-size:12.5px;padding:6px 9px;border-radius:6px;line-height:1.4;opacity:0;transition:opacity .08s;z-index:10;max-width:240px}
@@ -94,15 +98,16 @@ details td,details th{border-bottom:1px solid var(--line);padding:3px 10px 3px 0
 .empty{color:var(--ink3);font-size:13px;padding:14px 0}
 .err{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;color:var(--ink2)}
 @media (max-width:860px){
-  .kpis{grid-template-columns:repeat(2,1fr)}
-  .kpis.two{grid-template-columns:1fr 1fr}
+  .kpis.k3{grid-template-columns:1fr 1fr}
   .grid{grid-template-columns:1fr}
   .upd{margin-left:0}
 }
 @media (max-width:480px){
-  .crow{grid-template-columns:100px 1fr 44px}
-  .tile .v{font-size:26px}
-  .tile.hero .v{font-size:30px}
+  .crow{grid-template-columns:125px 1fr 36px}
+  .crow .nm{font-size:13px}
+  .kpis.k2,.kpis.k3{grid-template-columns:1fr 1fr}
+  .tile .v{font-size:32px}
+  .tile.hero .v{font-size:36px}
 }
 </style>
 </head>
@@ -179,17 +184,29 @@ function render(rows){
 
   const app = document.getElementById("app");
   app.innerHTML = `
-    <div class="kpis">
-      <div class="tile"><div class="k">Surinkimo punktuose užregistruota namų ūkių</div><div class="v">${fmt(kpi("surinkimo_namu_ukiai"))}</div><div class="src">juose nurodyta ${fmt(kpi("surinkimo_zmones"))} žm.</div></div>
-      <div class="tile"><div class="k">Apgyvendinimo centruose užregistruota žmonių</div><div class="v">${fmt(kpi("centruose_uzregistruota"))}</div><div class="src">iš viso nuo pradžios</div></div>
-      <div class="tile hero"><div class="k">Šiuo metu centruose</div><div class="v">${fmt(kpi("centruose_dabar"))}</div><div class="src">žmonių</div></div>
-      <div class="tile"><div class="k">Išvyko iš centrų</div><div class="v">${fmt(kpi("isvyko"))}</div><div class="src">žmonių</div></div>
-    </div>
-    <div class="kpis two">
-      <div class="tile"><div class="k">Namų ūkiai, kurių visi nariai užregistruoti centruose</div><div class="v">${fmt(kpi("namu_ukiai_visi"))}</div></div>
-      <div class="tile"><div class="k">Namų ūkiai, kurių dalies narių centruose dar nėra</div><div class="v">${fmt(kpi("namu_ukiai_truksta"))}</div></div>
-      <div class="tile"><div class="k">Apgyvendinimo centrų</div><div class="v">${fmt(centers.length)}</div></div>
-    </div>
+    <section class="kgroup">
+      <h3 class="kh">Surinkimo punktai</h3>
+      <div class="kpis k2">
+        <div class="tile"><div class="k"><b>Namų ūkių</b> užregistruota</div><div class="v">${fmt(kpi("surinkimo_namu_ukiai"))}</div></div>
+        <div class="tile"><div class="k"><b>Žmonių</b> juose</div><div class="v">${fmt(kpi("surinkimo_zmones"))}</div><div class="src">pagal namų ūkių nurodytą dydį</div></div>
+      </div>
+    </section>
+    <section class="kgroup">
+      <h3 class="kh">Apgyvendinimo centrai</h3>
+      <div class="kpis k3">
+        <div class="tile hero"><div class="k"><b>Šiuo metu</b> centruose</div><div class="v">${fmt(kpi("centruose_dabar"))}</div><div class="src">žmonių</div></div>
+        <div class="tile"><div class="k"><b>Užregistruota</b> iš viso</div><div class="v">${fmt(kpi("centruose_uzregistruota"))}</div><div class="src">žmonių nuo pradžios</div></div>
+        <div class="tile"><div class="k"><b>Išvyko</b> iš centrų</div><div class="v">${fmt(kpi("isvyko"))}</div><div class="src">žmonių</div></div>
+      </div>
+    </section>
+    <section class="kgroup">
+      <h3 class="kh">Namų ūkiai centruose</h3>
+      <div class="kpis k3">
+        <div class="tile"><div class="k"><b>Visi nariai</b> užregistruoti</div><div class="v">${fmt(kpi("namu_ukiai_visi"))}</div><div class="src">namų ūkių</div></div>
+        <div class="tile"><div class="k"><b>Dalies narių</b> dar nėra</div><div class="v">${fmt(kpi("namu_ukiai_truksta"))}</div><div class="src">namų ūkių</div></div>
+        <div class="tile"><div class="k"><b>Centrų</b> skaičius</div><div class="v">${fmt(centers.length)}</div></div>
+      </div>
+    </section>
 
     <div class="grid">
       <section class="card">
