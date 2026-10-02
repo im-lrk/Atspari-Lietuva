@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="lt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vyčio Skliautas — atmintinė</title>
+  <style>
+    :root {
+      --background: #f4f7fb;
+      --card: #ffffff;
+      --text: #17233c;
+      --muted: #4a5870;
+      --blue: #1167b1;
+      --blue-dark: #153a68;
+      --blue-light: #eaf4ff;
+      --border: #d7e1ef;
+      --l1: #153a68;
+      --l2: #1167b1;
+      --l3: #4a90d9;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font: 16px/1.6 Verdana, "Segoe UI", system-ui, sans-serif;
+    }
+
+    header {
+      padding: 40px 20px;
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      color: #fff;
+      text-align: center;
+    }
+
+    header h1 { margin: 0 0 8px; font-size: clamp(28px, 5vw, 42px); }
+    header p { margin: 0; color: #dcecff; font-size: 17px; }
+    header a { color: #fff; }
+
+    main {
+      width: min(980px, calc(100% - 32px));
+      margin: 32px auto 48px;
+    }
+
+    nav.toc {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 26px;
+    }
+
+    nav.toc a {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      padding: 6px 14px;
+      color: var(--blue-dark);
+      font-weight: 700;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    nav.toc a:hover { border-color: var(--blue); }
+
+    section.card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(20, 55, 95, 0.07);
+      padding: 24px 26px;
+      margin-bottom: 22px;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      color: var(--blue-dark);
+      font-size: 22px;
+    }
+
+    .lead { margin: 0 0 16px; color: var(--muted); }
+
+    /* levels */
+    .levels { display: grid; gap: 12px; }
+
+    .level {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 16px;
+      align-items: center;
+      border-radius: 12px;
+      padding: 16px 18px;
+      color: #fff;
+    }
+
+    .level.l1 { background: var(--l1); }
+    .level.l2 { background: var(--l2); margin-left: 28px; }
+    .level.l3 { background: var(--l3); margin-left: 56px; }
+
+    .level .abbr { font-size: 28px; font-weight: 700; line-height: 1.1; }
+    .level .tier { font-size: 14px; opacity: .9; margin-top: 2px; }
+    .level .name { font-size: 17px; font-weight: 700; }
+    .level .desc { font-size: 15px; margin-top: 3px; }
+    .level .en { font-size: 13.5px; opacity: .85; margin-top: 4px; }
+
+    /* tables */
+    .tbl { overflow-x: auto; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+    }
+
+    th, td {
+      text-align: left;
+      vertical-align: top;
+      padding: 10px 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: var(--blue-light);
+      color: var(--blue-dark);
+      font-weight: 700;
+    }
+
+    td.num { width: 36px; color: var(--muted); font-weight: 700; }
+    td.term { width: 150px; font-weight: 700; color: var(--blue-dark); white-space: nowrap; }
+    td.en { color: var(--muted); font-size: 14px; }
+    tr:last-child td { border-bottom: 0; }
+
+    .hl { background: #fff7d6; }
+
+    .tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      background: var(--blue-light);
+      color: var(--blue-dark);
+      border-radius: 6px;
+      padding: 1px 7px;
+      margin-left: 6px;
+      vertical-align: 1px;
+    }
+
+    h3 {
+      margin: 22px 0 8px;
+      font-size: 17px;
+      color: var(--blue-dark);
+    }
+
+    h3:first-of-type { margin-top: 0; }
+
+    footer {
+      padding: 20px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    @media (max-width: 640px) {
+      section.card { padding: 18px 16px; }
+      .level { grid-template-columns: 1fr; gap: 6px; }
+      .level.l2 { margin-left: 12px; }
+      .level.l3 { margin-left: 24px; }
+      td.term { white-space: normal; width: 110px; }
+      th, td { padding: 8px 6px; font-size: 14px; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      header { background: #fff; color: #000; padding: 16px; border-bottom: 2px solid #000; }
+      header p, header a { color: #333; }
+      nav.toc { display: none; }
+      section.card { box-shadow: none; break-inside: avoid; }
+      .level { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Vyčio Skliautas — atmintinė</h1>
+    <p>Valdymo lygmenys, NPOC sudėtis ir pagrindiniai terminai</p>
+  </header>
+
+  <main>
+    <nav class="toc" aria-label="Turinys">
+      <a href="#lygmenys">Valdymo lygmenys</a>
+      <a href="#npoc">NPOC sudėtis</a>
+      <a href="#struktura">LRK padaliniai</a>
+      <a href="#registracija">Registracija</a>
+      <a href="#reagavimas">Reagavimo sritys</a>
+      <a href="#sistemos">Sistemos</a>
+    </nav>
+
+    <!-- Valdymo lygmenys -->
+    <section class="card" id="lygmenys">
+      <h2>Valdymo lygmenys krizės metu</h2>
+      <div class="levels">
+        <div class="level l1">
+          <div><div class="abbr">SOC</div><div class="tier">Strateginis</div></div>
+          <div>
+            <div class="name">Sekretoriato operacijų centras</div>
+            <div class="desc">Aukščiausias valdymo lygmuo krizės metu.</div>
+            <div class="en">EN: Secretariat Operations Centre</div>
+          </div>
+        </div>
+        <div class="level l2">
+          <div><div class="abbr">NPOC</div><div class="tier">Operacinis</div></div>
+          <div>
+            <div class="name">Neatidėliotinos pagalbos operacijų centras</div>
+            <div class="desc">Operacinis reagavimo valdymas. Sudėtis – žemiau.</div>
+            <div class="en">EN (darbinis): Emergency Response Operations Centre</div>
+          </div>
+        </div>
+        <div class="level l3">
+          <div><div class="abbr">RESK</div><div class="tier">Taktinis</div></div>
+          <div>
+            <div class="name">Reagavimo į ekstremalias situacijas komanda</div>
+            <div class="desc">Komanda iš PES, arba vienas PES / SGL kartu su LRK savanoriais.</div>
+            <div class="en">EN (darbinis): Emergency Response Team (ERT)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NPOC sudėtis -->
+    <section class="card" id="npoc">
+      <h2>NPOC sudėtis</h2>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>#</th><th>Atstovaujantis asmuo / funkcija</th><th>NPOC pagrindinė funkcija</th></tr></thead>
+          <tbody>
+            <tr><td class="num">1</td><td>KESVD reagavimo vadovas</td><td><b>NPOC vadovavimas</b> ir operacinis reagavimo valdymas</td></tr>
+            <tr><td class="num">2</td><td>Pasirengimo specialistas</td><td><b>Operacinis planavimas</b></td></tr>
+            <tr><td class="num">3</td><td>Regionų / skyrių vadovai</td><td><b>Regionų ir skyrių</b> koordinavimas</td></tr>
+            <tr><td class="num">4</td><td>PES koordinatoriai</td><td><b>PES ir reagavimo pajėgumų</b> koordinavimas</td></tr>
+            <tr><td class="num">5</td><td>Už savanorių procesus atsakingas darbuotojas (savanorystės projektų vadovė)</td><td><b>Savanorių pajėgumų</b> valdymas</td></tr>
+            <tr><td class="num">6</td><td>Reagavimo metu paskirtas logistikos specialistas / atsakingas asmuo</td><td><b>Logistikos</b> koordinavimas</td></tr>
+            <tr><td class="num">7</td><td>CVA specialistas, kai funkcija vykdoma</td><td><b>CVA</b></td></tr>
+            <tr><td class="num">8</td><td>Komunikacijos atstovas</td><td><b>Komunikacija</b> ir informacijos perdavimas</td></tr>
+            <tr><td class="num">9</td><td>Informacijos valdymo funkcijoms paskirtas darbuotojas</td><td><b>Informacijos / dokumentų</b> valdymas</td></tr>
+            <tr><td class="num">10</td><td>Sekretorius / paskirtas darbuotojas</td><td><b>Administracinis</b> palaikymas</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Padaliniai ir dalyviai -->
+    <section class="card" id="struktura">
+      <h2>LRK padaliniai ir dalyviai</h2>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Terminas</th><th>Reikšmė</th><th>EN</th></tr></thead>
+          <tbody>
+            <tr><td class="term">KESVD</td><td>Krizių ir ekstremalių situacijų valdymo departamentas</td><td class="en">Crisis and Emergency Management Department</td></tr>
+            <tr><td class="term">PES</td><td>Pasirengimo ekstremalioms situacijoms savanoriai. Specializuoti krizių savanoriai, juos koordinuoja KESVD.</td><td class="en">Emergency Preparedness Volunteers</td></tr>
+            <tr><td class="term">SGL</td><td>Savanorių grupės lyderis. Gali vadovauti RESK kartu su LRK savanoriais.</td><td class="en">Volunteer Group Leader</td></tr>
+            <tr><td class="term">Statistai</td><td>Pratybų dalyviai, vaidinantys nukentėjusiuosius.</td><td class="en">Role players / extras</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Registracija -->
+    <section class="card" id="registracija">
+      <h2>Evakuotų registracija</h2>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Terminas</th><th>Reikšmė</th></tr></thead>
+          <tbody>
+            <tr><td class="term">Namų ūkis</td><td>Kartu evakuojami žmonės su vienu atstovu. Ataskaitose visada sakome „<b>namų ūkis</b>“, ne „šeima“.</td></tr>
+            <tr><td class="term">Surinkimo punktas</td><td>Vieta, kur žmonės renkasi prieš evakavimą. Čia registruojamas namų ūkis <span class="tag">Parent anketa</span></td></tr>
+            <tr><td class="term">Apgyvendinimo centras</td><td>Priėmimo / laikino apgyvendinimo vieta. Čia registruojamas kiekvienas žmogus <span class="tag">Child anketa</span></td></tr>
+            <tr><td class="term">Išvykimas</td><td>Žmogaus arba viso namų ūkio išvykimas iš apgyvendinimo centro <span class="tag">Išvykimo anketa</span></td></tr>
+            <tr><td class="term">Apyrankė</td><td>Kiekvienas žmogus gauna apyrankę su unikaliu numeriu. <b>Apyrankė, o ne vardas</b> yra pagrindinis žmogaus identifikatorius.</td></tr>
+            <tr><td class="term">person_id</td><td>Žmogaus ID: <b>VS26-</b> + apyrankės numeris, pvz. VS26-000148.</td></tr>
+            <tr><td class="term">household_id</td><td>Namų ūkio ID = <b>atstovo</b> apyrankės ID. Visi namų ūkio nariai turi tą patį.</td></tr>
+            <tr><td class="term">TEMP- ID</td><td>Laikinas namų ūkio ID, kai registruojant atstovas nežinomas. Vėliau jį reikia priskirti.</td></tr>
+            <tr><td class="term">Rapid ENA</td><td>Greitasis poreikių vertinimas registruojant apgyvendinimo centre.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Reagavimo sritys -->
+    <section class="card" id="reagavimas">
+      <h2>Reagavimo sritys ir sąvokos</h2>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Terminas</th><th>Reikšmė</th><th>EN</th></tr></thead>
+          <tbody>
+            <tr><td class="term">PPP</td><td>Pirmoji psichologinė pagalba</td><td class="en">PFA – Psychological First Aid</td></tr>
+            <tr><td class="term">ŠRA / RFL</td><td>Šeimos ryšių atkūrimas – pagalba susisiekti su artimaisiais</td><td class="en">RFL – Restoring Family Links</td></tr>
+            <tr><td class="term">CVA</td><td>Pagalba grynaisiais pinigais ir kuponais</td><td class="en">Cash and Voucher Assistance</td></tr>
+            <tr><td class="term">CEA</td><td>Bendruomenės įtraukimas ir atskaitomybė</td><td class="en">Community Engagement and Accountability</td></tr>
+            <tr><td class="term">Apsauga</td><td>Saugumo rizikos ir pažeidžiamumas: smurtas, išnaudojimas, nesaugumo jausmas</td><td class="en">Protection</td></tr>
+            <tr><td class="term">PER</td><td>Pasirengimas veiksmingam reagavimui</td><td class="en">Preparedness for Effective Response</td></tr>
+            <tr><td class="term">IM</td><td>Informacijos valdymas</td><td class="en">Information Management</td></tr>
+            <tr><td class="term">LIVEX</td><td>Gyvosios (lauko) pratybos su realiu žmonių judėjimu</td><td class="en">Live exercise</td></tr>
+            <tr><td class="term">KAS</td><td>Kolektyvinės apsaugos statinys</td><td class="en">Collective protection facility</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Sistemos -->
+    <section class="card" id="sistemos">
+      <h2>Sistemos ir įrankiai</h2>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Sistema</th><th>Kam naudojama</th></tr></thead>
+          <tbody>
+            <tr><td class="term">KOBO Toolbox</td><td>Lauko duomenų rinkimas: Parent, Child ir Išvykimo anketos, poreikių vertinimas.</td></tr>
+            <tr><td class="term">Excel suvestinė</td><td>Power Query per KOBO API sujungia visas tris anketas: registracija, išvykimai, poreikiai, patikros. Ribota prieiga.</td></tr>
+            <tr><td class="term">Dashboard</td><td>Evakavimo ir apgyvendinimo suvestinė – tik skaičiai, be asmens duomenų.</td></tr>
+            <tr><td class="term">AccessRC</td><td>Paramos gavėjų registracija ir CVA išmokos.</td></tr>
+            <tr><td class="term">Salesforce</td><td>PES veiklų ir savanoriškų valandų apskaita.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Lietuvos Raudonasis Kryžius · <a href="./index.html">Grįžti į Vyčio Skliauto puslapį</a>
+  </footer>
+</body>
+</html>
