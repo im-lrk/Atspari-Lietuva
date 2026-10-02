@@ -1,373 +1,405 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="lt">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Vyčio Skliautas 2026 — suvestinė</title>
-<style>
-:root{
-  color-scheme: light;
-  --bg:#f4f3f0; --surface:#fcfcfb; --line:#e3e1dc; --grid:#ecebe7;
-  --ink:#0b0b0b; --ink2:#52514e; --ink3:#7a7975;
-  --s1:#2a78d6; --s2:#eb6834; --track:#f0efec;
-  --q1:#cde2fb; --q2:#9ec5f4; --q3:#6da7ec; --q4:#3987e5; --q5:#256abf; --q6:#184f95;
-  --qt1:#0b0b0b; --qt2:#0b0b0b; --qt3:#0b0b0b; --qt4:#ffffff; --qt5:#ffffff; --qt6:#ffffff;
-  --lrk:#d52b1e;
-}
-@media (prefers-color-scheme: dark){
-  :root:where(:not([data-theme="light"])){
-    color-scheme: dark;
-    --bg:#121211; --surface:#1a1a19; --line:#2e2e2b; --grid:#262624;
-    --ink:#ffffff; --ink2:#c3c2b7; --ink3:#93928a;
-    --s1:#3987e5; --s2:#d95926; --track:#383835;
-    --q1:#104281; --q2:#184f95; --q3:#1c5cab; --q4:#256abf; --q5:#3987e5; --q6:#6da7ec;
-    --qt1:#ffffff; --qt2:#ffffff; --qt3:#ffffff; --qt4:#ffffff; --qt5:#ffffff; --qt6:#0b0b0b;
-  }
-}
-:root[data-theme="dark"]{
-  color-scheme: dark;
-  --bg:#121211; --surface:#1a1a19; --line:#2e2e2b; --grid:#262624;
-  --ink:#ffffff; --ink2:#c3c2b7; --ink3:#93928a;
-  --s1:#3987e5; --s2:#d95926; --track:#383835;
-  --q1:#104281; --q2:#184f95; --q3:#1c5cab; --q4:#256abf; --q5:#3987e5; --q6:#6da7ec;
-    --qt1:#ffffff; --qt2:#ffffff; --qt3:#ffffff; --qt4:#ffffff; --qt5:#ffffff; --qt6:#0b0b0b;
-}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 "Segoe UI",system-ui,-apple-system,sans-serif}
-.wrap{max-width:1180px;margin:0 auto;padding:20px 16px 48px}
-header{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;margin-bottom:18px}
-.logo{background:var(--lrk);color:#fff;font-weight:700;padding:7px 9px;border-radius:4px;letter-spacing:.5px}
-h1{font-size:20px;margin:0;font-weight:650}
-.upd{margin-left:auto;font-size:13px;color:var(--ink2);background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:4px 12px;white-space:nowrap}
-.upd b{color:var(--ink)}
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:12px}
-.kpis.two{grid-template-columns:repeat(3,1fr);margin-bottom:22px}
-.tile{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
-.tile .k{font-size:15px;font-weight:600;color:var(--ink);line-height:1.3}
-.tile .v{font-size:34px;font-weight:650;line-height:1.15;margin-top:6px;font-variant-numeric:tabular-nums}
-.tile.hero{border-color:var(--s1);box-shadow:inset 0 3px 0 var(--s1)}
-.tile.hero .v{font-size:40px}
-.tile .src{font-size:13.5px;color:var(--ink2);margin-top:4px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;min-width:0}
-.card.full{grid-column:1/-1}
-.card h2{font-size:15px;margin:0 0 2px;font-weight:650}
-.card .sub{font-size:12.5px;color:var(--ink2);margin:0 0 12px}
-.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--ink2);margin-bottom:10px}
-.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
-.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-bottom:12px}
-.seg button{border:0;background:transparent;color:var(--ink2);font:inherit;font-size:12.5px;padding:5px 12px;cursor:pointer}
-.seg button[aria-pressed="true"]{background:var(--ink);color:var(--surface)}
-/* centre bars */
-.crow{display:grid;grid-template-columns:150px 1fr 54px;align-items:center;gap:10px;margin:9px 0}
-.crow .nm{font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.crow .tot{font-size:13px;color:var(--ink2);text-align:right;font-variant-numeric:tabular-nums}
-.bar{display:flex;height:22px;gap:2px;background:transparent}
-.bar span{display:block;height:100%;min-width:0}
-.bar span:first-child{border-radius:4px 0 0 4px}
-.bar span:last-child{border-radius:0 4px 4px 0}
-.bar span:only-child{border-radius:4px}
-.bar .now{background:var(--s1)}
-.bar .out{background:var(--s2)}
-/* heatmap */
-.tblwrap{overflow-x:auto}
-.chartscroll{overflow-x:auto}
-.chartscroll svg{min-width:520px}
-#flows svg{min-width:760px}
-table.hm{border-collapse:separate;border-spacing:2px;width:100%;font-size:12.5px;font-variant-numeric:tabular-nums}
-.hm th{font-weight:600;color:var(--ink2);text-align:center;padding:4px 6px;vertical-align:bottom;line-height:1.25}
-.hm th.rl{text-align:left}
-.hm td{text-align:center;padding:7px 6px;border-radius:4px;min-width:62px}
-.hm td.rl{text-align:left;background:transparent;font-weight:500;min-width:130px;white-space:nowrap}
-.hm tr.total td{font-weight:650}
-.hm td.zero{color:var(--ink3);background:var(--track)}
-/* svg charts */
-svg{display:block;width:100%;height:auto;overflow:visible}
-.axis text{fill:var(--ink3);font-size:11px}
-.gridline{stroke:var(--grid);stroke-width:1}
-.baseline{stroke:var(--line);stroke-width:1}
-.tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--surface);font-size:12.5px;padding:6px 9px;border-radius:6px;line-height:1.4;opacity:0;transition:opacity .08s;z-index:10;max-width:240px}
-details{margin-top:10px;font-size:12.5px;color:var(--ink2)}
-details summary{cursor:pointer}
-details table{border-collapse:collapse;margin-top:6px;font-variant-numeric:tabular-nums}
-details td,details th{border-bottom:1px solid var(--line);padding:3px 10px 3px 0;text-align:left}
-.empty{color:var(--ink3);font-size:13px;padding:14px 0}
-.err{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;color:var(--ink2)}
-@media (max-width:860px){
-  .kpis{grid-template-columns:repeat(2,1fr)}
-  .kpis.two{grid-template-columns:1fr 1fr}
-  .grid{grid-template-columns:1fr}
-  .upd{margin-left:0}
-}
-@media (max-width:480px){
-  .crow{grid-template-columns:100px 1fr 44px}
-  .tile .v{font-size:26px}
-  .tile.hero .v{font-size:30px}
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Vyčio Skliautas</title>
+
+  <style>
+    :root {
+      --background: #f4f7fb;
+      --card: #ffffff;
+      --text: #17233c;
+      --muted: #5e6c84;
+      --blue: #1167b1;
+      --blue-dark: #153a68;
+      --blue-light: #eaf4ff;
+      --border: #d7e1ef;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--background);
+      color: var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+
+    header {
+      padding: 48px 20px;
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      color: white;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0 0 10px;
+      font-size: clamp(30px, 5vw, 48px);
+    }
+
+    header p {
+      margin: 0;
+      color: #dcecff;
+      font-size: 18px;
+    }
+
+    main {
+      width: min(960px, calc(100% - 32px));
+      margin: 36px auto;
+    }
+
+    .section-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 36px 0 12px;
+    }
+
+    .section-label:first-child {
+      margin-top: 0;
+    }
+
+    .pages {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .page-card {
+      display: block;
+      padding: 24px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      color: var(--text);
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(20, 55, 95, 0.08);
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .page-card:hover,
+    .page-card:focus-visible {
+      transform: translateY(-3px);
+      border-color: var(--blue);
+      box-shadow: 0 12px 30px rgba(20, 55, 95, 0.14);
+      outline: none;
+    }
+
+    .page-card h2 {
+      margin: 0 0 10px;
+      color: var(--blue-dark);
+      font-size: 21px;
+    }
+
+    .page-card p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .multi-card {
+      padding: 24px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(20, 55, 95, 0.08);
+    }
+
+    .multi-card h2 {
+      margin: 0 0 6px;
+      color: var(--blue-dark);
+      font-size: 21px;
+    }
+
+    .multi-card .desc {
+      margin: 0 0 16px;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 15px;
+    }
+
+    .link-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .link-list a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--blue);
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    .link-list a:hover {
+      text-decoration: underline;
+    }
+
+    .link-list .tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: var(--blue-light);
+      color: var(--blue-dark);
+      border-radius: 6px;
+      padding: 2px 7px;
+      white-space: nowrap;
+    }
+
+    .open {
+      color: var(--blue);
+      font-weight: 700;
+    }
+
+    footer {
+      padding: 20px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .steps {
+      list-style: none;
+      margin: 0 0 18px;
+      padding: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .steps li {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .steps .num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--blue-light);
+      color: var(--blue-dark);
+      font-weight: 700;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .steps a {
+      color: var(--blue);
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    .steps a:hover {
+      text-decoration: underline;
+    }
+
+    .steps .what {
+      display: block;
+      color: var(--muted);
+      font-size: 13.5px;
+      line-height: 1.45;
+      margin-top: 1px;
+    }
+
+    .divider {
+      border: 0;
+      border-top: 1px solid var(--border);
+      margin: 4px 0 16px;
+    }
+
+    .pages.two {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      margin-top: 18px;
+    }
+
+    .wide {
+      grid-column: 1 / -1;
+    }
+
+    .scenario {
+      margin: -4px 0 14px;
+      color: var(--muted);
+      font-size: 14.5px;
+      line-height: 1.55;
+    }
+
+    .page-card.tech {
+      box-shadow: none;
+    }
+
+    .page-card.tech h2 {
+      font-size: 18px;
+    }
+  </style>
 </head>
+
 <body>
-<div class="wrap">
   <header>
-    <span class="logo">LRK</span>
-    <h1>Vyčio Skliautas 2026 — evakavimo ir apgyvendinimo suvestinė</h1>
-    <span class="upd" id="upd">Duomenys kraunami…</span>
+    <h1>Vyčio Skliautas</h1>
+    <p>Pratybų ir evakuacijos medžiaga</p>
   </header>
 
-  <div id="app"></div>
-</div>
-<div class="tip" id="tip"></div>
+  <main>
 
-<script>
-const NEED_LABELS = {
-  flag_health: "Sveikatos pagalba",
-  flag_medication_urgent: "Skubūs vaistai",
-  flag_accommodation: "Apgyvendinimas",
-  flag_transport: "Transportas",
-  flag_interpreter: "Vertėjas",
-  flag_rfl: "Ryšys su artimaisiais",
-  flag_protection: "Saugumo signalas",
-  flag_follow_up: "Reikia tolesnio veiksmo"
-};
-const fmt = n => (n == null || isNaN(n)) ? "–" : Number(n).toLocaleString("lt-LT");
-const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+    <!-- ── Pratybos ─────────────────────────────────────────────── -->
+    <p class="section-label">Pratybos</p>
+    <div class="pages">
 
-function parseTSV(text){
-  const rows = [];
-  text.replace(/^﻿/, "").split(/\r?\n/).forEach(line => {
-    if (!line.trim()) return;
-    const c = line.split("\t").map(x => x.trim().replace(/^"(.*)"$/, "$1"));
-    if (c[0] === "Rodinys") return;
-    const v = c[4] ?? "";
-    const num = Number(v.replace(/\s/g, "").replace(",", "."));
-    rows.push({ view: c[0], center: c[1] || "", time: c[2] || "", key: c[3] || "", value: v !== "" && !isNaN(num) ? num : v });
-  });
-  return rows;
-}
+      <a class="page-card" href="./livex-evakuacija-1.html">
+        <h2>Evakuacijos maršrutai | LiveX | (2026.09.26–2026.10.03)</h2>
+        <p>
+          Evakuacijos scenarijaus ir proceso medžiaga.
+        </p>
+        <span class="open">Atidaryti →</span>
+      </a>
 
-const tip = document.getElementById("tip");
-function showTip(e, html){
-  tip.innerHTML = html; tip.style.opacity = 1;
-  const pad = 14, w = tip.offsetWidth, h = tip.offsetHeight;
-  let x = e.clientX + pad, y = e.clientY + pad;
-  if (x + w > innerWidth - 8) x = e.clientX - w - pad;
-  if (y + h > innerHeight - 8) y = e.clientY - h - pad;
-  tip.style.left = x + "px"; tip.style.top = y + "px";
-}
-function hideTip(){ tip.style.opacity = 0; }
-
-function niceMax(v){
-  if (v <= 5) return 5;
-  const p = Math.pow(10, Math.floor(Math.log10(v)));
-  for (const m of [1, 2, 2.5, 5, 10]) if (m * p >= v) return m * p;
-  return 10 * p;
-}
-
-function render(rows){
-  const kpi = k => (rows.find(r => r.view === "KPI" && r.key === k) || {}).value;
-  const meta = rows.find(r => r.view === "META" && r.key === "atnaujinta");
-  document.getElementById("upd").innerHTML = meta ? `Duomenys atnaujinti: <b>${esc(meta.value)}</b>` : "Atnaujinimo laikas nenurodytas";
-
-  // centres
-  const centers = [...new Set(rows.filter(r => r.view === "CENTRAS").map(r => r.center))];
-  const cval = (c, k) => (rows.find(r => r.view === "CENTRAS" && r.center === c && r.key === k) || {}).value || 0;
-  centers.sort((a, b) => cval(b, "uzregistruota") - cval(a, "uzregistruota"));
-
-  // timeline
-  const times = [...new Set(rows.filter(r => r.view === "EIGA").map(r => r.time))].sort();
-  const tval = (t, k) => (rows.find(r => r.view === "EIGA" && r.time === t && r.key === k) || {}).value || 0;
-
-  const app = document.getElementById("app");
-  app.innerHTML = `
-    <div class="kpis">
-      <div class="tile"><div class="k">Surinkimo punktuose užregistruota namų ūkių</div><div class="v">${fmt(kpi("surinkimo_namu_ukiai"))}</div><div class="src">juose nurodyta ${fmt(kpi("surinkimo_zmones"))} žm.</div></div>
-      <div class="tile"><div class="k">Apgyvendinimo centruose užregistruota žmonių</div><div class="v">${fmt(kpi("centruose_uzregistruota"))}</div><div class="src">iš viso nuo pradžios</div></div>
-      <div class="tile hero"><div class="k">Šiuo metu centruose</div><div class="v">${fmt(kpi("centruose_dabar"))}</div><div class="src">žmonių</div></div>
-      <div class="tile"><div class="k">Išvyko iš centrų</div><div class="v">${fmt(kpi("isvyko"))}</div><div class="src">žmonių</div></div>
-    </div>
-    <div class="kpis two">
-      <div class="tile"><div class="k">Namų ūkiai, kurių visi nariai užregistruoti centruose</div><div class="v">${fmt(kpi("namu_ukiai_visi"))}</div></div>
-      <div class="tile"><div class="k">Namų ūkiai, kurių dalies narių centruose dar nėra</div><div class="v">${fmt(kpi("namu_ukiai_truksta"))}</div></div>
-      <div class="tile"><div class="k">Apgyvendinimo centrų</div><div class="v">${fmt(centers.length)}</div></div>
     </div>
 
-    <div class="grid">
-      <section class="card">
-        <h2>Užimtumas pagal centrą</h2>
-        <p class="sub">Užregistruoti žmonės: šiuo metu centre ir jau išvykę</p>
-        <div class="legend"><span><i style="background:var(--s1)"></i>Šiuo metu centre</span><span><i style="background:var(--s2)"></i>Išvyko</span></div>
-        <div id="centres"></div>
-        <details><summary>Lentelė</summary><table>
-          <tr><th>Centras</th><th>Užregistruota</th><th>Šiuo metu centre</th><th>Išvyko</th></tr>
-          ${centers.map(c => `<tr><td>${esc(c)}</td><td>${fmt(cval(c,"uzregistruota"))}</td><td>${fmt(cval(c,"dabar"))}</td><td>${fmt(cval(c,"isvyko"))}</td></tr>`).join("")}
-        </table></details>
-      </section>
+    <!-- ── Evakuotų registracija ───────────────────────────────── -->
+    <p class="section-label">Evakuotų registracija (KOBO)</p>
+    <div class="pages">
 
-      <section class="card">
-        <h2>Žmonių skaičius centruose laike</h2>
-        <p class="sub">Kiek žmonių buvo centruose kiekvienos valandos pabaigoje</p>
-        <div class="chartscroll" id="line"></div>
-        <details><summary>Lentelė</summary><table>
-          <tr><th>Laikas</th><th>Centruose</th></tr>
-          ${times.map(t => `<tr><td>${esc(t)}</td><td>${fmt(tval(t,"centruose_tuo_metu"))}</td></tr>`).join("")}
-        </table></details>
-      </section>
+      <div class="multi-card wide">
+        <h2>Namų ūkių registracija: nuo surinkimo punkto iki išvykimo</h2>
+        <p class="desc">Trys susietos KOBO anketos. Žmogus atpažįstamas pagal apyrankės numerį, todėl jo duomenys iš vienos anketos matomi kitoje.</p>
+        <ol class="steps">
+          <li>
+            <span class="num">1</span>
+            <span>
+              <a href="https://ee.ifrc.org/x/h25mxnlf" target="_blank" rel="noopener">Surinkimo punktai →</a>
+              <span class="what">Namų ūkio registracija: atstovas, kiek žmonių, ar reikia skubios pagalbos.</span>
+            </span>
+          </li>
+          <li>
+            <span class="num">2</span>
+            <span>
+              <a href="https://ee.ifrc.org/x/q7Mhc9BA" target="_blank" rel="noopener">Apgyvendinimo centrai →</a>
+              <span class="what">Kiekvieno žmogaus registracija ir poreikių vertinimas (Rapid ENA).</span>
+            </span>
+          </li>
+          <li>
+            <span class="num">3</span>
+            <span>
+              <a href="https://ee.ifrc.org/x/vc2Ey9E1" target="_blank" rel="noopener">Išvykimas →</a>
+              <span class="what">Išvykstančio žmogaus arba viso namų ūkio pažymėjimas.</span>
+            </span>
+          </li>
+        </ol>
+        <hr class="divider">
+        <ul class="link-list">
+          <li>
+            <a href="./suvestine.html">
+              <span class="tag">Ataskaita</span>
+              Evakavimo ir apgyvendinimo suvestinė →
+            </a>
+          </li>
+          <li>
+            <a href="https://redcross046.sharepoint.com/:x:/r/sites/PES989/_layouts/15/Doc.aspx?sourcedoc=%7B0231823E-BBF2-41E6-8241-431C787BB513%7D&file=VS2026_KOBO_API_valdymo_suvestine.xlsx&action=default&mobileredirect=true" target="_blank" rel="noopener">
+              <span class="tag">Excel</span>
+              Registracijos valdymo suvestinė (ribota prieiga) →
+            </a>
+          </li>
+        </ul>
+      </div>
 
-      <section class="card full">
-        <h2>Poreikiai pagal centrą</h2>
-        <p class="sub">Žmonių, kuriems registruojant pažymėtas poreikis, skaičius</p>
-        <div class="seg" role="group" aria-label="Poreikių apimtis">
-          <button type="button" data-v="POREIKIAI_DABAR" aria-pressed="true">Šiuo metu centre</button>
-          <button type="button" data-v="POREIKIAI_VISI" aria-pressed="false">Visi užregistruoti</button>
-        </div>
-        <div class="tblwrap" id="needs"></div>
-      </section>
+    </div>
+    <div class="pages two">
 
-      <section class="card full">
-        <h2>Srautai per valandą</h2>
-        <p class="sub">Atvykę į centrus ir išvykę žmonės kiekvieną valandą</p>
-        <div class="legend"><span><i style="background:var(--s1)"></i>Atvyko į centrus</span><span><i style="background:var(--s2)"></i>Išvyko</span></div>
-        <div class="chartscroll" id="flows"></div>
-        <details><summary>Lentelė</summary><table>
-          <tr><th>Laikas</th><th>Surinkimo punktuose (namų ūkiai)</th><th>Atvyko į centrus</th><th>Išvyko</th></tr>
-          ${times.map(t => `<tr><td>${esc(t)}</td><td>${fmt(tval(t,"surinkimo_namu_ukiai"))}</td><td>${fmt(tval(t,"atvyko_i_centrus"))}</td><td>${fmt(tval(t,"isvyko"))}</td></tr>`).join("")}
-        </table></details>
-      </section>
-    </div>`;
+      <div class="multi-card">
+        <h2>Poreikių valdymo mechanizmas</h2>
+        <p class="desc">Poreikių ir informacijos reagavimo vietose fiksavimas.</p>
+        <ul class="link-list">
+          <li>
+            <a href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=B6-MlBoFok2S5ygWS951FI-BoVL6RLNCiiEc_izlfAtUN0s2TVRCRkRCRzZJWjRlRUxMV09KQ1dKWCQlQCN0PWcu" target="_blank" rel="noopener">
+              <span class="tag">Anketa</span>
+              Poreikių anketa →
+            </a>
+          </li>
+          <li>
+            <a href="https://redcross046.sharepoint.com/:x:/r/sites/PES989/_layouts/15/Doc.aspx?sourcedoc=%7B8438f9e8-d52d-46c2-88ad-2376fe597033%7D&action=edit&wdenableroaming=1&wdfr=1&wdlcid=en-US&wdorigin=ItemsView&wdhostclicktime=1790664697574&wdredirectionreason=Force_SingleStepBoot&wdinitialsession=c8d51f98-e692-5635-2ac3-34b3dc38880e&wdrlsc=2&wdrldc=1&wdrldr=ContinueInExcel" target="_blank" rel="noopener">
+              <span class="tag">Excel</span>
+              Poreikių anketų suvestinė →
+            </a>
+          </li>
+        </ul>
+      </div>
 
-  // ---- centre bars
-  const cmax = Math.max(1, ...centers.map(c => cval(c, "uzregistruota")));
-  const cEl = document.getElementById("centres");
-  cEl.innerHTML = centers.length ? centers.map(c => {
-    const now = cval(c, "dabar"), out = cval(c, "isvyko"), tot = cval(c, "uzregistruota");
-    const segs = [];
-    if (now > 0) segs.push(`<span class="now" style="width:${now / cmax * 100}%"></span>`);
-    if (out > 0) segs.push(`<span class="out" style="width:${out / cmax * 100}%"></span>`);
-    return `<div class="crow" data-c="${esc(c)}"><div class="nm" title="${esc(c)}">${esc(c)}</div><div class="bar">${segs.join("")}</div><div class="tot">${fmt(tot)}</div></div>`;
-  }).join("") : `<div class="empty">Duomenų nėra</div>`;
-  cEl.querySelectorAll(".crow").forEach(row => {
-    const c = row.dataset.c;
-    row.addEventListener("mousemove", e => showTip(e, `<b>${esc(c)}</b><br>Šiuo metu centre: ${fmt(cval(c,"dabar"))}<br>Išvyko: ${fmt(cval(c,"isvyko"))}<br>Užregistruota: ${fmt(cval(c,"uzregistruota"))}`));
-    row.addEventListener("mouseleave", hideTip);
-  });
+      <a class="page-card" href="https://docs.google.com/forms/d/1jfx3p7iWMtjI6c7LGKicAqegl7EjfQ8itERcQWBjoIs/edit?ts=6ab65a17" target="_blank" rel="noopener">
+        <h2>Registracija prieš ir po švarinimo</h2>
+        <p>
+          Cheminės taršos atvejo anketa (Google Forms).
+        </p>
+        <span class="open">Atidaryti →</span>
+      </a>
 
-  // ---- needs heatmap
-  const needKeys = Object.keys(NEED_LABELS);
-  const drawNeeds = view => {
-    const nv = (c, k) => (rows.find(r => r.view === view && r.center === c && r.key === k) || {}).value || 0;
-    const tot = k => centers.reduce((s, c) => s + nv(c, k), 0);
-    const all = centers.flatMap(c => needKeys.map(k => nv(c, k)));
-    const mx = Math.max(1, ...all);
-    const steps = ["--q1","--q2","--q3","--q4","--q5","--q6"];
-    const cell = (v, label) => {
-      if (!v) return `<td class="zero" data-t="${esc(label)}: 0">0</td>`;
-      const i = Math.min(steps.length - 1, Math.floor(v / mx * (steps.length - 1) + 0.0001));
-      return `<td style="background:var(${steps[i]});color:var(--qt${i + 1})" data-t="${esc(label)}: ${fmt(v)}">${fmt(v)}</td>`;
-    };
-    document.getElementById("needs").innerHTML = centers.length ? `<table class="hm">
-      <tr><th class="rl">Centras</th>${needKeys.map(k => `<th>${NEED_LABELS[k]}</th>`).join("")}</tr>
-      ${centers.map(c => `<tr><td class="rl">${esc(c)}</td>${needKeys.map(k => cell(nv(c, k), `${c} · ${NEED_LABELS[k]}`)).join("")}</tr>`).join("")}
-      <tr class="total"><td class="rl">Iš viso</td>${needKeys.map(k => `<td>${fmt(tot(k))}</td>`).join("")}</tr>
-    </table>` : `<div class="empty">Duomenų nėra</div>`;
-    document.querySelectorAll("#needs td[data-t]").forEach(td => {
-      td.addEventListener("mousemove", e => showTip(e, esc(td.dataset.t) + " žm."));
-      td.addEventListener("mouseleave", hideTip);
-    });
-  };
-  document.querySelectorAll(".seg button").forEach(b => b.addEventListener("click", () => {
-    document.querySelectorAll(".seg button").forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
-    drawNeeds(b.dataset.v);
-  }));
-  drawNeeds("POREIKIAI_DABAR");
+    </div>
 
-  // ---- shared chart frame
-  const W = 560, H = 240, M = { l: 36, r: 12, t: 12, b: 34 };
-  const label = t => t.slice(5).replace(" ", " ");
-  const tickEvery = n => Math.max(1, Math.ceil(n / 4));
-  const yAxis = (ymax, w) => {
-    let g = "";
-    for (let i = 0; i <= 4; i++) {
-      const v = ymax * i / 4, y = M.t + (H - M.t - M.b) * (1 - i / 4);
-      g += `<line class="${i ? "gridline" : "baseline"}" x1="${M.l}" x2="${w - M.r}" y1="${y}" y2="${y}"/>`;
-      g += `<text x="${M.l - 6}" y="${y + 4}" text-anchor="end">${fmt(Math.round(v))}</text>`;
-    }
-    return g;
-  };
+    <!-- ── LV + EE evakuacija ──────────────────────────────────── -->
+    <p class="section-label">Latvijos ir Estijos gyventojų evakuacija į Lietuvą · stalo pratybos</p>
+    <p class="scenario">
+      Per 24–48 val. į Lietuvą gali atvykti iki 50 000 Latvijos ir Estijos gyventojų.
+      Savivaldybės steigia laikinas civilinės saugos stovyklas, gyventojai apgyvendinami kolektyvinės apsaugos statiniuose.
+    </p>
+    <div class="pages">
 
-  // ---- line: people in centres over time
-  const lineEl = document.getElementById("line");
-  if (!times.length) lineEl.innerHTML = `<div class="empty">Duomenų nėra</div>`;
-  else {
-    const vals = times.map(t => tval(t, "centruose_tuo_metu"));
-    const ymax = niceMax(Math.max(...vals));
-    const iw = W - M.l - M.r, ih = H - M.t - M.b;
-    const x = i => M.l + (times.length === 1 ? iw / 2 : iw * i / (times.length - 1));
-    const y = v => M.t + ih * (1 - v / ymax);
-    const path = vals.map((v, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join("");
-    const te = tickEvery(times.length);
-    const ticks = times.map((t, i) => i % te === 0 ? `<text x="${x(i)}" y="${H - 12}" text-anchor="middle">${esc(label(t))}</text>` : "").join("");
-    const last = vals.length - 1;
-    lineEl.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Žmonių skaičius centruose laike">
-      <g class="axis">${yAxis(ymax, W)}${ticks}</g>
-      <path d="${path}" fill="none" stroke="var(--s1)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-      <circle cx="${x(last)}" cy="${y(vals[last])}" r="4" fill="var(--s1)" stroke="var(--surface)" stroke-width="2"/>
-      <text x="${x(last) - 8}" y="${y(vals[last]) - 10}" text-anchor="end" style="fill:var(--ink);font-size:12px;font-weight:600">${fmt(vals[last])}</text>
-      <line id="xh" x1="0" x2="0" y1="${M.t}" y2="${H - M.b}" stroke="var(--ink3)" stroke-width="1" opacity="0"/>
-      <circle id="xd" r="4" fill="var(--s1)" stroke="var(--surface)" stroke-width="2" opacity="0"/>
-      <rect x="${M.l}" y="${M.t}" width="${iw}" height="${ih}" fill="transparent" id="hit"/>
-    </svg>`;
-    const svg = lineEl.querySelector("svg"), xh = svg.querySelector("#xh"), xd = svg.querySelector("#xd");
-    svg.querySelector("#hit").addEventListener("mousemove", e => {
-      const r = svg.getBoundingClientRect();
-      const px = (e.clientX - r.left) / r.width * W;
-      const i = Math.max(0, Math.min(times.length - 1, Math.round((px - M.l) / (iw / Math.max(1, times.length - 1)))));
-      xh.setAttribute("x1", x(i)); xh.setAttribute("x2", x(i)); xh.setAttribute("opacity", .5);
-      xd.setAttribute("cx", x(i)); xd.setAttribute("cy", y(vals[i])); xd.setAttribute("opacity", 1);
-      showTip(e, `<b>${esc(times[i])}</b><br>Centruose: ${fmt(vals[i])} žm.`);
-    });
-    svg.querySelector("#hit").addEventListener("mouseleave", () => { hideTip(); xh.setAttribute("opacity", 0); xd.setAttribute("opacity", 0); });
-  }
+      <a class="page-card" href="https://docs.google.com/spreadsheets/d/1wcc1Pj5wzdYb8jshBw_wLSpwbFw1c2gmeDg7eLUFul0/edit?gid=1949201477#gid=1949201477" target="_blank" rel="noopener">
+        <h2>LRK pajėgumų registracija</h2>
+        <p>
+          Skyrių darbuotojai, savanoriai, transportas ir įranga pagal savivaldybes,
+          ir kokioms funkcijoms galime prisidėti per 48 ir 72 val.
+        </p>
+        <span class="open">Atidaryti →</span>
+      </a>
 
-  // ---- grouped bars: arrivals / departures per hour
-  const flowsEl = document.getElementById("flows");
-  if (!times.length) flowsEl.innerHTML = `<div class="empty">Duomenų nėra</div>`;
-  else {
-    const FW = 1120, FH = 240;
-    const arr = times.map(t => tval(t, "atvyko_i_centrus")), dep = times.map(t => tval(t, "isvyko"));
-    const ymax = niceMax(Math.max(1, ...arr, ...dep));
-    const iw = FW - M.l - M.r, ih = FH - M.t - M.b;
-    const band = iw / times.length, bw = Math.max(3, Math.min(18, (band - 8) / 2));
-    const y = v => M.t + ih * (1 - v / ymax);
-    const bar = (cx, v, col) => {
-      if (!v) return "";
-      const top = y(v), h = M.t + ih - top, r = Math.min(4, bw / 2, h);
-      return `<path d="M${cx},${M.t + ih} V${top + r} q0,-${r} ${r},-${r} h${bw - 2 * r} q${r},0 ${r},${r} V${M.t + ih} Z" fill="${col}"/>`;
-    };
-    const te = Math.max(1, Math.ceil(times.length / 9));
-    let g = "";
-    times.forEach((t, i) => {
-      const c = M.l + band * i + band / 2;
-      g += bar(c - bw - 1, arr[i], "var(--s1)") + bar(c + 1, dep[i], "var(--s2)");
-      if (i % te === 0) g += `<text x="${c}" y="${FH - 12}" text-anchor="middle">${esc(label(t))}</text>`;
-      g += `<rect class="fh" data-i="${i}" x="${M.l + band * i}" y="${M.t}" width="${band}" height="${ih}" fill="transparent"/>`;
-    });
-    const yax = (() => { let s = ""; for (let k = 0; k <= 4; k++) { const v = ymax * k / 4, yy = M.t + ih * (1 - k / 4); s += `<line class="${k ? "gridline" : "baseline"}" x1="${M.l}" x2="${FW - M.r}" y1="${yy}" y2="${yy}"/><text x="${M.l - 6}" y="${yy + 4}" text-anchor="end">${fmt(Math.round(v))}</text>`; } return s; })();
-    flowsEl.innerHTML = `<svg viewBox="0 0 ${FW} ${FH}" role="img" aria-label="Atvykę ir išvykę žmonės per valandą"><g class="axis">${yax}${g}</g></svg>`;
-    flowsEl.querySelectorAll(".fh").forEach(r => {
-      const i = +r.dataset.i;
-      r.addEventListener("mousemove", e => showTip(e, `<b>${esc(times[i])}</b><br>Atvyko į centrus: ${fmt(arr[i])}<br>Išvyko: ${fmt(dep[i])}<br>Surinkimo punktuose: ${fmt(tval(times[i],"surinkimo_namu_ukiai"))} nam. ūk.`));
-      r.addEventListener("mouseleave", hideTip);
-    });
-  }
-}
+      <a class="page-card" href="https://docs.google.com/spreadsheets/d/1jiaOyJU-1Jj0SjphUnSblFxMz77zGKWGwgfPkFLcMz0/edit?gid=967664901#gid=967664901" target="_blank" rel="noopener">
+        <h2>Pamainų grafikas</h2>
+        <p>
+          Savanorių ir darbuotojų registracija į pamainas pagal centrą, dieną ir komandą.
+        </p>
+        <span class="open">Atidaryti →</span>
+      </a>
 
-fetch("suvestine_duomenys.tsv?t=" + Date.now(), { cache: "no-store" })
-  .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
-  .then(t => render(parseTSV(t)))
-  .catch(() => {
-    document.getElementById("upd").textContent = "Duomenų nepavyko įkelti";
-    document.getElementById("app").innerHTML = `<div class="err">Duomenų failas nerastas. Pabandykite atnaujinti puslapį po kelių minučių.</div>`;
-  });
-</script>
+    </div>
+
+    <!-- ── Techninė informacija ────────────────────────────────── -->
+    <p class="section-label">Techninė informacija</p>
+    <div class="pages">
+
+      <a class="page-card tech" href="./KOBO-anketos.html">
+        <h2>KOBO anketų techninis planas</h2>
+        <p>
+          Anketų sandara, susiejimas ir duomenų srautai. Skirta anketų administratoriams.
+        </p>
+        <span class="open">Atidaryti →</span>
+      </a>
+
+    </div>
+
+  </main>
+
+  <footer>
+    Lietuvos Raudonasis Kryžius
+  </footer>
 </body>
 </html>
