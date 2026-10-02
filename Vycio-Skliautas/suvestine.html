@@ -197,8 +197,8 @@ function render(rows){
       <div class="kpis">
         <div class="tile"><div class="k"><b>Namų ūkių</b> užregistruota</div><div class="v">${fmt(kpi("surinkimo_namu_ukiai"))}</div><div class="src">surinkimo punktuose</div></div>
         <div class="tile"><div class="k"><b>Žmonių</b> juose</div><div class="v">${fmt(kpi("surinkimo_zmones"))}</div><div class="src">pagal nurodytą dydį</div></div>
-        <div class="tile"><div class="k"><b>Visi nariai</b> centruose</div><div class="v">${fmt(kpi("namu_ukiai_visi"))}</div><div class="src">namų ūkių</div></div>
-        <div class="tile"><div class="k"><b>Trūksta</b> narių</div><div class="v">${fmt(kpi("namu_ukiai_truksta"))}</div><div class="src">namų ūkių, kurių dalies narių centruose dar nėra</div></div>
+        <div class="tile"><div class="k"><b>Atvyko visi</b> nariai</div><div class="v">${fmt(kpi("namu_ukiai_visi"))}</div><div class="src">namų ūkių iš ${fmt(kpi("surinkimo_namu_ukiai"))}: visi jų nariai jau užregistruoti centruose</div></div>
+        <div class="tile"><div class="k"><b>Atvyko ne visi</b> nariai</div><div class="v">${fmt(kpi("namu_ukiai_truksta"))}</div><div class="src">namų ūkių iš ${fmt(kpi("surinkimo_namu_ukiai"))}: dalies narių centruose dar neužregistruota</div></div>
       </div>
     </section>
     <section class="kgroup">
