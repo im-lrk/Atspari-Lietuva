@@ -1,12 +1,12 @@
 Rodinys	Centras	Laikas	Rodiklis	Reikšmė
-META			atnaujinta	2026-10-02 16:45
-KPI			surinkimo_namu_ukiai	35
-KPI			surinkimo_zmones	43
+META			atnaujinta	2026-10-02 18:35
+KPI			surinkimo_namu_ukiai	36
+KPI			surinkimo_zmones	47
 KPI			centruose_uzregistruota	13
 KPI			isvyko	2
 KPI			centruose_dabar	11
 KPI			namu_ukiai_visi	4
-KPI			namu_ukiai_truksta	31
+KPI			namu_ukiai_truksta	32
 CENTRAS	Anykščių r. sav.		uzregistruota	8
 CENTRAS	Anykščių r. sav.		isvyko	2
 CENTRAS	Anykščių r. sav.		dabar	6
@@ -119,3 +119,7 @@ EIGA		2026-10-02 14:00	surinkimo_namu_ukiai	0
 EIGA		2026-10-02 14:00	atvyko_i_centrus	0
 EIGA		2026-10-02 14:00	isvyko	2
 EIGA		2026-10-02 14:00	centruose_tuo_metu	11
+EIGA		2026-10-02 18:00	surinkimo_namu_ukiai	1
+EIGA		2026-10-02 18:00	atvyko_i_centrus	0
+EIGA		2026-10-02 18:00	isvyko	0
+EIGA		2026-10-02 18:00	centruose_tuo_metu	11
