@@ -1,27 +1,33 @@
 Rodinys	Centras	Laikas	Rodiklis	Reikšmė
-META			atnaujinta	2026-10-03 06:56
-KPI			surinkimo_namu_ukiai	64
-KPI			surinkimo_zmones	107
-KPI			centruose_uzregistruota	54
+META			atnaujinta	2026-10-03 10:29
+KPI			surinkimo_namu_ukiai	110
+KPI			surinkimo_zmones	219
+KPI			centruose_uzregistruota	127
 KPI			isvyko	2
-KPI			centruose_dabar	52
-KPI			namu_ukiai_visi	14
-KPI			namu_ukiai_truksta	50
+KPI			centruose_dabar	125
+KPI			namu_ukiai_visi	37
+KPI			namu_ukiai_truksta	72
 CENTRAS	Anykščių r. sav.		uzregistruota	8
 CENTRAS	Anykščių r. sav.		isvyko	2
 CENTRAS	Anykščių r. sav.		dabar	6
 CENTRAS	Lazdijai		uzregistruota	3
 CENTRAS	Lazdijai		isvyko	0
 CENTRAS	Lazdijai		dabar	3
-CENTRAS	Lazdijų raj.		uzregistruota	6
+CENTRAS	Lazdijus		uzregistruota	1
+CENTRAS	Lazdijus		isvyko	0
+CENTRAS	Lazdijus		dabar	1
+CENTRAS	Lazdijų raj.		uzregistruota	7
 CENTRAS	Lazdijų raj.		isvyko	0
-CENTRAS	Lazdijų raj.		dabar	6
+CENTRAS	Lazdijų raj.		dabar	7
+CENTRAS	Veisėjai		uzregistruota	1
+CENTRAS	Veisėjai		isvyko	0
+CENTRAS	Veisėjai		dabar	1
 CENTRAS	Vilnius		uzregistruota	1
 CENTRAS	Vilnius		isvyko	0
 CENTRAS	Vilnius		dabar	1
-CENTRAS	lazdiju_r		uzregistruota	35
+CENTRAS	lazdiju_r		uzregistruota	105
 CENTRAS	lazdiju_r		isvyko	0
-CENTRAS	lazdiju_r		dabar	35
+CENTRAS	lazdiju_r		dabar	105
 CENTRAS	test		uzregistruota	1
 CENTRAS	test		isvyko	0
 CENTRAS	test		dabar	1
@@ -41,6 +47,14 @@ POREIKIAI_DABAR	Lazdijai		flag_interpreter	0
 POREIKIAI_DABAR	Lazdijai		flag_rfl	0
 POREIKIAI_DABAR	Lazdijai		flag_protection	1
 POREIKIAI_DABAR	Lazdijai		flag_follow_up	2
+POREIKIAI_DABAR	Lazdijus		flag_health	0
+POREIKIAI_DABAR	Lazdijus		flag_medication_urgent	0
+POREIKIAI_DABAR	Lazdijus		flag_accommodation	1
+POREIKIAI_DABAR	Lazdijus		flag_transport	0
+POREIKIAI_DABAR	Lazdijus		flag_interpreter	0
+POREIKIAI_DABAR	Lazdijus		flag_rfl	0
+POREIKIAI_DABAR	Lazdijus		flag_protection	0
+POREIKIAI_DABAR	Lazdijus		flag_follow_up	1
 POREIKIAI_DABAR	Lazdijų raj.		flag_health	1
 POREIKIAI_DABAR	Lazdijų raj.		flag_medication_urgent	0
 POREIKIAI_DABAR	Lazdijų raj.		flag_accommodation	2
@@ -49,6 +63,14 @@ POREIKIAI_DABAR	Lazdijų raj.		flag_interpreter	0
 POREIKIAI_DABAR	Lazdijų raj.		flag_rfl	0
 POREIKIAI_DABAR	Lazdijų raj.		flag_protection	0
 POREIKIAI_DABAR	Lazdijų raj.		flag_follow_up	3
+POREIKIAI_DABAR	Veisėjai		flag_health	0
+POREIKIAI_DABAR	Veisėjai		flag_medication_urgent	0
+POREIKIAI_DABAR	Veisėjai		flag_accommodation	1
+POREIKIAI_DABAR	Veisėjai		flag_transport	0
+POREIKIAI_DABAR	Veisėjai		flag_interpreter	0
+POREIKIAI_DABAR	Veisėjai		flag_rfl	0
+POREIKIAI_DABAR	Veisėjai		flag_protection	0
+POREIKIAI_DABAR	Veisėjai		flag_follow_up	1
 POREIKIAI_DABAR	Vilnius		flag_health	0
 POREIKIAI_DABAR	Vilnius		flag_medication_urgent	1
 POREIKIAI_DABAR	Vilnius		flag_accommodation	1
@@ -57,14 +79,14 @@ POREIKIAI_DABAR	Vilnius		flag_interpreter	0
 POREIKIAI_DABAR	Vilnius		flag_rfl	0
 POREIKIAI_DABAR	Vilnius		flag_protection	0
 POREIKIAI_DABAR	Vilnius		flag_follow_up	1
-POREIKIAI_DABAR	lazdiju_r		flag_health	3
-POREIKIAI_DABAR	lazdiju_r		flag_medication_urgent	9
-POREIKIAI_DABAR	lazdiju_r		flag_accommodation	23
-POREIKIAI_DABAR	lazdiju_r		flag_transport	5
+POREIKIAI_DABAR	lazdiju_r		flag_health	8
+POREIKIAI_DABAR	lazdiju_r		flag_medication_urgent	14
+POREIKIAI_DABAR	lazdiju_r		flag_accommodation	61
+POREIKIAI_DABAR	lazdiju_r		flag_transport	18
 POREIKIAI_DABAR	lazdiju_r		flag_interpreter	3
-POREIKIAI_DABAR	lazdiju_r		flag_rfl	6
-POREIKIAI_DABAR	lazdiju_r		flag_protection	2
-POREIKIAI_DABAR	lazdiju_r		flag_follow_up	22
+POREIKIAI_DABAR	lazdiju_r		flag_rfl	16
+POREIKIAI_DABAR	lazdiju_r		flag_protection	6
+POREIKIAI_DABAR	lazdiju_r		flag_follow_up	53
 POREIKIAI_DABAR	test		flag_health	0
 POREIKIAI_DABAR	test		flag_medication_urgent	0
 POREIKIAI_DABAR	test		flag_accommodation	0
@@ -89,6 +111,14 @@ POREIKIAI_VISI	Lazdijai		flag_interpreter	0
 POREIKIAI_VISI	Lazdijai		flag_rfl	0
 POREIKIAI_VISI	Lazdijai		flag_protection	1
 POREIKIAI_VISI	Lazdijai		flag_follow_up	2
+POREIKIAI_VISI	Lazdijus		flag_health	0
+POREIKIAI_VISI	Lazdijus		flag_medication_urgent	0
+POREIKIAI_VISI	Lazdijus		flag_accommodation	1
+POREIKIAI_VISI	Lazdijus		flag_transport	0
+POREIKIAI_VISI	Lazdijus		flag_interpreter	0
+POREIKIAI_VISI	Lazdijus		flag_rfl	0
+POREIKIAI_VISI	Lazdijus		flag_protection	0
+POREIKIAI_VISI	Lazdijus		flag_follow_up	1
 POREIKIAI_VISI	Lazdijų raj.		flag_health	1
 POREIKIAI_VISI	Lazdijų raj.		flag_medication_urgent	0
 POREIKIAI_VISI	Lazdijų raj.		flag_accommodation	2
@@ -97,6 +127,14 @@ POREIKIAI_VISI	Lazdijų raj.		flag_interpreter	0
 POREIKIAI_VISI	Lazdijų raj.		flag_rfl	0
 POREIKIAI_VISI	Lazdijų raj.		flag_protection	0
 POREIKIAI_VISI	Lazdijų raj.		flag_follow_up	3
+POREIKIAI_VISI	Veisėjai		flag_health	0
+POREIKIAI_VISI	Veisėjai		flag_medication_urgent	0
+POREIKIAI_VISI	Veisėjai		flag_accommodation	1
+POREIKIAI_VISI	Veisėjai		flag_transport	0
+POREIKIAI_VISI	Veisėjai		flag_interpreter	0
+POREIKIAI_VISI	Veisėjai		flag_rfl	0
+POREIKIAI_VISI	Veisėjai		flag_protection	0
+POREIKIAI_VISI	Veisėjai		flag_follow_up	1
 POREIKIAI_VISI	Vilnius		flag_health	0
 POREIKIAI_VISI	Vilnius		flag_medication_urgent	1
 POREIKIAI_VISI	Vilnius		flag_accommodation	1
@@ -105,14 +143,14 @@ POREIKIAI_VISI	Vilnius		flag_interpreter	0
 POREIKIAI_VISI	Vilnius		flag_rfl	0
 POREIKIAI_VISI	Vilnius		flag_protection	0
 POREIKIAI_VISI	Vilnius		flag_follow_up	1
-POREIKIAI_VISI	lazdiju_r		flag_health	3
-POREIKIAI_VISI	lazdiju_r		flag_medication_urgent	9
-POREIKIAI_VISI	lazdiju_r		flag_accommodation	23
-POREIKIAI_VISI	lazdiju_r		flag_transport	5
+POREIKIAI_VISI	lazdiju_r		flag_health	8
+POREIKIAI_VISI	lazdiju_r		flag_medication_urgent	14
+POREIKIAI_VISI	lazdiju_r		flag_accommodation	61
+POREIKIAI_VISI	lazdiju_r		flag_transport	18
 POREIKIAI_VISI	lazdiju_r		flag_interpreter	3
-POREIKIAI_VISI	lazdiju_r		flag_rfl	6
-POREIKIAI_VISI	lazdiju_r		flag_protection	2
-POREIKIAI_VISI	lazdiju_r		flag_follow_up	22
+POREIKIAI_VISI	lazdiju_r		flag_rfl	16
+POREIKIAI_VISI	lazdiju_r		flag_protection	6
+POREIKIAI_VISI	lazdiju_r		flag_follow_up	53
 POREIKIAI_VISI	test		flag_health	0
 POREIKIAI_VISI	test		flag_medication_urgent	0
 POREIKIAI_VISI	test		flag_accommodation	0
@@ -121,51 +159,13 @@ POREIKIAI_VISI	test		flag_interpreter	0
 POREIKIAI_VISI	test		flag_rfl	1
 POREIKIAI_VISI	test		flag_protection	0
 POREIKIAI_VISI	test		flag_follow_up	1
-EIGA		2026-09-26 05:00	surinkimo_namu_ukiai	6
-EIGA		2026-09-26 05:00	atvyko_i_centrus	0
-EIGA		2026-09-26 05:00	isvyko	0
-EIGA		2026-09-26 05:00	centruose_tuo_metu	0
-EIGA		2026-09-26 06:00	surinkimo_namu_ukiai	32
-EIGA		2026-09-26 06:00	atvyko_i_centrus	0
-EIGA		2026-09-26 06:00	isvyko	0
-EIGA		2026-09-26 06:00	centruose_tuo_metu	0
-EIGA		2026-09-26 08:00	surinkimo_namu_ukiai	0
-EIGA		2026-09-26 08:00	atvyko_i_centrus	4
+EIGA		2026-09-26 08:00	surinkimo_namu_ukiai	6
+EIGA		2026-09-26 08:00	atvyko_i_centrus	0
 EIGA		2026-09-26 08:00	isvyko	0
-EIGA		2026-09-26 08:00	centruose_tuo_metu	4
-EIGA		2026-09-26 09:00	surinkimo_namu_ukiai	0
-EIGA		2026-09-26 09:00	atvyko_i_centrus	4
+EIGA		2026-09-26 08:00	centruose_tuo_metu	0
+EIGA		2026-09-26 09:00	surinkimo_namu_ukiai	32
+EIGA		2026-09-26 09:00	atvyko_i_centrus	0
 EIGA		2026-09-26 09:00	isvyko	0
-EIGA		2026-09-26 09:00	centruose_tuo_metu	8
-EIGA		2026-09-29 09:00	surinkimo_namu_ukiai	0
-EIGA		2026-09-29 09:00	atvyko_i_centrus	1
-EIGA		2026-09-29 09:00	isvyko	0
-EIGA		2026-09-29 09:00	centruose_tuo_metu	9
-EIGA		2026-09-30 10:00	surinkimo_namu_ukiai	1
-EIGA		2026-09-30 10:00	atvyko_i_centrus	0
-EIGA		2026-09-30 10:00	isvyko	0
-EIGA		2026-09-30 10:00	centruose_tuo_metu	9
-EIGA		2026-09-30 11:00	surinkimo_namu_ukiai	0
-EIGA		2026-09-30 11:00	atvyko_i_centrus	1
-EIGA		2026-09-30 11:00	isvyko	0
-EIGA		2026-09-30 11:00	centruose_tuo_metu	10
-EIGA		2026-10-02 08:00	surinkimo_namu_ukiai	1
-EIGA		2026-10-02 08:00	atvyko_i_centrus	0
-EIGA		2026-10-02 08:00	isvyko	0
-EIGA		2026-10-02 08:00	centruose_tuo_metu	10
-EIGA		2026-10-02 11:00	surinkimo_namu_ukiai	0
-EIGA		2026-10-02 11:00	atvyko_i_centrus	0
-EIGA		2026-10-02 11:00	isvyko	2
-EIGA		2026-10-02 11:00	centruose_tuo_metu	8
-EIGA		2026-10-02 15:00	surinkimo_namu_ukiai	1
-EIGA		2026-10-02 15:00	atvyko_i_centrus	0
-EIGA		2026-10-02 15:00	isvyko	0
-EIGA		2026-10-02 15:00	centruose_tuo_metu	8
-EIGA		2026-10-03 05:00	surinkimo_namu_ukiai	6
-EIGA		2026-10-03 05:00	atvyko_i_centrus	0
-EIGA		2026-10-03 05:00	isvyko	0
-EIGA		2026-10-03 05:00	centruose_tuo_metu	8
-EIGA		2026-10-03 06:00	surinkimo_namu_ukiai	23
-EIGA		2026-10-03 06:00	atvyko_i_centrus	44
-EIGA		2026-10-03 06:00	isvyko	0
-EIGA		2026-10-03 06:00	centruose_tuo_metu	52
+EIGA		2026-09-26 09:00	centruose_tuo_metu	0
+EIGA		2026-09-26 11:00	surinkimo_namu_ukiai	0
+EIGA		2026-09-26 11:00	atvyko_i_centrus	4
