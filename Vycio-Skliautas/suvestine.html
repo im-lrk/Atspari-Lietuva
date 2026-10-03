@@ -101,6 +101,13 @@ h1 small{display:block;font-size:14px;font-weight:400;color:var(--ink2);margin-t
 @media (max-width:640px){#needtype .crow,#needcenter .crow{grid-template-columns:140px 1fr 44px}}
 #needs-app>.seg{margin-bottom:16px}
 .seg{flex-wrap:wrap}
+.ctl{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-bottom:16px}
+.ctl .seg{margin-bottom:0}
+.selw{font-size:15px;display:inline-flex;align-items:center;gap:8px}
+.selw select{font:inherit;font-size:15px;padding:7px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)}
+.pbars .crow{grid-template-columns:270px 1fr 60px}
+@media (max-width:640px){.pbars .crow{grid-template-columns:150px 1fr 44px}}
+details p{margin:6px 0 0;line-height:1.5}
 /* heatmap */
 .tblwrap{overflow-x:auto}
 .chartscroll{overflow-x:auto}
@@ -149,11 +156,13 @@ details td,details th{border-bottom:1px solid var(--line);padding:3px 10px 3px 0
 <nav class="tabs" role="tablist" aria-label="Skirtukai"><div class="in">
   <button type="button" role="tab" data-tab="overview" aria-selected="true">Apžvalga</button>
   <button type="button" role="tab" data-tab="needs" aria-selected="false">Poreikiai</button>
+  <button type="button" role="tab" data-tab="people" aria-selected="false">Žmonės</button>
 </div></nav>
 <div class="wrap">
 
   <div id="app"></div>
   <div id="needs-app" hidden></div>
+  <div id="people-app" hidden></div>
 </div>
 <div class="tip" id="tip"></div>
 
@@ -392,15 +401,220 @@ function renderNeeds(rows){
   draw();
 }
 
+const BAND_LABELS = {
+  "0-2": "0–2 m.", "3-5": "3–5 m.", "6-11": "6–11 m.", "12-17": "12–17 m.",
+  "18-34": "18–34 m.", "35-64": "35–64 m.", "65-79": "65–79 m.", "80+": "80+ m.",
+  "nezinoma": "Amžius nenurodytas"
+};
+const SUD_LABELS = {
+  vienas_suauges: "Vienas suaugęs",
+  tik_suaugusieji: "Tik suaugusieji (2 ir daugiau)",
+  suaugusieji_su_vaikais: "Suaugusieji su vaikais",
+  vienas_su_vaikais: "Vienas suaugęs su vaikais",
+  tik_vaikai: "Tik vaikai",
+  nenurodytas: "Amžius nenurodytas"
+};
+
+function renderPeople(rows){
+  const el = document.getElementById("people-app");
+  const PV = rows.filter(r => r.view.startsWith("ZM_") && typeof r.value === "number");
+  if (!PV.length) { el.innerHTML = `<div class="err">Duomenų apie žmones dar nėra.</div>`; return; }
+  const state = { scope: "DABAR", center: "all" };
+  const centers = [...new Set(PV.filter(r => r.center).map(r => r.center))].sort((a, b) => a.localeCompare(b, "lt"));
+  const steps = ["--q1","--q2","--q3","--q4","--q5","--q6"];
+  const sum = (arr, f) => arr.filter(f || (() => true)).reduce((s, x) => s + x.v, 0);
+  const tile = (loc, k, v, src, hero) =>
+    `<div class="tile ${hero ? "hero " : ""}ac"><span class="loc ac">${loc}</span><div class="k">${k}</div><div class="v">${fmt(v)}</div><div class="src">${src}</div></div>`;
+  const bars = (items) => {
+    const mx = Math.max(1, ...items.map(i => i.v));
+    return items.map(i => `<div class="crow"><div class="nm" title="${esc(i.label)}">${esc(i.label)}</div><div class="bar">${i.v > 0 ? `<span class="now" style="width:${i.v / mx * 100}%"></span>` : ""}</div><div class="tot">${fmt(i.v)}</div></div>`).join("");
+  };
+
+  function draw(){
+    const sc = state.scope;
+    const sel = view => PV.filter(r => r.view === view + "_" + sc && (state.center === "all" || r.center === state.center))
+      .map(r => ({ c: r.center, k: r.key, v: r.value }));
+    const NU = sel("ZM_NU"), AGE = sel("ZM_AMZIUS"), UN = sel("ZM_NELYDIMI"), SEN = sel("ZM_SENJORAI"), SP = sel("ZM_SPEC"), CB = sel("ZM_DERINYS");
+    const nu = k => sum(NU, x => x.k === k);
+    const band = b => sum(AGE, x => x.k === b);
+    const people = sum(AGE);
+    const kidBands = ["0-2", "3-5", "6-11", "12-17"];
+    const children = kidBands.reduce((s, b) => s + band(b), 0);
+    const seniors = band("65-79") + band("80+");
+    const un = (lvl, mk, m) => sum(UN, x => x.k === `${lvl}|${mk}|${m}`);
+    const unSum = (lvl, m) => un(lvl, "1", m) + un(lvl, "2+", m);
+    const sen = (b, m) => sum(SEN, x => x.k === `${b}|${m}`);
+    const senAlone = lvl => sen("65-79", "vienisi_" + lvl) + sen("80+", "vienisi_" + lvl);
+    const sp = (t, m) => sum(SP, x => x.k === `${t}|${m}`);
+    const cb = k => sum(CB, x => x.k === k);
+
+    const Q = {};
+    PV.filter(r => r.view === "ZM_KOKYBE").forEach(r => Q[r.key] = r.value);
+
+    const specKeys = [...new Set(SP.map(x => x.k.split("|")[0]))].filter(k => k !== "bent_vienas");
+    specKeys.sort((a, b) => sp(b, "visi") - sp(a, "visi"));
+
+    const rowCenters = state.center === "all" ? centers : [state.center];
+    const ageCell = (c, b) => {
+      const v = sum(AGE, x => x.c === c && x.k === b);
+      return v;
+    };
+    const mx = Math.max(1, ...rowCenters.flatMap(c => Object.keys(BAND_LABELS).map(b => ageCell(c, b))));
+    const hm = (v, tip) => {
+      if (!v) return `<td class="zero" data-t="${esc(tip)}: 0">0</td>`;
+      const i = Math.min(steps.length - 1, Math.floor(v / mx * (steps.length - 1) + 0.0001));
+      return `<td style="background:var(${steps[i]});color:var(--qt${i + 1})" data-t="${esc(tip)}: ${fmt(v)}">${fmt(v)}</td>`;
+    };
+
+    const pct = (a, b) => b ? Math.round(a / b * 100) + " %" : "–";
+    const sudKeys = ["vienas_suauges", "tik_suaugusieji", "suaugusieji_su_vaikais", "vienas_su_vaikais", "tik_vaikai", "nenurodytas"];
+
+    el.innerHTML = `
+      <div class="ctl">
+        <div class="seg" role="group" aria-label="Apimtis">
+          <button type="button" data-scope="DABAR" aria-pressed="${sc === "DABAR"}">Šiuo metu centre</button>
+          <button type="button" data-scope="VISI" aria-pressed="${sc === "VISI"}">Visi užregistruoti</button>
+        </div>
+        <label class="selw"><b>Centras:</b>
+          <select id="pc" aria-label="Centras">
+            <option value="all">Visi centrai</option>
+            ${centers.map(c => `<option value="${esc(c)}"${state.center === c ? " selected" : ""}>${esc(c)}</option>`).join("")}
+          </select>
+        </label>
+      </div>
+
+      <section class="kgroup">
+        <h3 class="kh">Žmonės ir namų ūkiai</h3>
+        <div class="kpis">
+          ${tile("Apgyvendinimo centrai", "<b>Žmonių</b> iš viso", people, "užregistruotų žmonių", true)}
+          ${tile("Apgyvendinimo centrai", "<b>Namų ūkių</b>", nu("viso"), "pagal registruotus narius")}
+          ${tile("Apgyvendinimo centrai", "Namų ūkių <b>su vaikais</b>", nu("su_vaikais"), "bent vienas žmogus iki 18 m.")}
+          ${tile("Apgyvendinimo centrai", "<b>65+</b> metų žmonių", seniors, "pagal gimimo metus")}
+        </div>
+      </section>
+
+      <section class="kgroup">
+        <h3 class="kh">Vaikai ir nelydimi nepilnamečiai</h3>
+        <div class="kpis">
+          ${tile("Vaikai", "<b>Vaikų</b> iki 18 m.", children, "žmonių")}
+          ${tile("Vaikai", "Namų ūkių <b>su vaikais</b>", nu("su_vaikais"), "namų ūkių")}
+          ${tile("Nelydimi", "<b>Nelydimi</b> nepilnamečiai", unSum("patvirtinta", "zm"), `patvirtinta · namų ūkių: ${fmt(unSum("patvirtinta", "nu"))}`, true)}
+          ${tile("Nelydimi", "<b>Galimai</b> nelydimi", unSum("galimai", "zm"), `reikia patikrinti · namų ūkių: ${fmt(unSum("galimai", "nu"))}`)}
+        </div>
+      </section>
+      <div class="grid">
+        <section class="card">
+          <h2>Vaikai pagal amžių</h2>
+          <p class="sub">Vaikų skaičius pagal amžiaus grupę</p>
+          <div class="pbars">${bars(kidBands.map(b => ({ label: BAND_LABELS[b], v: band(b) })))}</div>
+        </section>
+        <section class="card">
+          <h2>Nelydimi nepilnamečiai</h2>
+          <p class="sub">Namų ūkiai, kuriuose nėra registruoto suaugusiojo</p>
+          <div class="tblwrap"><table class="hm">
+            <tr><th class="rl">Lygis</th><th>1 nepilnametis<br>(namų ūkių)</th><th>2 ir daugiau<br>(namų ūkių)</th><th>Vaikų<br>iš viso</th></tr>
+            <tr><td class="rl"><b>Patvirtinta</b></td><td>${fmt(un("patvirtinta", "1", "nu"))}</td><td>${fmt(un("patvirtinta", "2+", "nu"))}</td><td><b>${fmt(unSum("patvirtinta", "zm"))}</b></td></tr>
+            <tr><td class="rl"><b>Galimai</b></td><td>${fmt(un("galimai", "1", "nu"))}</td><td>${fmt(un("galimai", "2+", "nu"))}</td><td><b>${fmt(unSum("galimai", "zm"))}</b></td></tr>
+          </table></div>
+          <details><summary>Ką reiškia lygiai</summary>
+            <p><b>Patvirtinta:</b> užregistruoti visi atstovo nurodyto dydžio namų ūkio nariai, tarp jų nėra suaugusiojo, ryšys su atstovu patikrintas.<br>
+            <b>Galimai:</b> užregistruoti tik vaikai, bet namų ūkis neužbaigtas, ryšys nepatikrintas arba kam nors nenurodyti gimimo metai.</p>
+          </details>
+        </section>
+      </div>
+
+      <section class="kgroup" style="margin-top:14px">
+        <h3 class="kh">Vyresnio amžiaus žmonės</h3>
+        <div class="kpis">
+          ${tile("65–79 m.", "<b>65–79</b> metų", sen("65-79", "visi"), `vieniši: ${fmt(sen("65-79", "vienisi_patvirtinta"))} · galimai: ${fmt(sen("65-79", "vienisi_galimai"))}`)}
+          ${tile("80+ m.", "<b>80+</b> metų", sen("80+", "visi"), `vieniši: ${fmt(sen("80+", "vienisi_patvirtinta"))} · galimai: ${fmt(sen("80+", "vienisi_galimai"))}`)}
+          ${tile("65+ m.", "<b>Vieniši</b> 65+", senAlone("patvirtinta"), "patvirtinta: vienintelis namų ūkio narys", true)}
+          ${tile("65+ m.", "<b>Galimai vieniši</b> 65+", senAlone("galimai"), "reikia patikrinti")}
+        </div>
+      </section>
+
+      <section class="kgroup">
+        <h3 class="kh">Specialieji poreikiai</h3>
+        <div class="kpis">
+          ${tile("Poreikiai", "<b>Žmonių</b> su specialiais poreikiais", sp("bent_vienas", "visi"), "bent vienas funkcinis ar specifinis poreikis")}
+          ${tile("Poreikiai", "<b>Be kito suaugusiojo</b>", sp("bent_vienas", "nelydimi_patvirtinta"), `patvirtinta · galimai: ${fmt(sp("bent_vienas", "nelydimi_galimai"))}`, true)}
+          ${tile("Poreikiai", "<b>Nėščiosios</b>", sp("pregnancy", "visi"), `be kito suaugusiojo: ${fmt(sp("pregnancy", "nelydimi_patvirtinta"))} · galimai: ${fmt(sp("pregnancy", "nelydimi_galimai"))}`)}
+          ${tile("Poreikiai", "<b>Kūdikiai</b> / mažamečiai", sp("infant", "visi"), `be kito suaugusiojo: ${fmt(sp("infant", "nelydimi_patvirtinta"))} · galimai: ${fmt(sp("infant", "nelydimi_galimai"))}`)}
+        </div>
+      </section>
+      <div class="grid">
+        <section class="card full">
+          <h2>Specialieji poreikiai pagal tipą</h2>
+          <p class="sub">Nelydimi = nėra kito registruoto suaugusiojo namų ūkio nario</p>
+          <div class="tblwrap">${specKeys.length ? `<table class="hm">
+            <tr><th class="rl">Poreikis</th><th>Iš viso</th><th>Be kito suaugusiojo<br>(patvirtinta)</th><th>Be kito suaugusiojo<br>(galimai)</th></tr>
+            ${specKeys.map(k => `<tr><td class="rl">${esc(GROUP_LABELS[k] || k)}</td><td><b>${fmt(sp(k, "visi"))}</b></td><td>${fmt(sp(k, "nelydimi_patvirtinta"))}</td><td>${fmt(sp(k, "nelydimi_galimai"))}</td></tr>`).join("")}
+          </table>` : `<div class="empty">Duomenų nėra</div>`}</div>
+        </section>
+
+        <section class="card full">
+          <h2>Reikia dėmesio: 65+ be kito suaugusiojo</h2>
+          <p class="sub">Vyresnio amžiaus žmonės, su kuriais nėra kito registruoto suaugusiojo, ir papildomas pažeidžiamumas</p>
+          <div class="pbars">${bars([
+            { label: "65+ be kito suaugusiojo (iš viso)", v: cb("visi") },
+            { label: "su judėjimo sunkumais", v: cb("judejimas") },
+            { label: "su kritiniais vaistais", v: cb("vaistai") },
+            { label: "neturi saugios vietos", v: cb("be_saugios_vietos") }
+          ])}</div>
+        </section>
+
+        <section class="card full">
+          <h2>Amžiaus struktūra pagal centrą</h2>
+          <p class="sub">Žmonių skaičius pagal amžiaus grupę (amžius = šių metų ir gimimo metų skirtumas)</p>
+          <div class="tblwrap"><table class="hm">
+            <tr><th class="rl">Centras</th>${Object.keys(BAND_LABELS).map(b => `<th>${BAND_LABELS[b]}</th>`).join("")}</tr>
+            ${rowCenters.map(c => `<tr><td class="rl">${esc(c)}</td>${Object.keys(BAND_LABELS).map(b => hm(ageCell(c, b), `${c} · ${BAND_LABELS[b]}`)).join("")}</tr>`).join("")}
+          </table></div>
+        </section>
+
+        <section class="card">
+          <h2>Namų ūkių sudėtis</h2>
+          <p class="sub">Namų ūkių skaičius pagal registruotų narių sudėtį</p>
+          <div class="pbars">${bars(sudKeys.map(k => ({ label: SUD_LABELS[k], v: nu("sud_" + k) })))}</div>
+        </section>
+        <section class="card">
+          <h2>Namų ūkių dydis</h2>
+          <p class="sub">Namų ūkių skaičius pagal užregistruotų narių skaičių</p>
+          <div class="pbars">${bars(["1", "2", "3", "4", "5+"].map(k => ({ label: k === "1" ? "1 žmogus" : k + " žmonės", v: nu("dydis_" + k) })))}</div>
+        </section>
+
+        <section class="card full">
+          <h2>Registracijos patikimumas</h2>
+          <p class="sub">Kiek galima pasitikėti namų ūkių sudėties skaičiais (visi centrai)</p>
+          <div class="kpis">
+            ${tile("Registracija", "<b>Namų ūkių</b> iš viso", Q.namu_ukiai, "užregistruotų namų ūkių")}
+            ${tile("Registracija", "<b>Užbaigta</b> registracija", Q.uzbaigti, `užregistruoti visi nurodyto dydžio nariai · ${pct(Q.uzbaigti, Q.namu_ukiai)}`)}
+            ${tile("Registracija", "Ryšys <b>nepatikrintas</b>", Q.rysys_nepatikrintas, "namų ūkių, kurių atstovas nežinomas")}
+            ${tile("Registracija", "<b>Be gimimo metų</b>", Q.be_gimimo_metu, "žmonių")}
+          </div>
+        </section>
+      </div>`;
+
+    el.querySelectorAll("[data-scope]").forEach(b => b.addEventListener("click", () => { state.scope = b.dataset.scope; draw(); }));
+    const s = el.querySelector("#pc");
+    s.addEventListener("change", () => { state.center = s.value; draw(); });
+    el.querySelectorAll("td[data-t]").forEach(td => {
+      td.addEventListener("mousemove", e => showTip(e, esc(td.dataset.t) + " žm."));
+      td.addEventListener("mouseleave", hideTip);
+    });
+  }
+  draw();
+}
+
+const TABS = { overview: ["app", ""], needs: ["needs-app", "#poreikiai"], people: ["people-app", "#zmones"] };
 function setTab(name){
-  const needs = name === "needs";
-  document.getElementById("app").hidden = needs;
-  document.getElementById("needs-app").hidden = !needs;
+  Object.entries(TABS).forEach(([k, [id]]) => { document.getElementById(id).hidden = k !== name; });
   document.querySelectorAll(".tabs button").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === name ? "true" : "false"));
-  try { history.replaceState(null, "", needs ? "#poreikiai" : location.pathname + location.search); } catch (e) {}
+  try { history.replaceState(null, "", TABS[name][1] || location.pathname + location.search); } catch (e) {}
 }
 document.querySelectorAll(".tabs button").forEach(b => b.addEventListener("click", () => setTab(b.dataset.tab)));
 if (location.hash === "#poreikiai") setTab("needs");
+if (location.hash === "#zmones") setTab("people");
 
 function render(rows){
   const kpi = k => (rows.find(r => r.view === "KPI" && r.key === k) || {}).value;
@@ -646,6 +860,7 @@ function render(rows){
     });
   }
   renderNeeds(rows);
+  renderPeople(rows);
 }
 
 fetch("suvestine_duomenys.tsv?t=" + Date.now(), { cache: "no-store" })
