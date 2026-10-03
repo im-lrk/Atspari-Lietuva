@@ -89,6 +89,8 @@ h1 small{display:block;font-size:14px;font-weight:400;color:var(--ink2);margin-t
 .bar span:only-child{border-radius:4px}
 .bar .now{background:var(--s1)}
 .bar .out{background:var(--s2)}
+#whereto .crow{grid-template-columns:270px 1fr 86px}
+@media (max-width:640px){#whereto .crow{grid-template-columns:140px 1fr 70px}}
 /* heatmap */
 .tblwrap{overflow-x:auto}
 .chartscroll{overflow-x:auto}
@@ -150,6 +152,14 @@ const NEED_LABELS = {
   flag_rfl: "Ryšys su artimaisiais",
   flag_protection: "Saugumo signalas",
   flag_follow_up: "Reikia tolesnio veiksmo"
+};
+const DEP_LABELS = {
+  grizta_namo: "Grįžta namo",
+  pas_artimuosius: "Vyksta pas artimuosius / į kitą būstą",
+  kitas_centras: "Perkeliami į kitą centrą",
+  hospitalizuotas: "Hospitalizuojami",
+  nepranese: "Išvyko nepranešę",
+  kita: "Kita"
 };
 const fmt = n => (n == null || isNaN(n)) ? "–" : Number(n).toLocaleString("lt-LT");
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -242,6 +252,13 @@ function render(rows){
         </table></details>
       </section>
 
+      <section class="card full" id="whereto-card">
+        <h2>Kur išvyksta</h2>
+        <p class="sub">Išvykę žmonės pagal išvykimo priežastį (visuose centruose)</p>
+        <div id="whereto"></div>
+        <details><summary>Lentelė pagal centrą</summary><div class="tblwrap" id="wheretotbl"></div></details>
+      </section>
+
       <section class="card full">
         <h2>Poreikiai pagal centrą</h2>
         <p class="sub">Žmonių, kuriems registruojant pažymėtas poreikis, skaičius</p>
@@ -279,6 +296,39 @@ function render(rows){
     row.addEventListener("mousemove", e => showTip(e, `<b>${esc(c)}</b><br>Šiuo metu centre: ${fmt(cval(c,"dabar"))}<br>Išvyko: ${fmt(cval(c,"isvyko"))}<br>Užregistruota: ${fmt(cval(c,"uzregistruota"))}`));
     row.addEventListener("mouseleave", hideTip);
   });
+
+  // ---- where do people go
+  const depRows = rows.filter(r => r.view === "ISVYKIMAI_KUR" && typeof r.value === "number");
+  const depTypes = [...new Set(depRows.map(r => r.key))];
+  const depSum = k => depRows.filter(r => r.key === k).reduce((s, r) => s + r.value, 0);
+  depTypes.sort((a, b) => depSum(b) - depSum(a));
+  const depTotal = depTypes.reduce((s, k) => s + depSum(k), 0);
+  const wEl = document.getElementById("whereto");
+  if (!depTotal) {
+    wEl.innerHTML = `<div class="empty">Išvykimų dar nėra</div>`;
+    document.getElementById("whereto-card").querySelector("details").style.display = "none";
+  } else {
+    const dmax = Math.max(...depTypes.map(depSum));
+    wEl.innerHTML = depTypes.map(k => {
+      const v = depSum(k), pct = Math.round(v / depTotal * 100);
+      return `<div class="crow" data-k="${esc(k)}"><div class="nm" title="${esc(DEP_LABELS[k] || k)}">${esc(DEP_LABELS[k] || k)}</div><div class="bar"><span class="now" style="width:${v / dmax * 100}%"></span></div><div class="tot">${fmt(v)} <small style="font-weight:400;color:var(--ink3)">${pct}%</small></div></div>`;
+    }).join("");
+    wEl.querySelectorAll(".crow").forEach(row => {
+      const k = row.dataset.k;
+      row.addEventListener("mousemove", e => {
+        const per = depRows.filter(r => r.key === k && r.value > 0).map(r => `${esc(r.center || "Nenurodyta")}: ${fmt(r.value)}`).join("<br>");
+        showTip(e, `<b>${esc(DEP_LABELS[k] || k)}</b><br>Iš viso: ${fmt(depSum(k))}<br>${per}`);
+      });
+      row.addEventListener("mouseleave", hideTip);
+    });
+    const dcs = [...new Set(depRows.map(r => r.center || "Nenurodyta"))].sort();
+    const dv = (c, k) => depRows.filter(r => (r.center || "Nenurodyta") === c && r.key === k).reduce((s, r) => s + r.value, 0);
+    document.getElementById("wheretotbl").innerHTML = `<table class="hm">
+      <tr><th class="rl">Centras</th>${depTypes.map(k => `<th>${esc(DEP_LABELS[k] || k)}</th>`).join("")}<th>Iš viso</th></tr>
+      ${dcs.map(c => `<tr><td class="rl">${esc(c)}</td>${depTypes.map(k => dv(c, k) ? `<td>${fmt(dv(c, k))}</td>` : `<td class="zero">0</td>`).join("")}<td><b>${fmt(depTypes.reduce((s, k) => s + dv(c, k), 0))}</b></td></tr>`).join("")}
+      <tr class="total"><td class="rl">Iš viso</td>${depTypes.map(k => `<td>${fmt(depSum(k))}</td>`).join("")}<td>${fmt(depTotal)}</td></tr>
+    </table>`;
+  }
 
   // ---- needs heatmap
   const needKeys = Object.keys(NEED_LABELS);
