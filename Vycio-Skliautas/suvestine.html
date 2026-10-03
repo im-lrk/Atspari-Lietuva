@@ -91,6 +91,16 @@ h1 small{display:block;font-size:14px;font-weight:400;color:var(--ink2);margin-t
 .bar .out{background:var(--s2)}
 #whereto .crow{grid-template-columns:270px 1fr 86px}
 @media (max-width:640px){#whereto .crow{grid-template-columns:140px 1fr 70px}}
+[hidden]{display:none!important}
+.tabs{background:var(--surface);border-bottom:1px solid var(--line)}
+.tabs .in{max-width:1180px;margin:0 auto;padding:0 16px;display:flex;gap:4px;flex-wrap:wrap}
+.tabs button{font:inherit;font-size:16px;font-weight:700;padding:12px 20px;border:0;background:transparent;color:var(--ink2);border-bottom:4px solid transparent;cursor:pointer}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--lrk)}
+.tabs button:focus-visible{outline:2px solid var(--lrk);outline-offset:-2px}
+#needtype .crow,#needcenter .crow{grid-template-columns:270px 1fr 60px}
+@media (max-width:640px){#needtype .crow,#needcenter .crow{grid-template-columns:140px 1fr 44px}}
+#needs-app>.seg{margin-bottom:16px}
+.seg{flex-wrap:wrap}
 /* heatmap */
 .tblwrap{overflow-x:auto}
 .chartscroll{overflow-x:auto}
@@ -136,9 +146,14 @@ details td,details th{border-bottom:1px solid var(--line);padding:3px 10px 3px 0
     <span class="upd" id="upd">Duomenys kraunami…</span>
   </header>
 </div></div>
+<nav class="tabs" role="tablist" aria-label="Skirtukai"><div class="in">
+  <button type="button" role="tab" data-tab="overview" aria-selected="true">Apžvalga</button>
+  <button type="button" role="tab" data-tab="needs" aria-selected="false">Poreikiai</button>
+</div></nav>
 <div class="wrap">
 
   <div id="app"></div>
+  <div id="needs-app" hidden></div>
 </div>
 <div class="tip" id="tip"></div>
 
@@ -194,6 +209,198 @@ function niceMax(v){
   for (const m of [1, 2, 2.5, 5, 10]) if (m * p >= v) return m * p;
   return 10 * p;
 }
+
+const NEED_TYPE_LABELS = {
+  water: "Geriamasis vanduo",
+  food: "Maistas",
+  clothing: "Drabužiai / avalynė",
+  hygiene: "Higienos priemonės",
+  first_aid: "Pirmoji pagalba",
+  medical: "Medicinos pagalba",
+  medication: "Vaistai / medicinos priemonės",
+  pfa: "Emocinė parama",
+  rfl: "Ryšys su artimaisiais",
+  information: "Informacija",
+  documents: "Dokumentai",
+  child_family: "Pagalba vaikui / namų ūkiui",
+  mobility: "Mobilumo pagalba",
+  accommodation: "Apgyvendinimas",
+  transport: "Transportas",
+  interpreter: "Vertėjas",
+  protection: "Saugumas",
+  social: "Socialinė / savivaldybės pagalba",
+  other: "Kita"
+};
+const GROUP_LABELS = {
+  mobility: "Judėjimo sunkumai",
+  vision: "Regos sunkumai",
+  hearing: "Klausos sunkumai",
+  communication: "Bendravimo / supratimo sunkumai",
+  self_care: "Apsitarnavimo sunkumai",
+  pregnancy: "Nėštumas",
+  infant: "Kūdikis / mažas vaikas",
+  older_support: "Vyresnis asmuo, kuriam reikia pagalbos",
+  other: "Kita"
+};
+const PRIO = [
+  { k: "urgent",     label: "Skubiai / dabar",         css: "--q6" },
+  { k: "hours",      label: "Per kelias valandas",     css: "--q4" },
+  { k: "wait",       label: "Gali laukti",             css: "--q2" },
+  { k: "nenurodyta", label: "Prioritetas nenurodytas", css: "--s2" }
+];
+
+function renderNeeds(rows){
+  const el = document.getElementById("needs-app");
+  const NV = rows.filter(r => r.view.startsWith("POR_") && typeof r.value === "number");
+  if (!NV.length) {
+    el.innerHTML = `<div class="err">Poreikių duomenų dar nėra.</div>`;
+    return;
+  }
+  const state = { scope: "DABAR", prio: "all" };
+  const steps = ["--q1","--q2","--q3","--q4","--q5","--q6"];
+  const sum = (arr, f) => arr.filter(f || (() => true)).reduce((s, x) => s + x.n, 0);
+  const lbl = (map, k) => map[k] || k;
+
+  function draw(){
+    const sc = state.scope;
+    const T = NV.filter(r => r.view === "POR_TIPAS_" + sc).map(r => {
+      const [t, p] = r.key.split("|");
+      return { c: r.center || "Nenurodyta", t, p: p || "nenurodyta", n: r.value };
+    });
+    const Z = NV.filter(r => r.view === "POR_ZMONES_" + sc).map(r => ({ c: r.center || "Nenurodyta", p: r.key, n: r.value }));
+    const G = NV.filter(r => r.view === "POR_GRUPES_" + sc).map(r => ({ c: r.center || "Nenurodyta", g: r.key, n: r.value }));
+
+    const centers = [...new Set([...T.map(x => x.c), ...Z.map(x => x.c), ...G.map(x => x.c)])];
+    centers.sort((a, b) => sum(Z, x => x.c === b) - sum(Z, x => x.c === a) || a.localeCompare(b, "lt"));
+
+    const total = sum(Z), pz = k => sum(Z, x => x.p === k);
+    const types = [...new Set(T.map(x => x.t))];
+    const tt = t => sum(T, x => x.t === t);
+    types.sort((a, b) => tt(b) - tt(a));
+
+    const legend = `<div class="legend">${PRIO.map(p => `<span><i style="background:var(${p.css})"></i>${p.label}</span>`).join("")}</div>`;
+    const segBtns = (items, cur, attr) => items.map(([v, t]) => `<button type="button" ${attr}="${v}" aria-pressed="${cur === v}">${t}</button>`).join("");
+
+    // heatmap
+    const hmVal = (c, t) => sum(T, x => x.c === c && x.t === t && (state.prio === "all" || x.p === state.prio));
+    const hmAll = types.flatMap(t => centers.map(c => hmVal(c, t)));
+    const hmMax = Math.max(1, ...hmAll);
+    const hmCell = (v, tip) => {
+      if (!v) return `<td class="zero" data-t="${esc(tip)}: 0">0</td>`;
+      const i = Math.min(steps.length - 1, Math.floor(v / hmMax * (steps.length - 1) + 0.0001));
+      return `<td style="background:var(${steps[i]});color:var(--qt${i + 1})" data-t="${esc(tip)}: ${fmt(v)}">${fmt(v)}</td>`;
+    };
+    const hmTypes = types.filter(t => centers.some(c => hmVal(c, t) > 0));
+
+    // groups
+    const gKeys = [...new Set(G.map(x => x.g))];
+    const gv = (c, g) => sum(G, x => x.c === c && x.g === g);
+    gKeys.sort((a, b) => sum(G, x => x.g === b) - sum(G, x => x.g === a));
+    const gMax = Math.max(1, ...gKeys.flatMap(g => centers.map(c => gv(c, g))));
+    const gCell = (v, tip) => {
+      if (!v) return `<td class="zero" data-t="${esc(tip)}: 0">0</td>`;
+      const i = Math.min(steps.length - 1, Math.floor(v / gMax * (steps.length - 1) + 0.0001));
+      return `<td style="background:var(${steps[i]});color:var(--qt${i + 1})" data-t="${esc(tip)}: ${fmt(v)}">${fmt(v)}</td>`;
+    };
+
+    const maxType = Math.max(1, ...types.map(tt));
+    const maxCenter = Math.max(1, ...centers.map(c => sum(Z, x => x.c === c)));
+    const stacked = (get, max) => PRIO.map(p => {
+      const v = get(p.k);
+      return v > 0 ? `<span style="width:${v / max * 100}%;background:var(${p.css})"></span>` : "";
+    }).join("");
+
+    el.innerHTML = `
+      <div class="seg" role="group" aria-label="Poreikių apimtis">
+        <button type="button" data-scope="DABAR" aria-pressed="${sc === "DABAR"}">Šiuo metu centre</button>
+        <button type="button" data-scope="VISI" aria-pressed="${sc === "VISI"}">Visi užregistruoti</button>
+      </div>
+
+      <section class="kgroup">
+        <h3 class="kh">Žmonės, kuriems reikia pagalbos</h3>
+        <div class="kpis">
+          <div class="tile hero ac"><span class="loc ac">Apgyvendinimo centrai</span><div class="k"><b>Žmonių</b> su poreikiais</div><div class="v">${fmt(total)}</div><div class="src">turi bent vieną poreikį${pz("nenurodyta") ? " · be prioriteto: " + fmt(pz("nenurodyta")) : ""}</div></div>
+          <div class="tile ac"><span class="loc ac">Apgyvendinimo centrai</span><div class="k"><b>Skubiai</b> / dabar</div><div class="v">${fmt(pz("urgent"))}</div><div class="src">žmonių</div></div>
+          <div class="tile ac"><span class="loc ac">Apgyvendinimo centrai</span><div class="k">Per <b>kelias valandas</b></div><div class="v">${fmt(pz("hours"))}</div><div class="src">žmonių</div></div>
+          <div class="tile ac"><span class="loc ac">Apgyvendinimo centrai</span><div class="k">Gali <b>laukti</b></div><div class="v">${fmt(pz("wait"))}</div><div class="src">žmonių</div></div>
+        </div>
+      </section>
+
+      <div class="grid">
+        <section class="card full">
+          <h2>Poreikiai pagal tipą</h2>
+          <p class="sub">Kiek žmonių turi kiekvieną poreikį. Vienas žmogus gali turėti kelis poreikius.</p>
+          ${legend}
+          <div id="needtype">${types.map(t => {
+            const tot = tt(t);
+            return `<div class="crow" data-t="${esc(t)}"><div class="nm" title="${esc(lbl(NEED_TYPE_LABELS, t))}">${esc(lbl(NEED_TYPE_LABELS, t))}</div><div class="bar">${stacked(k => sum(T, x => x.t === t && x.p === k), maxType)}</div><div class="tot">${fmt(tot)}</div></div>`;
+          }).join("")}</div>
+        </section>
+
+        <section class="card full">
+          <h2>Poreikiai pagal centrą</h2>
+          <p class="sub">Žmonių skaičius pagal poreikio tipą ir centrą</p>
+          <div class="seg" role="group" aria-label="Skubumas">
+            ${segBtns([["all", "Visi"], ["urgent", "Skubiai"], ["hours", "Per kelias val."], ["wait", "Gali laukti"], ["nenurodyta", "Nenurodyta"]], state.prio, "data-prio")}
+          </div>
+          <div class="tblwrap" id="needhm">${hmTypes.length ? `<table class="hm">
+            <tr><th class="rl">Poreikis</th>${centers.map(c => `<th>${esc(c)}</th>`).join("")}<th>Iš viso</th></tr>
+            ${hmTypes.map(t => `<tr><td class="rl">${esc(lbl(NEED_TYPE_LABELS, t))}</td>${centers.map(c => hmCell(hmVal(c, t), `${c} · ${lbl(NEED_TYPE_LABELS, t)}`)).join("")}<td><b>${fmt(centers.reduce((s, c) => s + hmVal(c, t), 0))}</b></td></tr>`).join("")}
+          </table>` : `<div class="empty">Šiam skubumui duomenų nėra</div>`}</div>
+        </section>
+
+        <section class="card full">
+          <h2>Skubumas pagal centrą</h2>
+          <p class="sub">Žmonės su poreikiais, kuriuos savanoris įvertino pagal skubumą</p>
+          ${legend}
+          <div id="needcenter">${centers.map(c => {
+            const tot = sum(Z, x => x.c === c);
+            return `<div class="crow" data-c="${esc(c)}"><div class="nm" title="${esc(c)}">${esc(c)}</div><div class="bar">${stacked(k => sum(Z, x => x.c === c && x.p === k), maxCenter)}</div><div class="tot">${fmt(tot)}</div></div>`;
+          }).join("")}</div>
+        </section>
+
+        <section class="card full">
+          <h2>Funkciniai ir specifiniai poreikiai</h2>
+          <p class="sub">Žmonės, kuriems registruojant pažymėti funkciniai ar specifiniai poreikiai</p>
+          <div class="tblwrap" id="needgroups">${gKeys.length ? `<table class="hm">
+            <tr><th class="rl">Poreikis</th>${centers.map(c => `<th>${esc(c)}</th>`).join("")}<th>Iš viso</th></tr>
+            ${gKeys.map(g => `<tr><td class="rl">${esc(lbl(GROUP_LABELS, g))}</td>${centers.map(c => gCell(gv(c, g), `${c} · ${lbl(GROUP_LABELS, g)}`)).join("")}<td><b>${fmt(sum(G, x => x.g === g))}</b></td></tr>`).join("")}
+          </table>` : `<div class="empty">Duomenų nėra</div>`}</div>
+        </section>
+      </div>`;
+
+    // events
+    el.querySelectorAll("[data-scope]").forEach(b => b.addEventListener("click", () => { state.scope = b.dataset.scope; draw(); }));
+    el.querySelectorAll("[data-prio]").forEach(b => b.addEventListener("click", () => { state.prio = b.dataset.prio; draw(); }));
+    el.querySelectorAll("td[data-t]").forEach(td => {
+      td.addEventListener("mousemove", e => showTip(e, esc(td.dataset.t) + " žm."));
+      td.addEventListener("mouseleave", hideTip);
+    });
+    el.querySelectorAll("#needtype .crow").forEach(row => {
+      const t = row.dataset.t;
+      row.addEventListener("mousemove", e => showTip(e, `<b>${esc(lbl(NEED_TYPE_LABELS, t))}</b><br>` +
+        PRIO.map(p => `${p.label}: ${fmt(sum(T, x => x.t === t && x.p === p.k))}`).join("<br>") + `<br>Iš viso: ${fmt(tt(t))}`));
+      row.addEventListener("mouseleave", hideTip);
+    });
+    el.querySelectorAll("#needcenter .crow").forEach(row => {
+      const c = row.dataset.c;
+      row.addEventListener("mousemove", e => showTip(e, `<b>${esc(c)}</b><br>` +
+        PRIO.map(p => `${p.label}: ${fmt(sum(Z, x => x.c === c && x.p === p.k))}`).join("<br>")));
+      row.addEventListener("mouseleave", hideTip);
+    });
+  }
+  draw();
+}
+
+function setTab(name){
+  const needs = name === "needs";
+  document.getElementById("app").hidden = needs;
+  document.getElementById("needs-app").hidden = !needs;
+  document.querySelectorAll(".tabs button").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === name ? "true" : "false"));
+  try { history.replaceState(null, "", needs ? "#poreikiai" : location.pathname + location.search); } catch (e) {}
+}
+document.querySelectorAll(".tabs button").forEach(b => b.addEventListener("click", () => setTab(b.dataset.tab)));
+if (location.hash === "#poreikiai") setTab("needs");
 
 function render(rows){
   const kpi = k => (rows.find(r => r.view === "KPI" && r.key === k) || {}).value;
@@ -438,6 +645,7 @@ function render(rows){
       r.addEventListener("mouseleave", hideTip);
     });
   }
+  renderNeeds(rows);
 }
 
 fetch("suvestine_duomenys.tsv?t=" + Date.now(), { cache: "no-store" })
