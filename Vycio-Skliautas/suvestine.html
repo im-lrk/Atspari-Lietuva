@@ -58,6 +58,15 @@ h1 small{display:block;font-size:14px;font-weight:400;color:var(--ink2);margin-t
 .tile.hero .src{opacity:.9}
 .tile.hero .v{font-size:34px}
 .tile .src{font-size:14px;color:var(--ink);opacity:.75;margin-top:2px;line-height:1.35}
+.loc{display:inline-block;font-size:12.5px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:6px;line-height:1.4}
+.loc.sp{background:#e6e6e6;color:#2b2b2b}
+.loc.ac{background:#fde4e4;color:#a80f14}
+.tile.sp{border-left:5px solid #8c8c8c}
+.tile.ac{border-left:5px solid var(--lrk)}
+.tile.hero .loc.ac{background:#fff;color:#a80f14}
+@media (prefers-color-scheme: dark){:root:where(:not([data-theme="light"])) .loc.sp{background:#3a3a3a;color:#f0f0f0}:root:where(:not([data-theme="light"])) .loc.ac{background:#4a1013;color:#ffd6d6}}
+:root[data-theme="dark"] .loc.sp{background:#3a3a3a;color:#f0f0f0}
+:root[data-theme="dark"] .loc.ac{background:#4a1013;color:#ffd6d6}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px;min-width:0}
 .card.full{grid-column:1/-1}
@@ -195,19 +204,19 @@ function render(rows){
     <section class="kgroup">
       <h3 class="kh">Namų ūkiai: nuo surinkimo punkto iki centro</h3>
       <div class="kpis">
-        <div class="tile"><div class="k"><b>Namų ūkių</b> užregistruota</div><div class="v">${fmt(kpi("surinkimo_namu_ukiai"))}</div><div class="src">surinkimo punktuose</div></div>
-        <div class="tile"><div class="k"><b>Žmonių</b> juose</div><div class="v">${fmt(kpi("surinkimo_zmones"))}</div><div class="src">pagal nurodytą dydį</div></div>
-        <div class="tile"><div class="k"><b>Atvyko visi</b> nariai</div><div class="v">${fmt(kpi("namu_ukiai_visi"))}</div><div class="src">namų ūkių iš ${fmt(kpi("surinkimo_namu_ukiai"))}: visi jų nariai jau užregistruoti centruose</div></div>
-        <div class="tile"><div class="k"><b>Atvyko ne visi</b> nariai</div><div class="v">${fmt(kpi("namu_ukiai_truksta"))}</div><div class="src">namų ūkių iš ${fmt(kpi("surinkimo_namu_ukiai"))}: dalies narių centruose dar neužregistruota</div></div>
+        <div class="tile sp"><span class="loc sp">Surinkimo punktai</span><div class="k"><b>Namų ūkių</b> užregistruota</div><div class="v">${fmt(kpi("surinkimo_namu_ukiai"))}</div><div class="src">namų ūkių atstovai</div></div>
+        <div class="tile sp"><span class="loc sp">Surinkimo punktai</span><div class="k"><b>Žmonių</b> juose</div><div class="v">${fmt(kpi("surinkimo_zmones"))}</div><div class="src">pagal nurodytą namų ūkio dydį</div></div>
+        <div class="tile ac"><span class="loc ac">Apgyvendinimo centrai</span><div class="k"><b>Atvyko visi</b> nariai</div><div class="v">${fmt(kpi("namu_ukiai_visi"))}</div><div class="src">namų ūkių iš ${fmt(kpi("surinkimo_namu_ukiai"))}: visi jų nariai jau užregistruoti centruose</div></div>
+        <div class="tile ac"><span class="loc ac">Apgyvendinimo centrai</span><div class="k"><b>Atvyko ne visi</b> nariai</div><div class="v">${fmt(kpi("namu_ukiai_truksta"))}</div><div class="src">namų ūkių iš ${fmt(kpi("surinkimo_namu_ukiai"))}: dalies narių centruose dar neužregistruota</div></div>
       </div>
     </section>
     <section class="kgroup">
       <h3 class="kh">Žmonės apgyvendinimo centruose</h3>
       <div class="kpis">
-        <div class="tile hero"><div class="k"><b>Šiuo metu</b> centruose</div><div class="v">${fmt(kpi("centruose_dabar"))}</div><div class="src">žmonių</div></div>
-        <div class="tile"><div class="k"><b>Užregistruota</b> iš viso</div><div class="v">${fmt(kpi("centruose_uzregistruota"))}</div><div class="src">žmonių nuo pradžios</div></div>
-        <div class="tile"><div class="k"><b>Išvyko</b> iš centrų</div><div class="v">${fmt(kpi("isvyko"))}</div><div class="src">žmonių</div></div>
-        <div class="tile"><div class="k"><b>Centrų</b> skaičius</div><div class="v">${fmt(centers.length)}</div><div class="src">apgyvendinimo centrų</div></div>
+        <div class="tile hero ac"><span class="loc ac">Apgyvendinimo centrai</span><div class="k"><b>Šiuo metu</b> centruose</div><div class="v">${fmt(kpi("centruose_dabar"))}</div><div class="src">žmonių</div></div>
+        <div class="tile ac"><span class="loc ac">Apgyvendinimo centrai</span><div class="k"><b>Užregistruota</b> iš viso</div><div class="v">${fmt(kpi("centruose_uzregistruota"))}</div><div class="src">žmonių nuo pradžios</div></div>
+        <div class="tile ac"><span class="loc ac">Apgyvendinimo centrai</span><div class="k"><b>Išvyko</b> iš centrų</div><div class="v">${fmt(kpi("isvyko"))}</div><div class="src">žmonių</div></div>
+        <div class="tile ac"><span class="loc ac">Apgyvendinimo centrai</span><div class="k"><b>Centrų</b> skaičius</div><div class="v">${fmt(centers.length)}</div><div class="src">apgyvendinimo centrų</div></div>
       </div>
     </section>
 
