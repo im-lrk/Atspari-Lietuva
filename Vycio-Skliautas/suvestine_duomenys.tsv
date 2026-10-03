@@ -1,18 +1,18 @@
 Rodinys	Centras	Laikas	Rodiklis	Reikšmė
-META			atnaujinta	2026-10-03 12:40
-KPI			surinkimo_namu_ukiai	176
-KPI			surinkimo_zmones	382
-KPI			centruose_uzregistruota	297
-KPI			isvyko	11
-KPI			centruose_dabar	286
-KPI			namu_ukiai_visi	89
-KPI			namu_ukiai_truksta	82
+META			atnaujinta	2026-10-03 12:58
+KPI			surinkimo_namu_ukiai	177
+KPI			surinkimo_zmones	384
+KPI			centruose_uzregistruota	300
+KPI			isvyko	15
+KPI			centruose_dabar	285
+KPI			namu_ukiai_visi	91
+KPI			namu_ukiai_truksta	81
 CENTRAS	Kaišiadorys		uzregistruota	4
 CENTRAS	Kaišiadorys		isvyko	0
 CENTRAS	Kaišiadorys		dabar	4
-CENTRAS	Lazdijų r. sav.		uzregistruota	289
-CENTRAS	Lazdijų r. sav.		isvyko	11
-CENTRAS	Lazdijų r. sav.		dabar	278
+CENTRAS	Lazdijų r. sav.		uzregistruota	292
+CENTRAS	Lazdijų r. sav.		isvyko	15
+CENTRAS	Lazdijų r. sav.		dabar	277
 CENTRAS	Plungė		uzregistruota	1
 CENTRAS	Plungė		isvyko	0
 CENTRAS	Plungė		dabar	1
@@ -32,12 +32,12 @@ POREIKIAI_DABAR	Kaišiadorys		flag_protection	1
 POREIKIAI_DABAR	Kaišiadorys		flag_follow_up	1
 POREIKIAI_DABAR	Lazdijų r. sav.		flag_health	33
 POREIKIAI_DABAR	Lazdijų r. sav.		flag_medication_urgent	35
-POREIKIAI_DABAR	Lazdijų r. sav.		flag_accommodation	160
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_accommodation	158
 POREIKIAI_DABAR	Lazdijų r. sav.		flag_transport	48
-POREIKIAI_DABAR	Lazdijų r. sav.		flag_interpreter	14
-POREIKIAI_DABAR	Lazdijų r. sav.		flag_rfl	27
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_interpreter	13
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_rfl	26
 POREIKIAI_DABAR	Lazdijų r. sav.		flag_protection	18
-POREIKIAI_DABAR	Lazdijų r. sav.		flag_follow_up	160
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_follow_up	159
 POREIKIAI_DABAR	Plungė		flag_health	0
 POREIKIAI_DABAR	Plungė		flag_medication_urgent	0
 POREIKIAI_DABAR	Plungė		flag_accommodation	1
@@ -138,9 +138,10 @@ EIGA		2026-10-03 11:00	surinkimo_namu_ukiai	34
 EIGA		2026-10-03 11:00	atvyko_i_centrus	85
 EIGA		2026-10-03 11:00	isvyko	11
 EIGA		2026-10-03 11:00	centruose_tuo_metu	258
-EIGA		2026-10-03 12:00	surinkimo_namu_ukiai	16
-EIGA		2026-10-03 12:00	atvyko_i_centrus	28
-EIGA		2026-10-03 12:00	isvyko	0
-EIGA		2026-10-03 12:00	centruose_tuo_metu	286
-ISVYKIMAI_KUR	Lazdijų r. sav.		grizta_namo	10
+EIGA		2026-10-03 12:00	surinkimo_namu_ukiai	17
+EIGA		2026-10-03 12:00	atvyko_i_centrus	31
+EIGA		2026-10-03 12:00	isvyko	4
+EIGA		2026-10-03 12:00	centruose_tuo_metu	285
+ISVYKIMAI_KUR	Lazdijų r. sav.		kitas_centras	1
+ISVYKIMAI_KUR	Lazdijų r. sav.		grizta_namo	13
 ISVYKIMAI_KUR	Lazdijų r. sav.		pas_artimuosius	1
