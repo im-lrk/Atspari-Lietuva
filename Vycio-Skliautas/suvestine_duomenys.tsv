@@ -1,5 +1,5 @@
 Rodinys	Centras	Laikas	Rodiklis	Reikšmė
-META			atnaujinta	2026-10-03 15:45
+META			atnaujinta	2026-10-03 19:00
 KPI			surinkimo_namu_ukiai	183
 KPI			surinkimo_zmones	401
 KPI			centruose_uzregistruota	313
@@ -357,3 +357,150 @@ POR_GRUPES_DABAR	Lazdijų r. sav.		older_support	1
 POR_GRUPES_DABAR	Kaišiadorys		mobility	1
 POR_GRUPES_DABAR	Kaišiadorys		vision	1
 POR_GRUPES_DABAR	Kaišiadorys		hearing	1
+ZM_NU_VISI	Lazdijų r. sav.		viso	147
+ZM_NU_VISI	Lazdijų r. sav.		su_vaikais	16
+ZM_NU_VISI	Veisėjai		viso	1
+ZM_NU_VISI	Veisėjai		su_vaikais	0
+ZM_NU_VISI	Utena		viso	1
+ZM_NU_VISI	Utena		su_vaikais	0
+ZM_NU_VISI	Kaišiadorys		viso	1
+ZM_NU_VISI	Kaišiadorys		su_vaikais	0
+ZM_NU_VISI	Lazdijų r. sav.		sud_vienas_suauges	72
+ZM_NU_VISI	Lazdijų r. sav.		sud_tik_suaugusieji	59
+ZM_NU_VISI	Lazdijų r. sav.		sud_vienas_su_vaikais	6
+ZM_NU_VISI	Lazdijų r. sav.		sud_suaugusieji_su_vaikais	9
+ZM_NU_VISI	Veisėjai		sud_vienas_suauges	1
+ZM_NU_VISI	Utena		sud_tik_suaugusieji	1
+ZM_NU_VISI	Kaišiadorys		sud_tik_suaugusieji	1
+ZM_NU_VISI	Lazdijų r. sav.		sud_tik_vaikai	1
+ZM_NU_VISI	Lazdijų r. sav.		dydis_1	73
+ZM_NU_VISI	Lazdijų r. sav.		dydis_5+	7
+ZM_NU_VISI	Lazdijų r. sav.		dydis_3	19
+ZM_NU_VISI	Lazdijų r. sav.		dydis_4	11
+ZM_NU_VISI	Lazdijų r. sav.		dydis_2	37
+ZM_NU_VISI	Veisėjai		dydis_1	1
+ZM_NU_VISI	Utena		dydis_4	1
+ZM_NU_VISI	Kaišiadorys		dydis_4	1
+ZM_NELYDIMI_VISI	Lazdijų r. sav.		galimai|1|nu	1
+ZM_NELYDIMI_VISI	Lazdijų r. sav.		galimai|1|zm	1
+ZM_AMZIUS_VISI	Lazdijų r. sav.		35-64	206
+ZM_AMZIUS_VISI	Lazdijų r. sav.		65-79	30
+ZM_AMZIUS_VISI	Lazdijų r. sav.		80+	2
+ZM_AMZIUS_VISI	Lazdijų r. sav.		18-34	45
+ZM_AMZIUS_VISI	Lazdijų r. sav.		3-5	4
+ZM_AMZIUS_VISI	Lazdijų r. sav.		12-17	9
+ZM_AMZIUS_VISI	Veisėjai		18-34	1
+ZM_AMZIUS_VISI	Lazdijų r. sav.		6-11	7
+ZM_AMZIUS_VISI	Plungė		35-64	1
+ZM_AMZIUS_VISI	Utena		35-64	2
+ZM_AMZIUS_VISI	Kaišiadorys		35-64	4
+ZM_AMZIUS_VISI	Lazdijų r. sav.		0-2	2
+ZM_SENJORAI_VISI	Lazdijų r. sav.		65-79|visi	30
+ZM_SENJORAI_VISI	Lazdijų r. sav.		80+|visi	2
+ZM_SENJORAI_VISI	Lazdijų r. sav.		65-79|vienisi_patvirtinta	6
+ZM_SENJORAI_VISI	Lazdijų r. sav.		65-79|vienisi_galimai	1
+ZM_SPEC_VISI	Lazdijų r. sav.		bent_vienas|visi	49
+ZM_SPEC_VISI	Kaišiadorys		bent_vienas|visi	2
+ZM_SPEC_VISI	Lazdijų r. sav.		bent_vienas|nelydimi_patvirtinta	7
+ZM_SPEC_VISI	Lazdijų r. sav.		bent_vienas|nelydimi_galimai	4
+ZM_SPEC_VISI	Lazdijų r. sav.		mobility|visi	10
+ZM_SPEC_VISI	Lazdijų r. sav.		hearing|visi	6
+ZM_SPEC_VISI	Lazdijų r. sav.		vision|visi	10
+ZM_SPEC_VISI	Lazdijų r. sav.		other|visi	12
+ZM_SPEC_VISI	Lazdijų r. sav.		self_care|visi	1
+ZM_SPEC_VISI	Lazdijų r. sav.		pregnancy|visi	3
+ZM_SPEC_VISI	Lazdijų r. sav.		infant|visi	11
+ZM_SPEC_VISI	Lazdijų r. sav.		older_support|visi	1
+ZM_SPEC_VISI	Kaišiadorys		mobility|visi	1
+ZM_SPEC_VISI	Kaišiadorys		vision|visi	1
+ZM_SPEC_VISI	Kaišiadorys		hearing|visi	1
+ZM_SPEC_VISI	Lazdijų r. sav.		communication|visi	2
+ZM_SPEC_VISI	Lazdijų r. sav.		mobility|nelydimi_patvirtinta	2
+ZM_SPEC_VISI	Lazdijų r. sav.		vision|nelydimi_patvirtinta	1
+ZM_SPEC_VISI	Lazdijų r. sav.		mobility|nelydimi_galimai	2
+ZM_SPEC_VISI	Lazdijų r. sav.		vision|nelydimi_galimai	1
+ZM_SPEC_VISI	Lazdijų r. sav.		self_care|nelydimi_galimai	1
+ZM_SPEC_VISI	Lazdijų r. sav.		hearing|nelydimi_galimai	1
+ZM_SPEC_VISI	Lazdijų r. sav.		pregnancy|nelydimi_galimai	1
+ZM_SPEC_VISI	Lazdijų r. sav.		other|nelydimi_patvirtinta	3
+ZM_SPEC_VISI	Lazdijų r. sav.		pregnancy|nelydimi_patvirtinta	1
+ZM_SPEC_VISI	Lazdijų r. sav.		communication|nelydimi_patvirtinta	1
+ZM_SPEC_VISI	Lazdijų r. sav.		communication|nelydimi_galimai	1
+ZM_DERINYS_VISI	Lazdijų r. sav.		visi	7
+ZM_DERINYS_VISI	Lazdijų r. sav.		judejimas	1
+ZM_DERINYS_VISI	Lazdijų r. sav.		vaistai	2
+ZM_DERINYS_VISI	Lazdijų r. sav.		be_saugios_vietos	3
+ZM_NU_DABAR	Lazdijų r. sav.		viso	132
+ZM_NU_DABAR	Lazdijų r. sav.		su_vaikais	15
+ZM_NU_DABAR	Veisėjai		viso	1
+ZM_NU_DABAR	Veisėjai		su_vaikais	0
+ZM_NU_DABAR	Utena		viso	1
+ZM_NU_DABAR	Utena		su_vaikais	0
+ZM_NU_DABAR	Kaišiadorys		viso	1
+ZM_NU_DABAR	Kaišiadorys		su_vaikais	0
+ZM_NU_DABAR	Lazdijų r. sav.		sud_vienas_suauges	64
+ZM_NU_DABAR	Lazdijų r. sav.		sud_tik_suaugusieji	53
+ZM_NU_DABAR	Lazdijų r. sav.		sud_vienas_su_vaikais	7
+ZM_NU_DABAR	Lazdijų r. sav.		sud_suaugusieji_su_vaikais	7
+ZM_NU_DABAR	Veisėjai		sud_vienas_suauges	1
+ZM_NU_DABAR	Utena		sud_tik_suaugusieji	1
+ZM_NU_DABAR	Kaišiadorys		sud_tik_suaugusieji	1
+ZM_NU_DABAR	Lazdijų r. sav.		sud_tik_vaikai	1
+ZM_NU_DABAR	Lazdijų r. sav.		dydis_1	65
+ZM_NU_DABAR	Lazdijų r. sav.		dydis_5+	7
+ZM_NU_DABAR	Lazdijų r. sav.		dydis_3	19
+ZM_NU_DABAR	Lazdijų r. sav.		dydis_2	34
+ZM_NU_DABAR	Lazdijų r. sav.		dydis_4	7
+ZM_NU_DABAR	Veisėjai		dydis_1	1
+ZM_NU_DABAR	Utena		dydis_4	1
+ZM_NU_DABAR	Kaišiadorys		dydis_4	1
+ZM_NELYDIMI_DABAR	Lazdijų r. sav.		galimai|1|nu	1
+ZM_NELYDIMI_DABAR	Lazdijų r. sav.		galimai|1|zm	1
+ZM_AMZIUS_DABAR	Lazdijų r. sav.		35-64	183
+ZM_AMZIUS_DABAR	Lazdijų r. sav.		65-79	29
+ZM_AMZIUS_DABAR	Lazdijų r. sav.		80+	2
+ZM_AMZIUS_DABAR	Lazdijų r. sav.		18-34	36
+ZM_AMZIUS_DABAR	Lazdijų r. sav.		3-5	4
+ZM_AMZIUS_DABAR	Lazdijų r. sav.		12-17	9
+ZM_AMZIUS_DABAR	Veisėjai		18-34	1
+ZM_AMZIUS_DABAR	Plungė		35-64	1
+ZM_AMZIUS_DABAR	Utena		35-64	2
+ZM_AMZIUS_DABAR	Lazdijų r. sav.		6-11	5
+ZM_AMZIUS_DABAR	Kaišiadorys		35-64	4
+ZM_AMZIUS_DABAR	Lazdijų r. sav.		0-2	2
+ZM_SENJORAI_DABAR	Lazdijų r. sav.		65-79|visi	29
+ZM_SENJORAI_DABAR	Lazdijų r. sav.		80+|visi	2
+ZM_SENJORAI_DABAR	Lazdijų r. sav.		65-79|vienisi_patvirtinta	6
+ZM_SENJORAI_DABAR	Lazdijų r. sav.		65-79|vienisi_galimai	1
+ZM_SPEC_DABAR	Lazdijų r. sav.		bent_vienas|visi	45
+ZM_SPEC_DABAR	Kaišiadorys		bent_vienas|visi	2
+ZM_SPEC_DABAR	Lazdijų r. sav.		bent_vienas|nelydimi_patvirtinta	5
+ZM_SPEC_DABAR	Lazdijų r. sav.		bent_vienas|nelydimi_galimai	3
+ZM_SPEC_DABAR	Lazdijų r. sav.		mobility|visi	8
+ZM_SPEC_DABAR	Lazdijų r. sav.		hearing|visi	6
+ZM_SPEC_DABAR	Lazdijų r. sav.		vision|visi	9
+ZM_SPEC_DABAR	Lazdijų r. sav.		other|visi	12
+ZM_SPEC_DABAR	Lazdijų r. sav.		self_care|visi	1
+ZM_SPEC_DABAR	Lazdijų r. sav.		pregnancy|visi	3
+ZM_SPEC_DABAR	Lazdijų r. sav.		infant|visi	11
+ZM_SPEC_DABAR	Lazdijų r. sav.		older_support|visi	1
+ZM_SPEC_DABAR	Kaišiadorys		mobility|visi	1
+ZM_SPEC_DABAR	Kaišiadorys		vision|visi	1
+ZM_SPEC_DABAR	Kaišiadorys		hearing|visi	1
+ZM_SPEC_DABAR	Lazdijų r. sav.		mobility|nelydimi_patvirtinta	1
+ZM_SPEC_DABAR	Lazdijų r. sav.		mobility|nelydimi_galimai	2
+ZM_SPEC_DABAR	Lazdijų r. sav.		vision|nelydimi_galimai	1
+ZM_SPEC_DABAR	Lazdijų r. sav.		self_care|nelydimi_galimai	1
+ZM_SPEC_DABAR	Lazdijų r. sav.		hearing|nelydimi_galimai	1
+ZM_SPEC_DABAR	Lazdijų r. sav.		pregnancy|nelydimi_galimai	1
+ZM_SPEC_DABAR	Lazdijų r. sav.		other|nelydimi_patvirtinta	3
+ZM_SPEC_DABAR	Lazdijų r. sav.		pregnancy|nelydimi_patvirtinta	1
+ZM_DERINYS_DABAR	Lazdijų r. sav.		visi	7
+ZM_DERINYS_DABAR	Lazdijų r. sav.		judejimas	1
+ZM_DERINYS_DABAR	Lazdijų r. sav.		vaistai	2
+ZM_DERINYS_DABAR	Lazdijų r. sav.		be_saugios_vietos	3
+ZM_KOKYBE			zmones	313
+ZM_KOKYBE			namu_ukiai	150
+ZM_KOKYBE			uzbaigti	113
+ZM_KOKYBE			rysys_nepatikrintas	10
+ZM_KOKYBE			be_gimimo_metu	0
