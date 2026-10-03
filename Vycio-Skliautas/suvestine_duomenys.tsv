@@ -1,18 +1,18 @@
 Rodinys	Centras	Laikas	Rodiklis	Reikšmė
-META			atnaujinta	2026-10-03 11:31
-KPI			surinkimo_namu_ukiai	145
-KPI			surinkimo_zmones	314
-KPI			centruose_uzregistruota	230
+META			atnaujinta	2026-10-03 11:49
+KPI			surinkimo_namu_ukiai	157
+KPI			surinkimo_zmones	348
+KPI			centruose_uzregistruota	255
 KPI			isvyko	3
-KPI			centruose_dabar	227
-KPI			namu_ukiai_visi	70
-KPI			namu_ukiai_truksta	73
-CENTRAS	Kaišiadorys		uzregistruota	3
+KPI			centruose_dabar	252
+KPI			namu_ukiai_visi	75
+KPI			namu_ukiai_truksta	80
+CENTRAS	Kaišiadorys		uzregistruota	4
 CENTRAS	Kaišiadorys		isvyko	0
-CENTRAS	Kaišiadorys		dabar	3
-CENTRAS	Lazdijų r. sav.		uzregistruota	223
+CENTRAS	Kaišiadorys		dabar	4
+CENTRAS	Lazdijų r. sav.		uzregistruota	247
 CENTRAS	Lazdijų r. sav.		isvyko	3
-CENTRAS	Lazdijų r. sav.		dabar	220
+CENTRAS	Lazdijų r. sav.		dabar	244
 CENTRAS	Plungė		uzregistruota	1
 CENTRAS	Plungė		isvyko	0
 CENTRAS	Plungė		dabar	1
@@ -22,22 +22,22 @@ CENTRAS	Utena		dabar	2
 CENTRAS	Veisėjai		uzregistruota	1
 CENTRAS	Veisėjai		isvyko	0
 CENTRAS	Veisėjai		dabar	1
-POREIKIAI_DABAR	Kaišiadorys		flag_health	0
+POREIKIAI_DABAR	Kaišiadorys		flag_health	1
 POREIKIAI_DABAR	Kaišiadorys		flag_medication_urgent	0
-POREIKIAI_DABAR	Kaišiadorys		flag_accommodation	2
-POREIKIAI_DABAR	Kaišiadorys		flag_transport	1
+POREIKIAI_DABAR	Kaišiadorys		flag_accommodation	3
+POREIKIAI_DABAR	Kaišiadorys		flag_transport	2
 POREIKIAI_DABAR	Kaišiadorys		flag_interpreter	0
-POREIKIAI_DABAR	Kaišiadorys		flag_rfl	0
-POREIKIAI_DABAR	Kaišiadorys		flag_protection	0
-POREIKIAI_DABAR	Kaišiadorys		flag_follow_up	0
-POREIKIAI_DABAR	Lazdijų r. sav.		flag_health	22
-POREIKIAI_DABAR	Lazdijų r. sav.		flag_medication_urgent	29
-POREIKIAI_DABAR	Lazdijų r. sav.		flag_accommodation	127
-POREIKIAI_DABAR	Lazdijų r. sav.		flag_transport	41
-POREIKIAI_DABAR	Lazdijų r. sav.		flag_interpreter	7
-POREIKIAI_DABAR	Lazdijų r. sav.		flag_rfl	17
-POREIKIAI_DABAR	Lazdijų r. sav.		flag_protection	14
-POREIKIAI_DABAR	Lazdijų r. sav.		flag_follow_up	129
+POREIKIAI_DABAR	Kaišiadorys		flag_rfl	1
+POREIKIAI_DABAR	Kaišiadorys		flag_protection	1
+POREIKIAI_DABAR	Kaišiadorys		flag_follow_up	1
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_health	25
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_medication_urgent	31
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_accommodation	140
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_transport	43
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_interpreter	8
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_rfl	19
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_protection	17
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_follow_up	141
 POREIKIAI_DABAR	Plungė		flag_health	0
 POREIKIAI_DABAR	Plungė		flag_medication_urgent	0
 POREIKIAI_DABAR	Plungė		flag_accommodation	1
@@ -62,22 +62,22 @@ POREIKIAI_DABAR	Veisėjai		flag_interpreter	0
 POREIKIAI_DABAR	Veisėjai		flag_rfl	0
 POREIKIAI_DABAR	Veisėjai		flag_protection	0
 POREIKIAI_DABAR	Veisėjai		flag_follow_up	1
-POREIKIAI_VISI	Kaišiadorys		flag_health	0
+POREIKIAI_VISI	Kaišiadorys		flag_health	1
 POREIKIAI_VISI	Kaišiadorys		flag_medication_urgent	0
-POREIKIAI_VISI	Kaišiadorys		flag_accommodation	2
-POREIKIAI_VISI	Kaišiadorys		flag_transport	1
+POREIKIAI_VISI	Kaišiadorys		flag_accommodation	3
+POREIKIAI_VISI	Kaišiadorys		flag_transport	2
 POREIKIAI_VISI	Kaišiadorys		flag_interpreter	0
-POREIKIAI_VISI	Kaišiadorys		flag_rfl	0
-POREIKIAI_VISI	Kaišiadorys		flag_protection	0
-POREIKIAI_VISI	Kaišiadorys		flag_follow_up	0
-POREIKIAI_VISI	Lazdijų r. sav.		flag_health	23
-POREIKIAI_VISI	Lazdijų r. sav.		flag_medication_urgent	29
-POREIKIAI_VISI	Lazdijų r. sav.		flag_accommodation	130
-POREIKIAI_VISI	Lazdijų r. sav.		flag_transport	44
-POREIKIAI_VISI	Lazdijų r. sav.		flag_interpreter	7
-POREIKIAI_VISI	Lazdijų r. sav.		flag_rfl	20
-POREIKIAI_VISI	Lazdijų r. sav.		flag_protection	16
-POREIKIAI_VISI	Lazdijų r. sav.		flag_follow_up	132
+POREIKIAI_VISI	Kaišiadorys		flag_rfl	1
+POREIKIAI_VISI	Kaišiadorys		flag_protection	1
+POREIKIAI_VISI	Kaišiadorys		flag_follow_up	1
+POREIKIAI_VISI	Lazdijų r. sav.		flag_health	26
+POREIKIAI_VISI	Lazdijų r. sav.		flag_medication_urgent	31
+POREIKIAI_VISI	Lazdijų r. sav.		flag_accommodation	143
+POREIKIAI_VISI	Lazdijų r. sav.		flag_transport	46
+POREIKIAI_VISI	Lazdijų r. sav.		flag_interpreter	8
+POREIKIAI_VISI	Lazdijų r. sav.		flag_rfl	22
+POREIKIAI_VISI	Lazdijų r. sav.		flag_protection	19
+POREIKIAI_VISI	Lazdijų r. sav.		flag_follow_up	144
 POREIKIAI_VISI	Plungė		flag_health	0
 POREIKIAI_VISI	Plungė		flag_medication_urgent	0
 POREIKIAI_VISI	Plungė		flag_accommodation	1
@@ -134,7 +134,9 @@ EIGA		2026-10-03 10:00	surinkimo_namu_ukiai	62
 EIGA		2026-10-03 10:00	atvyko_i_centrus	134
 EIGA		2026-10-03 10:00	isvyko	0
 EIGA		2026-10-03 10:00	centruose_tuo_metu	184
-EIGA		2026-10-03 11:00	surinkimo_namu_ukiai	17
-EIGA		2026-10-03 11:00	atvyko_i_centrus	46
+EIGA		2026-10-03 11:00	surinkimo_namu_ukiai	30
+EIGA		2026-10-03 11:00	atvyko_i_centrus	71
 EIGA		2026-10-03 11:00	isvyko	3
-EIGA		2026-10-03 11:00	centruose_tuo_metu	227
+EIGA		2026-10-03 11:00	centruose_tuo_metu	252
+ISVYKIMAI_KUR	Lazdijų r. sav.		grizta_namo	2
+ISVYKIMAI_KUR	Lazdijų r. sav.		pas_artimuosius	1
