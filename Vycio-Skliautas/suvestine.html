@@ -497,7 +497,7 @@ function renderPeople(rows){
         <h3 class="kh">Vaikai ir nelydimi nepilnamečiai</h3>
         <div class="kpis">
           ${tile("Vaikai", "<b>Vaikų</b> iki 18 m.", children, "žmonių")}
-          ${tile("Vaikai", "Namų ūkių <b>su vaikais</b>", nu("su_vaikais"), "namų ūkių")}
+          ${tile("Vaikai", "<b>Vienas suaugęs</b> su vaikais", nu("sud_vienas_su_vaikais"), "namų ūkių")}
           ${tile("Nelydimi", "<b>Nelydimi</b> nepilnamečiai", unSum("patvirtinta", "zm"), `patvirtinta · namų ūkių: ${fmt(unSum("patvirtinta", "nu"))}`, true)}
           ${tile("Nelydimi", "<b>Galimai</b> nelydimi", unSum("galimai", "zm"), `reikia patikrinti · namų ūkių: ${fmt(unSum("galimai", "nu"))}`)}
         </div>
