@@ -1,18 +1,18 @@
 Rodinys	Centras	Laikas	Rodiklis	Reikšmė
-META			atnaujinta	2026-10-03 13:46
-KPI			surinkimo_namu_ukiai	180
-KPI			surinkimo_zmones	393
-KPI			centruose_uzregistruota	302
-KPI			isvyko	29
-KPI			centruose_dabar	273
+META			atnaujinta	2026-10-03 13:54
+KPI			surinkimo_namu_ukiai	182
+KPI			surinkimo_zmones	398
+KPI			centruose_uzregistruota	306
+KPI			isvyko	34
+KPI			centruose_dabar	272
 KPI			namu_ukiai_visi	91
-KPI			namu_ukiai_truksta	84
+KPI			namu_ukiai_truksta	86
 CENTRAS	Kaišiadorys		uzregistruota	4
 CENTRAS	Kaišiadorys		isvyko	0
 CENTRAS	Kaišiadorys		dabar	4
-CENTRAS	Lazdijų r. sav.		uzregistruota	294
-CENTRAS	Lazdijų r. sav.		isvyko	29
-CENTRAS	Lazdijų r. sav.		dabar	265
+CENTRAS	Lazdijų r. sav.		uzregistruota	298
+CENTRAS	Lazdijų r. sav.		isvyko	34
+CENTRAS	Lazdijų r. sav.		dabar	264
 CENTRAS	Plungė		uzregistruota	1
 CENTRAS	Plungė		isvyko	0
 CENTRAS	Plungė		dabar	1
@@ -30,14 +30,14 @@ POREIKIAI_DABAR	Kaišiadorys		flag_interpreter	0
 POREIKIAI_DABAR	Kaišiadorys		flag_rfl	1
 POREIKIAI_DABAR	Kaišiadorys		flag_protection	1
 POREIKIAI_DABAR	Kaišiadorys		flag_follow_up	1
-POREIKIAI_DABAR	Lazdijų r. sav.		flag_health	33
-POREIKIAI_DABAR	Lazdijų r. sav.		flag_medication_urgent	34
-POREIKIAI_DABAR	Lazdijų r. sav.		flag_accommodation	150
-POREIKIAI_DABAR	Lazdijų r. sav.		flag_transport	46
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_health	32
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_medication_urgent	32
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_accommodation	151
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_transport	45
 POREIKIAI_DABAR	Lazdijų r. sav.		flag_interpreter	11
 POREIKIAI_DABAR	Lazdijų r. sav.		flag_rfl	25
 POREIKIAI_DABAR	Lazdijų r. sav.		flag_protection	18
-POREIKIAI_DABAR	Lazdijų r. sav.		flag_follow_up	151
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_follow_up	149
 POREIKIAI_DABAR	Plungė		flag_health	0
 POREIKIAI_DABAR	Plungė		flag_medication_urgent	0
 POREIKIAI_DABAR	Plungė		flag_accommodation	1
@@ -70,14 +70,14 @@ POREIKIAI_VISI	Kaišiadorys		flag_interpreter	0
 POREIKIAI_VISI	Kaišiadorys		flag_rfl	1
 POREIKIAI_VISI	Kaišiadorys		flag_protection	1
 POREIKIAI_VISI	Kaišiadorys		flag_follow_up	1
-POREIKIAI_VISI	Lazdijų r. sav.		flag_health	36
+POREIKIAI_VISI	Lazdijų r. sav.		flag_health	38
 POREIKIAI_VISI	Lazdijų r. sav.		flag_medication_urgent	36
-POREIKIAI_VISI	Lazdijų r. sav.		flag_accommodation	168
-POREIKIAI_VISI	Lazdijų r. sav.		flag_transport	51
+POREIKIAI_VISI	Lazdijų r. sav.		flag_accommodation	170
+POREIKIAI_VISI	Lazdijų r. sav.		flag_transport	53
 POREIKIAI_VISI	Lazdijų r. sav.		flag_interpreter	16
-POREIKIAI_VISI	Lazdijų r. sav.		flag_rfl	30
+POREIKIAI_VISI	Lazdijų r. sav.		flag_rfl	31
 POREIKIAI_VISI	Lazdijų r. sav.		flag_protection	20
-POREIKIAI_VISI	Lazdijų r. sav.		flag_follow_up	170
+POREIKIAI_VISI	Lazdijų r. sav.		flag_follow_up	172
 POREIKIAI_VISI	Plungė		flag_health	0
 POREIKIAI_VISI	Plungė		flag_medication_urgent	0
 POREIKIAI_VISI	Plungė		flag_accommodation	1
@@ -140,25 +140,25 @@ EIGA		2026-10-03 11:00	isvyko	11
 EIGA		2026-10-03 11:00	centruose_tuo_metu	258
 EIGA		2026-10-03 12:00	surinkimo_namu_ukiai	17
 EIGA		2026-10-03 12:00	atvyko_i_centrus	31
-EIGA		2026-10-03 12:00	isvyko	5
-EIGA		2026-10-03 12:00	centruose_tuo_metu	284
-EIGA		2026-10-03 13:00	surinkimo_namu_ukiai	3
-EIGA		2026-10-03 13:00	atvyko_i_centrus	2
-EIGA		2026-10-03 13:00	isvyko	13
-EIGA		2026-10-03 13:00	centruose_tuo_metu	273
+EIGA		2026-10-03 12:00	isvyko	6
+EIGA		2026-10-03 12:00	centruose_tuo_metu	283
+EIGA		2026-10-03 13:00	surinkimo_namu_ukiai	5
+EIGA		2026-10-03 13:00	atvyko_i_centrus	6
+EIGA		2026-10-03 13:00	isvyko	17
+EIGA		2026-10-03 13:00	centruose_tuo_metu	272
+ISVYKIMAI_KUR	Lazdijų r. sav.		grizta_namo	28
 ISVYKIMAI_KUR	Lazdijų r. sav.		pas_artimuosius	3
-ISVYKIMAI_KUR	Nenurodyta		grizta_namo	5
-ISVYKIMAI_KUR	Lazdijų r. sav.		grizta_namo	22
+ISVYKIMAI_KUR	Nenurodyta		grizta_namo	4
 ISVYKIMAI_KUR	Lazdijų r. sav.		kitas_centras	1
-POR_TIPAS_VISI	Lazdijų r. sav.		accommodation|wait	133
-POR_TIPAS_VISI	Lazdijų r. sav.		water|wait	181
-POR_TIPAS_VISI	Lazdijų r. sav.		food|wait	175
+POR_TIPAS_VISI	Lazdijų r. sav.		accommodation|wait	134
+POR_TIPAS_VISI	Lazdijų r. sav.		water|wait	182
+POR_TIPAS_VISI	Lazdijų r. sav.		food|wait	176
 POR_TIPAS_VISI	Lazdijų r. sav.		medication|wait	53
 POR_TIPAS_VISI	Lazdijų r. sav.		information|wait	58
-POR_TIPAS_VISI	Lazdijų r. sav.		transport|wait	41
-POR_TIPAS_VISI	Lazdijų r. sav.		hygiene|wait	50
+POR_TIPAS_VISI	Lazdijų r. sav.		transport|wait	42
+POR_TIPAS_VISI	Lazdijų r. sav.		hygiene|wait	51
 POR_TIPAS_VISI	Lazdijų r. sav.		pfa|wait	18
-POR_TIPAS_VISI	Lazdijų r. sav.		rfl|wait	14
+POR_TIPAS_VISI	Lazdijų r. sav.		rfl|wait	15
 POR_TIPAS_VISI	Lazdijų r. sav.		documents|wait	4
 POR_TIPAS_VISI	Lazdijų r. sav.		protection|wait	10
 POR_TIPAS_VISI	Lazdijų r. sav.		other|wait	13
@@ -171,11 +171,11 @@ POR_TIPAS_VISI	Lazdijų r. sav.		interpreter|hours	3
 POR_TIPAS_VISI	Lazdijų r. sav.		hygiene|hours	8
 POR_TIPAS_VISI	Lazdijų r. sav.		medical|hours	8
 POR_TIPAS_VISI	Lazdijų r. sav.		medication|hours	6
-POR_TIPAS_VISI	Lazdijų r. sav.		water|urgent	19
-POR_TIPAS_VISI	Lazdijų r. sav.		food|urgent	19
-POR_TIPAS_VISI	Lazdijų r. sav.		medical|urgent	13
-POR_TIPAS_VISI	Lazdijų r. sav.		medication|urgent	9
-POR_TIPAS_VISI	Lazdijų r. sav.		accommodation|urgent	14
+POR_TIPAS_VISI	Lazdijų r. sav.		water|urgent	20
+POR_TIPAS_VISI	Lazdijų r. sav.		food|urgent	20
+POR_TIPAS_VISI	Lazdijų r. sav.		medical|urgent	14
+POR_TIPAS_VISI	Lazdijų r. sav.		medication|urgent	10
+POR_TIPAS_VISI	Lazdijų r. sav.		accommodation|urgent	15
 POR_TIPAS_VISI	Lazdijų r. sav.		protection|urgent	6
 POR_TIPAS_VISI	Lazdijų r. sav.		clothing|hours	8
 POR_TIPAS_VISI	Lazdijų r. sav.		pfa|hours	4
@@ -184,23 +184,23 @@ POR_TIPAS_VISI	Lazdijų r. sav.		transport|hours	7
 POR_TIPAS_VISI	Lazdijų r. sav.		protection|hours	4
 POR_TIPAS_VISI	Lazdijų r. sav.		social|hours	1
 POR_TIPAS_VISI	Lazdijų r. sav.		clothing|wait	26
-POR_TIPAS_VISI	Lazdijų r. sav.		first_aid|wait	1
+POR_TIPAS_VISI	Lazdijų r. sav.		first_aid|wait	2
 POR_TIPAS_VISI	Lazdijų r. sav.		rfl|urgent	4
 POR_TIPAS_VISI	Lazdijų r. sav.		information|urgent	4
 POR_TIPAS_VISI	Lazdijų r. sav.		child_family|urgent	3
-POR_TIPAS_VISI	Lazdijų r. sav.		clothing|urgent	4
-POR_TIPAS_VISI	Lazdijų r. sav.		hygiene|urgent	9
+POR_TIPAS_VISI	Lazdijų r. sav.		clothing|urgent	5
+POR_TIPAS_VISI	Lazdijų r. sav.		hygiene|urgent	10
 POR_TIPAS_VISI	Lazdijų r. sav.		first_aid|urgent	4
 POR_TIPAS_VISI	Lazdijų r. sav.		pfa|urgent	7
 POR_TIPAS_VISI	Lazdijų r. sav.		interpreter|urgent	3
-POR_TIPAS_VISI	Lazdijų r. sav.		medical|wait	14
+POR_TIPAS_VISI	Lazdijų r. sav.		medical|wait	15
 POR_TIPAS_VISI	Lazdijų r. sav.		social|wait	4
 POR_TIPAS_VISI	Veisėjai		water|urgent	1
 POR_TIPAS_VISI	Veisėjai		food|urgent	1
 POR_TIPAS_VISI	Veisėjai		pfa|urgent	1
 POR_TIPAS_VISI	Veisėjai		accommodation|urgent	1
 POR_TIPAS_VISI	Lazdijų r. sav.		documents|urgent	3
-POR_TIPAS_VISI	Lazdijų r. sav.		transport|urgent	3
+POR_TIPAS_VISI	Lazdijų r. sav.		transport|urgent	4
 POR_TIPAS_VISI	Lazdijų r. sav.		interpreter|wait	10
 POR_TIPAS_VISI	Plungė		water|wait	1
 POR_TIPAS_VISI	Plungė		food|wait	1
@@ -230,11 +230,11 @@ POR_TIPAS_VISI	Kaišiadorys		rfl|wait	1
 POR_TIPAS_VISI	Kaišiadorys		documents|wait	1
 POR_TIPAS_VISI	Kaišiadorys		protection|wait	1
 POR_TIPAS_VISI	Lazdijų r. sav.		child_family|hours	2
-POR_TIPAS_VISI	Lazdijų r. sav.		child_family|wait	1
+POR_TIPAS_VISI	Lazdijų r. sav.		child_family|wait	2
 POR_TIPAS_VISI	Lazdijų r. sav.		other|hours	1
-POR_ZMONES_VISI	Lazdijų r. sav.		wait	221
+POR_ZMONES_VISI	Lazdijų r. sav.		wait	223
 POR_ZMONES_VISI	Lazdijų r. sav.		hours	30
-POR_ZMONES_VISI	Lazdijų r. sav.		urgent	21
+POR_ZMONES_VISI	Lazdijų r. sav.		urgent	22
 POR_ZMONES_VISI	Veisėjai		urgent	1
 POR_ZMONES_VISI	Plungė		wait	1
 POR_ZMONES_VISI	Utena		wait	1
@@ -246,21 +246,21 @@ POR_GRUPES_VISI	Lazdijų r. sav.		vision	10
 POR_GRUPES_VISI	Lazdijų r. sav.		other	11
 POR_GRUPES_VISI	Lazdijų r. sav.		self_care	1
 POR_GRUPES_VISI	Lazdijų r. sav.		pregnancy	3
-POR_GRUPES_VISI	Lazdijų r. sav.		infant	8
+POR_GRUPES_VISI	Lazdijų r. sav.		infant	9
 POR_GRUPES_VISI	Lazdijų r. sav.		older_support	1
 POR_GRUPES_VISI	Kaišiadorys		mobility	1
 POR_GRUPES_VISI	Kaišiadorys		vision	1
 POR_GRUPES_VISI	Lazdijų r. sav.		communication	2
 POR_GRUPES_VISI	Kaišiadorys		hearing	1
 POR_TIPAS_DABAR	Lazdijų r. sav.		accommodation|wait	124
-POR_TIPAS_DABAR	Lazdijų r. sav.		water|wait	167
-POR_TIPAS_DABAR	Lazdijų r. sav.		food|wait	161
-POR_TIPAS_DABAR	Lazdijų r. sav.		medication|wait	51
-POR_TIPAS_DABAR	Lazdijų r. sav.		information|wait	56
-POR_TIPAS_DABAR	Lazdijų r. sav.		transport|wait	38
-POR_TIPAS_DABAR	Lazdijų r. sav.		hygiene|wait	47
-POR_TIPAS_DABAR	Lazdijų r. sav.		pfa|wait	17
-POR_TIPAS_DABAR	Lazdijų r. sav.		rfl|wait	13
+POR_TIPAS_DABAR	Lazdijų r. sav.		water|wait	164
+POR_TIPAS_DABAR	Lazdijų r. sav.		food|wait	158
+POR_TIPAS_DABAR	Lazdijų r. sav.		medication|wait	49
+POR_TIPAS_DABAR	Lazdijų r. sav.		information|wait	55
+POR_TIPAS_DABAR	Lazdijų r. sav.		transport|wait	36
+POR_TIPAS_DABAR	Lazdijų r. sav.		hygiene|wait	46
+POR_TIPAS_DABAR	Lazdijų r. sav.		pfa|wait	16
+POR_TIPAS_DABAR	Lazdijų r. sav.		rfl|wait	14
 POR_TIPAS_DABAR	Lazdijų r. sav.		documents|wait	4
 POR_TIPAS_DABAR	Lazdijų r. sav.		protection|wait	10
 POR_TIPAS_DABAR	Lazdijų r. sav.		other|wait	13
@@ -275,21 +275,21 @@ POR_TIPAS_DABAR	Lazdijų r. sav.		interpreter|hours	2
 POR_TIPAS_DABAR	Lazdijų r. sav.		water|urgent	16
 POR_TIPAS_DABAR	Lazdijų r. sav.		food|urgent	16
 POR_TIPAS_DABAR	Lazdijų r. sav.		medical|urgent	13
-POR_TIPAS_DABAR	Lazdijų r. sav.		medication|urgent	8
-POR_TIPAS_DABAR	Lazdijų r. sav.		accommodation|urgent	12
+POR_TIPAS_DABAR	Lazdijų r. sav.		medication|urgent	9
+POR_TIPAS_DABAR	Lazdijų r. sav.		accommodation|urgent	13
 POR_TIPAS_DABAR	Lazdijų r. sav.		protection|urgent	6
-POR_TIPAS_DABAR	Lazdijų r. sav.		clothing|wait	25
-POR_TIPAS_DABAR	Lazdijų r. sav.		first_aid|wait	1
-POR_TIPAS_DABAR	Lazdijų r. sav.		rfl|urgent	4
+POR_TIPAS_DABAR	Lazdijų r. sav.		clothing|wait	24
+POR_TIPAS_DABAR	Lazdijų r. sav.		first_aid|wait	2
+POR_TIPAS_DABAR	Lazdijų r. sav.		rfl|urgent	3
 POR_TIPAS_DABAR	Lazdijų r. sav.		information|urgent	4
 POR_TIPAS_DABAR	Lazdijų r. sav.		child_family|urgent	3
 POR_TIPAS_DABAR	Lazdijų r. sav.		transport|hours	5
-POR_TIPAS_DABAR	Lazdijų r. sav.		clothing|urgent	4
-POR_TIPAS_DABAR	Lazdijų r. sav.		hygiene|urgent	7
+POR_TIPAS_DABAR	Lazdijų r. sav.		clothing|urgent	5
+POR_TIPAS_DABAR	Lazdijų r. sav.		hygiene|urgent	8
 POR_TIPAS_DABAR	Lazdijų r. sav.		first_aid|urgent	4
 POR_TIPAS_DABAR	Lazdijų r. sav.		pfa|urgent	4
 POR_TIPAS_DABAR	Lazdijų r. sav.		interpreter|urgent	3
-POR_TIPAS_DABAR	Lazdijų r. sav.		medical|wait	13
+POR_TIPAS_DABAR	Lazdijų r. sav.		medical|wait	12
 POR_TIPAS_DABAR	Lazdijų r. sav.		clothing|hours	7
 POR_TIPAS_DABAR	Lazdijų r. sav.		pfa|hours	3
 POR_TIPAS_DABAR	Lazdijų r. sav.		rfl|hours	2
@@ -300,7 +300,7 @@ POR_TIPAS_DABAR	Veisėjai		pfa|urgent	1
 POR_TIPAS_DABAR	Veisėjai		accommodation|urgent	1
 POR_TIPAS_DABAR	Lazdijų r. sav.		social|wait	3
 POR_TIPAS_DABAR	Lazdijų r. sav.		documents|urgent	3
-POR_TIPAS_DABAR	Lazdijų r. sav.		transport|urgent	3
+POR_TIPAS_DABAR	Lazdijų r. sav.		transport|urgent	4
 POR_TIPAS_DABAR	Plungė		water|wait	1
 POR_TIPAS_DABAR	Plungė		food|wait	1
 POR_TIPAS_DABAR	Plungė		medication|wait	1
@@ -330,9 +330,9 @@ POR_TIPAS_DABAR	Kaišiadorys		rfl|wait	1
 POR_TIPAS_DABAR	Kaišiadorys		documents|wait	1
 POR_TIPAS_DABAR	Kaišiadorys		protection|wait	1
 POR_TIPAS_DABAR	Lazdijų r. sav.		child_family|hours	2
-POR_TIPAS_DABAR	Lazdijų r. sav.		child_family|wait	1
+POR_TIPAS_DABAR	Lazdijų r. sav.		child_family|wait	2
 POR_TIPAS_DABAR	Lazdijų r. sav.		other|hours	1
-POR_ZMONES_DABAR	Lazdijų r. sav.		wait	206
+POR_ZMONES_DABAR	Lazdijų r. sav.		wait	204
 POR_ZMONES_DABAR	Lazdijų r. sav.		hours	22
 POR_ZMONES_DABAR	Lazdijų r. sav.		urgent	18
 POR_ZMONES_DABAR	Veisėjai		urgent	1
@@ -346,9 +346,8 @@ POR_GRUPES_DABAR	Lazdijų r. sav.		vision	9
 POR_GRUPES_DABAR	Lazdijų r. sav.		other	11
 POR_GRUPES_DABAR	Lazdijų r. sav.		self_care	1
 POR_GRUPES_DABAR	Lazdijų r. sav.		pregnancy	3
-POR_GRUPES_DABAR	Lazdijų r. sav.		infant	8
+POR_GRUPES_DABAR	Lazdijų r. sav.		infant	9
 POR_GRUPES_DABAR	Lazdijų r. sav.		older_support	1
 POR_GRUPES_DABAR	Kaišiadorys		mobility	1
 POR_GRUPES_DABAR	Kaišiadorys		vision	1
-POR_GRUPES_DABAR	Lazdijų r. sav.		communication	2
 POR_GRUPES_DABAR	Kaišiadorys		hearing	1
