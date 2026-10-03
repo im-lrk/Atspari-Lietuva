@@ -1,18 +1,18 @@
 Rodinys	Centras	Laikas	Rodiklis	Reikšmė
-META			atnaujinta	2026-10-03 13:32
-KPI			surinkimo_namu_ukiai	177
-KPI			surinkimo_zmones	384
+META			atnaujinta	2026-10-03 13:46
+KPI			surinkimo_namu_ukiai	180
+KPI			surinkimo_zmones	393
 KPI			centruose_uzregistruota	302
-KPI			isvyko	27
-KPI			centruose_dabar	275
+KPI			isvyko	29
+KPI			centruose_dabar	273
 KPI			namu_ukiai_visi	91
-KPI			namu_ukiai_truksta	81
+KPI			namu_ukiai_truksta	84
 CENTRAS	Kaišiadorys		uzregistruota	4
 CENTRAS	Kaišiadorys		isvyko	0
 CENTRAS	Kaišiadorys		dabar	4
 CENTRAS	Lazdijų r. sav.		uzregistruota	294
-CENTRAS	Lazdijų r. sav.		isvyko	27
-CENTRAS	Lazdijų r. sav.		dabar	267
+CENTRAS	Lazdijų r. sav.		isvyko	29
+CENTRAS	Lazdijų r. sav.		dabar	265
 CENTRAS	Plungė		uzregistruota	1
 CENTRAS	Plungė		isvyko	0
 CENTRAS	Plungė		dabar	1
@@ -32,12 +32,12 @@ POREIKIAI_DABAR	Kaišiadorys		flag_protection	1
 POREIKIAI_DABAR	Kaišiadorys		flag_follow_up	1
 POREIKIAI_DABAR	Lazdijų r. sav.		flag_health	33
 POREIKIAI_DABAR	Lazdijų r. sav.		flag_medication_urgent	34
-POREIKIAI_DABAR	Lazdijų r. sav.		flag_accommodation	152
-POREIKIAI_DABAR	Lazdijų r. sav.		flag_transport	48
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_accommodation	150
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_transport	46
 POREIKIAI_DABAR	Lazdijų r. sav.		flag_interpreter	11
 POREIKIAI_DABAR	Lazdijų r. sav.		flag_rfl	25
 POREIKIAI_DABAR	Lazdijų r. sav.		flag_protection	18
-POREIKIAI_DABAR	Lazdijų r. sav.		flag_follow_up	153
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_follow_up	151
 POREIKIAI_DABAR	Plungė		flag_health	0
 POREIKIAI_DABAR	Plungė		flag_medication_urgent	0
 POREIKIAI_DABAR	Plungė		flag_accommodation	1
@@ -142,14 +142,14 @@ EIGA		2026-10-03 12:00	surinkimo_namu_ukiai	17
 EIGA		2026-10-03 12:00	atvyko_i_centrus	31
 EIGA		2026-10-03 12:00	isvyko	5
 EIGA		2026-10-03 12:00	centruose_tuo_metu	284
-EIGA		2026-10-03 13:00	surinkimo_namu_ukiai	0
+EIGA		2026-10-03 13:00	surinkimo_namu_ukiai	3
 EIGA		2026-10-03 13:00	atvyko_i_centrus	2
-EIGA		2026-10-03 13:00	isvyko	11
-EIGA		2026-10-03 13:00	centruose_tuo_metu	275
+EIGA		2026-10-03 13:00	isvyko	13
+EIGA		2026-10-03 13:00	centruose_tuo_metu	273
+ISVYKIMAI_KUR	Lazdijų r. sav.		pas_artimuosius	3
 ISVYKIMAI_KUR	Nenurodyta		grizta_namo	5
 ISVYKIMAI_KUR	Lazdijų r. sav.		grizta_namo	22
 ISVYKIMAI_KUR	Lazdijų r. sav.		kitas_centras	1
-ISVYKIMAI_KUR	Lazdijų r. sav.		pas_artimuosius	1
 POR_TIPAS_VISI	Lazdijų r. sav.		accommodation|wait	133
 POR_TIPAS_VISI	Lazdijų r. sav.		water|wait	181
 POR_TIPAS_VISI	Lazdijų r. sav.		food|wait	175
@@ -252,12 +252,12 @@ POR_GRUPES_VISI	Kaišiadorys		mobility	1
 POR_GRUPES_VISI	Kaišiadorys		vision	1
 POR_GRUPES_VISI	Lazdijų r. sav.		communication	2
 POR_GRUPES_VISI	Kaišiadorys		hearing	1
-POR_TIPAS_DABAR	Lazdijų r. sav.		accommodation|wait	126
-POR_TIPAS_DABAR	Lazdijų r. sav.		water|wait	169
-POR_TIPAS_DABAR	Lazdijų r. sav.		food|wait	163
-POR_TIPAS_DABAR	Lazdijų r. sav.		medication|wait	52
+POR_TIPAS_DABAR	Lazdijų r. sav.		accommodation|wait	124
+POR_TIPAS_DABAR	Lazdijų r. sav.		water|wait	167
+POR_TIPAS_DABAR	Lazdijų r. sav.		food|wait	161
+POR_TIPAS_DABAR	Lazdijų r. sav.		medication|wait	51
 POR_TIPAS_DABAR	Lazdijų r. sav.		information|wait	56
-POR_TIPAS_DABAR	Lazdijų r. sav.		transport|wait	40
+POR_TIPAS_DABAR	Lazdijų r. sav.		transport|wait	38
 POR_TIPAS_DABAR	Lazdijų r. sav.		hygiene|wait	47
 POR_TIPAS_DABAR	Lazdijų r. sav.		pfa|wait	17
 POR_TIPAS_DABAR	Lazdijų r. sav.		rfl|wait	13
@@ -332,7 +332,7 @@ POR_TIPAS_DABAR	Kaišiadorys		protection|wait	1
 POR_TIPAS_DABAR	Lazdijų r. sav.		child_family|hours	2
 POR_TIPAS_DABAR	Lazdijų r. sav.		child_family|wait	1
 POR_TIPAS_DABAR	Lazdijų r. sav.		other|hours	1
-POR_ZMONES_DABAR	Lazdijų r. sav.		wait	208
+POR_ZMONES_DABAR	Lazdijų r. sav.		wait	206
 POR_ZMONES_DABAR	Lazdijų r. sav.		hours	22
 POR_ZMONES_DABAR	Lazdijų r. sav.		urgent	18
 POR_ZMONES_DABAR	Veisėjai		urgent	1
