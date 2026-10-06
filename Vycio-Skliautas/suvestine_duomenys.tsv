@@ -1,5 +1,5 @@
 Rodinys	Centras	Laikas	Rodiklis	Reikšmė
-META			atnaujinta	2026-10-03 19:00
+META			atnaujinta	2026-10-06 11:15
 KPI			surinkimo_namu_ukiai	183
 KPI			surinkimo_zmones	401
 KPI			centruose_uzregistruota	313
@@ -13,15 +13,9 @@ CENTRAS	Kaišiadorys		dabar	4
 CENTRAS	Lazdijų r. sav.		uzregistruota	305
 CENTRAS	Lazdijų r. sav.		isvyko	35
 CENTRAS	Lazdijų r. sav.		dabar	270
-CENTRAS	Plungė		uzregistruota	1
-CENTRAS	Plungė		isvyko	0
-CENTRAS	Plungė		dabar	1
-CENTRAS	Utena		uzregistruota	2
+CENTRAS	Utena		uzregistruota	4
 CENTRAS	Utena		isvyko	0
-CENTRAS	Utena		dabar	2
-CENTRAS	Veisėjai		uzregistruota	1
-CENTRAS	Veisėjai		isvyko	0
-CENTRAS	Veisėjai		dabar	1
+CENTRAS	Utena		dabar	4
 POREIKIAI_DABAR	Kaišiadorys		flag_health	1
 POREIKIAI_DABAR	Kaišiadorys		flag_medication_urgent	0
 POREIKIAI_DABAR	Kaišiadorys		flag_accommodation	3
@@ -38,30 +32,14 @@ POREIKIAI_DABAR	Lazdijų r. sav.		flag_interpreter	11
 POREIKIAI_DABAR	Lazdijų r. sav.		flag_rfl	25
 POREIKIAI_DABAR	Lazdijų r. sav.		flag_protection	18
 POREIKIAI_DABAR	Lazdijų r. sav.		flag_follow_up	151
-POREIKIAI_DABAR	Plungė		flag_health	0
-POREIKIAI_DABAR	Plungė		flag_medication_urgent	0
-POREIKIAI_DABAR	Plungė		flag_accommodation	1
-POREIKIAI_DABAR	Plungė		flag_transport	0
-POREIKIAI_DABAR	Plungė		flag_interpreter	0
-POREIKIAI_DABAR	Plungė		flag_rfl	0
-POREIKIAI_DABAR	Plungė		flag_protection	0
-POREIKIAI_DABAR	Plungė		flag_follow_up	1
 POREIKIAI_DABAR	Utena		flag_health	0
 POREIKIAI_DABAR	Utena		flag_medication_urgent	0
-POREIKIAI_DABAR	Utena		flag_accommodation	2
+POREIKIAI_DABAR	Utena		flag_accommodation	4
 POREIKIAI_DABAR	Utena		flag_transport	1
 POREIKIAI_DABAR	Utena		flag_interpreter	0
 POREIKIAI_DABAR	Utena		flag_rfl	0
 POREIKIAI_DABAR	Utena		flag_protection	0
-POREIKIAI_DABAR	Utena		flag_follow_up	0
-POREIKIAI_DABAR	Veisėjai		flag_health	0
-POREIKIAI_DABAR	Veisėjai		flag_medication_urgent	0
-POREIKIAI_DABAR	Veisėjai		flag_accommodation	1
-POREIKIAI_DABAR	Veisėjai		flag_transport	0
-POREIKIAI_DABAR	Veisėjai		flag_interpreter	0
-POREIKIAI_DABAR	Veisėjai		flag_rfl	0
-POREIKIAI_DABAR	Veisėjai		flag_protection	0
-POREIKIAI_DABAR	Veisėjai		flag_follow_up	1
+POREIKIAI_DABAR	Utena		flag_follow_up	2
 POREIKIAI_VISI	Kaišiadorys		flag_health	1
 POREIKIAI_VISI	Kaišiadorys		flag_medication_urgent	0
 POREIKIAI_VISI	Kaišiadorys		flag_accommodation	3
@@ -78,78 +56,62 @@ POREIKIAI_VISI	Lazdijų r. sav.		flag_interpreter	16
 POREIKIAI_VISI	Lazdijų r. sav.		flag_rfl	31
 POREIKIAI_VISI	Lazdijų r. sav.		flag_protection	20
 POREIKIAI_VISI	Lazdijų r. sav.		flag_follow_up	175
-POREIKIAI_VISI	Plungė		flag_health	0
-POREIKIAI_VISI	Plungė		flag_medication_urgent	0
-POREIKIAI_VISI	Plungė		flag_accommodation	1
-POREIKIAI_VISI	Plungė		flag_transport	0
-POREIKIAI_VISI	Plungė		flag_interpreter	0
-POREIKIAI_VISI	Plungė		flag_rfl	0
-POREIKIAI_VISI	Plungė		flag_protection	0
-POREIKIAI_VISI	Plungė		flag_follow_up	1
 POREIKIAI_VISI	Utena		flag_health	0
 POREIKIAI_VISI	Utena		flag_medication_urgent	0
-POREIKIAI_VISI	Utena		flag_accommodation	2
+POREIKIAI_VISI	Utena		flag_accommodation	4
 POREIKIAI_VISI	Utena		flag_transport	1
 POREIKIAI_VISI	Utena		flag_interpreter	0
 POREIKIAI_VISI	Utena		flag_rfl	0
 POREIKIAI_VISI	Utena		flag_protection	0
-POREIKIAI_VISI	Utena		flag_follow_up	0
-POREIKIAI_VISI	Veisėjai		flag_health	0
-POREIKIAI_VISI	Veisėjai		flag_medication_urgent	0
-POREIKIAI_VISI	Veisėjai		flag_accommodation	1
-POREIKIAI_VISI	Veisėjai		flag_transport	0
-POREIKIAI_VISI	Veisėjai		flag_interpreter	0
-POREIKIAI_VISI	Veisėjai		flag_rfl	0
-POREIKIAI_VISI	Veisėjai		flag_protection	0
-POREIKIAI_VISI	Veisėjai		flag_follow_up	1
-EIGA		2026-09-26 08:00	surinkimo_namu_ukiai	6
-EIGA		2026-09-26 08:00	atvyko_i_centrus	0
-EIGA		2026-09-26 08:00	isvyko	0
-EIGA		2026-09-26 08:00	centruose_tuo_metu	0
-EIGA		2026-09-26 09:00	surinkimo_namu_ukiai	32
-EIGA		2026-09-26 09:00	atvyko_i_centrus	0
-EIGA		2026-09-26 09:00	isvyko	0
-EIGA		2026-09-26 09:00	centruose_tuo_metu	0
-EIGA		2026-09-30 13:00	surinkimo_namu_ukiai	1
-EIGA		2026-09-30 13:00	atvyko_i_centrus	0
-EIGA		2026-09-30 13:00	isvyko	0
-EIGA		2026-09-30 13:00	centruose_tuo_metu	0
-EIGA		2026-10-02 11:00	surinkimo_namu_ukiai	1
-EIGA		2026-10-02 11:00	atvyko_i_centrus	0
-EIGA		2026-10-02 11:00	isvyko	0
-EIGA		2026-10-02 11:00	centruose_tuo_metu	0
-EIGA		2026-10-02 18:00	surinkimo_namu_ukiai	1
-EIGA		2026-10-02 18:00	atvyko_i_centrus	0
-EIGA		2026-10-02 18:00	isvyko	0
-EIGA		2026-10-02 18:00	centruose_tuo_metu	0
-EIGA		2026-10-03 08:00	surinkimo_namu_ukiai	6
-EIGA		2026-10-03 08:00	atvyko_i_centrus	0
-EIGA		2026-10-03 08:00	isvyko	0
-EIGA		2026-10-03 08:00	centruose_tuo_metu	0
-EIGA		2026-10-03 09:00	surinkimo_namu_ukiai	27
-EIGA		2026-10-03 09:00	atvyko_i_centrus	50
-EIGA		2026-10-03 09:00	isvyko	0
-EIGA		2026-10-03 09:00	centruose_tuo_metu	50
-EIGA		2026-10-03 10:00	surinkimo_namu_ukiai	62
-EIGA		2026-10-03 10:00	atvyko_i_centrus	134
-EIGA		2026-10-03 10:00	isvyko	0
-EIGA		2026-10-03 10:00	centruose_tuo_metu	184
-EIGA		2026-10-03 11:00	surinkimo_namu_ukiai	34
-EIGA		2026-10-03 11:00	atvyko_i_centrus	85
-EIGA		2026-10-03 11:00	isvyko	11
-EIGA		2026-10-03 11:00	centruose_tuo_metu	258
-EIGA		2026-10-03 12:00	surinkimo_namu_ukiai	17
-EIGA		2026-10-03 12:00	atvyko_i_centrus	31
-EIGA		2026-10-03 12:00	isvyko	6
-EIGA		2026-10-03 12:00	centruose_tuo_metu	283
-EIGA		2026-10-03 13:00	surinkimo_namu_ukiai	5
-EIGA		2026-10-03 13:00	atvyko_i_centrus	8
-EIGA		2026-10-03 13:00	isvyko	17
-EIGA		2026-10-03 13:00	centruose_tuo_metu	274
-EIGA		2026-10-03 14:00	surinkimo_namu_ukiai	1
-EIGA		2026-10-03 14:00	atvyko_i_centrus	5
-EIGA		2026-10-03 14:00	isvyko	1
-EIGA		2026-10-03 14:00	centruose_tuo_metu	278
+POREIKIAI_VISI	Utena		flag_follow_up	2
+EIGA		2026-09-26 05:00	surinkimo_namu_ukiai	6
+EIGA		2026-09-26 05:00	atvyko_i_centrus	0
+EIGA		2026-09-26 05:00	isvyko	0
+EIGA		2026-09-26 05:00	centruose_tuo_metu	0
+EIGA		2026-09-26 06:00	surinkimo_namu_ukiai	32
+EIGA		2026-09-26 06:00	atvyko_i_centrus	0
+EIGA		2026-09-26 06:00	isvyko	0
+EIGA		2026-09-26 06:00	centruose_tuo_metu	0
+EIGA		2026-09-30 10:00	surinkimo_namu_ukiai	1
+EIGA		2026-09-30 10:00	atvyko_i_centrus	0
+EIGA		2026-09-30 10:00	isvyko	0
+EIGA		2026-09-30 10:00	centruose_tuo_metu	0
+EIGA		2026-10-02 08:00	surinkimo_namu_ukiai	1
+EIGA		2026-10-02 08:00	atvyko_i_centrus	0
+EIGA		2026-10-02 08:00	isvyko	0
+EIGA		2026-10-02 08:00	centruose_tuo_metu	0
+EIGA		2026-10-02 15:00	surinkimo_namu_ukiai	1
+EIGA		2026-10-02 15:00	atvyko_i_centrus	0
+EIGA		2026-10-02 15:00	isvyko	0
+EIGA		2026-10-02 15:00	centruose_tuo_metu	0
+EIGA		2026-10-03 05:00	surinkimo_namu_ukiai	6
+EIGA		2026-10-03 05:00	atvyko_i_centrus	0
+EIGA		2026-10-03 05:00	isvyko	0
+EIGA		2026-10-03 05:00	centruose_tuo_metu	0
+EIGA		2026-10-03 06:00	surinkimo_namu_ukiai	27
+EIGA		2026-10-03 06:00	atvyko_i_centrus	50
+EIGA		2026-10-03 06:00	isvyko	0
+EIGA		2026-10-03 06:00	centruose_tuo_metu	50
+EIGA		2026-10-03 07:00	surinkimo_namu_ukiai	62
+EIGA		2026-10-03 07:00	atvyko_i_centrus	134
+EIGA		2026-10-03 07:00	isvyko	0
+EIGA		2026-10-03 07:00	centruose_tuo_metu	184
+EIGA		2026-10-03 08:00	surinkimo_namu_ukiai	34
+EIGA		2026-10-03 08:00	atvyko_i_centrus	85
+EIGA		2026-10-03 08:00	isvyko	11
+EIGA		2026-10-03 08:00	centruose_tuo_metu	258
+EIGA		2026-10-03 09:00	surinkimo_namu_ukiai	17
+EIGA		2026-10-03 09:00	atvyko_i_centrus	31
+EIGA		2026-10-03 09:00	isvyko	6
+EIGA		2026-10-03 09:00	centruose_tuo_metu	283
+EIGA		2026-10-03 10:00	surinkimo_namu_ukiai	5
+EIGA		2026-10-03 10:00	atvyko_i_centrus	8
+EIGA		2026-10-03 10:00	isvyko	17
+EIGA		2026-10-03 10:00	centruose_tuo_metu	274
+EIGA		2026-10-03 11:00	surinkimo_namu_ukiai	1
+EIGA		2026-10-03 11:00	atvyko_i_centrus	5
+EIGA		2026-10-03 11:00	isvyko	1
+EIGA		2026-10-03 11:00	centruose_tuo_metu	278
 ISVYKIMAI_KUR	Lazdijų r. sav.		grizta_namo	29
 ISVYKIMAI_KUR	Lazdijų r. sav.		pas_artimuosius	3
 ISVYKIMAI_KUR	Nenurodyta		grizta_namo	4
@@ -199,21 +161,17 @@ POR_TIPAS_VISI	Lazdijų r. sav.		pfa|urgent	7
 POR_TIPAS_VISI	Lazdijų r. sav.		interpreter|urgent	3
 POR_TIPAS_VISI	Lazdijų r. sav.		medical|wait	15
 POR_TIPAS_VISI	Lazdijų r. sav.		social|wait	4
-POR_TIPAS_VISI	Veisėjai		water|urgent	1
-POR_TIPAS_VISI	Veisėjai		food|urgent	1
-POR_TIPAS_VISI	Veisėjai		pfa|urgent	1
-POR_TIPAS_VISI	Veisėjai		accommodation|urgent	1
+POR_TIPAS_VISI	Utena		water|urgent	1
+POR_TIPAS_VISI	Utena		food|urgent	1
+POR_TIPAS_VISI	Utena		pfa|urgent	1
+POR_TIPAS_VISI	Utena		accommodation|urgent	1
 POR_TIPAS_VISI	Lazdijų r. sav.		documents|urgent	3
 POR_TIPAS_VISI	Lazdijų r. sav.		transport|urgent	6
 POR_TIPAS_VISI	Lazdijų r. sav.		interpreter|wait	10
-POR_TIPAS_VISI	Plungė		water|wait	1
-POR_TIPAS_VISI	Plungė		food|wait	1
-POR_TIPAS_VISI	Plungė		medication|wait	1
-POR_TIPAS_VISI	Plungė		accommodation|wait	1
-POR_TIPAS_VISI	Utena		water|wait	1
-POR_TIPAS_VISI	Utena		food|wait	1
-POR_TIPAS_VISI	Utena		medication|wait	1
-POR_TIPAS_VISI	Utena		accommodation|wait	1
+POR_TIPAS_VISI	Utena		water|wait	2
+POR_TIPAS_VISI	Utena		food|wait	2
+POR_TIPAS_VISI	Utena		medication|wait	2
+POR_TIPAS_VISI	Utena		accommodation|wait	2
 POR_TIPAS_VISI	Utena		water|hours	1
 POR_TIPAS_VISI	Utena		food|hours	1
 POR_TIPAS_VISI	Utena		hygiene|hours	1
@@ -240,9 +198,8 @@ POR_TIPAS_VISI	Lazdijų r. sav.		other|urgent	1
 POR_ZMONES_VISI	Lazdijų r. sav.		wait	228
 POR_ZMONES_VISI	Lazdijų r. sav.		hours	30
 POR_ZMONES_VISI	Lazdijų r. sav.		urgent	24
-POR_ZMONES_VISI	Veisėjai		urgent	1
-POR_ZMONES_VISI	Plungė		wait	1
-POR_ZMONES_VISI	Utena		wait	1
+POR_ZMONES_VISI	Utena		urgent	1
+POR_ZMONES_VISI	Utena		wait	2
 POR_ZMONES_VISI	Utena		hours	1
 POR_ZMONES_VISI	Kaišiadorys		wait	4
 POR_GRUPES_VISI	Lazdijų r. sav.		mobility	10
@@ -299,21 +256,17 @@ POR_TIPAS_DABAR	Lazdijų r. sav.		clothing|hours	7
 POR_TIPAS_DABAR	Lazdijų r. sav.		pfa|hours	3
 POR_TIPAS_DABAR	Lazdijų r. sav.		rfl|hours	2
 POR_TIPAS_DABAR	Lazdijų r. sav.		protection|hours	2
-POR_TIPAS_DABAR	Veisėjai		water|urgent	1
-POR_TIPAS_DABAR	Veisėjai		food|urgent	1
-POR_TIPAS_DABAR	Veisėjai		pfa|urgent	1
-POR_TIPAS_DABAR	Veisėjai		accommodation|urgent	1
+POR_TIPAS_DABAR	Utena		water|urgent	1
+POR_TIPAS_DABAR	Utena		food|urgent	1
+POR_TIPAS_DABAR	Utena		pfa|urgent	1
+POR_TIPAS_DABAR	Utena		accommodation|urgent	1
 POR_TIPAS_DABAR	Lazdijų r. sav.		social|wait	3
 POR_TIPAS_DABAR	Lazdijų r. sav.		documents|urgent	3
 POR_TIPAS_DABAR	Lazdijų r. sav.		transport|urgent	6
-POR_TIPAS_DABAR	Plungė		water|wait	1
-POR_TIPAS_DABAR	Plungė		food|wait	1
-POR_TIPAS_DABAR	Plungė		medication|wait	1
-POR_TIPAS_DABAR	Plungė		accommodation|wait	1
-POR_TIPAS_DABAR	Utena		water|wait	1
-POR_TIPAS_DABAR	Utena		food|wait	1
-POR_TIPAS_DABAR	Utena		medication|wait	1
-POR_TIPAS_DABAR	Utena		accommodation|wait	1
+POR_TIPAS_DABAR	Utena		water|wait	2
+POR_TIPAS_DABAR	Utena		food|wait	2
+POR_TIPAS_DABAR	Utena		medication|wait	2
+POR_TIPAS_DABAR	Utena		accommodation|wait	2
 POR_TIPAS_DABAR	Utena		water|hours	1
 POR_TIPAS_DABAR	Utena		food|hours	1
 POR_TIPAS_DABAR	Utena		hygiene|hours	1
@@ -341,9 +294,8 @@ POR_TIPAS_DABAR	Lazdijų r. sav.		other|urgent	1
 POR_ZMONES_DABAR	Lazdijų r. sav.		wait	208
 POR_ZMONES_DABAR	Lazdijų r. sav.		hours	22
 POR_ZMONES_DABAR	Lazdijų r. sav.		urgent	20
-POR_ZMONES_DABAR	Veisėjai		urgent	1
-POR_ZMONES_DABAR	Plungė		wait	1
-POR_ZMONES_DABAR	Utena		wait	1
+POR_ZMONES_DABAR	Utena		urgent	1
+POR_ZMONES_DABAR	Utena		wait	2
 POR_ZMONES_DABAR	Utena		hours	1
 POR_ZMONES_DABAR	Kaišiadorys		wait	4
 POR_GRUPES_DABAR	Lazdijų r. sav.		mobility	8
@@ -359,9 +311,7 @@ POR_GRUPES_DABAR	Kaišiadorys		vision	1
 POR_GRUPES_DABAR	Kaišiadorys		hearing	1
 ZM_NU_VISI	Lazdijų r. sav.		viso	147
 ZM_NU_VISI	Lazdijų r. sav.		su_vaikais	16
-ZM_NU_VISI	Veisėjai		viso	1
-ZM_NU_VISI	Veisėjai		su_vaikais	0
-ZM_NU_VISI	Utena		viso	1
+ZM_NU_VISI	Utena		viso	2
 ZM_NU_VISI	Utena		su_vaikais	0
 ZM_NU_VISI	Kaišiadorys		viso	1
 ZM_NU_VISI	Kaišiadorys		su_vaikais	0
@@ -369,7 +319,7 @@ ZM_NU_VISI	Lazdijų r. sav.		sud_vienas_suauges	72
 ZM_NU_VISI	Lazdijų r. sav.		sud_tik_suaugusieji	59
 ZM_NU_VISI	Lazdijų r. sav.		sud_vienas_su_vaikais	6
 ZM_NU_VISI	Lazdijų r. sav.		sud_suaugusieji_su_vaikais	9
-ZM_NU_VISI	Veisėjai		sud_vienas_suauges	1
+ZM_NU_VISI	Utena		sud_vienas_suauges	1
 ZM_NU_VISI	Utena		sud_tik_suaugusieji	1
 ZM_NU_VISI	Kaišiadorys		sud_tik_suaugusieji	1
 ZM_NU_VISI	Lazdijų r. sav.		sud_tik_vaikai	1
@@ -378,7 +328,7 @@ ZM_NU_VISI	Lazdijų r. sav.		dydis_5+	7
 ZM_NU_VISI	Lazdijų r. sav.		dydis_3	19
 ZM_NU_VISI	Lazdijų r. sav.		dydis_4	11
 ZM_NU_VISI	Lazdijų r. sav.		dydis_2	37
-ZM_NU_VISI	Veisėjai		dydis_1	1
+ZM_NU_VISI	Utena		dydis_1	1
 ZM_NU_VISI	Utena		dydis_4	1
 ZM_NU_VISI	Kaišiadorys		dydis_4	1
 ZM_NELYDIMI_VISI	Lazdijų r. sav.		galimai|1|nu	1
@@ -389,10 +339,9 @@ ZM_AMZIUS_VISI	Lazdijų r. sav.		80+	2
 ZM_AMZIUS_VISI	Lazdijų r. sav.		18-34	45
 ZM_AMZIUS_VISI	Lazdijų r. sav.		3-5	4
 ZM_AMZIUS_VISI	Lazdijų r. sav.		12-17	9
-ZM_AMZIUS_VISI	Veisėjai		18-34	1
+ZM_AMZIUS_VISI	Utena		18-34	1
 ZM_AMZIUS_VISI	Lazdijų r. sav.		6-11	7
-ZM_AMZIUS_VISI	Plungė		35-64	1
-ZM_AMZIUS_VISI	Utena		35-64	2
+ZM_AMZIUS_VISI	Utena		35-64	3
 ZM_AMZIUS_VISI	Kaišiadorys		35-64	4
 ZM_AMZIUS_VISI	Lazdijų r. sav.		0-2	2
 ZM_SENJORAI_VISI	Lazdijų r. sav.		65-79|visi	30
@@ -432,9 +381,7 @@ ZM_DERINYS_VISI	Lazdijų r. sav.		vaistai	2
 ZM_DERINYS_VISI	Lazdijų r. sav.		be_saugios_vietos	3
 ZM_NU_DABAR	Lazdijų r. sav.		viso	132
 ZM_NU_DABAR	Lazdijų r. sav.		su_vaikais	15
-ZM_NU_DABAR	Veisėjai		viso	1
-ZM_NU_DABAR	Veisėjai		su_vaikais	0
-ZM_NU_DABAR	Utena		viso	1
+ZM_NU_DABAR	Utena		viso	2
 ZM_NU_DABAR	Utena		su_vaikais	0
 ZM_NU_DABAR	Kaišiadorys		viso	1
 ZM_NU_DABAR	Kaišiadorys		su_vaikais	0
@@ -442,7 +389,7 @@ ZM_NU_DABAR	Lazdijų r. sav.		sud_vienas_suauges	64
 ZM_NU_DABAR	Lazdijų r. sav.		sud_tik_suaugusieji	53
 ZM_NU_DABAR	Lazdijų r. sav.		sud_vienas_su_vaikais	7
 ZM_NU_DABAR	Lazdijų r. sav.		sud_suaugusieji_su_vaikais	7
-ZM_NU_DABAR	Veisėjai		sud_vienas_suauges	1
+ZM_NU_DABAR	Utena		sud_vienas_suauges	1
 ZM_NU_DABAR	Utena		sud_tik_suaugusieji	1
 ZM_NU_DABAR	Kaišiadorys		sud_tik_suaugusieji	1
 ZM_NU_DABAR	Lazdijų r. sav.		sud_tik_vaikai	1
@@ -451,7 +398,7 @@ ZM_NU_DABAR	Lazdijų r. sav.		dydis_5+	7
 ZM_NU_DABAR	Lazdijų r. sav.		dydis_3	19
 ZM_NU_DABAR	Lazdijų r. sav.		dydis_2	34
 ZM_NU_DABAR	Lazdijų r. sav.		dydis_4	7
-ZM_NU_DABAR	Veisėjai		dydis_1	1
+ZM_NU_DABAR	Utena		dydis_1	1
 ZM_NU_DABAR	Utena		dydis_4	1
 ZM_NU_DABAR	Kaišiadorys		dydis_4	1
 ZM_NELYDIMI_DABAR	Lazdijų r. sav.		galimai|1|nu	1
@@ -462,9 +409,8 @@ ZM_AMZIUS_DABAR	Lazdijų r. sav.		80+	2
 ZM_AMZIUS_DABAR	Lazdijų r. sav.		18-34	36
 ZM_AMZIUS_DABAR	Lazdijų r. sav.		3-5	4
 ZM_AMZIUS_DABAR	Lazdijų r. sav.		12-17	9
-ZM_AMZIUS_DABAR	Veisėjai		18-34	1
-ZM_AMZIUS_DABAR	Plungė		35-64	1
-ZM_AMZIUS_DABAR	Utena		35-64	2
+ZM_AMZIUS_DABAR	Utena		18-34	1
+ZM_AMZIUS_DABAR	Utena		35-64	3
 ZM_AMZIUS_DABAR	Lazdijų r. sav.		6-11	5
 ZM_AMZIUS_DABAR	Kaišiadorys		35-64	4
 ZM_AMZIUS_DABAR	Lazdijų r. sav.		0-2	2
