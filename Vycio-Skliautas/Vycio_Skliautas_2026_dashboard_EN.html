@@ -203,496 +203,457 @@ function parseTSV(text){
 }
 
 const RAW_TSV = `Rodinys	Centras	Laikas	Rodiklis	Reikšmė
-META			atnaujinta	2026-10-03 11:31
-KPI			surinkimo_namu_ukiai	145
-KPI			surinkimo_zmones	314
-KPI			centruose_uzregistruota	230
-KPI			isvyko	3
-KPI			centruose_dabar	227
-KPI			namu_ukiai_visi	70
-KPI			namu_ukiai_truksta	73
-CENTRAS	Kaišiadorys		uzregistruota	3
+META			atnaujinta	2026-10-06 11:15
+KPI			surinkimo_namu_ukiai	183
+KPI			surinkimo_zmones	401
+KPI			centruose_uzregistruota	313
+KPI			isvyko	35
+KPI			centruose_dabar	278
+KPI			namu_ukiai_visi	95
+KPI			namu_ukiai_truksta	83
+CENTRAS	Kaišiadorys		uzregistruota	4
 CENTRAS	Kaišiadorys		isvyko	0
-CENTRAS	Kaišiadorys		dabar	3
-CENTRAS	Lazdijų r. sav.		uzregistruota	223
-CENTRAS	Lazdijų r. sav.		isvyko	3
-CENTRAS	Lazdijų r. sav.		dabar	220
-CENTRAS	Plungė		uzregistruota	1
-CENTRAS	Plungė		isvyko	0
-CENTRAS	Plungė		dabar	1
-CENTRAS	Utena		uzregistruota	2
+CENTRAS	Kaišiadorys		dabar	4
+CENTRAS	Lazdijų r. sav.		uzregistruota	305
+CENTRAS	Lazdijų r. sav.		isvyko	35
+CENTRAS	Lazdijų r. sav.		dabar	270
+CENTRAS	Utena		uzregistruota	4
 CENTRAS	Utena		isvyko	0
-CENTRAS	Utena		dabar	2
-CENTRAS	Veisėjai		uzregistruota	1
-CENTRAS	Veisėjai		isvyko	0
-CENTRAS	Veisėjai		dabar	1
-POREIKIAI_DABAR	Kaišiadorys		flag_health	0
+CENTRAS	Utena		dabar	4
+POREIKIAI_DABAR	Kaišiadorys		flag_health	1
 POREIKIAI_DABAR	Kaišiadorys		flag_medication_urgent	0
-POREIKIAI_DABAR	Kaišiadorys		flag_accommodation	2
-POREIKIAI_DABAR	Kaišiadorys		flag_transport	1
+POREIKIAI_DABAR	Kaišiadorys		flag_accommodation	3
+POREIKIAI_DABAR	Kaišiadorys		flag_transport	2
 POREIKIAI_DABAR	Kaišiadorys		flag_interpreter	0
-POREIKIAI_DABAR	Kaišiadorys		flag_rfl	0
-POREIKIAI_DABAR	Kaišiadorys		flag_protection	0
-POREIKIAI_DABAR	Kaišiadorys		flag_follow_up	0
-POREIKIAI_DABAR	Lazdijų r. sav.		flag_health	22
-POREIKIAI_DABAR	Lazdijų r. sav.		flag_medication_urgent	29
-POREIKIAI_DABAR	Lazdijų r. sav.		flag_accommodation	127
-POREIKIAI_DABAR	Lazdijų r. sav.		flag_transport	41
-POREIKIAI_DABAR	Lazdijų r. sav.		flag_interpreter	7
-POREIKIAI_DABAR	Lazdijų r. sav.		flag_rfl	17
-POREIKIAI_DABAR	Lazdijų r. sav.		flag_protection	14
-POREIKIAI_DABAR	Lazdijų r. sav.		flag_follow_up	129
-POREIKIAI_DABAR	Plungė		flag_health	0
-POREIKIAI_DABAR	Plungė		flag_medication_urgent	0
-POREIKIAI_DABAR	Plungė		flag_accommodation	1
-POREIKIAI_DABAR	Plungė		flag_transport	0
-POREIKIAI_DABAR	Plungė		flag_interpreter	0
-POREIKIAI_DABAR	Plungė		flag_rfl	0
-POREIKIAI_DABAR	Plungė		flag_protection	0
-POREIKIAI_DABAR	Plungė		flag_follow_up	1
+POREIKIAI_DABAR	Kaišiadorys		flag_rfl	1
+POREIKIAI_DABAR	Kaišiadorys		flag_protection	1
+POREIKIAI_DABAR	Kaišiadorys		flag_follow_up	1
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_health	34
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_medication_urgent	34
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_accommodation	154
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_transport	48
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_interpreter	11
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_rfl	25
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_protection	18
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_follow_up	151
 POREIKIAI_DABAR	Utena		flag_health	0
 POREIKIAI_DABAR	Utena		flag_medication_urgent	0
-POREIKIAI_DABAR	Utena		flag_accommodation	2
+POREIKIAI_DABAR	Utena		flag_accommodation	4
 POREIKIAI_DABAR	Utena		flag_transport	1
 POREIKIAI_DABAR	Utena		flag_interpreter	0
 POREIKIAI_DABAR	Utena		flag_rfl	0
 POREIKIAI_DABAR	Utena		flag_protection	0
-POREIKIAI_DABAR	Utena		flag_follow_up	0
-POREIKIAI_DABAR	Veisėjai		flag_health	0
-POREIKIAI_DABAR	Veisėjai		flag_medication_urgent	0
-POREIKIAI_DABAR	Veisėjai		flag_accommodation	1
-POREIKIAI_DABAR	Veisėjai		flag_transport	0
-POREIKIAI_DABAR	Veisėjai		flag_interpreter	0
-POREIKIAI_DABAR	Veisėjai		flag_rfl	0
-POREIKIAI_DABAR	Veisėjai		flag_protection	0
-POREIKIAI_DABAR	Veisėjai		flag_follow_up	1
-POREIKIAI_VISI	Kaišiadorys		flag_health	0
+POREIKIAI_DABAR	Utena		flag_follow_up	2
+POREIKIAI_VISI	Kaišiadorys		flag_health	1
 POREIKIAI_VISI	Kaišiadorys		flag_medication_urgent	0
-POREIKIAI_VISI	Kaišiadorys		flag_accommodation	2
-POREIKIAI_VISI	Kaišiadorys		flag_transport	1
+POREIKIAI_VISI	Kaišiadorys		flag_accommodation	3
+POREIKIAI_VISI	Kaišiadorys		flag_transport	2
 POREIKIAI_VISI	Kaišiadorys		flag_interpreter	0
-POREIKIAI_VISI	Kaišiadorys		flag_rfl	0
-POREIKIAI_VISI	Kaišiadorys		flag_protection	0
-POREIKIAI_VISI	Kaišiadorys		flag_follow_up	0
-POREIKIAI_VISI	Lazdijų r. sav.		flag_health	23
-POREIKIAI_VISI	Lazdijų r. sav.		flag_medication_urgent	29
-POREIKIAI_VISI	Lazdijų r. sav.		flag_accommodation	130
-POREIKIAI_VISI	Lazdijų r. sav.		flag_transport	44
-POREIKIAI_VISI	Lazdijų r. sav.		flag_interpreter	7
-POREIKIAI_VISI	Lazdijų r. sav.		flag_rfl	20
-POREIKIAI_VISI	Lazdijų r. sav.		flag_protection	16
-POREIKIAI_VISI	Lazdijų r. sav.		flag_follow_up	132
-POREIKIAI_VISI	Plungė		flag_health	0
-POREIKIAI_VISI	Plungė		flag_medication_urgent	0
-POREIKIAI_VISI	Plungė		flag_accommodation	1
-POREIKIAI_VISI	Plungė		flag_transport	0
-POREIKIAI_VISI	Plungė		flag_interpreter	0
-POREIKIAI_VISI	Plungė		flag_rfl	0
-POREIKIAI_VISI	Plungė		flag_protection	0
-POREIKIAI_VISI	Plungė		flag_follow_up	1
+POREIKIAI_VISI	Kaišiadorys		flag_rfl	1
+POREIKIAI_VISI	Kaišiadorys		flag_protection	1
+POREIKIAI_VISI	Kaišiadorys		flag_follow_up	1
+POREIKIAI_VISI	Lazdijų r. sav.		flag_health	40
+POREIKIAI_VISI	Lazdijų r. sav.		flag_medication_urgent	38
+POREIKIAI_VISI	Lazdijų r. sav.		flag_accommodation	173
+POREIKIAI_VISI	Lazdijų r. sav.		flag_transport	56
+POREIKIAI_VISI	Lazdijų r. sav.		flag_interpreter	16
+POREIKIAI_VISI	Lazdijų r. sav.		flag_rfl	31
+POREIKIAI_VISI	Lazdijų r. sav.		flag_protection	20
+POREIKIAI_VISI	Lazdijų r. sav.		flag_follow_up	175
 POREIKIAI_VISI	Utena		flag_health	0
 POREIKIAI_VISI	Utena		flag_medication_urgent	0
-POREIKIAI_VISI	Utena		flag_accommodation	2
+POREIKIAI_VISI	Utena		flag_accommodation	4
 POREIKIAI_VISI	Utena		flag_transport	1
 POREIKIAI_VISI	Utena		flag_interpreter	0
 POREIKIAI_VISI	Utena		flag_rfl	0
 POREIKIAI_VISI	Utena		flag_protection	0
-POREIKIAI_VISI	Utena		flag_follow_up	0
-POREIKIAI_VISI	Veisėjai		flag_health	0
-POREIKIAI_VISI	Veisėjai		flag_medication_urgent	0
-POREIKIAI_VISI	Veisėjai		flag_accommodation	1
-POREIKIAI_VISI	Veisėjai		flag_transport	0
-POREIKIAI_VISI	Veisėjai		flag_interpreter	0
-POREIKIAI_VISI	Veisėjai		flag_rfl	0
-POREIKIAI_VISI	Veisėjai		flag_protection	0
-POREIKIAI_VISI	Veisėjai		flag_follow_up	1
-EIGA		2026-09-26 08:00	surinkimo_namu_ukiai	6
-EIGA		2026-09-26 08:00	atvyko_i_centrus	0
-EIGA		2026-09-26 08:00	isvyko	0
-EIGA		2026-09-26 08:00	centruose_tuo_metu	0
-EIGA		2026-09-26 09:00	surinkimo_namu_ukiai	32
-EIGA		2026-09-26 09:00	atvyko_i_centrus	0
-EIGA		2026-09-26 09:00	isvyko	0
-EIGA		2026-09-26 09:00	centruose_tuo_metu	0
-EIGA		2026-09-30 13:00	surinkimo_namu_ukiai	1
-EIGA		2026-09-30 13:00	atvyko_i_centrus	0
-EIGA		2026-09-30 13:00	isvyko	0
-EIGA		2026-09-30 13:00	centruose_tuo_metu	0
-EIGA		2026-10-02 11:00	surinkimo_namu_ukiai	1
-EIGA		2026-10-02 11:00	atvyko_i_centrus	0
-EIGA		2026-10-02 11:00	isvyko	0
-EIGA		2026-10-02 11:00	centruose_tuo_metu	0
-EIGA		2026-10-02 18:00	surinkimo_namu_ukiai	1
-EIGA		2026-10-02 18:00	atvyko_i_centrus	0
-EIGA		2026-10-02 18:00	isvyko	0
-EIGA		2026-10-02 18:00	centruose_tuo_metu	0
-EIGA		2026-10-03 08:00	surinkimo_namu_ukiai	6
-EIGA		2026-10-03 08:00	atvyko_i_centrus	0
-EIGA		2026-10-03 08:00	isvyko	0
-EIGA		2026-10-03 08:00	centruose_tuo_metu	0
-EIGA		2026-10-03 09:00	surinkimo_namu_ukiai	27
-EIGA		2026-10-03 09:00	atvyko_i_centrus	50
-EIGA		2026-10-03 09:00	isvyko	0
-EIGA		2026-10-03 09:00	centruose_tuo_metu	50
-EIGA		2026-10-03 10:00	surinkimo_namu_ukiai	62
-EIGA		2026-10-03 10:00	atvyko_i_centrus	134
-EIGA		2026-10-03 10:00	isvyko	0
-EIGA		2026-10-03 10:00	centruose_tuo_metu	184
-EIGA		2026-10-03 11:00	surinkimo_namu_ukiai	17
-EIGA		2026-10-03 11:00	atvyko_i_centrus	46
-EIGA		2026-10-03 11:00	isvyko	3
-EIGA		2026-10-03 11:00	centruose_tuo_metu	227
-ISVYKIMAI_KUR	Lazdijų r. sav.		grizta_namo	2
-ISVYKIMAI_KUR	Lazdijų r. sav.		pas_artimuosius	1
-
-POR_TIPAS_VISI	Lazdijų r. sav.		water|urgent	2
-POR_TIPAS_VISI	Lazdijų r. sav.		water|hours	2
-POR_TIPAS_VISI	Lazdijų r. sav.		water|wait	13
-POR_TIPAS_VISI	Lazdijų r. sav.		water|nenurodyta	7
-POR_TIPAS_VISI	Lazdijų r. sav.		food|hours	9
-POR_TIPAS_VISI	Lazdijų r. sav.		food|wait	31
-POR_TIPAS_VISI	Lazdijų r. sav.		food|nenurodyta	36
-POR_TIPAS_VISI	Lazdijų r. sav.		clothing|urgent	3
-POR_TIPAS_VISI	Lazdijų r. sav.		clothing|hours	2
-POR_TIPAS_VISI	Lazdijų r. sav.		clothing|wait	7
-POR_TIPAS_VISI	Lazdijų r. sav.		clothing|nenurodyta	5
-POR_TIPAS_VISI	Lazdijų r. sav.		hygiene|wait	2
-POR_TIPAS_VISI	Lazdijų r. sav.		hygiene|nenurodyta	17
-POR_TIPAS_VISI	Lazdijų r. sav.		first_aid|urgent	3
-POR_TIPAS_VISI	Lazdijų r. sav.		first_aid|hours	7
-POR_TIPAS_VISI	Lazdijų r. sav.		first_aid|wait	11
-POR_TIPAS_VISI	Lazdijų r. sav.		first_aid|nenurodyta	3
-POR_TIPAS_VISI	Lazdijų r. sav.		medical|urgent	1
-POR_TIPAS_VISI	Lazdijų r. sav.		medical|hours	5
-POR_TIPAS_VISI	Lazdijų r. sav.		medical|wait	10
-POR_TIPAS_VISI	Lazdijų r. sav.		medical|nenurodyta	15
-POR_TIPAS_VISI	Lazdijų r. sav.		medication|urgent	4
-POR_TIPAS_VISI	Lazdijų r. sav.		medication|wait	8
-POR_TIPAS_VISI	Lazdijų r. sav.		medication|nenurodyta	12
-POR_TIPAS_VISI	Lazdijų r. sav.		pfa|urgent	2
-POR_TIPAS_VISI	Lazdijų r. sav.		pfa|hours	1
-POR_TIPAS_VISI	Lazdijų r. sav.		pfa|wait	6
-POR_TIPAS_VISI	Lazdijų r. sav.		pfa|nenurodyta	1
+POREIKIAI_VISI	Utena		flag_follow_up	2
+EIGA		2026-09-26 05:00	surinkimo_namu_ukiai	6
+EIGA		2026-09-26 05:00	atvyko_i_centrus	0
+EIGA		2026-09-26 05:00	isvyko	0
+EIGA		2026-09-26 05:00	centruose_tuo_metu	0
+EIGA		2026-09-26 06:00	surinkimo_namu_ukiai	32
+EIGA		2026-09-26 06:00	atvyko_i_centrus	0
+EIGA		2026-09-26 06:00	isvyko	0
+EIGA		2026-09-26 06:00	centruose_tuo_metu	0
+EIGA		2026-09-30 10:00	surinkimo_namu_ukiai	1
+EIGA		2026-09-30 10:00	atvyko_i_centrus	0
+EIGA		2026-09-30 10:00	isvyko	0
+EIGA		2026-09-30 10:00	centruose_tuo_metu	0
+EIGA		2026-10-02 08:00	surinkimo_namu_ukiai	1
+EIGA		2026-10-02 08:00	atvyko_i_centrus	0
+EIGA		2026-10-02 08:00	isvyko	0
+EIGA		2026-10-02 08:00	centruose_tuo_metu	0
+EIGA		2026-10-02 15:00	surinkimo_namu_ukiai	1
+EIGA		2026-10-02 15:00	atvyko_i_centrus	0
+EIGA		2026-10-02 15:00	isvyko	0
+EIGA		2026-10-02 15:00	centruose_tuo_metu	0
+EIGA		2026-10-03 05:00	surinkimo_namu_ukiai	6
+EIGA		2026-10-03 05:00	atvyko_i_centrus	0
+EIGA		2026-10-03 05:00	isvyko	0
+EIGA		2026-10-03 05:00	centruose_tuo_metu	0
+EIGA		2026-10-03 06:00	surinkimo_namu_ukiai	27
+EIGA		2026-10-03 06:00	atvyko_i_centrus	50
+EIGA		2026-10-03 06:00	isvyko	0
+EIGA		2026-10-03 06:00	centruose_tuo_metu	50
+EIGA		2026-10-03 07:00	surinkimo_namu_ukiai	62
+EIGA		2026-10-03 07:00	atvyko_i_centrus	134
+EIGA		2026-10-03 07:00	isvyko	0
+EIGA		2026-10-03 07:00	centruose_tuo_metu	184
+EIGA		2026-10-03 08:00	surinkimo_namu_ukiai	34
+EIGA		2026-10-03 08:00	atvyko_i_centrus	85
+EIGA		2026-10-03 08:00	isvyko	11
+EIGA		2026-10-03 08:00	centruose_tuo_metu	258
+EIGA		2026-10-03 09:00	surinkimo_namu_ukiai	17
+EIGA		2026-10-03 09:00	atvyko_i_centrus	31
+EIGA		2026-10-03 09:00	isvyko	6
+EIGA		2026-10-03 09:00	centruose_tuo_metu	283
+EIGA		2026-10-03 10:00	surinkimo_namu_ukiai	5
+EIGA		2026-10-03 10:00	atvyko_i_centrus	8
+EIGA		2026-10-03 10:00	isvyko	17
+EIGA		2026-10-03 10:00	centruose_tuo_metu	274
+EIGA		2026-10-03 11:00	surinkimo_namu_ukiai	1
+EIGA		2026-10-03 11:00	atvyko_i_centrus	5
+EIGA		2026-10-03 11:00	isvyko	1
+EIGA		2026-10-03 11:00	centruose_tuo_metu	278
+ISVYKIMAI_KUR	Lazdijų r. sav.		grizta_namo	29
+ISVYKIMAI_KUR	Lazdijų r. sav.		pas_artimuosius	3
+ISVYKIMAI_KUR	Nenurodyta		grizta_namo	4
+ISVYKIMAI_KUR	Lazdijų r. sav.		kitas_centras	1
+POR_TIPAS_VISI	Lazdijų r. sav.		accommodation|wait	135
+POR_TIPAS_VISI	Lazdijų r. sav.		water|wait	186
+POR_TIPAS_VISI	Lazdijų r. sav.		food|wait	180
+POR_TIPAS_VISI	Lazdijų r. sav.		medication|wait	53
+POR_TIPAS_VISI	Lazdijų r. sav.		information|wait	58
+POR_TIPAS_VISI	Lazdijų r. sav.		transport|wait	43
+POR_TIPAS_VISI	Lazdijų r. sav.		hygiene|wait	52
+POR_TIPAS_VISI	Lazdijų r. sav.		pfa|wait	18
+POR_TIPAS_VISI	Lazdijų r. sav.		rfl|wait	15
+POR_TIPAS_VISI	Lazdijų r. sav.		documents|wait	4
+POR_TIPAS_VISI	Lazdijų r. sav.		protection|wait	10
+POR_TIPAS_VISI	Lazdijų r. sav.		other|wait	14
+POR_TIPAS_VISI	Lazdijų r. sav.		water|hours	27
+POR_TIPAS_VISI	Lazdijų r. sav.		food|hours	27
+POR_TIPAS_VISI	Lazdijų r. sav.		rfl|hours	5
+POR_TIPAS_VISI	Lazdijų r. sav.		information|hours	10
+POR_TIPAS_VISI	Lazdijų r. sav.		accommodation|hours	21
+POR_TIPAS_VISI	Lazdijų r. sav.		interpreter|hours	3
+POR_TIPAS_VISI	Lazdijų r. sav.		hygiene|hours	8
+POR_TIPAS_VISI	Lazdijų r. sav.		medical|hours	8
+POR_TIPAS_VISI	Lazdijų r. sav.		medication|hours	6
+POR_TIPAS_VISI	Lazdijų r. sav.		water|urgent	22
+POR_TIPAS_VISI	Lazdijų r. sav.		food|urgent	22
+POR_TIPAS_VISI	Lazdijų r. sav.		medical|urgent	16
+POR_TIPAS_VISI	Lazdijų r. sav.		medication|urgent	12
+POR_TIPAS_VISI	Lazdijų r. sav.		accommodation|urgent	17
+POR_TIPAS_VISI	Lazdijų r. sav.		protection|urgent	6
+POR_TIPAS_VISI	Lazdijų r. sav.		clothing|hours	8
+POR_TIPAS_VISI	Lazdijų r. sav.		pfa|hours	4
+POR_TIPAS_VISI	Lazdijų r. sav.		documents|hours	1
+POR_TIPAS_VISI	Lazdijų r. sav.		transport|hours	7
+POR_TIPAS_VISI	Lazdijų r. sav.		protection|hours	4
+POR_TIPAS_VISI	Lazdijų r. sav.		social|hours	1
+POR_TIPAS_VISI	Lazdijų r. sav.		clothing|wait	27
+POR_TIPAS_VISI	Lazdijų r. sav.		first_aid|wait	2
 POR_TIPAS_VISI	Lazdijų r. sav.		rfl|urgent	4
-POR_TIPAS_VISI	Lazdijų r. sav.		rfl|hours	7
-POR_TIPAS_VISI	Lazdijų r. sav.		rfl|wait	7
-POR_TIPAS_VISI	Lazdijų r. sav.		rfl|nenurodyta	5
 POR_TIPAS_VISI	Lazdijų r. sav.		information|urgent	4
-POR_TIPAS_VISI	Lazdijų r. sav.		information|hours	5
-POR_TIPAS_VISI	Lazdijų r. sav.		information|wait	12
-POR_TIPAS_VISI	Lazdijų r. sav.		information|nenurodyta	15
-POR_TIPAS_VISI	Lazdijų r. sav.		documents|urgent	2
-POR_TIPAS_VISI	Lazdijų r. sav.		documents|hours	3
-POR_TIPAS_VISI	Lazdijų r. sav.		documents|wait	8
-POR_TIPAS_VISI	Lazdijų r. sav.		documents|nenurodyta	7
+POR_TIPAS_VISI	Lazdijų r. sav.		child_family|urgent	3
+POR_TIPAS_VISI	Lazdijų r. sav.		clothing|urgent	6
+POR_TIPAS_VISI	Lazdijų r. sav.		hygiene|urgent	11
+POR_TIPAS_VISI	Lazdijų r. sav.		first_aid|urgent	6
+POR_TIPAS_VISI	Lazdijų r. sav.		pfa|urgent	7
+POR_TIPAS_VISI	Lazdijų r. sav.		interpreter|urgent	3
+POR_TIPAS_VISI	Lazdijų r. sav.		medical|wait	15
+POR_TIPAS_VISI	Lazdijų r. sav.		social|wait	4
+POR_TIPAS_VISI	Utena		water|urgent	1
+POR_TIPAS_VISI	Utena		food|urgent	1
+POR_TIPAS_VISI	Utena		pfa|urgent	1
+POR_TIPAS_VISI	Utena		accommodation|urgent	1
+POR_TIPAS_VISI	Lazdijų r. sav.		documents|urgent	3
+POR_TIPAS_VISI	Lazdijų r. sav.		transport|urgent	6
+POR_TIPAS_VISI	Lazdijų r. sav.		interpreter|wait	10
+POR_TIPAS_VISI	Utena		water|wait	2
+POR_TIPAS_VISI	Utena		food|wait	2
+POR_TIPAS_VISI	Utena		medication|wait	2
+POR_TIPAS_VISI	Utena		accommodation|wait	2
+POR_TIPAS_VISI	Utena		water|hours	1
+POR_TIPAS_VISI	Utena		food|hours	1
+POR_TIPAS_VISI	Utena		hygiene|hours	1
+POR_TIPAS_VISI	Utena		information|hours	1
+POR_TIPAS_VISI	Utena		accommodation|hours	1
+POR_TIPAS_VISI	Utena		transport|hours	1
+POR_TIPAS_VISI	Kaišiadorys		water|wait	4
+POR_TIPAS_VISI	Kaišiadorys		food|wait	4
+POR_TIPAS_VISI	Kaišiadorys		accommodation|wait	3
+POR_TIPAS_VISI	Kaišiadorys		information|wait	2
+POR_TIPAS_VISI	Kaišiadorys		transport|wait	2
+POR_TIPAS_VISI	Kaišiadorys		hygiene|wait	1
+POR_TIPAS_VISI	Kaišiadorys		first_aid|wait	1
+POR_TIPAS_VISI	Kaišiadorys		medical|wait	1
+POR_TIPAS_VISI	Kaišiadorys		medication|wait	1
+POR_TIPAS_VISI	Kaišiadorys		pfa|wait	1
+POR_TIPAS_VISI	Kaišiadorys		rfl|wait	1
+POR_TIPAS_VISI	Kaišiadorys		documents|wait	1
+POR_TIPAS_VISI	Kaišiadorys		protection|wait	1
 POR_TIPAS_VISI	Lazdijų r. sav.		child_family|hours	2
-POR_TIPAS_VISI	Lazdijų r. sav.		child_family|wait	11
-POR_TIPAS_VISI	Lazdijų r. sav.		mobility|hours	5
-POR_TIPAS_VISI	Lazdijų r. sav.		mobility|wait	3
-POR_TIPAS_VISI	Lazdijų r. sav.		mobility|nenurodyta	9
-POR_TIPAS_VISI	Lazdijų r. sav.		accommodation|urgent	5
-POR_TIPAS_VISI	Lazdijų r. sav.		accommodation|hours	7
-POR_TIPAS_VISI	Lazdijų r. sav.		accommodation|wait	34
-POR_TIPAS_VISI	Lazdijų r. sav.		accommodation|nenurodyta	9
-POR_TIPAS_VISI	Lazdijų r. sav.		transport|urgent	1
-POR_TIPAS_VISI	Lazdijų r. sav.		transport|hours	1
-POR_TIPAS_VISI	Lazdijų r. sav.		transport|wait	8
-POR_TIPAS_VISI	Lazdijų r. sav.		transport|nenurodyta	5
-POR_TIPAS_VISI	Lazdijų r. sav.		interpreter|urgent	1
-POR_TIPAS_VISI	Lazdijų r. sav.		interpreter|hours	6
-POR_TIPAS_VISI	Lazdijų r. sav.		interpreter|wait	4
-POR_TIPAS_VISI	Lazdijų r. sav.		interpreter|nenurodyta	10
-POR_TIPAS_VISI	Lazdijų r. sav.		protection|urgent	4
-POR_TIPAS_VISI	Lazdijų r. sav.		protection|nenurodyta	4
-POR_TIPAS_VISI	Lazdijų r. sav.		social|urgent	3
-POR_TIPAS_VISI	Lazdijų r. sav.		social|hours	5
-POR_TIPAS_VISI	Lazdijų r. sav.		social|wait	3
-POR_TIPAS_VISI	Lazdijų r. sav.		social|nenurodyta	6
-POR_TIPAS_VISI	Lazdijų r. sav.		other|hours	4
-POR_TIPAS_VISI	Lazdijų r. sav.		other|nenurodyta	12
-POR_ZMONES_VISI	Lazdijų r. sav.		urgent	17
-POR_ZMONES_VISI	Lazdijų r. sav.		hours	44
-POR_ZMONES_VISI	Lazdijų r. sav.		wait	66
-POR_ZMONES_VISI	Lazdijų r. sav.		nenurodyta	55
-POR_GRUPES_VISI	Lazdijų r. sav.		mobility	29
-POR_GRUPES_VISI	Lazdijų r. sav.		vision	31
-POR_GRUPES_VISI	Lazdijų r. sav.		hearing	24
-POR_GRUPES_VISI	Lazdijų r. sav.		communication	31
-POR_GRUPES_VISI	Lazdijų r. sav.		pregnancy	9
-POR_GRUPES_VISI	Lazdijų r. sav.		infant	31
-POR_GRUPES_VISI	Lazdijų r. sav.		older_support	25
-POR_TIPAS_DABAR	Lazdijų r. sav.		water|urgent	3
+POR_TIPAS_VISI	Lazdijų r. sav.		child_family|wait	4
+POR_TIPAS_VISI	Lazdijų r. sav.		other|hours	1
+POR_TIPAS_VISI	Lazdijų r. sav.		other|urgent	1
+POR_ZMONES_VISI	Lazdijų r. sav.		wait	228
+POR_ZMONES_VISI	Lazdijų r. sav.		hours	30
+POR_ZMONES_VISI	Lazdijų r. sav.		urgent	24
+POR_ZMONES_VISI	Utena		urgent	1
+POR_ZMONES_VISI	Utena		wait	2
+POR_ZMONES_VISI	Utena		hours	1
+POR_ZMONES_VISI	Kaišiadorys		wait	4
+POR_GRUPES_VISI	Lazdijų r. sav.		mobility	10
+POR_GRUPES_VISI	Lazdijų r. sav.		hearing	6
+POR_GRUPES_VISI	Lazdijų r. sav.		vision	10
+POR_GRUPES_VISI	Lazdijų r. sav.		other	12
+POR_GRUPES_VISI	Lazdijų r. sav.		self_care	1
+POR_GRUPES_VISI	Lazdijų r. sav.		pregnancy	3
+POR_GRUPES_VISI	Lazdijų r. sav.		infant	11
+POR_GRUPES_VISI	Lazdijų r. sav.		older_support	1
+POR_GRUPES_VISI	Kaišiadorys		mobility	1
+POR_GRUPES_VISI	Kaišiadorys		vision	1
+POR_GRUPES_VISI	Lazdijų r. sav.		communication	2
+POR_GRUPES_VISI	Kaišiadorys		hearing	1
+POR_TIPAS_DABAR	Lazdijų r. sav.		accommodation|wait	125
+POR_TIPAS_DABAR	Lazdijų r. sav.		water|wait	167
+POR_TIPAS_DABAR	Lazdijų r. sav.		food|wait	161
+POR_TIPAS_DABAR	Lazdijų r. sav.		medication|wait	49
+POR_TIPAS_DABAR	Lazdijų r. sav.		information|wait	55
+POR_TIPAS_DABAR	Lazdijų r. sav.		transport|wait	37
+POR_TIPAS_DABAR	Lazdijų r. sav.		hygiene|wait	46
+POR_TIPAS_DABAR	Lazdijų r. sav.		pfa|wait	16
+POR_TIPAS_DABAR	Lazdijų r. sav.		rfl|wait	14
+POR_TIPAS_DABAR	Lazdijų r. sav.		documents|wait	4
+POR_TIPAS_DABAR	Lazdijų r. sav.		protection|wait	10
+POR_TIPAS_DABAR	Lazdijų r. sav.		other|wait	13
 POR_TIPAS_DABAR	Lazdijų r. sav.		water|hours	19
-POR_TIPAS_DABAR	Lazdijų r. sav.		water|wait	20
-POR_TIPAS_DABAR	Lazdijų r. sav.		water|nenurodyta	15
-POR_TIPAS_DABAR	Lazdijų r. sav.		food|urgent	9
 POR_TIPAS_DABAR	Lazdijų r. sav.		food|hours	19
-POR_TIPAS_DABAR	Lazdijų r. sav.		food|wait	29
-POR_TIPAS_DABAR	Lazdijų r. sav.		food|nenurodyta	39
-POR_TIPAS_DABAR	Lazdijų r. sav.		clothing|urgent	2
-POR_TIPAS_DABAR	Lazdijų r. sav.		clothing|hours	6
-POR_TIPAS_DABAR	Lazdijų r. sav.		clothing|wait	8
-POR_TIPAS_DABAR	Lazdijų r. sav.		clothing|nenurodyta	9
-POR_TIPAS_DABAR	Lazdijų r. sav.		hygiene|urgent	4
-POR_TIPAS_DABAR	Lazdijų r. sav.		hygiene|hours	3
-POR_TIPAS_DABAR	Lazdijų r. sav.		hygiene|wait	1
-POR_TIPAS_DABAR	Lazdijų r. sav.		hygiene|nenurodyta	12
-POR_TIPAS_DABAR	Lazdijų r. sav.		first_aid|urgent	2
-POR_TIPAS_DABAR	Lazdijų r. sav.		first_aid|hours	4
-POR_TIPAS_DABAR	Lazdijų r. sav.		first_aid|wait	7
-POR_TIPAS_DABAR	Lazdijų r. sav.		first_aid|nenurodyta	4
-POR_TIPAS_DABAR	Lazdijų r. sav.		medical|wait	10
-POR_TIPAS_DABAR	Lazdijų r. sav.		medical|nenurodyta	16
-POR_TIPAS_DABAR	Lazdijų r. sav.		medication|urgent	3
-POR_TIPAS_DABAR	Lazdijų r. sav.		medication|hours	1
-POR_TIPAS_DABAR	Lazdijų r. sav.		medication|wait	13
-POR_TIPAS_DABAR	Lazdijų r. sav.		medication|nenurodyta	14
-POR_TIPAS_DABAR	Lazdijų r. sav.		pfa|urgent	2
-POR_TIPAS_DABAR	Lazdijų r. sav.		pfa|wait	11
-POR_TIPAS_DABAR	Lazdijų r. sav.		pfa|nenurodyta	11
-POR_TIPAS_DABAR	Lazdijų r. sav.		rfl|urgent	2
-POR_TIPAS_DABAR	Lazdijų r. sav.		rfl|wait	9
-POR_TIPAS_DABAR	Lazdijų r. sav.		information|urgent	2
-POR_TIPAS_DABAR	Lazdijų r. sav.		information|hours	1
-POR_TIPAS_DABAR	Lazdijų r. sav.		information|wait	4
-POR_TIPAS_DABAR	Lazdijų r. sav.		information|nenurodyta	15
-POR_TIPAS_DABAR	Lazdijų r. sav.		documents|urgent	3
-POR_TIPAS_DABAR	Lazdijų r. sav.		documents|hours	7
-POR_TIPAS_DABAR	Lazdijų r. sav.		documents|wait	3
-POR_TIPAS_DABAR	Lazdijų r. sav.		documents|nenurodyta	6
-POR_TIPAS_DABAR	Lazdijų r. sav.		child_family|urgent	2
-POR_TIPAS_DABAR	Lazdijų r. sav.		child_family|wait	5
-POR_TIPAS_DABAR	Lazdijų r. sav.		child_family|nenurodyta	17
-POR_TIPAS_DABAR	Lazdijų r. sav.		mobility|urgent	3
-POR_TIPAS_DABAR	Lazdijų r. sav.		mobility|hours	7
-POR_TIPAS_DABAR	Lazdijų r. sav.		mobility|wait	3
-POR_TIPAS_DABAR	Lazdijų r. sav.		mobility|nenurodyta	12
-POR_TIPAS_DABAR	Lazdijų r. sav.		accommodation|urgent	8
-POR_TIPAS_DABAR	Lazdijų r. sav.		accommodation|hours	15
-POR_TIPAS_DABAR	Lazdijų r. sav.		accommodation|wait	14
-POR_TIPAS_DABAR	Lazdijų r. sav.		accommodation|nenurodyta	7
-POR_TIPAS_DABAR	Lazdijų r. sav.		transport|hours	7
-POR_TIPAS_DABAR	Lazdijų r. sav.		transport|wait	12
-POR_TIPAS_DABAR	Lazdijų r. sav.		transport|nenurodyta	4
+POR_TIPAS_DABAR	Lazdijų r. sav.		hygiene|hours	6
+POR_TIPAS_DABAR	Lazdijų r. sav.		medical|hours	6
+POR_TIPAS_DABAR	Lazdijų r. sav.		medication|hours	4
+POR_TIPAS_DABAR	Lazdijų r. sav.		information|hours	7
+POR_TIPAS_DABAR	Lazdijų r. sav.		accommodation|hours	14
+POR_TIPAS_DABAR	Lazdijų r. sav.		interpreter|hours	2
+POR_TIPAS_DABAR	Lazdijų r. sav.		water|urgent	18
+POR_TIPAS_DABAR	Lazdijų r. sav.		food|urgent	18
+POR_TIPAS_DABAR	Lazdijų r. sav.		medical|urgent	15
+POR_TIPAS_DABAR	Lazdijų r. sav.		medication|urgent	11
+POR_TIPAS_DABAR	Lazdijų r. sav.		accommodation|urgent	15
+POR_TIPAS_DABAR	Lazdijų r. sav.		protection|urgent	6
+POR_TIPAS_DABAR	Lazdijų r. sav.		clothing|wait	25
+POR_TIPAS_DABAR	Lazdijų r. sav.		first_aid|wait	2
+POR_TIPAS_DABAR	Lazdijų r. sav.		rfl|urgent	3
+POR_TIPAS_DABAR	Lazdijų r. sav.		information|urgent	4
+POR_TIPAS_DABAR	Lazdijų r. sav.		child_family|urgent	3
+POR_TIPAS_DABAR	Lazdijų r. sav.		transport|hours	5
+POR_TIPAS_DABAR	Lazdijų r. sav.		clothing|urgent	6
+POR_TIPAS_DABAR	Lazdijų r. sav.		hygiene|urgent	9
+POR_TIPAS_DABAR	Lazdijų r. sav.		first_aid|urgent	6
+POR_TIPAS_DABAR	Lazdijų r. sav.		pfa|urgent	4
 POR_TIPAS_DABAR	Lazdijų r. sav.		interpreter|urgent	3
-POR_TIPAS_DABAR	Lazdijų r. sav.		interpreter|hours	3
-POR_TIPAS_DABAR	Lazdijų r. sav.		interpreter|wait	8
-POR_TIPAS_DABAR	Lazdijų r. sav.		interpreter|nenurodyta	14
-POR_TIPAS_DABAR	Lazdijų r. sav.		protection|urgent	1
-POR_TIPAS_DABAR	Lazdijų r. sav.		protection|hours	5
-POR_TIPAS_DABAR	Lazdijų r. sav.		protection|wait	3
-POR_TIPAS_DABAR	Lazdijų r. sav.		protection|nenurodyta	9
-POR_TIPAS_DABAR	Lazdijų r. sav.		social|hours	2
+POR_TIPAS_DABAR	Lazdijų r. sav.		medical|wait	12
+POR_TIPAS_DABAR	Lazdijų r. sav.		clothing|hours	7
+POR_TIPAS_DABAR	Lazdijų r. sav.		pfa|hours	3
+POR_TIPAS_DABAR	Lazdijų r. sav.		rfl|hours	2
+POR_TIPAS_DABAR	Lazdijų r. sav.		protection|hours	2
+POR_TIPAS_DABAR	Utena		water|urgent	1
+POR_TIPAS_DABAR	Utena		food|urgent	1
+POR_TIPAS_DABAR	Utena		pfa|urgent	1
+POR_TIPAS_DABAR	Utena		accommodation|urgent	1
 POR_TIPAS_DABAR	Lazdijų r. sav.		social|wait	3
-POR_TIPAS_DABAR	Lazdijų r. sav.		social|nenurodyta	16
-POR_TIPAS_DABAR	Lazdijų r. sav.		other|hours	6
-POR_TIPAS_DABAR	Lazdijų r. sav.		other|wait	1
-POR_TIPAS_DABAR	Lazdijų r. sav.		other|nenurodyta	17
-POR_ZMONES_DABAR	Lazdijų r. sav.		urgent	16
-POR_ZMONES_DABAR	Lazdijų r. sav.		hours	42
-POR_ZMONES_DABAR	Lazdijų r. sav.		wait	63
-POR_ZMONES_DABAR	Lazdijų r. sav.		nenurodyta	52
-POR_GRUPES_DABAR	Lazdijų r. sav.		mobility	5
-POR_GRUPES_DABAR	Lazdijų r. sav.		vision	2
+POR_TIPAS_DABAR	Lazdijų r. sav.		documents|urgent	3
+POR_TIPAS_DABAR	Lazdijų r. sav.		transport|urgent	6
+POR_TIPAS_DABAR	Utena		water|wait	2
+POR_TIPAS_DABAR	Utena		food|wait	2
+POR_TIPAS_DABAR	Utena		medication|wait	2
+POR_TIPAS_DABAR	Utena		accommodation|wait	2
+POR_TIPAS_DABAR	Utena		water|hours	1
+POR_TIPAS_DABAR	Utena		food|hours	1
+POR_TIPAS_DABAR	Utena		hygiene|hours	1
+POR_TIPAS_DABAR	Utena		information|hours	1
+POR_TIPAS_DABAR	Utena		accommodation|hours	1
+POR_TIPAS_DABAR	Utena		transport|hours	1
+POR_TIPAS_DABAR	Lazdijų r. sav.		interpreter|wait	6
+POR_TIPAS_DABAR	Kaišiadorys		water|wait	4
+POR_TIPAS_DABAR	Kaišiadorys		food|wait	4
+POR_TIPAS_DABAR	Kaišiadorys		accommodation|wait	3
+POR_TIPAS_DABAR	Kaišiadorys		information|wait	2
+POR_TIPAS_DABAR	Kaišiadorys		transport|wait	2
+POR_TIPAS_DABAR	Kaišiadorys		hygiene|wait	1
+POR_TIPAS_DABAR	Kaišiadorys		first_aid|wait	1
+POR_TIPAS_DABAR	Kaišiadorys		medical|wait	1
+POR_TIPAS_DABAR	Kaišiadorys		medication|wait	1
+POR_TIPAS_DABAR	Kaišiadorys		pfa|wait	1
+POR_TIPAS_DABAR	Kaišiadorys		rfl|wait	1
+POR_TIPAS_DABAR	Kaišiadorys		documents|wait	1
+POR_TIPAS_DABAR	Kaišiadorys		protection|wait	1
+POR_TIPAS_DABAR	Lazdijų r. sav.		child_family|hours	2
+POR_TIPAS_DABAR	Lazdijų r. sav.		child_family|wait	4
+POR_TIPAS_DABAR	Lazdijų r. sav.		other|hours	1
+POR_TIPAS_DABAR	Lazdijų r. sav.		other|urgent	1
+POR_ZMONES_DABAR	Lazdijų r. sav.		wait	208
+POR_ZMONES_DABAR	Lazdijų r. sav.		hours	22
+POR_ZMONES_DABAR	Lazdijų r. sav.		urgent	20
+POR_ZMONES_DABAR	Utena		urgent	1
+POR_ZMONES_DABAR	Utena		wait	2
+POR_ZMONES_DABAR	Utena		hours	1
+POR_ZMONES_DABAR	Kaišiadorys		wait	4
+POR_GRUPES_DABAR	Lazdijų r. sav.		mobility	8
 POR_GRUPES_DABAR	Lazdijų r. sav.		hearing	6
-POR_GRUPES_DABAR	Lazdijų r. sav.		communication	29
-POR_GRUPES_DABAR	Lazdijų r. sav.		self_care	21
-POR_GRUPES_DABAR	Lazdijų r. sav.		pregnancy	28
-POR_GRUPES_DABAR	Lazdijų r. sav.		infant	15
-POR_GRUPES_DABAR	Lazdijų r. sav.		older_support	3
-ZM_NU_VISI	Lazdijų r. sav.		viso	100
-ZM_NU_VISI	Kaišiadorys		viso	3
+POR_GRUPES_DABAR	Lazdijų r. sav.		vision	9
+POR_GRUPES_DABAR	Lazdijų r. sav.		other	12
+POR_GRUPES_DABAR	Lazdijų r. sav.		self_care	1
+POR_GRUPES_DABAR	Lazdijų r. sav.		pregnancy	3
+POR_GRUPES_DABAR	Lazdijų r. sav.		infant	11
+POR_GRUPES_DABAR	Lazdijų r. sav.		older_support	1
+POR_GRUPES_DABAR	Kaišiadorys		mobility	1
+POR_GRUPES_DABAR	Kaišiadorys		vision	1
+POR_GRUPES_DABAR	Kaišiadorys		hearing	1
+ZM_NU_VISI	Lazdijų r. sav.		viso	147
+ZM_NU_VISI	Lazdijų r. sav.		su_vaikais	16
 ZM_NU_VISI	Utena		viso	2
-ZM_NU_VISI	Plungė		viso	1
-ZM_NU_VISI	Lazdijų r. sav.		su_vaikais	57
-ZM_NU_VISI	Kaišiadorys		su_vaikais	2
-ZM_NU_VISI	Utena		su_vaikais	1
-ZM_NU_VISI	Lazdijų r. sav.		sud_suaugusieji_su_vaikais	34
-ZM_NU_VISI	Lazdijų r. sav.		sud_tik_suaugusieji	9
-ZM_NU_VISI	Lazdijų r. sav.		sud_vienas_suauges	31
-ZM_NU_VISI	Lazdijų r. sav.		sud_nenurodytas	6
-ZM_NU_VISI	Lazdijų r. sav.		sud_vienas_su_vaikais	13
-ZM_NU_VISI	Lazdijų r. sav.		sud_tik_vaikai	7
-ZM_NU_VISI	Kaišiadorys		sud_tik_suaugusieji	1
-ZM_NU_VISI	Kaišiadorys		sud_nenurodytas	1
-ZM_NU_VISI	Kaišiadorys		sud_vienas_su_vaikais	1
-ZM_NU_VISI	Utena		sud_suaugusieji_su_vaikais	1
+ZM_NU_VISI	Utena		su_vaikais	0
+ZM_NU_VISI	Kaišiadorys		viso	1
+ZM_NU_VISI	Kaišiadorys		su_vaikais	0
+ZM_NU_VISI	Lazdijų r. sav.		sud_vienas_suauges	72
+ZM_NU_VISI	Lazdijų r. sav.		sud_tik_suaugusieji	59
+ZM_NU_VISI	Lazdijų r. sav.		sud_vienas_su_vaikais	6
+ZM_NU_VISI	Lazdijų r. sav.		sud_suaugusieji_su_vaikais	9
 ZM_NU_VISI	Utena		sud_vienas_suauges	1
-ZM_NU_VISI	Plungė		sud_vienas_suauges	1
-ZM_NU_VISI	Lazdijų r. sav.		dydis_3	24
-ZM_NU_VISI	Lazdijų r. sav.		dydis_2	20
-ZM_NU_VISI	Lazdijų r. sav.		dydis_1	34
+ZM_NU_VISI	Utena		sud_tik_suaugusieji	1
+ZM_NU_VISI	Kaišiadorys		sud_tik_suaugusieji	1
+ZM_NU_VISI	Lazdijų r. sav.		sud_tik_vaikai	1
+ZM_NU_VISI	Lazdijų r. sav.		dydis_1	73
 ZM_NU_VISI	Lazdijų r. sav.		dydis_5+	7
-ZM_NU_VISI	Lazdijų r. sav.		dydis_4	15
-ZM_NU_VISI	Kaišiadorys		dydis_2	1
-ZM_NU_VISI	Kaišiadorys		dydis_4	2
-ZM_NU_VISI	Utena		dydis_4	1
+ZM_NU_VISI	Lazdijų r. sav.		dydis_3	19
+ZM_NU_VISI	Lazdijų r. sav.		dydis_4	11
+ZM_NU_VISI	Lazdijų r. sav.		dydis_2	37
 ZM_NU_VISI	Utena		dydis_1	1
-ZM_NU_VISI	Plungė		dydis_1	1
-ZM_NELYDIMI_VISI	Lazdijų r. sav.		patvirtinta|2+|nu	3
-ZM_NELYDIMI_VISI	Lazdijų r. sav.		patvirtinta|2+|zm	7
-ZM_NELYDIMI_VISI	Lazdijų r. sav.		patvirtinta|1|nu	2
-ZM_NELYDIMI_VISI	Lazdijų r. sav.		patvirtinta|1|zm	2
-ZM_NELYDIMI_VISI	Kaišiadorys		galimai|2+|nu	1
-ZM_NELYDIMI_VISI	Kaišiadorys		galimai|2+|zm	2
+ZM_NU_VISI	Utena		dydis_4	1
+ZM_NU_VISI	Kaišiadorys		dydis_4	1
 ZM_NELYDIMI_VISI	Lazdijų r. sav.		galimai|1|nu	1
 ZM_NELYDIMI_VISI	Lazdijų r. sav.		galimai|1|zm	1
-ZM_NELYDIMI_VISI	Lazdijų r. sav.		galimai|2+|nu	1
-ZM_NELYDIMI_VISI	Lazdijų r. sav.		galimai|2+|zm	3
-ZM_AMZIUS_VISI	Lazdijų r. sav.		35-64	75
-ZM_AMZIUS_VISI	Lazdijų r. sav.		6-11	43
-ZM_AMZIUS_VISI	Lazdijų r. sav.		80+	10
-ZM_AMZIUS_VISI	Lazdijų r. sav.		18-34	41
-ZM_AMZIUS_VISI	Lazdijų r. sav.		65-79	11
-ZM_AMZIUS_VISI	Lazdijų r. sav.		3-5	11
-ZM_AMZIUS_VISI	Lazdijų r. sav.		nezinoma	6
-ZM_AMZIUS_VISI	Lazdijų r. sav.		0-2	9
-ZM_AMZIUS_VISI	Lazdijų r. sav.		12-17	35
-ZM_AMZIUS_VISI	Kaišiadorys		65-79	1
-ZM_AMZIUS_VISI	Kaišiadorys		35-64	1
-ZM_AMZIUS_VISI	Kaišiadorys		nezinoma	2
-ZM_AMZIUS_VISI	Kaišiadorys		12-17	3
-ZM_AMZIUS_VISI	Kaišiadorys		3-5	1
-ZM_AMZIUS_VISI	Kaišiadorys		18-34	1
-ZM_AMZIUS_VISI	Kaišiadorys		0-2	1
-ZM_AMZIUS_VISI	Utena		35-64	2
+ZM_AMZIUS_VISI	Lazdijų r. sav.		35-64	206
+ZM_AMZIUS_VISI	Lazdijų r. sav.		65-79	30
+ZM_AMZIUS_VISI	Lazdijų r. sav.		80+	2
+ZM_AMZIUS_VISI	Lazdijų r. sav.		18-34	45
+ZM_AMZIUS_VISI	Lazdijų r. sav.		3-5	4
+ZM_AMZIUS_VISI	Lazdijų r. sav.		12-17	9
 ZM_AMZIUS_VISI	Utena		18-34	1
-ZM_AMZIUS_VISI	Utena		6-11	1
-ZM_AMZIUS_VISI	Utena		0-2	1
-ZM_AMZIUS_VISI	Plungė		65-79	1
-ZM_SENJORAI_VISI	Lazdijų r. sav.		80+|visi	10
-ZM_SENJORAI_VISI	Lazdijų r. sav.		65-79|visi	11
-ZM_SENJORAI_VISI	Kaišiadorys		65-79|visi	1
-ZM_SENJORAI_VISI	Plungė		65-79|visi	1
-ZM_SENJORAI_VISI	Lazdijų r. sav.		80+|vienisi_galimai	2
-ZM_SENJORAI_VISI	Lazdijų r. sav.		65-79|vienisi_patvirtinta	8
-ZM_SENJORAI_VISI	Lazdijų r. sav.		80+|vienisi_patvirtinta	6
+ZM_AMZIUS_VISI	Lazdijų r. sav.		6-11	7
+ZM_AMZIUS_VISI	Utena		35-64	3
+ZM_AMZIUS_VISI	Kaišiadorys		35-64	4
+ZM_AMZIUS_VISI	Lazdijų r. sav.		0-2	2
+ZM_SENJORAI_VISI	Lazdijų r. sav.		65-79|visi	30
+ZM_SENJORAI_VISI	Lazdijų r. sav.		80+|visi	2
+ZM_SENJORAI_VISI	Lazdijų r. sav.		65-79|vienisi_patvirtinta	6
 ZM_SENJORAI_VISI	Lazdijų r. sav.		65-79|vienisi_galimai	1
-ZM_SENJORAI_VISI	Plungė		65-79|vienisi_patvirtinta	1
-ZM_SPEC_VISI	Lazdijų r. sav.		bent_vienas|visi	31
-ZM_SPEC_VISI	Kaišiadorys		bent_vienas|visi	1
-ZM_SPEC_VISI	Plungė		bent_vienas|visi	1
-ZM_SPEC_VISI	Lazdijų r. sav.		bent_vienas|nelydimi_patvirtinta	4
-ZM_SPEC_VISI	Lazdijų r. sav.		bent_vienas|nelydimi_galimai	2
-ZM_SPEC_VISI	Plungė		bent_vienas|nelydimi_patvirtinta	1
-ZM_SPEC_VISI	Lazdijų r. sav.		older_support|visi	3
-ZM_SPEC_VISI	Lazdijų r. sav.		mobility|visi	6
-ZM_SPEC_VISI	Lazdijų r. sav.		pregnancy|visi	9
-ZM_SPEC_VISI	Lazdijų r. sav.		infant|visi	6
-ZM_SPEC_VISI	Lazdijų r. sav.		hearing|visi	1
-ZM_SPEC_VISI	Lazdijų r. sav.		communication|visi	5
+ZM_SPEC_VISI	Lazdijų r. sav.		bent_vienas|visi	49
+ZM_SPEC_VISI	Kaišiadorys		bent_vienas|visi	2
+ZM_SPEC_VISI	Lazdijų r. sav.		bent_vienas|nelydimi_patvirtinta	7
+ZM_SPEC_VISI	Lazdijų r. sav.		bent_vienas|nelydimi_galimai	4
+ZM_SPEC_VISI	Lazdijų r. sav.		mobility|visi	10
+ZM_SPEC_VISI	Lazdijų r. sav.		hearing|visi	6
+ZM_SPEC_VISI	Lazdijų r. sav.		vision|visi	10
+ZM_SPEC_VISI	Lazdijų r. sav.		other|visi	12
 ZM_SPEC_VISI	Lazdijų r. sav.		self_care|visi	1
-ZM_SPEC_VISI	Kaišiadorys		infant|visi	1
-ZM_SPEC_VISI	Plungė		mobility|visi	1
-ZM_SPEC_VISI	Lazdijų r. sav.		mobility|nelydimi_patvirtinta	1
-ZM_SPEC_VISI	Lazdijų r. sav.		communication|nelydimi_galimai	1
-ZM_SPEC_VISI	Lazdijų r. sav.		older_support|nelydimi_galimai	1
-ZM_SPEC_VISI	Lazdijų r. sav.		self_care|nelydimi_patvirtinta	1
-ZM_SPEC_VISI	Lazdijų r. sav.		older_support|nelydimi_patvirtinta	1
+ZM_SPEC_VISI	Lazdijų r. sav.		pregnancy|visi	3
+ZM_SPEC_VISI	Lazdijų r. sav.		infant|visi	11
+ZM_SPEC_VISI	Lazdijų r. sav.		older_support|visi	1
+ZM_SPEC_VISI	Kaišiadorys		mobility|visi	1
+ZM_SPEC_VISI	Kaišiadorys		vision|visi	1
+ZM_SPEC_VISI	Kaišiadorys		hearing|visi	1
+ZM_SPEC_VISI	Lazdijų r. sav.		communication|visi	2
+ZM_SPEC_VISI	Lazdijų r. sav.		mobility|nelydimi_patvirtinta	2
+ZM_SPEC_VISI	Lazdijų r. sav.		vision|nelydimi_patvirtinta	1
+ZM_SPEC_VISI	Lazdijų r. sav.		mobility|nelydimi_galimai	2
+ZM_SPEC_VISI	Lazdijų r. sav.		vision|nelydimi_galimai	1
+ZM_SPEC_VISI	Lazdijų r. sav.		self_care|nelydimi_galimai	1
+ZM_SPEC_VISI	Lazdijų r. sav.		hearing|nelydimi_galimai	1
+ZM_SPEC_VISI	Lazdijų r. sav.		pregnancy|nelydimi_galimai	1
+ZM_SPEC_VISI	Lazdijų r. sav.		other|nelydimi_patvirtinta	3
 ZM_SPEC_VISI	Lazdijų r. sav.		pregnancy|nelydimi_patvirtinta	1
-ZM_SPEC_VISI	Plungė		mobility|nelydimi_patvirtinta	1
-ZM_DERINYS_VISI	Lazdijų r. sav.		visi	17
+ZM_SPEC_VISI	Lazdijų r. sav.		communication|nelydimi_patvirtinta	1
+ZM_SPEC_VISI	Lazdijų r. sav.		communication|nelydimi_galimai	1
+ZM_DERINYS_VISI	Lazdijų r. sav.		visi	7
 ZM_DERINYS_VISI	Lazdijų r. sav.		judejimas	1
-ZM_DERINYS_VISI	Lazdijų r. sav.		vaistai	3
-ZM_DERINYS_VISI	Lazdijų r. sav.		be_saugios_vietos	2
-ZM_DERINYS_VISI	Plungė		visi	1
-ZM_DERINYS_VISI	Plungė		judejimas	1
-ZM_DERINYS_VISI	Plungė		vaistai	0
-ZM_DERINYS_VISI	Plungė		be_saugios_vietos	0
-ZM_NU_DABAR	Lazdijų r. sav.		viso	100
-ZM_NU_DABAR	Kaišiadorys		viso	3
+ZM_DERINYS_VISI	Lazdijų r. sav.		vaistai	2
+ZM_DERINYS_VISI	Lazdijų r. sav.		be_saugios_vietos	3
+ZM_NU_DABAR	Lazdijų r. sav.		viso	132
+ZM_NU_DABAR	Lazdijų r. sav.		su_vaikais	15
 ZM_NU_DABAR	Utena		viso	2
-ZM_NU_DABAR	Lazdijų r. sav.		su_vaikais	56
-ZM_NU_DABAR	Kaišiadorys		su_vaikais	2
-ZM_NU_DABAR	Utena		su_vaikais	1
-ZM_NU_DABAR	Lazdijų r. sav.		sud_suaugusieji_su_vaikais	32
-ZM_NU_DABAR	Lazdijų r. sav.		sud_tik_suaugusieji	9
-ZM_NU_DABAR	Lazdijų r. sav.		sud_vienas_suauges	31
-ZM_NU_DABAR	Lazdijų r. sav.		sud_nenurodytas	6
-ZM_NU_DABAR	Lazdijų r. sav.		sud_vienas_su_vaikais	15
-ZM_NU_DABAR	Lazdijų r. sav.		sud_tik_vaikai	7
-ZM_NU_DABAR	Kaišiadorys		sud_vienas_suauges	1
-ZM_NU_DABAR	Kaišiadorys		sud_nenurodytas	1
-ZM_NU_DABAR	Kaišiadorys		sud_vienas_su_vaikais	1
-ZM_NU_DABAR	Utena		sud_suaugusieji_su_vaikais	1
+ZM_NU_DABAR	Utena		su_vaikais	0
+ZM_NU_DABAR	Kaišiadorys		viso	1
+ZM_NU_DABAR	Kaišiadorys		su_vaikais	0
+ZM_NU_DABAR	Lazdijų r. sav.		sud_vienas_suauges	64
+ZM_NU_DABAR	Lazdijų r. sav.		sud_tik_suaugusieji	53
+ZM_NU_DABAR	Lazdijų r. sav.		sud_vienas_su_vaikais	7
+ZM_NU_DABAR	Lazdijų r. sav.		sud_suaugusieji_su_vaikais	7
 ZM_NU_DABAR	Utena		sud_vienas_suauges	1
-ZM_NU_DABAR	Lazdijų r. sav.		dydis_3	28
-ZM_NU_DABAR	Lazdijų r. sav.		dydis_2	19
-ZM_NU_DABAR	Lazdijų r. sav.		dydis_1	35
-ZM_NU_DABAR	Lazdijų r. sav.		dydis_5+	6
-ZM_NU_DABAR	Lazdijų r. sav.		dydis_4	12
-ZM_NU_DABAR	Kaišiadorys		dydis_1	1
-ZM_NU_DABAR	Kaišiadorys		dydis_4	2
-ZM_NU_DABAR	Utena		dydis_4	1
+ZM_NU_DABAR	Utena		sud_tik_suaugusieji	1
+ZM_NU_DABAR	Kaišiadorys		sud_tik_suaugusieji	1
+ZM_NU_DABAR	Lazdijų r. sav.		sud_tik_vaikai	1
+ZM_NU_DABAR	Lazdijų r. sav.		dydis_1	65
+ZM_NU_DABAR	Lazdijų r. sav.		dydis_5+	7
+ZM_NU_DABAR	Lazdijų r. sav.		dydis_3	19
+ZM_NU_DABAR	Lazdijų r. sav.		dydis_2	34
+ZM_NU_DABAR	Lazdijų r. sav.		dydis_4	7
 ZM_NU_DABAR	Utena		dydis_1	1
-ZM_NELYDIMI_DABAR	Lazdijų r. sav.		patvirtinta|2+|nu	2
-ZM_NELYDIMI_DABAR	Lazdijų r. sav.		patvirtinta|2+|zm	5
-ZM_NELYDIMI_DABAR	Lazdijų r. sav.		patvirtinta|1|nu	3
-ZM_NELYDIMI_DABAR	Lazdijų r. sav.		patvirtinta|1|zm	3
-ZM_NELYDIMI_DABAR	Kaišiadorys		galimai|2+|nu	1
-ZM_NELYDIMI_DABAR	Kaišiadorys		galimai|2+|zm	2
+ZM_NU_DABAR	Utena		dydis_4	1
+ZM_NU_DABAR	Kaišiadorys		dydis_4	1
 ZM_NELYDIMI_DABAR	Lazdijų r. sav.		galimai|1|nu	1
 ZM_NELYDIMI_DABAR	Lazdijų r. sav.		galimai|1|zm	1
-ZM_NELYDIMI_DABAR	Lazdijų r. sav.		galimai|2+|nu	1
-ZM_NELYDIMI_DABAR	Lazdijų r. sav.		galimai|2+|zm	3
-ZM_AMZIUS_DABAR	Lazdijų r. sav.		35-64	74
-ZM_AMZIUS_DABAR	Lazdijų r. sav.		6-11	43
-ZM_AMZIUS_DABAR	Lazdijų r. sav.		80+	10
-ZM_AMZIUS_DABAR	Lazdijų r. sav.		18-34	40
-ZM_AMZIUS_DABAR	Lazdijų r. sav.		65-79	11
-ZM_AMZIUS_DABAR	Lazdijų r. sav.		3-5	10
-ZM_AMZIUS_DABAR	Lazdijų r. sav.		nezinoma	6
-ZM_AMZIUS_DABAR	Lazdijų r. sav.		0-2	9
-ZM_AMZIUS_DABAR	Lazdijų r. sav.		12-17	32
-ZM_AMZIUS_DABAR	Kaišiadorys		65-79	1
-ZM_AMZIUS_DABAR	Kaišiadorys		nezinoma	2
-ZM_AMZIUS_DABAR	Kaišiadorys		12-17	3
-ZM_AMZIUS_DABAR	Kaišiadorys		3-5	1
-ZM_AMZIUS_DABAR	Kaišiadorys		18-34	1
-ZM_AMZIUS_DABAR	Kaišiadorys		0-2	1
-ZM_AMZIUS_DABAR	Utena		35-64	2
+ZM_AMZIUS_DABAR	Lazdijų r. sav.		35-64	183
+ZM_AMZIUS_DABAR	Lazdijų r. sav.		65-79	29
+ZM_AMZIUS_DABAR	Lazdijų r. sav.		80+	2
+ZM_AMZIUS_DABAR	Lazdijų r. sav.		18-34	36
+ZM_AMZIUS_DABAR	Lazdijų r. sav.		3-5	4
+ZM_AMZIUS_DABAR	Lazdijų r. sav.		12-17	9
 ZM_AMZIUS_DABAR	Utena		18-34	1
-ZM_AMZIUS_DABAR	Utena		6-11	1
-ZM_AMZIUS_DABAR	Utena		0-2	1
-ZM_SENJORAI_DABAR	Lazdijų r. sav.		80+|visi	10
-ZM_SENJORAI_DABAR	Lazdijų r. sav.		65-79|visi	11
-ZM_SENJORAI_DABAR	Kaišiadorys		65-79|visi	1
-ZM_SENJORAI_DABAR	Lazdijų r. sav.		80+|vienisi_galimai	2
-ZM_SENJORAI_DABAR	Lazdijų r. sav.		65-79|vienisi_patvirtinta	8
-ZM_SENJORAI_DABAR	Lazdijų r. sav.		80+|vienisi_patvirtinta	6
+ZM_AMZIUS_DABAR	Utena		35-64	3
+ZM_AMZIUS_DABAR	Lazdijų r. sav.		6-11	5
+ZM_AMZIUS_DABAR	Kaišiadorys		35-64	4
+ZM_AMZIUS_DABAR	Lazdijų r. sav.		0-2	2
+ZM_SENJORAI_DABAR	Lazdijų r. sav.		65-79|visi	29
+ZM_SENJORAI_DABAR	Lazdijų r. sav.		80+|visi	2
+ZM_SENJORAI_DABAR	Lazdijų r. sav.		65-79|vienisi_patvirtinta	6
 ZM_SENJORAI_DABAR	Lazdijų r. sav.		65-79|vienisi_galimai	1
-ZM_SENJORAI_DABAR	Kaišiadorys		65-79|vienisi_patvirtinta	1
-ZM_SPEC_DABAR	Lazdijų r. sav.		bent_vienas|visi	31
-ZM_SPEC_DABAR	Kaišiadorys		bent_vienas|visi	1
-ZM_SPEC_DABAR	Lazdijų r. sav.		bent_vienas|nelydimi_patvirtinta	4
-ZM_SPEC_DABAR	Lazdijų r. sav.		bent_vienas|nelydimi_galimai	2
-ZM_SPEC_DABAR	Lazdijų r. sav.		older_support|visi	3
-ZM_SPEC_DABAR	Lazdijų r. sav.		mobility|visi	6
-ZM_SPEC_DABAR	Lazdijų r. sav.		pregnancy|visi	9
-ZM_SPEC_DABAR	Lazdijų r. sav.		infant|visi	6
-ZM_SPEC_DABAR	Lazdijų r. sav.		hearing|visi	1
-ZM_SPEC_DABAR	Lazdijų r. sav.		communication|visi	5
+ZM_SPEC_DABAR	Lazdijų r. sav.		bent_vienas|visi	45
+ZM_SPEC_DABAR	Kaišiadorys		bent_vienas|visi	2
+ZM_SPEC_DABAR	Lazdijų r. sav.		bent_vienas|nelydimi_patvirtinta	5
+ZM_SPEC_DABAR	Lazdijų r. sav.		bent_vienas|nelydimi_galimai	3
+ZM_SPEC_DABAR	Lazdijų r. sav.		mobility|visi	8
+ZM_SPEC_DABAR	Lazdijų r. sav.		hearing|visi	6
+ZM_SPEC_DABAR	Lazdijų r. sav.		vision|visi	9
+ZM_SPEC_DABAR	Lazdijų r. sav.		other|visi	12
 ZM_SPEC_DABAR	Lazdijų r. sav.		self_care|visi	1
-ZM_SPEC_DABAR	Kaišiadorys		infant|visi	1
+ZM_SPEC_DABAR	Lazdijų r. sav.		pregnancy|visi	3
+ZM_SPEC_DABAR	Lazdijų r. sav.		infant|visi	11
+ZM_SPEC_DABAR	Lazdijų r. sav.		older_support|visi	1
+ZM_SPEC_DABAR	Kaišiadorys		mobility|visi	1
+ZM_SPEC_DABAR	Kaišiadorys		vision|visi	1
+ZM_SPEC_DABAR	Kaišiadorys		hearing|visi	1
 ZM_SPEC_DABAR	Lazdijų r. sav.		mobility|nelydimi_patvirtinta	1
-ZM_SPEC_DABAR	Lazdijų r. sav.		communication|nelydimi_galimai	1
-ZM_SPEC_DABAR	Lazdijų r. sav.		older_support|nelydimi_galimai	1
-ZM_SPEC_DABAR	Lazdijų r. sav.		self_care|nelydimi_patvirtinta	1
-ZM_SPEC_DABAR	Lazdijų r. sav.		older_support|nelydimi_patvirtinta	1
+ZM_SPEC_DABAR	Lazdijų r. sav.		mobility|nelydimi_galimai	2
+ZM_SPEC_DABAR	Lazdijų r. sav.		vision|nelydimi_galimai	1
+ZM_SPEC_DABAR	Lazdijų r. sav.		self_care|nelydimi_galimai	1
+ZM_SPEC_DABAR	Lazdijų r. sav.		hearing|nelydimi_galimai	1
+ZM_SPEC_DABAR	Lazdijų r. sav.		pregnancy|nelydimi_galimai	1
+ZM_SPEC_DABAR	Lazdijų r. sav.		other|nelydimi_patvirtinta	3
 ZM_SPEC_DABAR	Lazdijų r. sav.		pregnancy|nelydimi_patvirtinta	1
-ZM_DERINYS_DABAR	Lazdijų r. sav.		visi	17
+ZM_DERINYS_DABAR	Lazdijų r. sav.		visi	7
 ZM_DERINYS_DABAR	Lazdijų r. sav.		judejimas	1
-ZM_DERINYS_DABAR	Lazdijų r. sav.		vaistai	3
-ZM_DERINYS_DABAR	Lazdijų r. sav.		be_saugios_vietos	2
-ZM_DERINYS_DABAR	Kaišiadorys		visi	1
-ZM_DERINYS_DABAR	Kaišiadorys		judejimas	0
-ZM_DERINYS_DABAR	Kaišiadorys		vaistai	0
-ZM_DERINYS_DABAR	Kaišiadorys		be_saugios_vietos	1
-ZM_KOKYBE			zmones	257
-ZM_KOKYBE			namu_ukiai	106
-ZM_KOKYBE			uzbaigti	85
-ZM_KOKYBE			rysys_nepatikrintas	11
-ZM_KOKYBE			be_gimimo_metu	8
+ZM_DERINYS_DABAR	Lazdijų r. sav.		vaistai	2
+ZM_DERINYS_DABAR	Lazdijų r. sav.		be_saugios_vietos	3
+ZM_KOKYBE			zmones	313
+ZM_KOKYBE			namu_ukiai	150
+ZM_KOKYBE			uzbaigti	113
+ZM_KOKYBE			rysys_nepatikrintas	10
+ZM_KOKYBE			be_gimimo_metu	0
 `;
 
 const tip = document.getElementById("tip");
