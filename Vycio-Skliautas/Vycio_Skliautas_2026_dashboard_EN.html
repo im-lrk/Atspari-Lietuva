@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vyčio Skliautas 2026 — dashboard</title>
+<style>
+:root{
+  color-scheme: light;
+  --bg:#f4f4f4; --surface:#ffffff; --line:#e2e2e2; --grid:#eeeeee;
+  --ink:#1a1a1a; --ink2:#4d4d4d; --ink3:#767676;
+  --s1:#d7141a; --s2:#8c8c8c; --track:#f1f1f1;
+  --q1:#fde4e4; --q2:#f9bcbc; --q3:#f08a8a; --q4:#e04a4f; --q5:#c4101c; --q6:#8e0c16;
+  --qt1:#1a1a1a; --qt2:#1a1a1a; --qt3:#1a1a1a; --qt4:#ffffff; --qt5:#ffffff; --qt6:#ffffff;
+  --lrk:#d7141a; --lrk-dark:#a80f14;
+}
+@media (prefers-color-scheme: dark){
+  :root:where(:not([data-theme="light"])){
+    color-scheme: dark;
+    --bg:#121212; --surface:#1c1c1c; --line:#333333; --grid:#2a2a2a;
+    --ink:#ffffff; --ink2:#cfcfcf; --ink3:#a0a0a0;
+    --s1:#ef4b4f; --s2:#9a9a9a; --track:#2c2c2c;
+    --q1:#4a1013; --q2:#6e1519; --q3:#951b21; --q4:#c0262c; --q5:#e5484d; --q6:#f58a8d;
+    --qt1:#ffffff; --qt2:#ffffff; --qt3:#ffffff; --qt4:#ffffff; --qt5:#1a1a1a; --qt6:#1a1a1a;
+    --lrk:#d7141a; --lrk-dark:#a80f14;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --bg:#121212; --surface:#1c1c1c; --line:#333333; --grid:#2a2a2a;
+  --ink:#ffffff; --ink2:#cfcfcf; --ink3:#a0a0a0;
+  --s1:#ef4b4f; --s2:#9a9a9a; --track:#2c2c2c;
+  --q1:#4a1013; --q2:#6e1519; --q3:#951b21; --q4:#c0262c; --q5:#e5484d; --q6:#f58a8d;
+  --qt1:#ffffff; --qt2:#ffffff; --qt3:#ffffff; --qt4:#ffffff; --qt5:#1a1a1a; --qt6:#1a1a1a;
+  --lrk:#d7141a; --lrk-dark:#a80f14;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 Verdana,"Segoe UI",system-ui,-apple-system,sans-serif}
+.topbar{background:var(--surface);border-bottom:4px solid var(--lrk)}
+.topbar .in{max-width:1180px;margin:0 auto;padding:16px 16px}
+.wrap{max-width:1180px;margin:0 auto;padding:22px 16px 48px}
+header{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px}
+.logo{background:var(--lrk);color:#fff;font-weight:700;padding:9px 11px;border-radius:3px;letter-spacing:.5px;font-size:16px}
+h1{font-size:21px;margin:0;font-weight:700}
+h1 small{display:block;font-size:14px;font-weight:400;color:var(--ink2);margin-top:2px}
+.upd{margin-left:auto;font-size:14px;color:var(--ink);background:var(--bg);border-radius:4px;padding:6px 12px;white-space:nowrap}
+.upd b{color:var(--lrk)}
+.upd b{color:var(--ink)}
+.kgroup{margin-bottom:14px}
+.kh{font-size:15px;font-weight:700;color:var(--ink);margin:0 0 8px;padding-left:10px;border-left:4px solid var(--lrk);line-height:1.2}
+.kpis{display:grid;gap:10px;grid-template-columns:repeat(4,1fr)}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:11px 16px}
+.tile .k{font-size:15.5px;font-weight:400;color:var(--ink);line-height:1.35}
+.tile .k b{font-weight:700}
+.tile .v{font-size:30px;font-weight:700;line-height:1.1;margin-top:4px;font-variant-numeric:tabular-nums;color:var(--ink)}
+.tile.hero{border:0;background:var(--lrk);color:#fff;padding:12px 17px}
+.tile.hero .k,.tile.hero .v,.tile.hero .src{color:#fff}
+.tile.hero .src{opacity:.9}
+.tile.hero .v{font-size:34px}
+.tile .src{font-size:14px;color:var(--ink);opacity:.75;margin-top:2px;line-height:1.35}
+.loc{display:inline-block;font-size:12.5px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:6px;line-height:1.4}
+.loc.sp{background:#e6e6e6;color:#2b2b2b}
+.loc.ac{background:#fde4e4;color:#a80f14}
+.tile.sp{border-left:5px solid #8c8c8c}
+.tile.ac{border-left:5px solid var(--lrk)}
+.tile.hero .loc.ac{background:#fff;color:#a80f14}
+@media (prefers-color-scheme: dark){:root:where(:not([data-theme="light"])) .loc.sp{background:#3a3a3a;color:#f0f0f0}:root:where(:not([data-theme="light"])) .loc.ac{background:#4a1013;color:#ffd6d6}}
+:root[data-theme="dark"] .loc.sp{background:#3a3a3a;color:#f0f0f0}
+:root[data-theme="dark"] .loc.ac{background:#4a1013;color:#ffd6d6}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px;min-width:0}
+.card.full{grid-column:1/-1}
+.card h2{font-size:17px;margin:0 0 2px;font-weight:700}
+.card{border-top:3px solid var(--lrk)}
+.card .sub{font-size:14px;color:var(--ink);opacity:.8;margin:0 0 12px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:14px;color:var(--ink);margin-bottom:10px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-bottom:12px}
+.seg button{border:0;background:transparent;color:var(--ink2);font:inherit;font-size:14px;padding:6px 14px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--lrk);color:#fff}
+/* centre bars */
+.crow{display:grid;grid-template-columns:170px 1fr 54px;align-items:center;gap:10px;margin:9px 0}
+.crow .nm{font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.crow .tot{font-size:14px;font-weight:700;color:var(--ink);text-align:right;font-variant-numeric:tabular-nums}
+.bar{display:flex;height:22px;gap:2px;background:transparent}
+.bar span{display:block;height:100%;min-width:0}
+.bar span:first-child{border-radius:4px 0 0 4px}
+.bar span:last-child{border-radius:0 4px 4px 0}
+.bar span:only-child{border-radius:4px}
+.bar .now{background:var(--s1)}
+.bar .out{background:var(--s2)}
+#whereto .crow{grid-template-columns:270px 1fr 86px}
+@media (max-width:640px){#whereto .crow{grid-template-columns:140px 1fr 70px}}
+[hidden]{display:none!important}
+.tabs{background:var(--surface);border-bottom:1px solid var(--line)}
+.tabs .in{max-width:1180px;margin:0 auto;padding:0 16px;display:flex;gap:4px;flex-wrap:wrap}
+.tabs button{font:inherit;font-size:16px;font-weight:700;padding:12px 20px;border:0;background:transparent;color:var(--ink2);border-bottom:4px solid transparent;cursor:pointer}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--lrk)}
+.tabs button:focus-visible{outline:2px solid var(--lrk);outline-offset:-2px}
+#needtype .crow,#needcenter .crow{grid-template-columns:270px 1fr 60px}
+@media (max-width:640px){#needtype .crow,#needcenter .crow{grid-template-columns:140px 1fr 44px}}
+#needs-app>.seg{margin-bottom:16px}
+.seg{flex-wrap:wrap}
+.ctl{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-bottom:16px}
+.ctl .seg{margin-bottom:0}
+.selw{font-size:15px;display:inline-flex;align-items:center;gap:8px}
+.selw select{font:inherit;font-size:15px;padding:7px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)}
+.pbars .crow{grid-template-columns:270px 1fr 60px}
+@media (max-width:640px){.pbars .crow{grid-template-columns:150px 1fr 44px}}
+details p{margin:6px 0 0;line-height:1.5}
+/* heatmap */
+.tblwrap{overflow-x:auto}
+.chartscroll{overflow-x:auto}
+.chartscroll svg{min-width:520px}
+#flows svg{min-width:760px}
+table.hm{border-collapse:separate;border-spacing:2px;width:100%;font-size:14px;font-variant-numeric:tabular-nums}
+.hm th{font-weight:700;color:var(--ink);text-align:center;padding:4px 6px;vertical-align:bottom;line-height:1.25}
+.hm th.rl{text-align:left}
+.hm td{text-align:center;padding:7px 6px;border-radius:4px;min-width:62px}
+.hm td.rl{text-align:left;background:transparent;font-weight:500;min-width:130px;white-space:nowrap}
+.hm tr.total td{font-weight:650}
+.hm td.zero{color:var(--ink3);background:var(--track)}
+/* svg charts */
+svg{display:block;width:100%;height:auto;overflow:visible}
+.axis text{fill:var(--ink2);font-size:12px}
+.gridline{stroke:var(--grid);stroke-width:1}
+.baseline{stroke:var(--line);stroke-width:1}
+.tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--surface);font-size:12.5px;padding:6px 9px;border-radius:6px;line-height:1.4;opacity:0;transition:opacity .08s;z-index:10;max-width:240px}
+details{margin-top:10px;font-size:14px;color:var(--ink)}
+details summary{cursor:pointer}
+details table{border-collapse:collapse;margin-top:6px;font-variant-numeric:tabular-nums}
+details td,details th{border-bottom:1px solid var(--line);padding:3px 10px 3px 0;text-align:left}
+.empty{color:var(--ink3);font-size:13px;padding:14px 0}
+.err{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;color:var(--ink2)}
+@media (max-width:860px){
+  .kpis{grid-template-columns:1fr 1fr}
+  .grid{grid-template-columns:1fr}
+  .upd{margin-left:0}
+}
+@media (max-width:480px){
+  .crow{grid-template-columns:125px 1fr 36px}
+  .crow .nm{font-size:13px}
+  .tile .v{font-size:28px}
+  .tile.hero .v{font-size:30px}
+}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="in">
+  <header>
+    <span class="logo">LRK</span>
+    <h1>Vyčio Skliautas 2026<small>Evacuation and accommodation dashboard</small></h1>
+    <span class="upd" id="upd">Loading data…</span>
+  </header>
+</div></div>
+<nav class="tabs" role="tablist" aria-label="Tabs"><div class="in">
+  <button type="button" role="tab" data-tab="overview" aria-selected="true">Overview</button>
+  <button type="button" role="tab" data-tab="needs" aria-selected="false">Needs</button>
+  <button type="button" role="tab" data-tab="people" aria-selected="false">People</button>
+</div></nav>
+<div class="wrap">
+
+  <div id="app"></div>
+  <div id="needs-app" hidden></div>
+  <div id="people-app" hidden></div>
+</div>
+<div class="tip" id="tip"></div>
+
+<script>
+const NEED_LABELS = {
+  flag_health: "Health care",
+  flag_medication_urgent: "Urgent medication",
+  flag_accommodation: "Accommodation",
+  flag_transport: "Transport",
+  flag_interpreter: "Interpreter",
+  flag_rfl: "Contact with relatives",
+  flag_protection: "Safety alert",
+  flag_follow_up: "Needs follow-up"
+};
+const DEP_LABELS = {
+  grizta_namo: "Going back home",
+  pas_artimuosius: "Going to relatives / other housing",
+  kitas_centras: "Moved to another centre",
+  hospitalizuotas: "Hospitalised",
+  nepranese: "Left without notice",
+  kita: "Other"
+};
+const fmt = n => (n == null || isNaN(n)) ? "–" : Number(n).toLocaleString("en-GB");
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+const CEN = {"Lazdijų r. sav.":"Lazdijai district","Kauno r. sav.":"Kaunas district","Pakruojo r. sav.":"Pakruojis district","Telšių r. sav.":"Telšiai district","Anykščių r. sav.":"Anykščiai district"};
+function parseTSV(text){
+  const rows = [];
+  text.replace(/^﻿/, "").split(/\r?\n/).forEach(line => {
+    if (!line.trim()) return;
+    const c = line.split("\t").map(x => x.trim().replace(/^"(.*)"$/, "$1"));
+    if (c[0] === "Rodinys") return;
+    const v = c[4] ?? "";
+    const num = Number(v.replace(/\s/g, "").replace(",", "."));
+    rows.push({ view: c[0], center: CEN[c[1]] || c[1] || "", time: c[2] || "", key: c[3] || "", value: v !== "" && !isNaN(num) ? num : v });
+  });
+  return rows;
+}
+
+const RAW_TSV = `Rodinys	Centras	Laikas	Rodiklis	Reikšmė
+META			atnaujinta	2026-10-03 11:31
+KPI			surinkimo_namu_ukiai	145
+KPI			surinkimo_zmones	314
+KPI			centruose_uzregistruota	230
+KPI			isvyko	3
+KPI			centruose_dabar	227
+KPI			namu_ukiai_visi	70
+KPI			namu_ukiai_truksta	73
+CENTRAS	Kaišiadorys		uzregistruota	3
+CENTRAS	Kaišiadorys		isvyko	0
+CENTRAS	Kaišiadorys		dabar	3
+CENTRAS	Lazdijų r. sav.		uzregistruota	223
+CENTRAS	Lazdijų r. sav.		isvyko	3
+CENTRAS	Lazdijų r. sav.		dabar	220
+CENTRAS	Plungė		uzregistruota	1
+CENTRAS	Plungė		isvyko	0
+CENTRAS	Plungė		dabar	1
+CENTRAS	Utena		uzregistruota	2
+CENTRAS	Utena		isvyko	0
+CENTRAS	Utena		dabar	2
+CENTRAS	Veisėjai		uzregistruota	1
+CENTRAS	Veisėjai		isvyko	0
+CENTRAS	Veisėjai		dabar	1
+POREIKIAI_DABAR	Kaišiadorys		flag_health	0
+POREIKIAI_DABAR	Kaišiadorys		flag_medication_urgent	0
+POREIKIAI_DABAR	Kaišiadorys		flag_accommodation	2
+POREIKIAI_DABAR	Kaišiadorys		flag_transport	1
+POREIKIAI_DABAR	Kaišiadorys		flag_interpreter	0
+POREIKIAI_DABAR	Kaišiadorys		flag_rfl	0
+POREIKIAI_DABAR	Kaišiadorys		flag_protection	0
+POREIKIAI_DABAR	Kaišiadorys		flag_follow_up	0
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_health	22
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_medication_urgent	29
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_accommodation	127
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_transport	41
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_interpreter	7
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_rfl	17
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_protection	14
+POREIKIAI_DABAR	Lazdijų r. sav.		flag_follow_up	129
+POREIKIAI_DABAR	Plungė		flag_health	0
+POREIKIAI_DABAR	Plungė		flag_medication_urgent	0
+POREIKIAI_DABAR	Plungė		flag_accommodation	1
+POREIKIAI_DABAR	Plungė		flag_transport	0
+POREIKIAI_DABAR	Plungė		flag_interpreter	0
+POREIKIAI_DABAR	Plungė		flag_rfl	0
+POREIKIAI_DABAR	Plungė		flag_protection	0
+POREIKIAI_DABAR	Plungė		flag_follow_up	1
+POREIKIAI_DABAR	Utena		flag_health	0
+POREIKIAI_DABAR	Utena		flag_medication_urgent	0
+POREIKIAI_DABAR	Utena		flag_accommodation	2
+POREIKIAI_DABAR	Utena		flag_transport	1
+POREIKIAI_DABAR	Utena		flag_interpreter	0
+POREIKIAI_DABAR	Utena		flag_rfl	0
+POREIKIAI_DABAR	Utena		flag_protection	0
+POREIKIAI_DABAR	Utena		flag_follow_up	0
+POREIKIAI_DABAR	Veisėjai		flag_health	0
+POREIKIAI_DABAR	Veisėjai		flag_medication_urgent	0
+POREIKIAI_DABAR	Veisėjai		flag_accommodation	1
+POREIKIAI_DABAR	Veisėjai		flag_transport	0
+POREIKIAI_DABAR	Veisėjai		flag_interpreter	0
+POREIKIAI_DABAR	Veisėjai		flag_rfl	0
+POREIKIAI_DABAR	Veisėjai		flag_protection	0
+POREIKIAI_DABAR	Veisėjai		flag_follow_up	1
+POREIKIAI_VISI	Kaišiadorys		flag_health	0
+POREIKIAI_VISI	Kaišiadorys		flag_medication_urgent	0
+POREIKIAI_VISI	Kaišiadorys		flag_accommodation	2
+POREIKIAI_VISI	Kaišiadorys		flag_transport	1
+POREIKIAI_VISI	Kaišiadorys		flag_interpreter	0
+POREIKIAI_VISI	Kaišiadorys		flag_rfl	0
+POREIKIAI_VISI	Kaišiadorys		flag_protection	0
+POREIKIAI_VISI	Kaišiadorys		flag_follow_up	0
+POREIKIAI_VISI	Lazdijų r. sav.		flag_health	23
+POREIKIAI_VISI	Lazdijų r. sav.		flag_medication_urgent	29
+POREIKIAI_VISI	Lazdijų r. sav.		flag_accommodation	130
+POREIKIAI_VISI	Lazdijų r. sav.		flag_transport	44
+POREIKIAI_VISI	Lazdijų r. sav.		flag_interpreter	7
+POREIKIAI_VISI	Lazdijų r. sav.		flag_rfl	20
+POREIKIAI_VISI	Lazdijų r. sav.		flag_protection	16
+POREIKIAI_VISI	Lazdijų r. sav.		flag_follow_up	132
+POREIKIAI_VISI	Plungė		flag_health	0
+POREIKIAI_VISI	Plungė		flag_medication_urgent	0
+POREIKIAI_VISI	Plungė		flag_accommodation	1
+POREIKIAI_VISI	Plungė		flag_transport	0
+POREIKIAI_VISI	Plungė		flag_interpreter	0
+POREIKIAI_VISI	Plungė		flag_rfl	0
+POREIKIAI_VISI	Plungė		flag_protection	0
+POREIKIAI_VISI	Plungė		flag_follow_up	1
+POREIKIAI_VISI	Utena		flag_health	0
+POREIKIAI_VISI	Utena		flag_medication_urgent	0
+POREIKIAI_VISI	Utena		flag_accommodation	2
+POREIKIAI_VISI	Utena		flag_transport	1
+POREIKIAI_VISI	Utena		flag_interpreter	0
+POREIKIAI_VISI	Utena		flag_rfl	0
+POREIKIAI_VISI	Utena		flag_protection	0
+POREIKIAI_VISI	Utena		flag_follow_up	0
+POREIKIAI_VISI	Veisėjai		flag_health	0
+POREIKIAI_VISI	Veisėjai		flag_medication_urgent	0
+POREIKIAI_VISI	Veisėjai		flag_accommodation	1
+POREIKIAI_VISI	Veisėjai		flag_transport	0
+POREIKIAI_VISI	Veisėjai		flag_interpreter	0
+POREIKIAI_VISI	Veisėjai		flag_rfl	0
+POREIKIAI_VISI	Veisėjai		flag_protection	0
+POREIKIAI_VISI	Veisėjai		flag_follow_up	1
+EIGA		2026-09-26 08:00	surinkimo_namu_ukiai	6
+EIGA		2026-09-26 08:00	atvyko_i_centrus	0
+EIGA		2026-09-26 08:00	isvyko	0
+EIGA		2026-09-26 08:00	centruose_tuo_metu	0
+EIGA		2026-09-26 09:00	surinkimo_namu_ukiai	32
+EIGA		2026-09-26 09:00	atvyko_i_centrus	0
+EIGA		2026-09-26 09:00	isvyko	0
+EIGA		2026-09-26 09:00	centruose_tuo_metu	0
+EIGA		2026-09-30 13:00	surinkimo_namu_ukiai	1
+EIGA		2026-09-30 13:00	atvyko_i_centrus	0
+EIGA		2026-09-30 13:00	isvyko	0
+EIGA		2026-09-30 13:00	centruose_tuo_metu	0
+EIGA		2026-10-02 11:00	surinkimo_namu_ukiai	1
+EIGA		2026-10-02 11:00	atvyko_i_centrus	0
+EIGA		2026-10-02 11:00	isvyko	0
+EIGA		2026-10-02 11:00	centruose_tuo_metu	0
+EIGA		2026-10-02 18:00	surinkimo_namu_ukiai	1
+EIGA		2026-10-02 18:00	atvyko_i_centrus	0
+EIGA		2026-10-02 18:00	isvyko	0
+EIGA		2026-10-02 18:00	centruose_tuo_metu	0
+EIGA		2026-10-03 08:00	surinkimo_namu_ukiai	6
+EIGA		2026-10-03 08:00	atvyko_i_centrus	0
+EIGA		2026-10-03 08:00	isvyko	0
+EIGA		2026-10-03 08:00	centruose_tuo_metu	0
+EIGA		2026-10-03 09:00	surinkimo_namu_ukiai	27
+EIGA		2026-10-03 09:00	atvyko_i_centrus	50
+EIGA		2026-10-03 09:00	isvyko	0
+EIGA		2026-10-03 09:00	centruose_tuo_metu	50
+EIGA		2026-10-03 10:00	surinkimo_namu_ukiai	62
+EIGA		2026-10-03 10:00	atvyko_i_centrus	134
+EIGA		2026-10-03 10:00	isvyko	0
+EIGA		2026-10-03 10:00	centruose_tuo_metu	184
+EIGA		2026-10-03 11:00	surinkimo_namu_ukiai	17
+EIGA		2026-10-03 11:00	atvyko_i_centrus	46
+EIGA		2026-10-03 11:00	isvyko	3
+EIGA		2026-10-03 11:00	centruose_tuo_metu	227
+ISVYKIMAI_KUR	Lazdijų r. sav.		grizta_namo	2
+ISVYKIMAI_KUR	Lazdijų r. sav.		pas_artimuosius	1
+
+POR_TIPAS_VISI	Lazdijų r. sav.		water|urgent	2
+POR_TIPAS_VISI	Lazdijų r. sav.		water|hours	2
+POR_TIPAS_VISI	Lazdijų r. sav.		water|wait	13
+POR_TIPAS_VISI	Lazdijų r. sav.		water|nenurodyta	7
+POR_TIPAS_VISI	Lazdijų r. sav.		food|hours	9
+POR_TIPAS_VISI	Lazdijų r. sav.		food|wait	31
+POR_TIPAS_VISI	Lazdijų r. sav.		food|nenurodyta	36
+POR_TIPAS_VISI	Lazdijų r. sav.		clothing|urgent	3
+POR_TIPAS_VISI	Lazdijų r. sav.		clothing|hours	2
+POR_TIPAS_VISI	Lazdijų r. sav.		clothing|wait	7
+POR_TIPAS_VISI	Lazdijų r. sav.		clothing|nenurodyta	5
+POR_TIPAS_VISI	Lazdijų r. sav.		hygiene|wait	2
+POR_TIPAS_VISI	Lazdijų r. sav.		hygiene|nenurodyta	17
+POR_TIPAS_VISI	Lazdijų r. sav.		first_aid|urgent	3
+POR_TIPAS_VISI	Lazdijų r. sav.		first_aid|hours	7
+POR_TIPAS_VISI	Lazdijų r. sav.		first_aid|wait	11
+POR_TIPAS_VISI	Lazdijų r. sav.		first_aid|nenurodyta	3
+POR_TIPAS_VISI	Lazdijų r. sav.		medical|urgent	1
+POR_TIPAS_VISI	Lazdijų r. sav.		medical|hours	5
+POR_TIPAS_VISI	Lazdijų r. sav.		medical|wait	10
+POR_TIPAS_VISI	Lazdijų r. sav.		medical|nenurodyta	15
+POR_TIPAS_VISI	Lazdijų r. sav.		medication|urgent	4
+POR_TIPAS_VISI	Lazdijų r. sav.		medication|wait	8
+POR_TIPAS_VISI	Lazdijų r. sav.		medication|nenurodyta	12
+POR_TIPAS_VISI	Lazdijų r. sav.		pfa|urgent	2
+POR_TIPAS_VISI	Lazdijų r. sav.		pfa|hours	1
+POR_TIPAS_VISI	Lazdijų r. sav.		pfa|wait	6
+POR_TIPAS_VISI	Lazdijų r. sav.		pfa|nenurodyta	1
+POR_TIPAS_VISI	Lazdijų r. sav.		rfl|urgent	4
+POR_TIPAS_VISI	Lazdijų r. sav.		rfl|hours	7
+POR_TIPAS_VISI	Lazdijų r. sav.		rfl|wait	7
+POR_TIPAS_VISI	Lazdijų r. sav.		rfl|nenurodyta	5
+POR_TIPAS_VISI	Lazdijų r. sav.		information|urgent	4
+POR_TIPAS_VISI	Lazdijų r. sav.		information|hours	5
+POR_TIPAS_VISI	Lazdijų r. sav.		information|wait	12
+POR_TIPAS_VISI	Lazdijų r. sav.		information|nenurodyta	15
+POR_TIPAS_VISI	Lazdijų r. sav.		documents|urgent	2
+POR_TIPAS_VISI	Lazdijų r. sav.		documents|hours	3
+POR_TIPAS_VISI	Lazdijų r. sav.		documents|wait	8
+POR_TIPAS_VISI	Lazdijų r. sav.		documents|nenurodyta	7
+POR_TIPAS_VISI	Lazdijų r. sav.		child_family|hours	2
+POR_TIPAS_VISI	Lazdijų r. sav.		child_family|wait	11
+POR_TIPAS_VISI	Lazdijų r. sav.		mobility|hours	5
+POR_TIPAS_VISI	Lazdijų r. sav.		mobility|wait	3
+POR_TIPAS_VISI	Lazdijų r. sav.		mobility|nenurodyta	9
+POR_TIPAS_VISI	Lazdijų r. sav.		accommodation|urgent	5
+POR_TIPAS_VISI	Lazdijų r. sav.		accommodation|hours	7
+POR_TIPAS_VISI	Lazdijų r. sav.		accommodation|wait	34
+POR_TIPAS_VISI	Lazdijų r. sav.		accommodation|nenurodyta	9
+POR_TIPAS_VISI	Lazdijų r. sav.		transport|urgent	1
+POR_TIPAS_VISI	Lazdijų r. sav.		transport|hours	1
+POR_TIPAS_VISI	Lazdijų r. sav.		transport|wait	8
+POR_TIPAS_VISI	Lazdijų r. sav.		transport|nenurodyta	5
+POR_TIPAS_VISI	Lazdijų r. sav.		interpreter|urgent	1
+POR_TIPAS_VISI	Lazdijų r. sav.		interpreter|hours	6
+POR_TIPAS_VISI	Lazdijų r. sav.		interpreter|wait	4
+POR_TIPAS_VISI	Lazdijų r. sav.		interpreter|nenurodyta	10
+POR_TIPAS_VISI	Lazdijų r. sav.		protection|urgent	4
+POR_TIPAS_VISI	Lazdijų r. sav.		protection|nenurodyta	4
+POR_TIPAS_VISI	Lazdijų r. sav.		social|urgent	3
+POR_TIPAS_VISI	Lazdijų r. sav.		social|hours	5
+POR_TIPAS_VISI	Lazdijų r. sav.		social|wait	3
+POR_TIPAS_VISI	Lazdijų r. sav.		social|nenurodyta	6
+POR_TIPAS_VISI	Lazdijų r. sav.		other|hours	4
+POR_TIPAS_VISI	Lazdijų r. sav.		other|nenurodyta	12
+POR_ZMONES_VISI	Lazdijų r. sav.		urgent	17
+POR_ZMONES_VISI	Lazdijų r. sav.		hours	44
+POR_ZMONES_VISI	Lazdijų r. sav.		wait	66
+POR_ZMONES_VISI	Lazdijų r. sav.		nenurodyta	55
+POR_GRUPES_VISI	Lazdijų r. sav.		mobility	29
+POR_GRUPES_VISI	Lazdijų r. sav.		vision	31
+POR_GRUPES_VISI	Lazdijų r. sav.		hearing	24
+POR_GRUPES_VISI	Lazdijų r. sav.		communication	31
+POR_GRUPES_VISI	Lazdijų r. sav.		pregnancy	9
+POR_GRUPES_VISI	Lazdijų r. sav.		infant	31
+POR_GRUPES_VISI	Lazdijų r. sav.		older_support	25
+POR_TIPAS_DABAR	Lazdijų r. sav.		water|urgent	3
+POR_TIPAS_DABAR	Lazdijų r. sav.		water|hours	19
+POR_TIPAS_DABAR	Lazdijų r. sav.		water|wait	20
+POR_TIPAS_DABAR	Lazdijų r. sav.		water|nenurodyta	15
+POR_TIPAS_DABAR	Lazdijų r. sav.		food|urgent	9
+POR_TIPAS_DABAR	Lazdijų r. sav.		food|hours	19
+POR_TIPAS_DABAR	Lazdijų r. sav.		food|wait	29
+POR_TIPAS_DABAR	Lazdijų r. sav.		food|nenurodyta	39
+POR_TIPAS_DABAR	Lazdijų r. sav.		clothing|urgent	2
+POR_TIPAS_DABAR	Lazdijų r. sav.		clothing|hours	6
+POR_TIPAS_DABAR	Lazdijų r. sav.		clothing|wait	8
+POR_TIPAS_DABAR	Lazdijų r. sav.		clothing|nenurodyta	9
+POR_TIPAS_DABAR	Lazdijų r. sav.		hygiene|urgent	4
+POR_TIPAS_DABAR	Lazdijų r. sav.		hygiene|hours	3
+POR_TIPAS_DABAR	Lazdijų r. sav.		hygiene|wait	1
+POR_TIPAS_DABAR	Lazdijų r. sav.		hygiene|nenurodyta	12
+POR_TIPAS_DABAR	Lazdijų r. sav.		first_aid|urgent	2
+POR_TIPAS_DABAR	Lazdijų r. sav.		first_aid|hours	4
+POR_TIPAS_DABAR	Lazdijų r. sav.		first_aid|wait	7
+POR_TIPAS_DABAR	Lazdijų r. sav.		first_aid|nenurodyta	4
+POR_TIPAS_DABAR	Lazdijų r. sav.		medical|wait	10
+POR_TIPAS_DABAR	Lazdijų r. sav.		medical|nenurodyta	16
+POR_TIPAS_DABAR	Lazdijų r. sav.		medication|urgent	3
+POR_TIPAS_DABAR	Lazdijų r. sav.		medication|hours	1
+POR_TIPAS_DABAR	Lazdijų r. sav.		medication|wait	13
+POR_TIPAS_DABAR	Lazdijų r. sav.		medication|nenurodyta	14
+POR_TIPAS_DABAR	Lazdijų r. sav.		pfa|urgent	2
+POR_TIPAS_DABAR	Lazdijų r. sav.		pfa|wait	11
+POR_TIPAS_DABAR	Lazdijų r. sav.		pfa|nenurodyta	11
+POR_TIPAS_DABAR	Lazdijų r. sav.		rfl|urgent	2
+POR_TIPAS_DABAR	Lazdijų r. sav.		rfl|wait	9
+POR_TIPAS_DABAR	Lazdijų r. sav.		information|urgent	2
+POR_TIPAS_DABAR	Lazdijų r. sav.		information|hours	1
+POR_TIPAS_DABAR	Lazdijų r. sav.		information|wait	4
+POR_TIPAS_DABAR	Lazdijų r. sav.		information|nenurodyta	15
+POR_TIPAS_DABAR	Lazdijų r. sav.		documents|urgent	3
+POR_TIPAS_DABAR	Lazdijų r. sav.		documents|hours	7
+POR_TIPAS_DABAR	Lazdijų r. sav.		documents|wait	3
+POR_TIPAS_DABAR	Lazdijų r. sav.		documents|nenurodyta	6
+POR_TIPAS_DABAR	Lazdijų r. sav.		child_family|urgent	2
+POR_TIPAS_DABAR	Lazdijų r. sav.		child_family|wait	5
+POR_TIPAS_DABAR	Lazdijų r. sav.		child_family|nenurodyta	17
+POR_TIPAS_DABAR	Lazdijų r. sav.		mobility|urgent	3
+POR_TIPAS_DABAR	Lazdijų r. sav.		mobility|hours	7
+POR_TIPAS_DABAR	Lazdijų r. sav.		mobility|wait	3
+POR_TIPAS_DABAR	Lazdijų r. sav.		mobility|nenurodyta	12
+POR_TIPAS_DABAR	Lazdijų r. sav.		accommodation|urgent	8
+POR_TIPAS_DABAR	Lazdijų r. sav.		accommodation|hours	15
+POR_TIPAS_DABAR	Lazdijų r. sav.		accommodation|wait	14
+POR_TIPAS_DABAR	Lazdijų r. sav.		accommodation|nenurodyta	7
+POR_TIPAS_DABAR	Lazdijų r. sav.		transport|hours	7
+POR_TIPAS_DABAR	Lazdijų r. sav.		transport|wait	12
+POR_TIPAS_DABAR	Lazdijų r. sav.		transport|nenurodyta	4
+POR_TIPAS_DABAR	Lazdijų r. sav.		interpreter|urgent	3
+POR_TIPAS_DABAR	Lazdijų r. sav.		interpreter|hours	3
+POR_TIPAS_DABAR	Lazdijų r. sav.		interpreter|wait	8
+POR_TIPAS_DABAR	Lazdijų r. sav.		interpreter|nenurodyta	14
+POR_TIPAS_DABAR	Lazdijų r. sav.		protection|urgent	1
+POR_TIPAS_DABAR	Lazdijų r. sav.		protection|hours	5
+POR_TIPAS_DABAR	Lazdijų r. sav.		protection|wait	3
+POR_TIPAS_DABAR	Lazdijų r. sav.		protection|nenurodyta	9
+POR_TIPAS_DABAR	Lazdijų r. sav.		social|hours	2
+POR_TIPAS_DABAR	Lazdijų r. sav.		social|wait	3
+POR_TIPAS_DABAR	Lazdijų r. sav.		social|nenurodyta	16
+POR_TIPAS_DABAR	Lazdijų r. sav.		other|hours	6
+POR_TIPAS_DABAR	Lazdijų r. sav.		other|wait	1
+POR_TIPAS_DABAR	Lazdijų r. sav.		other|nenurodyta	17
+POR_ZMONES_DABAR	Lazdijų r. sav.		urgent	16
+POR_ZMONES_DABAR	Lazdijų r. sav.		hours	42
+POR_ZMONES_DABAR	Lazdijų r. sav.		wait	63
+POR_ZMONES_DABAR	Lazdijų r. sav.		nenurodyta	52
+POR_GRUPES_DABAR	Lazdijų r. sav.		mobility	5
+POR_GRUPES_DABAR	Lazdijų r. sav.		vision	2
+POR_GRUPES_DABAR	Lazdijų r. sav.		hearing	6
+POR_GRUPES_DABAR	Lazdijų r. sav.		communication	29
+POR_GRUPES_DABAR	Lazdijų r. sav.		self_care	21
+POR_GRUPES_DABAR	Lazdijų r. sav.		pregnancy	28
+POR_GRUPES_DABAR	Lazdijų r. sav.		infant	15
+POR_GRUPES_DABAR	Lazdijų r. sav.		older_support	3
+ZM_NU_VISI	Lazdijų r. sav.		viso	100
+ZM_NU_VISI	Kaišiadorys		viso	3
+ZM_NU_VISI	Utena		viso	2
+ZM_NU_VISI	Plungė		viso	1
+ZM_NU_VISI	Lazdijų r. sav.		su_vaikais	57
+ZM_NU_VISI	Kaišiadorys		su_vaikais	2
+ZM_NU_VISI	Utena		su_vaikais	1
+ZM_NU_VISI	Lazdijų r. sav.		sud_suaugusieji_su_vaikais	34
+ZM_NU_VISI	Lazdijų r. sav.		sud_tik_suaugusieji	9
+ZM_NU_VISI	Lazdijų r. sav.		sud_vienas_suauges	31
+ZM_NU_VISI	Lazdijų r. sav.		sud_nenurodytas	6
+ZM_NU_VISI	Lazdijų r. sav.		sud_vienas_su_vaikais	13
+ZM_NU_VISI	Lazdijų r. sav.		sud_tik_vaikai	7
+ZM_NU_VISI	Kaišiadorys		sud_tik_suaugusieji	1
+ZM_NU_VISI	Kaišiadorys		sud_nenurodytas	1
+ZM_NU_VISI	Kaišiadorys		sud_vienas_su_vaikais	1
+ZM_NU_VISI	Utena		sud_suaugusieji_su_vaikais	1
+ZM_NU_VISI	Utena		sud_vienas_suauges	1
+ZM_NU_VISI	Plungė		sud_vienas_suauges	1
+ZM_NU_VISI	Lazdijų r. sav.		dydis_3	24
+ZM_NU_VISI	Lazdijų r. sav.		dydis_2	20
+ZM_NU_VISI	Lazdijų r. sav.		dydis_1	34
+ZM_NU_VISI	Lazdijų r. sav.		dydis_5+	7
+ZM_NU_VISI	Lazdijų r. sav.		dydis_4	15
+ZM_NU_VISI	Kaišiadorys		dydis_2	1
+ZM_NU_VISI	Kaišiadorys		dydis_4	2
+ZM_NU_VISI	Utena		dydis_4	1
+ZM_NU_VISI	Utena		dydis_1	1
+ZM_NU_VISI	Plungė		dydis_1	1
+ZM_NELYDIMI_VISI	Lazdijų r. sav.		patvirtinta|2+|nu	3
+ZM_NELYDIMI_VISI	Lazdijų r. sav.		patvirtinta|2+|zm	7
+ZM_NELYDIMI_VISI	Lazdijų r. sav.		patvirtinta|1|nu	2
+ZM_NELYDIMI_VISI	Lazdijų r. sav.		patvirtinta|1|zm	2
+ZM_NELYDIMI_VISI	Kaišiadorys		galimai|2+|nu	1
+ZM_NELYDIMI_VISI	Kaišiadorys		galimai|2+|zm	2
+ZM_NELYDIMI_VISI	Lazdijų r. sav.		galimai|1|nu	1
+ZM_NELYDIMI_VISI	Lazdijų r. sav.		galimai|1|zm	1
+ZM_NELYDIMI_VISI	Lazdijų r. sav.		galimai|2+|nu	1
+ZM_NELYDIMI_VISI	Lazdijų r. sav.		galimai|2+|zm	3
+ZM_AMZIUS_VISI	Lazdijų r. sav.		35-64	75
+ZM_AMZIUS_VISI	Lazdijų r. sav.		6-11	43
+ZM_AMZIUS_VISI	Lazdijų r. sav.		80+	10
+ZM_AMZIUS_VISI	Lazdijų r. sav.		18-34	41
+ZM_AMZIUS_VISI	Lazdijų r. sav.		65-79	11
+ZM_AMZIUS_VISI	Lazdijų r. sav.		3-5	11
+ZM_AMZIUS_VISI	Lazdijų r. sav.		nezinoma	6
+ZM_AMZIUS_VISI	Lazdijų r. sav.		0-2	9
+ZM_AMZIUS_VISI	Lazdijų r. sav.		12-17	35
+ZM_AMZIUS_VISI	Kaišiadorys		65-79	1
+ZM_AMZIUS_VISI	Kaišiadorys		35-64	1
+ZM_AMZIUS_VISI	Kaišiadorys		nezinoma	2
+ZM_AMZIUS_VISI	Kaišiadorys		12-17	3
+ZM_AMZIUS_VISI	Kaišiadorys		3-5	1
+ZM_AMZIUS_VISI	Kaišiadorys		18-34	1
+ZM_AMZIUS_VISI	Kaišiadorys		0-2	1
+ZM_AMZIUS_VISI	Utena		35-64	2
+ZM_AMZIUS_VISI	Utena		18-34	1
+ZM_AMZIUS_VISI	Utena		6-11	1
+ZM_AMZIUS_VISI	Utena		0-2	1
+ZM_AMZIUS_VISI	Plungė		65-79	1
+ZM_SENJORAI_VISI	Lazdijų r. sav.		80+|visi	10
+ZM_SENJORAI_VISI	Lazdijų r. sav.		65-79|visi	11
+ZM_SENJORAI_VISI	Kaišiadorys		65-79|visi	1
+ZM_SENJORAI_VISI	Plungė		65-79|visi	1
+ZM_SENJORAI_VISI	Lazdijų r. sav.		80+|vienisi_galimai	2
+ZM_SENJORAI_VISI	Lazdijų r. sav.		65-79|vienisi_patvirtinta	8
+ZM_SENJORAI_VISI	Lazdijų r. sav.		80+|vienisi_patvirtinta	6
+ZM_SENJORAI_VISI	Lazdijų r. sav.		65-79|vienisi_galimai	1
+ZM_SENJORAI_VISI	Plungė		65-79|vienisi_patvirtinta	1
+ZM_SPEC_VISI	Lazdijų r. sav.		bent_vienas|visi	31
+ZM_SPEC_VISI	Kaišiadorys		bent_vienas|visi	1
+ZM_SPEC_VISI	Plungė		bent_vienas|visi	1
+ZM_SPEC_VISI	Lazdijų r. sav.		bent_vienas|nelydimi_patvirtinta	4
+ZM_SPEC_VISI	Lazdijų r. sav.		bent_vienas|nelydimi_galimai	2
+ZM_SPEC_VISI	Plungė		bent_vienas|nelydimi_patvirtinta	1
+ZM_SPEC_VISI	Lazdijų r. sav.		older_support|visi	3
+ZM_SPEC_VISI	Lazdijų r. sav.		mobility|visi	6
+ZM_SPEC_VISI	Lazdijų r. sav.		pregnancy|visi	9
+ZM_SPEC_VISI	Lazdijų r. sav.		infant|visi	6
+ZM_SPEC_VISI	Lazdijų r. sav.		hearing|visi	1
+ZM_SPEC_VISI	Lazdijų r. sav.		communication|visi	5
+ZM_SPEC_VISI	Lazdijų r. sav.		self_care|visi	1
+ZM_SPEC_VISI	Kaišiadorys		infant|visi	1
+ZM_SPEC_VISI	Plungė		mobility|visi	1
+ZM_SPEC_VISI	Lazdijų r. sav.		mobility|nelydimi_patvirtinta	1
+ZM_SPEC_VISI	Lazdijų r. sav.		communication|nelydimi_galimai	1
+ZM_SPEC_VISI	Lazdijų r. sav.		older_support|nelydimi_galimai	1
+ZM_SPEC_VISI	Lazdijų r. sav.		self_care|nelydimi_patvirtinta	1
+ZM_SPEC_VISI	Lazdijų r. sav.		older_support|nelydimi_patvirtinta	1
+ZM_SPEC_VISI	Lazdijų r. sav.		pregnancy|nelydimi_patvirtinta	1
+ZM_SPEC_VISI	Plungė		mobility|nelydimi_patvirtinta	1
+ZM_DERINYS_VISI	Lazdijų r. sav.		visi	17
+ZM_DERINYS_VISI	Lazdijų r. sav.		judejimas	1
+ZM_DERINYS_VISI	Lazdijų r. sav.		vaistai	3
+ZM_DERINYS_VISI	Lazdijų r. sav.		be_saugios_vietos	2
+ZM_DERINYS_VISI	Plungė		visi	1
+ZM_DERINYS_VISI	Plungė		judejimas	1
+ZM_DERINYS_VISI	Plungė		vaistai	0
+ZM_DERINYS_VISI	Plungė		be_saugios_vietos	0
+ZM_NU_DABAR	Lazdijų r. sav.		viso	100
+ZM_NU_DABAR	Kaišiadorys		viso	3
+ZM_NU_DABAR	Utena		viso	2
+ZM_NU_DABAR	Lazdijų r. sav.		su_vaikais	56
+ZM_NU_DABAR	Kaišiadorys		su_vaikais	2
+ZM_NU_DABAR	Utena		su_vaikais	1
+ZM_NU_DABAR	Lazdijų r. sav.		sud_suaugusieji_su_vaikais	32
+ZM_NU_DABAR	Lazdijų r. sav.		sud_tik_suaugusieji	9
+ZM_NU_DABAR	Lazdijų r. sav.		sud_vienas_suauges	31
+ZM_NU_DABAR	Lazdijų r. sav.		sud_nenurodytas	6
+ZM_NU_DABAR	Lazdijų r. sav.		sud_vienas_su_vaikais	15
+ZM_NU_DABAR	Lazdijų r. sav.		sud_tik_vaikai	7
+ZM_NU_DABAR	Kaišiadorys		sud_vienas_suauges	1
+ZM_NU_DABAR	Kaišiadorys		sud_nenurodytas	1
+ZM_NU_DABAR	Kaišiadorys		sud_vienas_su_vaikais	1
+ZM_NU_DABAR	Utena		sud_suaugusieji_su_vaikais	1
+ZM_NU_DABAR	Utena		sud_vienas_suauges	1
+ZM_NU_DABAR	Lazdijų r. sav.		dydis_3	28
+ZM_NU_DABAR	Lazdijų r. sav.		dydis_2	19
+ZM_NU_DABAR	Lazdijų r. sav.		dydis_1	35
+ZM_NU_DABAR	Lazdijų r. sav.		dydis_5+	6
+ZM_NU_DABAR	Lazdijų r. sav.		dydis_4	12
+ZM_NU_DABAR	Kaišiadorys		dydis_1	1
+ZM_NU_DABAR	Kaišiadorys		dydis_4	2
+ZM_NU_DABAR	Utena		dydis_4	1
+ZM_NU_DABAR	Utena		dydis_1	1
+ZM_NELYDIMI_DABAR	Lazdijų r. sav.		patvirtinta|2+|nu	2
+ZM_NELYDIMI_DABAR	Lazdijų r. sav.		patvirtinta|2+|zm	5
+ZM_NELYDIMI_DABAR	Lazdijų r. sav.		patvirtinta|1|nu	3
+ZM_NELYDIMI_DABAR	Lazdijų r. sav.		patvirtinta|1|zm	3
+ZM_NELYDIMI_DABAR	Kaišiadorys		galimai|2+|nu	1
+ZM_NELYDIMI_DABAR	Kaišiadorys		galimai|2+|zm	2
+ZM_NELYDIMI_DABAR	Lazdijų r. sav.		galimai|1|nu	1
+ZM_NELYDIMI_DABAR	Lazdijų r. sav.		galimai|1|zm	1
+ZM_NELYDIMI_DABAR	Lazdijų r. sav.		galimai|2+|nu	1
+ZM_NELYDIMI_DABAR	Lazdijų r. sav.		galimai|2+|zm	3
+ZM_AMZIUS_DABAR	Lazdijų r. sav.		35-64	74
+ZM_AMZIUS_DABAR	Lazdijų r. sav.		6-11	43
+ZM_AMZIUS_DABAR	Lazdijų r. sav.		80+	10
+ZM_AMZIUS_DABAR	Lazdijų r. sav.		18-34	40
+ZM_AMZIUS_DABAR	Lazdijų r. sav.		65-79	11
+ZM_AMZIUS_DABAR	Lazdijų r. sav.		3-5	10
+ZM_AMZIUS_DABAR	Lazdijų r. sav.		nezinoma	6
+ZM_AMZIUS_DABAR	Lazdijų r. sav.		0-2	9
+ZM_AMZIUS_DABAR	Lazdijų r. sav.		12-17	32
+ZM_AMZIUS_DABAR	Kaišiadorys		65-79	1
+ZM_AMZIUS_DABAR	Kaišiadorys		nezinoma	2
+ZM_AMZIUS_DABAR	Kaišiadorys		12-17	3
+ZM_AMZIUS_DABAR	Kaišiadorys		3-5	1
+ZM_AMZIUS_DABAR	Kaišiadorys		18-34	1
+ZM_AMZIUS_DABAR	Kaišiadorys		0-2	1
+ZM_AMZIUS_DABAR	Utena		35-64	2
+ZM_AMZIUS_DABAR	Utena		18-34	1
+ZM_AMZIUS_DABAR	Utena		6-11	1
+ZM_AMZIUS_DABAR	Utena		0-2	1
+ZM_SENJORAI_DABAR	Lazdijų r. sav.		80+|visi	10
+ZM_SENJORAI_DABAR	Lazdijų r. sav.		65-79|visi	11
+ZM_SENJORAI_DABAR	Kaišiadorys		65-79|visi	1
+ZM_SENJORAI_DABAR	Lazdijų r. sav.		80+|vienisi_galimai	2
+ZM_SENJORAI_DABAR	Lazdijų r. sav.		65-79|vienisi_patvirtinta	8
+ZM_SENJORAI_DABAR	Lazdijų r. sav.		80+|vienisi_patvirtinta	6
+ZM_SENJORAI_DABAR	Lazdijų r. sav.		65-79|vienisi_galimai	1
+ZM_SENJORAI_DABAR	Kaišiadorys		65-79|vienisi_patvirtinta	1
+ZM_SPEC_DABAR	Lazdijų r. sav.		bent_vienas|visi	31
+ZM_SPEC_DABAR	Kaišiadorys		bent_vienas|visi	1
+ZM_SPEC_DABAR	Lazdijų r. sav.		bent_vienas|nelydimi_patvirtinta	4
+ZM_SPEC_DABAR	Lazdijų r. sav.		bent_vienas|nelydimi_galimai	2
+ZM_SPEC_DABAR	Lazdijų r. sav.		older_support|visi	3
+ZM_SPEC_DABAR	Lazdijų r. sav.		mobility|visi	6
+ZM_SPEC_DABAR	Lazdijų r. sav.		pregnancy|visi	9
+ZM_SPEC_DABAR	Lazdijų r. sav.		infant|visi	6
+ZM_SPEC_DABAR	Lazdijų r. sav.		hearing|visi	1
+ZM_SPEC_DABAR	Lazdijų r. sav.		communication|visi	5
+ZM_SPEC_DABAR	Lazdijų r. sav.		self_care|visi	1
+ZM_SPEC_DABAR	Kaišiadorys		infant|visi	1
+ZM_SPEC_DABAR	Lazdijų r. sav.		mobility|nelydimi_patvirtinta	1
+ZM_SPEC_DABAR	Lazdijų r. sav.		communication|nelydimi_galimai	1
+ZM_SPEC_DABAR	Lazdijų r. sav.		older_support|nelydimi_galimai	1
+ZM_SPEC_DABAR	Lazdijų r. sav.		self_care|nelydimi_patvirtinta	1
+ZM_SPEC_DABAR	Lazdijų r. sav.		older_support|nelydimi_patvirtinta	1
+ZM_SPEC_DABAR	Lazdijų r. sav.		pregnancy|nelydimi_patvirtinta	1
+ZM_DERINYS_DABAR	Lazdijų r. sav.		visi	17
+ZM_DERINYS_DABAR	Lazdijų r. sav.		judejimas	1
+ZM_DERINYS_DABAR	Lazdijų r. sav.		vaistai	3
+ZM_DERINYS_DABAR	Lazdijų r. sav.		be_saugios_vietos	2
+ZM_DERINYS_DABAR	Kaišiadorys		visi	1
+ZM_DERINYS_DABAR	Kaišiadorys		judejimas	0
+ZM_DERINYS_DABAR	Kaišiadorys		vaistai	0
+ZM_DERINYS_DABAR	Kaišiadorys		be_saugios_vietos	1
+ZM_KOKYBE			zmones	257
+ZM_KOKYBE			namu_ukiai	106
+ZM_KOKYBE			uzbaigti	85
+ZM_KOKYBE			rysys_nepatikrintas	11
+ZM_KOKYBE			be_gimimo_metu	8
+`;
+
+const tip = document.getElementById("tip");
+function showTip(e, html){
+  tip.innerHTML = html; tip.style.opacity = 1;
+  const pad = 14, w = tip.offsetWidth, h = tip.offsetHeight;
+  let x = e.clientX + pad, y = e.clientY + pad;
+  if (x + w > innerWidth - 8) x = e.clientX - w - pad;
+  if (y + h > innerHeight - 8) y = e.clientY - h - pad;
+  tip.style.left = x + "px"; tip.style.top = y + "px";
+}
+function hideTip(){ tip.style.opacity = 0; }
+
+function niceMax(v){
+  if (v <= 5) return 5;
+  const p = Math.pow(10, Math.floor(Math.log10(v)));
+  for (const m of [1, 2, 2.5, 5, 10]) if (m * p >= v) return m * p;
+  return 10 * p;
+}
+
+const NEED_TYPE_LABELS = {
+  water: "Drinking water",
+  food: "Food",
+  clothing: "Clothing / footwear",
+  hygiene: "Hygiene items",
+  first_aid: "First aid",
+  medical: "Medical care",
+  medication: "Medication / medical supplies",
+  pfa: "Emotional support",
+  rfl: "Contact with relatives",
+  information: "Information",
+  documents: "Documents",
+  child_family: "Help for a child / household",
+  mobility: "Mobility help",
+  accommodation: "Accommodation",
+  transport: "Transport",
+  interpreter: "Interpreter",
+  protection: "Safety",
+  social: "Social / municipal help",
+  other: "Other"
+};
+const GROUP_LABELS = {
+  mobility: "Mobility difficulties",
+  vision: "Vision difficulties",
+  hearing: "Hearing difficulties",
+  communication: "Communication / understanding difficulties",
+  self_care: "Self-care difficulties",
+  pregnancy: "Pregnancy",
+  infant: "Infant / small child",
+  older_support: "Older person who needs help",
+  other: "Other"
+};
+const PRIO = [
+  { k: "urgent",     label: "Urgent / now",         css: "--q6" },
+  { k: "hours",      label: "Within a few hours",     css: "--q4" },
+  { k: "wait",       label: "Can wait",             css: "--q2" },
+  { k: "nenurodyta", label: "Priority not specified", css: "--s2" }
+];
+
+function renderNeeds(rows){
+  const el = document.getElementById("needs-app");
+  const NV = rows.filter(r => r.view.startsWith("POR_") && typeof r.value === "number");
+  if (!NV.length) {
+    el.innerHTML = `<div class="err">No needs data yet.</div>`;
+    return;
+  }
+  const state = { scope: "DABAR", prio: "all" };
+  const steps = ["--q1","--q2","--q3","--q4","--q5","--q6"];
+  const sum = (arr, f) => arr.filter(f || (() => true)).reduce((s, x) => s + x.n, 0);
+  const lbl = (map, k) => map[k] || k;
+
+  function draw(){
+    const sc = state.scope;
+    const T = NV.filter(r => r.view === "POR_TIPAS_" + sc).map(r => {
+      const [t, p] = r.key.split("|");
+      return { c: r.center || "Not specified", t, p: p || "nenurodyta", n: r.value };
+    });
+    const Z = NV.filter(r => r.view === "POR_ZMONES_" + sc).map(r => ({ c: r.center || "Not specified", p: r.key, n: r.value }));
+    const G = NV.filter(r => r.view === "POR_GRUPES_" + sc).map(r => ({ c: r.center || "Not specified", g: r.key, n: r.value }));
+
+    const centers = [...new Set([...T.map(x => x.c), ...Z.map(x => x.c), ...G.map(x => x.c)])];
+    centers.sort((a, b) => sum(Z, x => x.c === b) - sum(Z, x => x.c === a) || a.localeCompare(b, "en"));
+
+    const total = sum(Z), pz = k => sum(Z, x => x.p === k);
+    const types = [...new Set(T.map(x => x.t))];
+    const tt = t => sum(T, x => x.t === t);
+    types.sort((a, b) => tt(b) - tt(a));
+
+    const legend = `<div class="legend">${PRIO.map(p => `<span><i style="background:var(${p.css})"></i>${p.label}</span>`).join("")}</div>`;
+    const segBtns = (items, cur, attr) => items.map(([v, t]) => `<button type="button" ${attr}="${v}" aria-pressed="${cur === v}">${t}</button>`).join("");
+
+    // heatmap
+    const hmVal = (c, t) => sum(T, x => x.c === c && x.t === t && (state.prio === "all" || x.p === state.prio));
+    const hmAll = types.flatMap(t => centers.map(c => hmVal(c, t)));
+    const hmMax = Math.max(1, ...hmAll);
+    const hmCell = (v, tip) => {
+      if (!v) return `<td class="zero" data-t="${esc(tip)}: 0">0</td>`;
+      const i = Math.min(steps.length - 1, Math.floor(v / hmMax * (steps.length - 1) + 0.0001));
+      return `<td style="background:var(${steps[i]});color:var(--qt${i + 1})" data-t="${esc(tip)}: ${fmt(v)}">${fmt(v)}</td>`;
+    };
+    const hmTypes = types.filter(t => centers.some(c => hmVal(c, t) > 0));
+
+    // groups
+    const gKeys = [...new Set(G.map(x => x.g))];
+    const gv = (c, g) => sum(G, x => x.c === c && x.g === g);
+    gKeys.sort((a, b) => sum(G, x => x.g === b) - sum(G, x => x.g === a));
+    const gMax = Math.max(1, ...gKeys.flatMap(g => centers.map(c => gv(c, g))));
+    const gCell = (v, tip) => {
+      if (!v) return `<td class="zero" data-t="${esc(tip)}: 0">0</td>`;
+      const i = Math.min(steps.length - 1, Math.floor(v / gMax * (steps.length - 1) + 0.0001));
+      return `<td style="background:var(${steps[i]});color:var(--qt${i + 1})" data-t="${esc(tip)}: ${fmt(v)}">${fmt(v)}</td>`;
+    };
+
+    const maxType = Math.max(1, ...types.map(tt));
+    const maxCenter = Math.max(1, ...centers.map(c => sum(Z, x => x.c === c)));
+    const stacked = (get, max) => PRIO.map(p => {
+      const v = get(p.k);
+      return v > 0 ? `<span style="width:${v / max * 100}%;background:var(${p.css})"></span>` : "";
+    }).join("");
+
+    el.innerHTML = `
+      <div class="seg" role="group" aria-label="Scope of needs">
+        <button type="button" data-scope="DABAR" aria-pressed="${sc === "DABAR"}">Currently in centre</button>
+        <button type="button" data-scope="VISI" aria-pressed="${sc === "VISI"}">All registered</button>
+      </div>
+
+      <section class="kgroup">
+        <h3 class="kh">People who need help</h3>
+        <div class="kpis">
+          <div class="tile hero ac"><span class="loc ac">Accommodation centres</span><div class="k"><b>People</b> with needs</div><div class="v">${fmt(total)}</div><div class="src">have at least one need${pz("nenurodyta") ? " · no priority: " + fmt(pz("nenurodyta")) : ""}</div></div>
+          <div class="tile ac"><span class="loc ac">Accommodation centres</span><div class="k"><b>Urgent</b> / now</div><div class="v">${fmt(pz("urgent"))}</div><div class="src">people</div></div>
+          <div class="tile ac"><span class="loc ac">Accommodation centres</span><div class="k">Within <b>a few hours</b></div><div class="v">${fmt(pz("hours"))}</div><div class="src">people</div></div>
+          <div class="tile ac"><span class="loc ac">Accommodation centres</span><div class="k">Can <b>wait</b></div><div class="v">${fmt(pz("wait"))}</div><div class="src">people</div></div>
+        </div>
+      </section>
+
+      <div class="grid">
+        <section class="card full">
+          <h2>Needs by type</h2>
+          <p class="sub">How many people have each need. One person can have several needs.</p>
+          ${legend}
+          <div id="needtype">${types.map(t => {
+            const tot = tt(t);
+            return `<div class="crow" data-t="${esc(t)}"><div class="nm" title="${esc(lbl(NEED_TYPE_LABELS, t))}">${esc(lbl(NEED_TYPE_LABELS, t))}</div><div class="bar">${stacked(k => sum(T, x => x.t === t && x.p === k), maxType)}</div><div class="tot">${fmt(tot)}</div></div>`;
+          }).join("")}</div>
+        </section>
+
+        <section class="card full">
+          <h2>Needs by centre</h2>
+          <p class="sub">Number of people by need type and centre</p>
+          <div class="seg" role="group" aria-label="Urgency">
+            ${segBtns([["all", "All"], ["urgent", "Urgent"], ["hours", "Few hours"], ["wait", "Can wait"], ["nenurodyta", "Not specified"]], state.prio, "data-prio")}
+          </div>
+          <div class="tblwrap" id="needhm">${hmTypes.length ? `<table class="hm">
+            <tr><th class="rl">Need</th>${centers.map(c => `<th>${esc(c)}</th>`).join("")}<th>Total</th></tr>
+            ${hmTypes.map(t => `<tr><td class="rl">${esc(lbl(NEED_TYPE_LABELS, t))}</td>${centers.map(c => hmCell(hmVal(c, t), `${c} · ${lbl(NEED_TYPE_LABELS, t)}`)).join("")}<td><b>${fmt(centers.reduce((s, c) => s + hmVal(c, t), 0))}</b></td></tr>`).join("")}
+          </table>` : `<div class="empty">No data for this urgency</div>`}</div>
+        </section>
+
+        <section class="card full">
+          <h2>Urgency by centre</h2>
+          <p class="sub">People with needs that a volunteer rated by urgency</p>
+          ${legend}
+          <div id="needcenter">${centers.map(c => {
+            const tot = sum(Z, x => x.c === c);
+            return `<div class="crow" data-c="${esc(c)}"><div class="nm" title="${esc(c)}">${esc(c)}</div><div class="bar">${stacked(k => sum(Z, x => x.c === c && x.p === k), maxCenter)}</div><div class="tot">${fmt(tot)}</div></div>`;
+          }).join("")}</div>
+        </section>
+
+        <section class="card full">
+          <h2>Functional and specific needs</h2>
+          <p class="sub">People with a functional or specific need marked at registration</p>
+          <div class="tblwrap" id="needgroups">${gKeys.length ? `<table class="hm">
+            <tr><th class="rl">Need</th>${centers.map(c => `<th>${esc(c)}</th>`).join("")}<th>Total</th></tr>
+            ${gKeys.map(g => `<tr><td class="rl">${esc(lbl(GROUP_LABELS, g))}</td>${centers.map(c => gCell(gv(c, g), `${c} · ${lbl(GROUP_LABELS, g)}`)).join("")}<td><b>${fmt(sum(G, x => x.g === g))}</b></td></tr>`).join("")}
+          </table>` : `<div class="empty">No data</div>`}</div>
+        </section>
+      </div>`;
+
+    // events
+    el.querySelectorAll("[data-scope]").forEach(b => b.addEventListener("click", () => { state.scope = b.dataset.scope; draw(); }));
+    el.querySelectorAll("[data-prio]").forEach(b => b.addEventListener("click", () => { state.prio = b.dataset.prio; draw(); }));
+    el.querySelectorAll("td[data-t]").forEach(td => {
+      td.addEventListener("mousemove", e => showTip(e, esc(td.dataset.t) + " people"));
+      td.addEventListener("mouseleave", hideTip);
+    });
+    el.querySelectorAll("#needtype .crow").forEach(row => {
+      const t = row.dataset.t;
+      row.addEventListener("mousemove", e => showTip(e, `<b>${esc(lbl(NEED_TYPE_LABELS, t))}</b><br>` +
+        PRIO.map(p => `${p.label}: ${fmt(sum(T, x => x.t === t && x.p === p.k))}`).join("<br>") + `<br>Total: ${fmt(tt(t))}`));
+      row.addEventListener("mouseleave", hideTip);
+    });
+    el.querySelectorAll("#needcenter .crow").forEach(row => {
+      const c = row.dataset.c;
+      row.addEventListener("mousemove", e => showTip(e, `<b>${esc(c)}</b><br>` +
+        PRIO.map(p => `${p.label}: ${fmt(sum(Z, x => x.c === c && x.p === p.k))}`).join("<br>")));
+      row.addEventListener("mouseleave", hideTip);
+    });
+  }
+  draw();
+}
+
+const BAND_LABELS = {
+  "0-2": "0–2 yrs", "3-5": "3–5 yrs", "6-11": "6–11 yrs", "12-17": "12–17 yrs",
+  "18-34": "18–34 yrs", "35-64": "35–64 yrs", "65-79": "65–79 yrs", "80+": "80+ yrs",
+  "nezinoma": "Age not specified"
+};
+const SUD_LABELS = {
+  vienas_suauges: "One adult",
+  tik_suaugusieji: "Adults only (2 or more)",
+  suaugusieji_su_vaikais: "Adults with children",
+  vienas_su_vaikais: "One adult with children",
+  tik_vaikai: "Children only",
+  nenurodytas: "Age not specified"
+};
+
+function renderPeople(rows){
+  const el = document.getElementById("people-app");
+  const PV = rows.filter(r => r.view.startsWith("ZM_") && typeof r.value === "number");
+  if (!PV.length) { el.innerHTML = `<div class="err">No data about people yet.</div>`; return; }
+  const state = { scope: "DABAR", center: "all" };
+  const centers = [...new Set(PV.filter(r => r.center).map(r => r.center))].sort((a, b) => a.localeCompare(b, "en"));
+  const steps = ["--q1","--q2","--q3","--q4","--q5","--q6"];
+  const sum = (arr, f) => arr.filter(f || (() => true)).reduce((s, x) => s + x.v, 0);
+  const tile = (loc, k, v, src, hero) =>
+    `<div class="tile ${hero ? "hero " : ""}ac"><span class="loc ac">${loc}</span><div class="k">${k}</div><div class="v">${fmt(v)}</div><div class="src">${src}</div></div>`;
+  const bars = (items) => {
+    const mx = Math.max(1, ...items.map(i => i.v));
+    return items.map(i => `<div class="crow"><div class="nm" title="${esc(i.label)}">${esc(i.label)}</div><div class="bar">${i.v > 0 ? `<span class="now" style="width:${i.v / mx * 100}%"></span>` : ""}</div><div class="tot">${fmt(i.v)}</div></div>`).join("");
+  };
+
+  function draw(){
+    const sc = state.scope;
+    const sel = view => PV.filter(r => r.view === view + "_" + sc && (state.center === "all" || r.center === state.center))
+      .map(r => ({ c: r.center, k: r.key, v: r.value }));
+    const NU = sel("ZM_NU"), AGE = sel("ZM_AMZIUS"), UN = sel("ZM_NELYDIMI"), SEN = sel("ZM_SENJORAI"), SP = sel("ZM_SPEC"), CB = sel("ZM_DERINYS");
+    const nu = k => sum(NU, x => x.k === k);
+    const band = b => sum(AGE, x => x.k === b);
+    const people = sum(AGE);
+    const kidBands = ["0-2", "3-5", "6-11", "12-17"];
+    const children = kidBands.reduce((s, b) => s + band(b), 0);
+    const seniors = band("65-79") + band("80+");
+    const un = (lvl, mk, m) => sum(UN, x => x.k === `${lvl}|${mk}|${m}`);
+    const unSum = (lvl, m) => un(lvl, "1", m) + un(lvl, "2+", m);
+    const sen = (b, m) => sum(SEN, x => x.k === `${b}|${m}`);
+    const senAlone = lvl => sen("65-79", "vienisi_" + lvl) + sen("80+", "vienisi_" + lvl);
+    const sp = (t, m) => sum(SP, x => x.k === `${t}|${m}`);
+    const cb = k => sum(CB, x => x.k === k);
+
+    const Q = {};
+    PV.filter(r => r.view === "ZM_KOKYBE").forEach(r => Q[r.key] = r.value);
+
+    const specKeys = [...new Set(SP.map(x => x.k.split("|")[0]))].filter(k => k !== "bent_vienas");
+    specKeys.sort((a, b) => sp(b, "visi") - sp(a, "visi"));
+
+    const rowCenters = state.center === "all" ? centers : [state.center];
+    const ageCell = (c, b) => {
+      const v = sum(AGE, x => x.c === c && x.k === b);
+      return v;
+    };
+    const mx = Math.max(1, ...rowCenters.flatMap(c => Object.keys(BAND_LABELS).map(b => ageCell(c, b))));
+    const hm = (v, tip) => {
+      if (!v) return `<td class="zero" data-t="${esc(tip)}: 0">0</td>`;
+      const i = Math.min(steps.length - 1, Math.floor(v / mx * (steps.length - 1) + 0.0001));
+      return `<td style="background:var(${steps[i]});color:var(--qt${i + 1})" data-t="${esc(tip)}: ${fmt(v)}">${fmt(v)}</td>`;
+    };
+
+    const pct = (a, b) => b ? Math.round(a / b * 100) + "%" : "–";
+    const sudKeys = ["vienas_suauges", "tik_suaugusieji", "suaugusieji_su_vaikais", "vienas_su_vaikais", "tik_vaikai", "nenurodytas"];
+
+    el.innerHTML = `
+      <div class="ctl">
+        <div class="seg" role="group" aria-label="Scope">
+          <button type="button" data-scope="DABAR" aria-pressed="${sc === "DABAR"}">Currently in centre</button>
+          <button type="button" data-scope="VISI" aria-pressed="${sc === "VISI"}">All registered</button>
+        </div>
+        <label class="selw"><b>Centre:</b>
+          <select id="pc" aria-label="Centre">
+            <option value="all">All centres</option>
+            ${centers.map(c => `<option value="${esc(c)}"${state.center === c ? " selected" : ""}>${esc(c)}</option>`).join("")}
+          </select>
+        </label>
+      </div>
+
+      <section class="kgroup">
+        <h3 class="kh">People and households</h3>
+        <div class="kpis">
+          ${tile("Accommodation centres", "<b>People</b> in total", people, "registered people", true)}
+          ${tile("Accommodation centres", "<b>Households</b>", nu("viso"), "by registered members")}
+          ${tile("Accommodation centres", "Households <b>with children</b>", nu("su_vaikais"), "at least one person under 18")}
+          ${tile("Accommodation centres", "People aged <b>65+</b>", seniors, "by birth year")}
+        </div>
+      </section>
+
+      <section class="kgroup">
+        <h3 class="kh">Children and unaccompanied minors</h3>
+        <div class="kpis">
+          ${tile("Children", "<b>Children</b> under 18", children, "people")}
+          ${tile("Children", "<b>One adult</b> with children", nu("sud_vienas_su_vaikais"), "households")}
+          ${tile("Unaccompanied", "<b>Unaccompanied</b> minors", unSum("patvirtinta", "zm"), `confirmed · households: ${fmt(unSum("patvirtinta", "nu"))}`, true)}
+          ${tile("Unaccompanied", "<b>Possibly</b> unaccompanied", unSum("galimai", "zm"), `to be checked · households: ${fmt(unSum("galimai", "nu"))}`)}
+        </div>
+      </section>
+      <div class="grid">
+        <section class="card">
+          <h2>Children by age</h2>
+          <p class="sub">Number of children by age group</p>
+          <div class="pbars">${bars(kidBands.map(b => ({ label: BAND_LABELS[b], v: band(b) })))}</div>
+        </section>
+        <section class="card">
+          <h2>Unaccompanied minors</h2>
+          <p class="sub">Households with no registered adult</p>
+          <div class="tblwrap"><table class="hm">
+            <tr><th class="rl">Level</th><th>1 minor<br>(households)</th><th>2 or more<br>(households)</th><th>Children<br>in total</th></tr>
+            <tr><td class="rl"><b>Confirmed</b></td><td>${fmt(un("patvirtinta", "1", "nu"))}</td><td>${fmt(un("patvirtinta", "2+", "nu"))}</td><td><b>${fmt(unSum("patvirtinta", "zm"))}</b></td></tr>
+            <tr><td class="rl"><b>Possibly</b></td><td>${fmt(un("galimai", "1", "nu"))}</td><td>${fmt(un("galimai", "2+", "nu"))}</td><td><b>${fmt(unSum("galimai", "zm"))}</b></td></tr>
+          </table></div>
+          <details><summary>What the levels mean</summary>
+            <p><b>Confirmed:</b> all members of the household size given by the representative are registered, none of them is an adult, and the link to the representative is checked.<br>
+            <b>Possibly:</b> only children are registered, but the household is not complete, the link is not checked, or someone has no birth year.</p>
+          </details>
+        </section>
+      </div>
+
+      <section class="kgroup" style="margin-top:14px">
+        <h3 class="kh">Older people</h3>
+        <div class="kpis">
+          ${tile("65–79 yrs", "Aged <b>65–79</b>", sen("65-79", "visi"), `alone: ${fmt(sen("65-79", "vienisi_patvirtinta"))} · possibly: ${fmt(sen("65-79", "vienisi_galimai"))}`)}
+          ${tile("80+ yrs", "Aged <b>80+</b>", sen("80+", "visi"), `alone: ${fmt(sen("80+", "vienisi_patvirtinta"))} · possibly: ${fmt(sen("80+", "vienisi_galimai"))}`)}
+          ${tile("65+ yrs", "<b>Alone</b>, 65+", senAlone("patvirtinta"), "confirmed: only household member", true)}
+          ${tile("65+ yrs", "<b>Possibly alone</b>, 65+", senAlone("galimai"), "to be checked")}
+        </div>
+      </section>
+
+      <section class="kgroup">
+        <h3 class="kh">Special needs</h3>
+        <div class="kpis">
+          ${tile("Needs", "<b>People</b> with special needs", sp("bent_vienas", "visi"), "at least one functional or specific need")}
+          ${tile("Needs", "<b>No other adult</b>", sp("bent_vienas", "nelydimi_patvirtinta"), `confirmed · possibly: ${fmt(sp("bent_vienas", "nelydimi_galimai"))}`, true)}
+          ${tile("Needs", "<b>Pregnant women</b>", sp("pregnancy", "visi"), `no other adult: ${fmt(sp("pregnancy", "nelydimi_patvirtinta"))} · possibly: ${fmt(sp("pregnancy", "nelydimi_galimai"))}`)}
+          ${tile("Needs", "<b>Infants</b> / toddlers", sp("infant", "visi"), `no other adult: ${fmt(sp("infant", "nelydimi_patvirtinta"))} · possibly: ${fmt(sp("infant", "nelydimi_galimai"))}`)}
+        </div>
+      </section>
+      <div class="grid">
+        <section class="card full">
+          <h2>Special needs by type</h2>
+          <p class="sub">Unaccompanied = no other registered adult in the household</p>
+          <div class="tblwrap">${specKeys.length ? `<table class="hm">
+            <tr><th class="rl">Need</th><th>Total</th><th>No other adult<br>(confirmed)</th><th>No other adult<br>(possibly)</th></tr>
+            ${specKeys.map(k => `<tr><td class="rl">${esc(GROUP_LABELS[k] || k)}</td><td><b>${fmt(sp(k, "visi"))}</b></td><td>${fmt(sp(k, "nelydimi_patvirtinta"))}</td><td>${fmt(sp(k, "nelydimi_galimai"))}</td></tr>`).join("")}
+          </table>` : `<div class="empty">No data</div>`}</div>
+        </section>
+
+        <section class="card full">
+          <h2>Needs attention: 65+ with no other adult</h2>
+          <p class="sub">Older people with no other registered adult, and extra vulnerability</p>
+          <div class="pbars">${bars([
+            { label: "65+ with no other adult (total)", v: cb("visi") },
+            { label: "with mobility difficulties", v: cb("judejimas") },
+            { label: "with critical medication", v: cb("vaistai") },
+            { label: "no safe place", v: cb("be_saugios_vietos") }
+          ])}</div>
+        </section>
+
+        <section class="card full">
+          <h2>Age structure by centre</h2>
+          <p class="sub">Number of people by age group (age = this year minus birth year)</p>
+          <div class="tblwrap"><table class="hm">
+            <tr><th class="rl">Centre</th>${Object.keys(BAND_LABELS).map(b => `<th>${BAND_LABELS[b]}</th>`).join("")}</tr>
+            ${rowCenters.map(c => `<tr><td class="rl">${esc(c)}</td>${Object.keys(BAND_LABELS).map(b => hm(ageCell(c, b), `${c} · ${BAND_LABELS[b]}`)).join("")}</tr>`).join("")}
+          </table></div>
+        </section>
+
+        <section class="card">
+          <h2>Household composition</h2>
+          <p class="sub">Number of households by composition of registered members</p>
+          <div class="pbars">${bars(sudKeys.map(k => ({ label: SUD_LABELS[k], v: nu("sud_" + k) })))}</div>
+        </section>
+        <section class="card">
+          <h2>Household size</h2>
+          <p class="sub">Number of households by number of registered members</p>
+          <div class="pbars">${bars(["1", "2", "3", "4", "5+"].map(k => ({ label: k === "1" ? "1 person" : k + " people", v: nu("dydis_" + k) })))}</div>
+        </section>
+
+        <section class="card full">
+          <h2>Registration reliability</h2>
+          <p class="sub">How far the household composition numbers can be trusted (all centres)</p>
+          <div class="kpis">
+            ${tile("Registration", "<b>Households</b> in total", Q.namu_ukiai, "registered households")}
+            ${tile("Registration", "<b>Complete</b> registration", Q.uzbaigti, `all members of the stated size registered · ${pct(Q.uzbaigti, Q.namu_ukiai)}`)}
+            ${tile("Registration", "Link <b>not checked</b>", Q.rysys_nepatikrintas, "households where the representative is unknown")}
+            ${tile("Registration", "<b>No birth year</b>", Q.be_gimimo_metu, "people")}
+          </div>
+        </section>
+      </div>`;
+
+    el.querySelectorAll("[data-scope]").forEach(b => b.addEventListener("click", () => { state.scope = b.dataset.scope; draw(); }));
+    const s = el.querySelector("#pc");
+    s.addEventListener("change", () => { state.center = s.value; draw(); });
+    el.querySelectorAll("td[data-t]").forEach(td => {
+      td.addEventListener("mousemove", e => showTip(e, esc(td.dataset.t) + " people"));
+      td.addEventListener("mouseleave", hideTip);
+    });
+  }
+  draw();
+}
+
+const TABS = { overview: ["app", ""], needs: ["needs-app", "#needs"], people: ["people-app", "#people"] };
+function setTab(name){
+  Object.entries(TABS).forEach(([k, [id]]) => { document.getElementById(id).hidden = k !== name; });
+  document.querySelectorAll(".tabs button").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === name ? "true" : "false"));
+  try { history.replaceState(null, "", TABS[name][1] || location.pathname + location.search); } catch (e) {}
+}
+document.querySelectorAll(".tabs button").forEach(b => b.addEventListener("click", () => setTab(b.dataset.tab)));
+if (location.hash === "#needs") setTab("needs");
+if (location.hash === "#people") setTab("people");
+
+function render(rows){
+  const kpi = k => (rows.find(r => r.view === "KPI" && r.key === k) || {}).value;
+  const meta = rows.find(r => r.view === "META" && r.key === "atnaujinta");
+  document.getElementById("upd").innerHTML = meta ? `Data updated: <b>${esc(meta.value)}</b>` : "Update time not specified";
+
+  // centres
+  const centers = [...new Set(rows.filter(r => r.view === "CENTRAS").map(r => r.center))];
+  const cval = (c, k) => (rows.find(r => r.view === "CENTRAS" && r.center === c && r.key === k) || {}).value || 0;
+  centers.sort((a, b) => cval(b, "uzregistruota") - cval(a, "uzregistruota"));
+
+  // timeline
+  const times = [...new Set(rows.filter(r => r.view === "EIGA").map(r => r.time))].sort();
+  const tval = (t, k) => (rows.find(r => r.view === "EIGA" && r.time === t && r.key === k) || {}).value || 0;
+
+  const app = document.getElementById("app");
+  app.innerHTML = `
+    <section class="kgroup">
+      <h3 class="kh">Households: from collection point to centre</h3>
+      <div class="kpis">
+        <div class="tile sp"><span class="loc sp">Collection points</span><div class="k"><b>Households</b> registered</div><div class="v">${fmt(kpi("surinkimo_namu_ukiai"))}</div><div class="src">household representatives</div></div>
+        <div class="tile sp"><span class="loc sp">Collection points</span><div class="k"><b>People</b> in them</div><div class="v">${fmt(kpi("surinkimo_zmones"))}</div><div class="src">by stated household size</div></div>
+        <div class="tile ac"><span class="loc ac">Accommodation centres</span><div class="k"><b>All members</b> arrived</div><div class="v">${fmt(kpi("namu_ukiai_visi"))}</div><div class="src">households out of ${fmt(kpi("surinkimo_namu_ukiai"))}: all their members are already registered in centres</div></div>
+        <div class="tile ac"><span class="loc ac">Accommodation centres</span><div class="k"><b>Not all members</b> arrived</div><div class="v">${fmt(kpi("namu_ukiai_truksta"))}</div><div class="src">households out of ${fmt(kpi("surinkimo_namu_ukiai"))}: some members are not yet registered in centres</div></div>
+      </div>
+    </section>
+    <section class="kgroup">
+      <h3 class="kh">People in accommodation centres</h3>
+      <div class="kpis">
+        <div class="tile hero ac"><span class="loc ac">Accommodation centres</span><div class="k"><b>Currently</b> in centres</div><div class="v">${fmt(kpi("centruose_dabar"))}</div><div class="src">people</div></div>
+        <div class="tile ac"><span class="loc ac">Accommodation centres</span><div class="k"><b>Registered</b> in total</div><div class="v">${fmt(kpi("centruose_uzregistruota"))}</div><div class="src">people since the start</div></div>
+        <div class="tile ac"><span class="loc ac">Accommodation centres</span><div class="k"><b>Left</b> the centres</div><div class="v">${fmt(kpi("isvyko"))}</div><div class="src">people</div></div>
+        <div class="tile ac"><span class="loc ac">Accommodation centres</span><div class="k"><b>Number</b> of centres</div><div class="v">${fmt(centers.length)}</div><div class="src">accommodation centres</div></div>
+      </div>
+    </section>
+
+    <div class="grid">
+      <section class="card">
+        <h2>Occupancy by centre</h2>
+        <p class="sub">Registered people: currently in the centre and already left</p>
+        <div class="legend"><span><i style="background:var(--s1)"></i>Currently in centre</span><span><i style="background:var(--s2)"></i>Left</span></div>
+        <div id="centres"></div>
+        <details><summary>Table</summary><table>
+          <tr><th>Centras</th><th>Registered</th><th>Currently in centre</th><th>Left</th></tr>
+          ${centers.map(c => `<tr><td>${esc(c)}</td><td>${fmt(cval(c,"uzregistruota"))}</td><td>${fmt(cval(c,"dabar"))}</td><td>${fmt(cval(c,"isvyko"))}</td></tr>`).join("")}
+        </table></details>
+      </section>
+
+      <section class="card">
+        <h2>Number of people in centres over time</h2>
+        <p class="sub">How many people were in the centres at the end of each hour</p>
+        <div class="chartscroll" id="line"></div>
+        <details><summary>Table</summary><table>
+          <tr><th>Time</th><th>In centres</th></tr>
+          ${times.map(t => `<tr><td>${esc(t)}</td><td>${fmt(tval(t,"centruose_tuo_metu"))}</td></tr>`).join("")}
+        </table></details>
+      </section>
+
+      <section class="card full" id="whereto-card">
+        <h2>Where people go</h2>
+        <p class="sub">People who left, by reason for leaving (all centres)</p>
+        <div id="whereto"></div>
+        <details><summary>Table by centre</summary><div class="tblwrap" id="wheretotbl"></div></details>
+      </section>
+
+      <section class="card full">
+        <h2>Needs by centre</h2>
+        <p class="sub">Number of people with a need marked at registration</p>
+        <div class="seg" role="group" aria-label="Scope of needs">
+          <button type="button" data-v="POREIKIAI_DABAR" aria-pressed="true">Currently in centre</button>
+          <button type="button" data-v="POREIKIAI_VISI" aria-pressed="false">All registered</button>
+        </div>
+        <div class="tblwrap" id="needs"></div>
+      </section>
+
+      <section class="card full">
+        <h2>Flows per hour</h2>
+        <p class="sub">People who arrived at centres and who left, each hour</p>
+        <div class="legend"><span><i style="background:var(--s1)"></i>Arrived at centres</span><span><i style="background:var(--s2)"></i>Left</span></div>
+        <div class="chartscroll" id="flows"></div>
+        <details><summary>Table</summary><table>
+          <tr><th>Time</th><th>In collection points (households)</th><th>Arrived at centres</th><th>Left</th></tr>
+          ${times.map(t => `<tr><td>${esc(t)}</td><td>${fmt(tval(t,"surinkimo_namu_ukiai"))}</td><td>${fmt(tval(t,"atvyko_i_centrus"))}</td><td>${fmt(tval(t,"isvyko"))}</td></tr>`).join("")}
+        </table></details>
+      </section>
+    </div>`;
+
+  // ---- centre bars
+  const cmax = Math.max(1, ...centers.map(c => cval(c, "uzregistruota")));
+  const cEl = document.getElementById("centres");
+  cEl.innerHTML = centers.length ? centers.map(c => {
+    const now = cval(c, "dabar"), out = cval(c, "isvyko"), tot = cval(c, "uzregistruota");
+    const segs = [];
+    if (now > 0) segs.push(`<span class="now" style="width:${now / cmax * 100}%"></span>`);
+    if (out > 0) segs.push(`<span class="out" style="width:${out / cmax * 100}%"></span>`);
+    return `<div class="crow" data-c="${esc(c)}"><div class="nm" title="${esc(c)}">${esc(c)}</div><div class="bar">${segs.join("")}</div><div class="tot">${fmt(tot)}</div></div>`;
+  }).join("") : `<div class="empty">No data</div>`;
+  cEl.querySelectorAll(".crow").forEach(row => {
+    const c = row.dataset.c;
+    row.addEventListener("mousemove", e => showTip(e, `<b>${esc(c)}</b><br>Currently in centre: ${fmt(cval(c,"dabar"))}<br>Left: ${fmt(cval(c,"isvyko"))}<br>Registered: ${fmt(cval(c,"uzregistruota"))}`));
+    row.addEventListener("mouseleave", hideTip);
+  });
+
+  // ---- where do people go
+  const depRows = rows.filter(r => r.view === "ISVYKIMAI_KUR" && typeof r.value === "number");
+  const depTypes = [...new Set(depRows.map(r => r.key))];
+  const depSum = k => depRows.filter(r => r.key === k).reduce((s, r) => s + r.value, 0);
+  depTypes.sort((a, b) => depSum(b) - depSum(a));
+  const depTotal = depTypes.reduce((s, k) => s + depSum(k), 0);
+  const wEl = document.getElementById("whereto");
+  if (!depTotal) {
+    wEl.innerHTML = `<div class="empty">No departures yet</div>`;
+    document.getElementById("whereto-card").querySelector("details").style.display = "none";
+  } else {
+    const dmax = Math.max(...depTypes.map(depSum));
+    wEl.innerHTML = depTypes.map(k => {
+      const v = depSum(k), pct = Math.round(v / depTotal * 100);
+      return `<div class="crow" data-k="${esc(k)}"><div class="nm" title="${esc(DEP_LABELS[k] || k)}">${esc(DEP_LABELS[k] || k)}</div><div class="bar"><span class="now" style="width:${v / dmax * 100}%"></span></div><div class="tot">${fmt(v)} <small style="font-weight:400;color:var(--ink3)">${pct}%</small></div></div>`;
+    }).join("");
+    wEl.querySelectorAll(".crow").forEach(row => {
+      const k = row.dataset.k;
+      row.addEventListener("mousemove", e => {
+        const per = depRows.filter(r => r.key === k && r.value > 0).map(r => `${esc(r.center || "Not specified")}: ${fmt(r.value)}`).join("<br>");
+        showTip(e, `<b>${esc(DEP_LABELS[k] || k)}</b><br>Total: ${fmt(depSum(k))}<br>${per}`);
+      });
+      row.addEventListener("mouseleave", hideTip);
+    });
+    const dcs = [...new Set(depRows.map(r => r.center || "Not specified"))].sort();
+    const dv = (c, k) => depRows.filter(r => (r.center || "Not specified") === c && r.key === k).reduce((s, r) => s + r.value, 0);
+    document.getElementById("wheretotbl").innerHTML = `<table class="hm">
+      <tr><th class="rl">Centre</th>${depTypes.map(k => `<th>${esc(DEP_LABELS[k] || k)}</th>`).join("")}<th>Total</th></tr>
+      ${dcs.map(c => `<tr><td class="rl">${esc(c)}</td>${depTypes.map(k => dv(c, k) ? `<td>${fmt(dv(c, k))}</td>` : `<td class="zero">0</td>`).join("")}<td><b>${fmt(depTypes.reduce((s, k) => s + dv(c, k), 0))}</b></td></tr>`).join("")}
+      <tr class="total"><td class="rl">Total</td>${depTypes.map(k => `<td>${fmt(depSum(k))}</td>`).join("")}<td>${fmt(depTotal)}</td></tr>
+    </table>`;
+  }
+
+  // ---- needs heatmap
+  const needKeys = Object.keys(NEED_LABELS);
+  const drawNeeds = view => {
+    const nv = (c, k) => (rows.find(r => r.view === view && r.center === c && r.key === k) || {}).value || 0;
+    const tot = k => centers.reduce((s, c) => s + nv(c, k), 0);
+    const all = centers.flatMap(c => needKeys.map(k => nv(c, k)));
+    const mx = Math.max(1, ...all);
+    const steps = ["--q1","--q2","--q3","--q4","--q5","--q6"];
+    const cell = (v, label) => {
+      if (!v) return `<td class="zero" data-t="${esc(label)}: 0">0</td>`;
+      const i = Math.min(steps.length - 1, Math.floor(v / mx * (steps.length - 1) + 0.0001));
+      return `<td style="background:var(${steps[i]});color:var(--qt${i + 1})" data-t="${esc(label)}: ${fmt(v)}">${fmt(v)}</td>`;
+    };
+    document.getElementById("needs").innerHTML = centers.length ? `<table class="hm">
+      <tr><th class="rl">Centre</th>${needKeys.map(k => `<th>${NEED_LABELS[k]}</th>`).join("")}</tr>
+      ${centers.map(c => `<tr><td class="rl">${esc(c)}</td>${needKeys.map(k => cell(nv(c, k), `${c} · ${NEED_LABELS[k]}`)).join("")}</tr>`).join("")}
+      <tr class="total"><td class="rl">Total</td>${needKeys.map(k => `<td>${fmt(tot(k))}</td>`).join("")}</tr>
+    </table>` : `<div class="empty">No data</div>`;
+    document.querySelectorAll("#needs td[data-t]").forEach(td => {
+      td.addEventListener("mousemove", e => showTip(e, esc(td.dataset.t) + " people"));
+      td.addEventListener("mouseleave", hideTip);
+    });
+  };
+  document.querySelectorAll(".seg button").forEach(b => b.addEventListener("click", () => {
+    document.querySelectorAll(".seg button").forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+    drawNeeds(b.dataset.v);
+  }));
+  drawNeeds("POREIKIAI_DABAR");
+
+  // ---- shared chart frame
+  const W = 560, H = 240, M = { l: 36, r: 12, t: 12, b: 34 };
+  const label = t => t.slice(5).replace(" ", " ");
+  const tickEvery = n => Math.max(1, Math.ceil(n / 4));
+  const yAxis = (ymax, w) => {
+    let g = "";
+    for (let i = 0; i <= 4; i++) {
+      const v = ymax * i / 4, y = M.t + (H - M.t - M.b) * (1 - i / 4);
+      g += `<line class="${i ? "gridline" : "baseline"}" x1="${M.l}" x2="${w - M.r}" y1="${y}" y2="${y}"/>`;
+      g += `<text x="${M.l - 6}" y="${y + 4}" text-anchor="end">${fmt(Math.round(v))}</text>`;
+    }
+    return g;
+  };
+
+  // ---- line: people in centres over time
+  const lineEl = document.getElementById("line");
+  if (!times.length) lineEl.innerHTML = `<div class="empty">No data</div>`;
+  else {
+    const vals = times.map(t => tval(t, "centruose_tuo_metu"));
+    const ymax = niceMax(Math.max(...vals));
+    const iw = W - M.l - M.r, ih = H - M.t - M.b;
+    const x = i => M.l + (times.length === 1 ? iw / 2 : iw * i / (times.length - 1));
+    const y = v => M.t + ih * (1 - v / ymax);
+    const path = vals.map((v, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join("");
+    const te = tickEvery(times.length);
+    const ticks = times.map((t, i) => i % te === 0 ? `<text x="${x(i)}" y="${H - 12}" text-anchor="middle">${esc(label(t))}</text>` : "").join("");
+    const last = vals.length - 1;
+    lineEl.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Number of people in centres over time">
+      <g class="axis">${yAxis(ymax, W)}${ticks}</g>
+      <path d="${path}" fill="none" stroke="var(--s1)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle cx="${x(last)}" cy="${y(vals[last])}" r="4" fill="var(--s1)" stroke="var(--surface)" stroke-width="2"/>
+      <text x="${x(last) - 8}" y="${y(vals[last]) - 10}" text-anchor="end" style="fill:var(--ink);font-size:12px;font-weight:600">${fmt(vals[last])}</text>
+      <line id="xh" x1="0" x2="0" y1="${M.t}" y2="${H - M.b}" stroke="var(--ink3)" stroke-width="1" opacity="0"/>
+      <circle id="xd" r="4" fill="var(--s1)" stroke="var(--surface)" stroke-width="2" opacity="0"/>
+      <rect x="${M.l}" y="${M.t}" width="${iw}" height="${ih}" fill="transparent" id="hit"/>
+    </svg>`;
+    const svg = lineEl.querySelector("svg"), xh = svg.querySelector("#xh"), xd = svg.querySelector("#xd");
+    svg.querySelector("#hit").addEventListener("mousemove", e => {
+      const r = svg.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width * W;
+      const i = Math.max(0, Math.min(times.length - 1, Math.round((px - M.l) / (iw / Math.max(1, times.length - 1)))));
+      xh.setAttribute("x1", x(i)); xh.setAttribute("x2", x(i)); xh.setAttribute("opacity", .5);
+      xd.setAttribute("cx", x(i)); xd.setAttribute("cy", y(vals[i])); xd.setAttribute("opacity", 1);
+      showTip(e, `<b>${esc(times[i])}</b><br>In centres: ${fmt(vals[i])} people`);
+    });
+    svg.querySelector("#hit").addEventListener("mouseleave", () => { hideTip(); xh.setAttribute("opacity", 0); xd.setAttribute("opacity", 0); });
+  }
+
+  // ---- grouped bars: arrivals / departures per hour
+  const flowsEl = document.getElementById("flows");
+  if (!times.length) flowsEl.innerHTML = `<div class="empty">No data</div>`;
+  else {
+    const FW = 1120, FH = 240;
+    const arr = times.map(t => tval(t, "atvyko_i_centrus")), dep = times.map(t => tval(t, "isvyko"));
+    const ymax = niceMax(Math.max(1, ...arr, ...dep));
+    const iw = FW - M.l - M.r, ih = FH - M.t - M.b;
+    const band = iw / times.length, bw = Math.max(3, Math.min(18, (band - 8) / 2));
+    const y = v => M.t + ih * (1 - v / ymax);
+    const bar = (cx, v, col) => {
+      if (!v) return "";
+      const top = y(v), h = M.t + ih - top, r = Math.min(4, bw / 2, h);
+      return `<path d="M${cx},${M.t + ih} V${top + r} q0,-${r} ${r},-${r} h${bw - 2 * r} q${r},0 ${r},${r} V${M.t + ih} Z" fill="${col}"/>`;
+    };
+    const te = Math.max(1, Math.ceil(times.length / 9));
+    let g = "";
+    times.forEach((t, i) => {
+      const c = M.l + band * i + band / 2;
+      g += bar(c - bw - 1, arr[i], "var(--s1)") + bar(c + 1, dep[i], "var(--s2)");
+      if (i % te === 0) g += `<text x="${c}" y="${FH - 12}" text-anchor="middle">${esc(label(t))}</text>`;
+      g += `<rect class="fh" data-i="${i}" x="${M.l + band * i}" y="${M.t}" width="${band}" height="${ih}" fill="transparent"/>`;
+    });
+    const yax = (() => { let s = ""; for (let k = 0; k <= 4; k++) { const v = ymax * k / 4, yy = M.t + ih * (1 - k / 4); s += `<line class="${k ? "gridline" : "baseline"}" x1="${M.l}" x2="${FW - M.r}" y1="${yy}" y2="${yy}"/><text x="${M.l - 6}" y="${yy + 4}" text-anchor="end">${fmt(Math.round(v))}</text>`; } return s; })();
+    flowsEl.innerHTML = `<svg viewBox="0 0 ${FW} ${FH}" role="img" aria-label="People arrived and left per hour"><g class="axis">${yax}${g}</g></svg>`;
+    flowsEl.querySelectorAll(".fh").forEach(r => {
+      const i = +r.dataset.i;
+      r.addEventListener("mousemove", e => showTip(e, `<b>${esc(times[i])}</b><br>Arrived at centres: ${fmt(arr[i])}<br>Left: ${fmt(dep[i])}<br>In collection points: ${fmt(tval(times[i],"surinkimo_namu_ukiai"))} households`));
+      r.addEventListener("mouseleave", hideTip);
+    });
+  }
+  renderNeeds(rows);
+  renderPeople(rows);
+}
+
+render(parseTSV(RAW_TSV));
+</script>
+</body>
+</html>
