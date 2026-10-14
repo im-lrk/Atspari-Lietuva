@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="lt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Senjorų klubai 2025–2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;700;800&display=swap">
+<style>
+/* Layout: vertical report — header, KPI juosta, mėnesių dinamika, žemėlapis + vietovių sąrašas, veiklos, klubų lentelė */
+:root{
+  --bg:#f6f4f3; --surface:#ffffff; --ink:#1d1a1a; --ink-2:#4a4444; --muted:#6e6767; --line:#e4dfdd; --grid:#ece8e6;
+  --red:#c8102e; --red-soft:#f7dde1; --land:#ffffff; --land-out:#ebe8e6; --water:#dfe9ee; --border-land:#b9b1ae;
+  --c1:#c8102e; --c2:#2a6f97;
+  --h0:#f1eeec; --h1:#f6c9cf; --h2:#e98593; --h3:#d43a52; --h4:#8e0b20;
+  --font:"Atkinson Hyperlegible Next","Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#161314; --surface:#211d1e; --ink:#f3efee; --ink-2:#cfc8c6; --muted:#a49c9a; --line:#3a3335; --grid:#2f292a;
+  --red:#ff5a6e; --red-soft:#4a1f26; --land:#2b2627; --land-out:#1d1a1b; --water:#14191c; --border-land:#5b5254;
+  --c1:#ff5a6e; --c2:#6fb3dc;
+  --h0:#2c2627; --h1:#5a2630; --h2:#8f2f40; --h3:#d6455b; --h4:#ff8a99; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#161314; --surface:#211d1e; --ink:#f3efee; --ink-2:#cfc8c6; --muted:#a49c9a; --line:#3a3335; --grid:#2f292a;
+  --red:#ff5a6e; --red-soft:#4a1f26; --land:#2b2627; --land-out:#1d1a1b; --water:#14191c; --border-land:#5b5254;
+  --c1:#ff5a6e; --c2:#6fb3dc;
+  --h0:#2c2627; --h1:#5a2630; --h2:#8f2f40; --h3:#d6455b; --h4:#ff8a99; color-scheme:dark }
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.5;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:20px;padding-block:24px 48px;display:flex;flex-direction:column;gap:22px}
+header{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.logo{background:#c8102e;color:#fff;font-weight:800;font-size:20px;letter-spacing:.04em;width:58px;height:58px;display:grid;place-items:center;border-radius:4px;flex:none}
+header h1{font-size:clamp(24px,3.4vw,34px);line-height:1.15;margin:0;text-wrap:balance}
+header p{margin:2px 0 0;color:var(--ink-2);font-size:17px}
+.band{display:flex;flex-direction:column;gap:10px}
+.bandh{font-size:21px;margin:0;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.bandh span{font-size:15px;font-weight:700;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px 18px;display:flex;flex-direction:column;gap:4px}
+.kpi .lab{font-size:17px;color:var(--ink);font-weight:400}
+.kpi .lab b{font-weight:700}
+.kpi .val{font-size:40px;font-weight:800;line-height:1.05;font-variant-numeric:tabular-nums;color:var(--ink)}
+.kpi .sub{font-size:15px;color:var(--ink-2)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:20px;min-width:0}
+.card h2{font-size:22px;margin:0 0 4px;text-wrap:balance}
+.card .lead{margin:0 0 14px;color:var(--ink-2);font-size:16px}
+.grid2{display:grid;grid-template-columns:minmax(0,2.3fr) minmax(0,1fr);gap:22px}
+@media (max-width:900px){.grid2{grid-template-columns:1fr}.loclist{max-height:360px}}
+@media (max-width:600px){.kpi .val{font-size:32px}}
+.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:15px;color:var(--ink);margin-bottom:6px}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.sw{width:14px;height:14px;border-radius:3px;display:inline-block}
+.sw.line{height:3px;border-radius:2px}
+svg text{fill:var(--ink-2);font-family:var(--font)}
+.axis text{font-size:13px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-bottom:10px}
+.seg button{font:inherit;font-size:15px;background:transparent;color:var(--ink);border:0;padding:7px 12px;cursor:pointer}
+.maptools{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start}
+#segP button{font-weight:700;min-width:64px}
+.loclist li button.off .nm,.loclist li button.off .n{color:var(--muted)}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button[aria-pressed="true"]{background:var(--red);color:#fff;font-weight:700}
+button:focus-visible,input:focus-visible,th:focus-visible,.bub:focus-visible{outline:3px solid var(--c2);outline-offset:2px}
+#map{width:100%;height:auto;display:block;background:var(--water);border-radius:6px}
+.bub{cursor:pointer}
+.loclist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px;max-height:620px;overflow:auto}
+.loclist li button{width:100%;display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;font:inherit;text-align:left;background:transparent;border:0;border-radius:5px;padding:6px 8px;color:var(--ink);cursor:pointer}
+.loclist li button:hover,.loclist li button.on{background:var(--red-soft)}
+.loclist .nm{font-weight:700;font-size:16px}
+.loclist .cl{font-size:14px;color:var(--ink-2);display:block;font-weight:400}
+.loclist .n{font-weight:800;font-variant-numeric:tabular-nums;font-size:17px}
+.bar{height:6px;background:var(--red);border-radius:3px;margin-top:3px;opacity:.85}
+.acts{display:flex;flex-direction:column;gap:8px}
+.arow{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr) 64px;gap:12px;align-items:center;font-size:16px}
+.arow .t{min-width:0}
+.arow .track{height:18px;background:var(--grid);border-radius:4px;overflow:hidden}
+.arow .fill{height:100%;background:var(--red);border-radius:0 4px 4px 0}
+.arow.na .fill{background:var(--muted)}
+.arow .v{text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+@media (max-width:600px){.arow{grid-template-columns:1fr 56px}.arow .track{grid-column:1/-1;grid-row:2}}
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.tools input{font:inherit;font-size:16px;padding:8px 12px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);min-width:0;flex:1 1 220px;max-width:340px}
+.chip{display:inline-flex;align-items:center;gap:8px;background:var(--red-soft);color:var(--ink);border-radius:20px;padding:5px 8px 5px 14px;font-size:15px;font-weight:700}
+.chip button{font:inherit;border:0;background:var(--surface);color:var(--ink);border-radius:50%;width:24px;height:24px;cursor:pointer;line-height:1}
+.tblwrap{overflow-x:auto}
+.mtbl{min-width:760px;margin-top:14px;font-size:16px}
+.mtbl th,.mtbl td{text-align:right;padding:8px 9px;cursor:default;font-variant-numeric:tabular-nums}
+.mtbl th:first-child,.mtbl td:first-child{text-align:left;font-weight:700;white-space:nowrap;width:1%}
+.mtbl td{font-weight:400}
+.mtbl .tot{font-weight:800;background:var(--red-soft)}
+.mtbl tbody tr:last-child td{border-bottom:0}
+table{border-collapse:collapse;width:100%;font-size:15px;min-width:980px}
+td:first-child{min-width:230px}
+td:last-child{min-width:200px;font-size:14px}
+th{font-size:14px;font-weight:700;color:var(--ink);text-align:left;padding:8px 8px;border-bottom:2px solid var(--line);cursor:pointer;white-space:nowrap;user-select:none}
+th.num,td.num{text-align:right}
+th[aria-sort="descending"]::after{content:" ▼";font-size:11px}
+th[aria-sort="ascending"]::after{content:" ▲";font-size:11px}
+td{padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+td.num{font-variant-numeric:tabular-nums;font-weight:700}
+td .loc{color:var(--ink-2)}
+.tag{font-size:12px;font-weight:700;border:1px solid var(--c2);color:var(--c2);border-radius:10px;padding:0 6px;margin-left:6px;white-space:nowrap}
+.strip{display:grid;grid-template-columns:repeat(9,18px);gap:2px}
+.strip i{height:18px;border-radius:3px;display:block}
+.strip i.z{background:transparent;border:1px dashed var(--line)}
+.hlegend{display:flex;gap:10px;flex-wrap:wrap;align-items:center;font-size:14px;color:var(--ink-2);margin-top:10px}
+.hlegend i{width:16px;height:16px;border-radius:3px;display:inline-block;vertical-align:-3px;margin-right:4px}
+.status{font-size:13px;font-weight:700;border-radius:10px;padding:2px 8px;white-space:nowrap}
+.status.on{background:var(--red-soft);color:var(--ink)}
+.status.off{border:1px solid var(--line);color:var(--ink-2)}
+.notes{font-size:14px;color:var(--ink-2);margin:0;padding-left:18px}
+#tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--bg);font-size:14px;line-height:1.4;padding:9px 12px;border-radius:6px;max-width:300px;z-index:20;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+#tip b{font-size:15px}
+.sr{position:absolute;left:-9999px}
+
+:root{--ok:#0ca30c;--warn:#fab219;--crit:#d03b3b;--dead:#8a8382}
+.kpis{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+.seg button[data-p]{font-weight:700}
+.st{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;border-radius:10px;padding:2px 9px 2px 7px;white-space:nowrap;border:1px solid var(--line);color:var(--ink)}
+.st i{font-style:normal;font-size:12px;line-height:1}
+.st.ok i{color:var(--ok)} .st.warn i{color:var(--warn)} .st.crit i{color:var(--crit)} .st.dead i{color:var(--dead)}
+.st.crit{border-color:var(--crit)} .st.warn{border-color:var(--warn)}
+.thr{display:flex;gap:12px;flex-wrap:wrap;align-items:stretch;margin:4px 0 16px}
+.thr label{display:flex;flex-direction:column;gap:6px;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:15px;min-width:0;flex:1 1 200px}
+.thr label b{display:flex;align-items:center;gap:7px}
+.thr select{font:inherit;font-size:16px;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink)}
+.thr .dot{width:12px;height:12px;border-radius:50%;display:inline-block;flex:none}
+.sumchips{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.sumchips .sc{display:flex;flex-direction:column;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 14px;min-width:130px}
+.sumchips .sc b{font-size:28px;font-variant-numeric:tabular-nums;line-height:1.1}
+.sumchips .sc span{font-size:15px}
+.insight{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:12px 14px;font-size:16px;margin:10px 0 0}
+.h3{font-size:18px;margin:18px 0 6px}
+.multi{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:8px}
+.mini{border:1px solid var(--line);border-radius:8px;padding:10px 12px 6px;min-width:0}
+.mini h4{margin:0;font-size:17px;display:flex;justify-content:space-between;gap:8px}
+.mini h4 span{font-variant-numeric:tabular-nums}
+.mini p{margin:0 0 4px;font-size:14px;color:var(--ink-2)}
+.dtbl{min-width:760px;font-size:15px}
+.dtbl th,.dtbl td{text-align:right;cursor:default;white-space:nowrap}
+.dtbl th:first-child,.dtbl td:first-child,.dtbl .l{text-align:left}
+.dtbl td{font-variant-numeric:tabular-nums}
+.dtbl tr.grp td{background:var(--bg);font-weight:800}
+.dtbl .chips{display:inline-flex;gap:6px;justify-content:flex-end}
+.strip{grid-template-columns:repeat(3,16px) 6px repeat(9,16px)}
+.strip i{height:16px}
+.strip .yr{background:transparent!important;border:0!important}
+.tools select{font:inherit;font-size:16px;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink)}
+table#tbl{min-width:1180px}
+.mtbl th:first-child,.mtbl td:first-child{width:auto!important}
+.mtbl .tot{white-space:nowrap}
+.dtbl td.l{white-space:normal;min-width:150px}
+.cap{font-size:14px;color:var(--ink-2);margin:4px 0 0}
+.mtbl th:not(:first-child),.mtbl td:not(:first-child){width:5.5%}
+.mtbl th.tot,.mtbl td.tot{width:7%}
+.mtbl td:last-child,.dtbl td:last-child{min-width:0;font-size:inherit}
+.mtbl td:first-child{min-width:0}
+.dtbl td:first-child{min-width:160px}
+.dtbl th{white-space:normal;vertical-align:bottom;padding:8px 6px}
+.dtbl td{padding:7px 6px}
+.dtbl td.l{min-width:120px}
+.dtbl .chips{flex-wrap:nowrap}
+.tabs{display:flex;gap:2px;overflow-x:auto;border-bottom:2px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5;padding-top:6px;scrollbar-width:thin}
+.tabs button{font:inherit;font-size:17px;white-space:nowrap;background:none;border:0;border-bottom:4px solid transparent;margin-bottom:-2px;padding:10px 14px;color:var(--ink-2);cursor:pointer;flex:none}
+.tabs button:hover{color:var(--ink)}
+.tabs button[aria-selected="true"]{color:var(--ink);font-weight:800;border-bottom-color:var(--red)}
+.tabs button:focus-visible{outline:3px solid var(--c2);outline-offset:-3px}
+.tabpanel{display:flex;flex-direction:column;gap:22px}
+.kpi .also{font-size:14px;color:var(--ink-2);border-top:1px solid var(--line);padding-top:6px;margin-top:4px}
+.kpi .also b{color:var(--ink);font-variant-numeric:tabular-nums}
+.lnk{font:inherit;font-weight:700;background:none;border:0;padding:0;color:var(--ink);text-align:left;cursor:pointer;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px}
+.lnk:hover{text-decoration-color:var(--red)}
+[hidden]{display:none!important}
+.kpi .sub b{color:var(--ink);font-weight:700;font-variant-numeric:tabular-nums}
+.kpi .also{margin-top:auto}.kpi .sub{margin-bottom:4px}
+table#tbl{min-width:900px}
+#tbl th{white-space:normal;vertical-align:bottom;line-height:1.25}
+#tbl td:first-child{min-width:200px}
+#tbl td:last-child{min-width:150px}
+#tbl td.topa{font-size:14px;color:var(--ink-2)}
+#tbl .cmeta{display:block;font-size:13px;font-weight:400;color:var(--ink-2);margin-top:3px}
+#tbl .strip{grid-template-columns:repeat(3,14px) 5px repeat(9,14px)}
+#tbl .strip i{height:16px}
+.st.ok i{font-size:14px}
+.segS button{display:inline-flex;align-items:center;gap:6px}
+.segS button[aria-pressed="true"]{background:var(--bg);color:var(--ink);font-weight:700;box-shadow:inset 0 -3px 0 var(--ink)}
+.segS button[aria-pressed="false"]{color:var(--muted);text-decoration:line-through}
+.segS .si{font-style:normal;font-size:13px}
+.segS .si.ok{color:var(--ok)}.segS .si.warn{color:var(--warn)}.segS .si.crit{color:var(--crit)}.segS .si.dead{color:var(--dead)}
+.segS .sn{font-weight:400;color:var(--ink-2);font-variant-numeric:tabular-nums}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header>
+  <div class="logo" aria-label="Lietuvos Raudonasis Kryžius">LRK</div>
+  <div>
+    <h1>Senjorų klubai: 2025-10 – 2026-09</h1>
+    <p>Dalyvavimas klubų veikloje per <b>12 mėnesių</b> · 58 klubai, 4 regionai, 14 skyrių</p>
+  </div>
+</header>
+
+<nav class="tabs" role="tablist" aria-label="Dashboard skiltys">
+  <button type="button" role="tab" id="t-apzvalga" aria-controls="tab-apzvalga" data-tab="apzvalga">Apžvalga</button>
+  <button type="button" role="tab" id="t-regionai" aria-controls="tab-regionai" data-tab="regionai">Regionai ir žemėlapis</button>
+  <button type="button" role="tab" id="t-signalas" aria-controls="tab-signalas" data-tab="signalas">Aktyvumo signalas</button>
+  <button type="button" role="tab" id="t-veiklos" aria-controls="tab-veiklos" data-tab="veiklos">Veiklos</button>
+  <button type="button" role="tab" id="t-klubai" aria-controls="tab-klubai" data-tab="klubai">Klubai</button>
+</nav>
+
+<div class="tabpanel" id="tab-apzvalga" role="tabpanel" aria-labelledby="t-apzvalga">
+<section class="band" aria-labelledby="h-k9">
+  <h2 class="bandh" id="h-k9">Rugsėjis <span>2026-09</span></h2>
+  <div class="kpis" id="kpisS"></div>
+</section>
+<section class="band" aria-labelledby="h-k19">
+  <h2 class="bandh" id="h-k19">2026 m. sausis–rugsėjis <span>2026-01–09 · apačioje smulkiau – 12 mėn. (2025-10–2026-09)</span></h2>
+  <div class="kpis" id="kpisY"></div>
+</section>
+
+<section class="card" aria-labelledby="h-trend">
+  <h2 id="h-trend">Dalyvavimas pagal mėnesį</h2>
+  <p class="lead"><b>Apsilankymai</b> – kiek kartų senjorai dalyvavo užsiėmimuose. <b>Unikalūs senjorai</b> – kiek skirtingų žmonių dalyvavo tą mėnesį. <b>Užsiėmimai</b> – dienos, kai klube vyko veikla.</p>
+  <div class="legend"><span><i class="sw" style="background:var(--c1)"></i>Apsilankymai</span><span><i class="sw line" style="background:var(--c2)"></i>Unikalūs senjorai</span></div>
+  <svg id="trend" viewBox="0 0 1000 310" role="img" aria-label="Apsilankymų ir unikalių senjorų skaičius pagal mėnesį"></svg>
+  <div class="tblwrap"><table class="mtbl" id="mtbl"></table></div>
+</section>
+
+</div>
+
+<div class="tabpanel" id="tab-regionai" role="tabpanel" aria-labelledby="t-regionai" hidden>
+<section class="card" aria-labelledby="h-reg">
+  <h2 id="h-reg">Regionai ir skyriai</h2>
+  <p class="lead"><b>Apsilankymai</b> pagal laikotarpį ir <b>klubų būsena</b> rugsėjo pabaigoje. Būsenos ribas galima keisti tabe „Aktyvumo signalas“.</p>
+  <div class="tblwrap"><table class="dtbl" id="regtbl"></table></div>
+  <h3 class="h3">Apsilankymai pagal mėnesį regionuose</h3>
+  <p class="lead" style="margin:0">Visų keturių grafikų skalė vienoda, todėl regionus galima lyginti tarpusavyje.</p>
+  <div class="multi" id="multi"></div>
+  <h3 class="h3">Skyriai</h3>
+  <div class="tblwrap"><table class="dtbl" id="skytbl"></table></div>
+</section>
+
+<section class="card" aria-labelledby="h-map">
+  <h2 id="h-map">Klubų žemėlapis</h2>
+  <p class="lead">Burbulo dydis rodo pasirinktą rodiklį vietovėje per pasirinktą laikotarpį. Punktyrinis taškas – vietovė, kurioje tuo laikotarpiu klubai neveikė. <b>Būsenos mygtukai</b> rodo arba paslepia klubus pagal jų būseną. <b>Paspauskite vietovę</b> – atsidarys „Klubai“ tabas su tos vietovės klubais.</p>
+  <div class="maptools">
+    <div class="seg" id="segM" role="group" aria-label="Žemėlapio rodiklis">
+      <button type="button" data-m="vt" aria-pressed="true">Apsilankymai</button>
+      <button type="button" data-m="ut" aria-pressed="false">Unikalūs senjorai</button>
+      <button type="button" data-m="n" aria-pressed="false">Klubų skaičius</button>
+    </div>
+    <div class="seg" id="segP" role="group" aria-label="Laikotarpis">
+      <button type="button" data-p="S" aria-pressed="false">09</button>
+      <button type="button" data-p="Y" aria-pressed="false">01–09</button>
+      <button type="button" data-p="A" aria-pressed="true">12 mėn.</button>
+    </div>
+    <div class="seg segS" id="segS" role="group" aria-label="Klubų būsena"></div>
+  </div>
+  <div class="grid2">
+    <div style="min-width:0"><svg id="map" role="img" aria-label="Lietuvos žemėlapis su senjorų klubų vietovėmis"></svg></div>
+    <div style="min-width:0"><ul class="loclist" id="loclist"></ul></div>
+  </div>
+</section>
+</div>
+
+<div class="tabpanel" id="tab-signalas" role="tabpanel" aria-labelledby="t-signalas" hidden>
+<section class="card" aria-labelledby="h-sig">
+  <h2 id="h-sig">Klubų aktyvumo signalas</h2>
+  <p class="lead">Kiek mėnesių praėjo nuo <b>paskutinės klubo veiklos</b> iki rugsėjo. 0 – klubas veikė rugsėjį, 1 – paskutinį kartą veikė rugpjūtį ir t. t. <b>Pasirinkite ribas</b> – grafikai ir lentelės persiskaičiuos.</p>
+  <div class="thr">
+    <label for="tY"><b><span class="dot" style="background:var(--warn)"></span>Stebėti</b>
+      <select id="tY"></select></label>
+    <label for="tR"><b><span class="dot" style="background:var(--crit)"></span>Dėmesio!</b>
+      <select id="tR"></select></label>
+    <label for="tD"><b><span class="dot" style="background:var(--dead)"></span>Klubas laikomas neaktyviu</b>
+      <select id="tD"></select></label>
+  </div>
+  <div class="sumchips" id="sumchips"></div>
+  <div class="grid2" style="grid-template-columns:minmax(0,1fr) minmax(0,1fr)">
+    <div style="min-width:0">
+      <h3 class="h3" style="margin-top:0">Klubai pagal mėnesius be veiklos</h3>
+      <svg id="idle" viewBox="0 0 560 300" role="img" aria-label="Klubų skaičius pagal mėnesius be veiklos"></svg>
+    </div>
+    <div style="min-width:0">
+      <h3 class="h3" style="margin-top:0">Po kiek mėnesių pertraukos klubai grįžo</h3>
+      <svg id="gaps" viewBox="0 0 560 300" role="img" aria-label="Pertraukų, po kurių klubas atnaujino veiklą, skaičius pagal trukmę"></svg>
+      <p class="cap">Spalvota juostelė po stulpeliu rodo, kokį signalą tokia pertrauka būtų sukėlusi.</p>
+    </div>
+  </div>
+  <div class="insight" id="insight"></div>
+  <h3 class="h3">Klubai su signalu</h3>
+  <p class="lead" style="margin:0 0 6px">Paspauskite klubo pavadinimą – atsidarys jo eilutė „Klubai“ tabe.</p>
+  <div class="tblwrap"><table class="dtbl" id="sigtbl"></table></div>
+</section>
+
+
+
+</div>
+
+<div class="tabpanel" id="tab-veiklos" role="tabpanel" aria-labelledby="t-veiklos" hidden>
+<section class="card" aria-labelledby="h-acts">
+  <h2 id="h-acts">Kokia veikla vyko</h2>
+  <p class="lead"><b>Užsiėmimai pagal veiklos tipą</b>, 2025-10–2026-09: kiek dienų klubuose vyko tokio tipo veikla. Pilka juosta – užsiėmimai, kuriems veiklos tipas nepažymėtas.</p>
+  <div class="acts" id="acts"></div>
+</section>
+
+</div>
+
+<div class="tabpanel" id="tab-klubai" role="tabpanel" aria-labelledby="t-klubai" hidden>
+<section class="card" aria-labelledby="h-clubs">
+  <h2 id="h-clubs">Klubai</h2>
+  <p class="lead">Spalvoti langeliai – <b>apsilankymai kiekvieną mėnesį</b> (2025 m. spalis → 2026 m. rugsėjis). Paspauskite stulpelio pavadinimą, kad surikiuotumėte.</p>
+  <div class="tools">
+    <label class="sr" for="q">Ieškoti klubo</label>
+    <input id="q" type="search" placeholder="Ieškoti klubo, vietovės ar skyriaus…">
+    <label class="sr" for="fReg">Regionas</label>
+    <select id="fReg"><option value="">Visi regionai</option></select>
+    <label class="sr" for="fSt">Būsena</label>
+    <select id="fSt"><option value="">Visos būsenos</option><option value="ok">Veikia</option><option value="warn">Stebėti</option><option value="crit">Dėmesio!</option><option value="dead">Neaktyvus</option></select>
+    <span id="chip"></span>
+  </div>
+  <div class="tblwrap">
+  <table id="tbl">
+    <thead><tr>
+      <th data-k="n" tabindex="0">Klubas</th>
+      <th data-k="stn" tabindex="0">Būsena</th>
+      <th data-k="ut12" class="num" tabindex="0">Unikalūs senjorai</th>
+      <th data-k="vA" class="num" tabindex="0" aria-sort="descending">Apsilan&shy;kymai</th>
+      <th data-k="sA" class="num" tabindex="0">Užsiė&shy;mimai</th>
+      <th data-k="am" class="num" tabindex="0">Mėn. su veikla</th>
+      <th data-k="none">Spa → Rgs</th>
+      <th data-k="top">Dažniausia veikla</th>
+    </tr></thead>
+    <tbody></tbody>
+  </table>
+  </div>
+  <div class="hlegend">Apsilankymai per mėnesį:
+    <span><i style="border:1px dashed var(--line)"></i>0</span>
+    <span><i style="background:var(--h1)"></i>1–9</span>
+    <span><i style="background:var(--h2)"></i>10–19</span>
+    <span><i style="background:var(--h3)"></i>20–39</span>
+    <span><i style="background:var(--h4)"></i>40+</span>
+  </div>
+</section>
+
+</div>
+
+<section aria-label="Pastabos">
+  <ul class="notes">
+    <li>Duomenys Salesforce fiksuojami nuo <b>2025 m. spalio</b>, todėl ankstesnė klubų veikla nematoma.</li>
+    <li><b>Unikalūs senjorai</b> per laikotarpį skaičiuojami vieną kartą, net jei žmogus lankė kelis klubus ar kelis mėnesius. Regionų, skyrių ir vietovių unikalių senjorų skaičiai sudedami per klubus, todėl jų suma didesnė.</li>
+    <li><b>Užsiėmimas</b> – diena, kai klube vyko veikla. <b>Veikęs klubas</b> – klubas, kuriame per laikotarpį buvo bent vienas apsilankymas ar užsiėmimas.</li>
+    <li>Klubų skyriai – pagal Salesforce; skyriai regionams priskirti pagal LRK Tinklo struktūrą. Žemėlapyje kaimų (Balskai, Didkiemis, Mūro Strėvininkai, Upninkai) taškai – apytiksliai.</li>
+  </ul>
+</section>
+</div>
+<div id="tip" hidden></div>
+
+<script>
+let LOCS_READY=false;
+const D = {"clubs": [{"n": "Alytaus Ukrainiečių senjorų klubas", "loc": "Alytus", "sky": "Alytus", "reg": "Pietūs", "v": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3], "u": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], "ut12": 2, "ut9": 2, "s": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], "ua": true, "top": "Psichoedukacija “Kai šeimoje bendrauti tampa sunku“"}, {"n": "Atvira Jonavos bendruomenė", "loc": "Jonava", "sky": "Kaunas", "reg": "Pietūs", "v": [0, 0, 0, 0, 0, 0, 0, 0, 0, 24, 17, 12], "u": [0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 13, 7], "ut12": 13, "ut9": 13, "s": [0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 2], "ua": false, "top": "Smulkiosios motorikos užsiėmimas"}, {"n": "Beižionių senjorų klubas", "loc": "Beižionys", "sky": "Elektrėnai", "reg": "Rytai", "v": [2, 2, 5, 4, 9, 8, 10, 10, 7, 10, 5, 5], "u": [2, 2, 5, 3, 5, 5, 5, 5, 5, 5, 3, 4], "ut12": 5, "ut9": 5, "s": [2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2], "ua": false, "top": "Smulkiosios motorikos užsiėmimas"}, {"n": "Elektrėnų UA klubas", "loc": "Elektrėnai", "sky": "Elektrėnai", "reg": "Rytai", "v": [1, 0, 0, 2, 1, 1, 0, 0, 0, 0, 0, 0], "u": [1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0], "ut12": 1, "ut9": 1, "s": [1, 0, 0, 2, 1, 1, 0, 0, 0, 0, 0, 0], "ua": true, "top": "Atminties lavinimo užduotys ir žaidimai"}, {"n": "Jonavos senjorų klubas", "loc": "Jonava", "sky": "Kaunas", "reg": "Pietūs", "v": [0, 0, 0, 0, 0, 1, 16, 16, 13, 18, 16, 11], "u": [0, 0, 0, 0, 0, 1, 16, 16, 13, 18, 16, 11], "ut12": 25, "ut9": 25, "s": [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2], "ua": false, "top": "Atminties lavinimo užduotys ir žaidimai"}, {"n": "Josvainių senjorų klubas", "loc": "Josvainiai", "sky": "Kaunas", "reg": "Pietūs", "v": [0, 0, 0, 0, 0, 0, 0, 17, 10, 6, 9, 7], "u": [0, 0, 0, 0, 0, 0, 0, 8, 7, 6, 9, 7], "ut12": 9, "ut9": 9, "s": [0, 0, 0, 0, 0, 0, 0, 4, 2, 1, 1, 1], "ua": false, "top": "Civilinės saugos užsiėmimas"}, {"n": "Kaišiadorių \"Mūro Strėvininkų\" klubas", "loc": "Mūro Strėvininkai", "sky": "Elektrėnai", "reg": "Rytai", "v": [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0], "u": [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0], "ut12": 1, "ut9": 1, "s": [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0], "ua": false, "top": "Smulkiosios motorikos užsiėmimas"}, {"n": "Kauno Senjorų klubas skyriuje", "loc": "Kaunas", "sky": "Kaunas", "reg": "Pietūs", "v": [0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0], "u": [0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0], "ut12": 6, "ut9": 6, "s": [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0], "ua": false, "top": "Arbatos vakaras / pažintinis pokalbis"}, {"n": "Klaipėdos \"Kretinga\"", "loc": "Kretinga", "sky": "Klaipėda", "reg": "Vakarai", "v": [0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0], "u": [0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0], "ut12": 1, "ut9": 1, "s": [0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0], "ua": false, "top": "Savanorystės skatinimo veikla (senjorų įsitraukimas į savanorystės veiklas)"}, {"n": "Klaipėdos \"Skaitovų\" klubas", "loc": "Klaipėda", "sky": "Klaipėda", "reg": "Vakarai", "v": [0, 0, 0, 2, 4, 13, 5, 11, 6, 5, 9, 10], "u": [0, 0, 0, 2, 3, 7, 5, 6, 6, 5, 6, 6], "ut12": 8, "ut9": 8, "s": [0, 0, 0, 1, 2, 2, 1, 2, 1, 1, 2, 2], "ua": false, "top": "Atminties lavinimo užduotys ir žaidimai"}, {"n": "Klaipėdos \"Tilžė\"", "loc": "Klaipėda", "sky": "Klaipėda", "reg": "Vakarai", "v": [52, 77, 70, 35, 72, 91, 78, 58, 64, 53, 72, 92], "u": [17, 18, 19, 13, 17, 17, 16, 14, 12, 15, 17, 21], "ut12": 26, "ut9": 23, "s": [5, 7, 6, 4, 8, 9, 9, 7, 9, 9, 8, 8], "ua": false, "top": "Atminties lavinimo užduotys ir žaidimai"}, {"n": "Leliūnų senjorų klubas", "loc": "Leliūnai", "sky": "Utena", "reg": "Šiaurė", "v": [0, 0, 0, 12, 10, 5, 0, 0, 0, 0, 0, 0], "u": [0, 0, 0, 11, 9, 5, 0, 0, 0, 0, 0, 0], "ut12": 14, "ut9": 14, "s": [0, 0, 0, 1, 1, 2, 0, 0, 0, 0, 0, 0], "ua": false, "top": ""}, {"n": "Mažeikių \"MŽK\"", "loc": "Mažeikiai", "sky": "Šiauliai", "reg": "Šiaurė", "v": [52, 104, 73, 34, 84, 110, 77, 48, 80, 0, 0, 84], "u": [37, 43, 34, 26, 43, 49, 41, 34, 50, 0, 0, 60], "ut12": 120, "ut9": 109, "s": [3, 6, 4, 2, 5, 9, 5, 4, 3, 0, 0, 2], "ua": false, "top": "Kitų specialistų edukacija / paskaita"}, {"n": "Molėtų senjorų klubas", "loc": "Molėtai", "sky": "Utena", "reg": "Šiaurė", "v": [2, 10, 4, 9, 10, 1, 8, 0, 0, 0, 0, 0], "u": [1, 3, 3, 9, 7, 1, 2, 0, 0, 0, 0, 0], "ut12": 10, "ut9": 10, "s": [2, 7, 3, 3, 5, 1, 4, 0, 0, 0, 0, 0], "ua": false, "top": ""}, {"n": "Naujamiesčio senjorių klubas", "loc": "Naujamiestis", "sky": "Panevėžys", "reg": "Šiaurė", "v": [26, 17, 17, 27, 35, 36, 26, 8, 0, 18, 0, 35], "u": [9, 9, 9, 9, 9, 9, 9, 8, 0, 9, 0, 9], "ut12": 9, "ut9": 9, "s": [3, 2, 2, 3, 4, 4, 3, 1, 0, 2, 0, 4], "ua": false, "top": "Smulkiosios motorikos užsiėmimas"}, {"n": "Palangos \"Draugaukime\"", "loc": "Palanga", "sky": "Klaipėda", "reg": "Vakarai", "v": [0, 0, 0, 0, 0, 0, 0, 32, 32, 8, 24, 32], "u": [0, 0, 0, 0, 0, 0, 0, 8, 8, 8, 8, 8], "ut12": 8, "ut9": 8, "s": [0, 0, 0, 0, 0, 0, 0, 4, 4, 1, 3, 4], "ua": false, "top": "Atminties lavinimo užduotys ir žaidimai"}, {"n": "Palangos \"Neriame draugystę\"", "loc": "Palanga", "sky": "Klaipėda", "reg": "Vakarai", "v": [0, 0, 0, 0, 0, 0, 0, 36, 51, 34, 52, 68], "u": [0, 0, 0, 0, 0, 0, 0, 18, 17, 17, 18, 17], "ut12": 18, "ut9": 18, "s": [0, 0, 0, 0, 0, 0, 0, 2, 3, 2, 3, 4], "ua": false, "top": "Atminties lavinimo užduotys ir žaidimai"}, {"n": "Panevėžio Senjorų klubas", "loc": "Panevėžys", "sky": "Panevėžys", "reg": "Šiaurė", "v": [0, 9, 34, 26, 24, 56, 54, 6, 0, 25, 0, 13], "u": [0, 9, 24, 26, 24, 27, 27, 6, 0, 25, 0, 13], "ut12": 27, "ut9": 27, "s": [0, 1, 2, 2, 1, 2, 2, 1, 0, 1, 0, 1], "ua": false, "top": "Kitų specialistų edukacija / paskaita"}, {"n": "Pasvalio Bočelių klubas", "loc": "Pasvalys", "sky": "Panevėžys", "reg": "Šiaurė", "v": [12, 0, 6, 0, 26, 49, 26, 0, 0, 27, 0, 37], "u": [12, 0, 6, 0, 24, 26, 25, 0, 0, 26, 0, 24], "ut12": 27, "ut9": 26, "s": [1, 0, 1, 0, 1, 3, 1, 0, 0, 1, 0, 2], "ua": false, "top": "Kitų specialistų edukacija / paskaita"}, {"n": "Pumpėnų senjorai", "loc": "Pumpėnai", "sky": "Panevėžys", "reg": "Šiaurė", "v": [8, 0, 6, 0, 19, 37, 35, 0, 0, 18, 16, 18], "u": [8, 0, 6, 0, 18, 19, 18, 0, 0, 18, 16, 18], "ut12": 19, "ut9": 19, "s": [1, 0, 1, 0, 1, 2, 3, 0, 0, 2, 1, 1], "ua": false, "top": "Kitų specialistų edukacija / paskaita"}, {"n": "Radviliškio \"RDV\"", "loc": "Radviliškis", "sky": "Šiauliai", "reg": "Šiaurė", "v": [9, 0, 13, 6, 12, 23, 0, 0, 0, 0, 0, 0], "u": [9, 0, 9, 2, 10, 11, 0, 0, 0, 0, 0, 0], "ut12": 13, "ut9": 12, "s": [1, 0, 4, 6, 5, 7, 0, 0, 0, 0, 0, 0], "ua": false, "top": "Atminties lavinimo užduotys ir žaidimai"}, {"n": "Raseinių \"Branda\"", "loc": "Raseiniai", "sky": "Raseiniai", "reg": "Pietūs", "v": [0, 0, 0, 22, 0, 0, 1, 0, 1, 0, 0, 16], "u": [0, 0, 0, 20, 0, 0, 1, 0, 1, 0, 0, 16], "ut12": 23, "ut9": 23, "s": [0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1], "ua": false, "top": ""}, {"n": "Raseinių \"Prie arbatos\"", "loc": "Raseiniai", "sky": "Raseiniai", "reg": "Pietūs", "v": [0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0], "u": [0, 0, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0], "ut12": 14, "ut9": 14, "s": [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0], "ua": false, "top": ""}, {"n": "Rokiškio senjorų klubas \"Būkime kartu\"", "loc": "Rokiškis", "sky": "Rokiškis", "reg": "Šiaurė", "v": [0, 0, 11, 0, 0, 0, 0, 0, 0, 11, 0, 30], "u": [0, 0, 9, 0, 0, 0, 0, 0, 0, 11, 0, 11], "ut12": 11, "ut9": 11, "s": [0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 3], "ua": false, "top": "Smulkiosios motorikos užsiėmimas"}, {"n": "Šiaulių \"ŠLS 1\"", "loc": "Šiauliai", "sky": "Šiauliai", "reg": "Šiaurė", "v": [42, 26, 37, 16, 4, 15, 22, 4, 1, 0, 0, 29], "u": [22, 16, 23, 10, 1, 3, 11, 1, 1, 0, 0, 27], "ut12": 42, "ut9": 34, "s": [3, 3, 4, 6, 4, 5, 13, 4, 1, 0, 0, 1], "ua": false, "top": "Išvyka"}, {"n": "Šiaulių \"ŠLS 2\"", "loc": "Šiauliai", "sky": "Šiauliai", "reg": "Šiaurė", "v": [68, 40, 54, 38, 0, 0, 20, 0, 0, 0, 0, 28], "u": [35, 22, 36, 29, 0, 0, 20, 0, 0, 0, 0, 28], "ut12": 50, "ut9": 46, "s": [5, 3, 2, 2, 0, 0, 1, 0, 0, 0, 0, 1], "ua": false, "top": "Išvyka"}, {"n": "Šilalės \"Balskai\"", "loc": "Balskai", "sky": "Tauragė", "reg": "Vakarai", "v": [9, 18, 0, 0, 18, 17, 16, 17, 16, 16, 14, 17], "u": [1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1], "ut12": 1, "ut9": 1, "s": [1, 2, 0, 0, 2, 2, 3, 2, 2, 2, 2, 3], "ua": false, "top": "Atminties lavinimo užduotys ir žaidimai"}, {"n": "Šilalės \"Didkiemis\"", "loc": "Didkiemis", "sky": "Tauragė", "reg": "Vakarai", "v": [15, 14, 0, 0, 14, 13, 13, 12, 13, 13, 5, 11], "u": [1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1], "ut12": 1, "ut9": 1, "s": [2, 2, 0, 0, 2, 2, 2, 2, 2, 2, 1, 2], "ua": false, "top": "Kitų specialistų edukacija / paskaita"}, {"n": "Šilutės \"Kintai\"", "loc": "Kintai", "sky": "Klaipėda", "reg": "Vakarai", "v": [0, 0, 0, 0, 2, 0, 0, 12, 18, 6, 0, 0], "u": [0, 0, 0, 0, 1, 0, 0, 6, 6, 6, 0, 0], "ut12": 6, "ut9": 6, "s": [0, 0, 0, 0, 2, 0, 0, 2, 3, 1, 0, 0], "ua": false, "top": "Fizinio aktyvumo užsiėmimas (mankštos)"}, {"n": "Tauragės \"Banga\"", "loc": "Tauragė", "sky": "Tauragė", "reg": "Vakarai", "v": [16, 32, 0, 19, 0, 34, 6, 25, 22, 10, 10, 27], "u": [16, 16, 0, 11, 0, 14, 6, 14, 14, 10, 10, 16], "ut12": 16, "ut9": 16, "s": [1, 2, 0, 1, 0, 3, 1, 2, 2, 1, 1, 2], "ua": false, "top": "Kitų specialistų edukacija / paskaita"}, {"n": "Tauragės \"Batakiai\"", "loc": "Batakiai", "sky": "Tauragė", "reg": "Vakarai", "v": [0, 0, 0, 0, 0, 13, 36, 21, 12, 24, 9, 15], "u": [0, 0, 0, 0, 0, 13, 13, 13, 12, 13, 9, 10], "ut12": 13, "ut9": 13, "s": [0, 0, 0, 0, 0, 1, 4, 2, 1, 3, 1, 2], "ua": false, "top": "Atminties lavinimo užduotys ir žaidimai"}, {"n": "Tauragės \"Bingo\"", "loc": "Tauragė", "sky": "Tauragė", "reg": "Vakarai", "v": [10, 18, 1, 1, 18, 8, 13, 15, 9, 16, 0, 14], "u": [9, 9, 1, 1, 9, 8, 9, 8, 9, 9, 0, 9], "ut12": 9, "ut9": 9, "s": [4, 4, 1, 1, 2, 1, 2, 2, 1, 2, 0, 2], "ua": false, "top": "Atminties lavinimo užduotys ir žaidimai"}, {"n": "Tauragės \"Galmena\"", "loc": "Tauragė", "sky": "Tauragė", "reg": "Vakarai", "v": [9, 18, 1, 0, 0, 18, 17, 17, 8, 16, 13, 8], "u": [9, 9, 1, 0, 0, 9, 9, 9, 8, 9, 9, 8], "ut12": 9, "ut9": 9, "s": [1, 2, 1, 0, 0, 2, 2, 2, 1, 2, 2, 1], "ua": false, "top": "Atminties lavinimo užduotys ir žaidimai"}, {"n": "Tauragės \"Jūra\"", "loc": "Tauragė", "sky": "Tauragė", "reg": "Vakarai", "v": [14, 28, 0, 14, 14, 32, 29, 23, 20, 22, 13, 13], "u": [14, 14, 0, 14, 13, 14, 14, 14, 14, 14, 13, 12], "ut12": 14, "ut9": 14, "s": [1, 2, 0, 1, 1, 3, 3, 2, 3, 3, 1, 1], "ua": false, "top": "Kitų specialistų edukacija / paskaita"}, {"n": "Tauragės \"Tauras\"", "loc": "Tauragė", "sky": "Tauragė", "reg": "Vakarai", "v": [26, 27, 0, 0, 13, 38, 24, 21, 10, 21, 17, 11], "u": [14, 14, 0, 0, 13, 14, 14, 13, 10, 13, 14, 11], "ut12": 14, "ut9": 14, "s": [4, 3, 0, 0, 1, 3, 2, 2, 1, 2, 2, 1], "ua": false, "top": "Atminties lavinimo užduotys ir žaidimai"}, {"n": "Tauragės \"Žara\"", "loc": "Tauragė", "sky": "Tauragė", "reg": "Vakarai", "v": [15, 30, 3, 41, 27, 34, 23, 23, 24, 26, 21, 14], "u": [14, 15, 2, 15, 15, 15, 14, 15, 15, 15, 15, 14], "ut12": 15, "ut9": 15, "s": [3, 6, 3, 5, 2, 4, 2, 2, 2, 2, 2, 1], "ua": false, "top": "IT edukacijos"}, {"n": "Telsių \"TLŠ\"", "loc": "Telšiai", "sky": "Šiauliai", "reg": "Šiaurė", "v": [4, 8, 3, 0, 0, 8, 5, 3, 5, 0, 0, 0], "u": [4, 5, 3, 0, 0, 8, 5, 3, 5, 0, 0, 0], "ut12": 10, "ut9": 9, "s": [1, 2, 2, 0, 0, 1, 1, 1, 1, 0, 0, 0], "ua": false, "top": "Atminties lavinimo užduotys ir žaidimai"}, {"n": "Ukmergė senjorų klubas \"RK Ukmergiškiai\"", "loc": "Ukmergė", "sky": "Ukmergė", "reg": "Rytai", "v": [5, 3, 6, 0, 17, 30, 31, 0, 0, 0, 0, 0], "u": [5, 3, 6, 0, 7, 15, 10, 0, 0, 0, 0, 0], "ut12": 15, "ut9": 15, "s": [1, 1, 1, 0, 2, 4, 4, 0, 0, 0, 0, 0], "ua": false, "top": "Smulkiosios motorikos užsiėmimas"}, {"n": "Ukmergės Ukrainiečių senjorų klubas", "loc": "Ukmergė", "sky": "Ukmergė", "reg": "Rytai", "v": [16, 14, 12, 7, 30, 43, 35, 0, 0, 0, 0, 0], "u": [7, 7, 7, 4, 20, 21, 9, 0, 0, 0, 0, 0], "ut12": 25, "ut9": 25, "s": [4, 3, 2, 2, 4, 5, 6, 0, 0, 0, 0, 0], "ua": true, "top": "Kalbų mokinimasis"}, {"n": "Upninkų senjorų klubas", "loc": "Upninkai", "sky": "Kaunas", "reg": "Pietūs", "v": [0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 9, 0], "u": [0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 9, 0], "ut12": 10, "ut9": 10, "s": [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 1, 0], "ua": false, "top": "Psichoedukacija “Pagalba sau”"}, {"n": "Utena senjorų klubas skyriuje", "loc": "Utena", "sky": "Utena", "reg": "Šiaurė", "v": [11, 21, 13, 16, 16, 2, 13, 0, 0, 0, 0, 1], "u": [5, 6, 6, 8, 6, 2, 4, 0, 0, 0, 0, 1], "ut12": 8, "ut9": 8, "s": [3, 4, 2, 4, 4, 1, 5, 0, 0, 0, 0, 1], "ua": false, "top": ""}, {"n": "Vilkaviškio \"Avilys\"", "loc": "Vilkaviškis", "sky": "Vilkaviškis", "reg": "Pietūs", "v": [18, 18, 36, 2, 0, 42, 0, 21, 0, 20, 0, 0], "u": [18, 18, 18, 2, 0, 21, 0, 21, 0, 20, 0, 0], "ut12": 21, "ut9": 21, "s": [1, 1, 2, 1, 0, 2, 0, 1, 0, 1, 0, 0], "ua": false, "top": "Renginys „Karščio bangos“"}, {"n": "Vilkaviškio \"Giliukai\"", "loc": "Vilkaviškis", "sky": "Vilkaviškis", "reg": "Pietūs", "v": [26, 29, 33, 28, 58, 41, 55, 24, 67, 57, 13, 69], "u": [12, 11, 11, 14, 16, 16, 16, 15, 16, 15, 11, 16], "ut12": 16, "ut9": 16, "s": [3, 3, 3, 3, 5, 3, 5, 3, 5, 6, 2, 5], "ua": false, "top": "Kitų specialistų edukacija / paskaita"}, {"n": "Vilkaviškio \"Nendrių kiemas\"", "loc": "Vilkaviškis", "sky": "Vilkaviškis", "reg": "Pietūs", "v": [0, 0, 10, 0, 8, 20, 10, 8, 19, 19, 0, 19], "u": [0, 0, 10, 0, 8, 10, 10, 8, 9, 10, 0, 10], "ut12": 10, "ut9": 10, "s": [0, 0, 1, 0, 1, 2, 1, 1, 2, 2, 0, 2], "ua": false, "top": "Fizinio aktyvumo užsiėmimas (mankštos)"}, {"n": "Vilkaviškio \"Rimšos kiemas\"", "loc": "Vilkaviškis", "sky": "Vilkaviškis", "reg": "Pietūs", "v": [0, 0, 8, 8, 0, 19, 10, 20, 8, 27, 0, 9], "u": [0, 0, 8, 8, 0, 10, 10, 10, 8, 10, 0, 9], "ut12": 10, "ut9": 10, "s": [0, 0, 1, 1, 0, 2, 2, 2, 1, 3, 0, 1], "ua": false, "top": "Fizinio aktyvumo užsiėmimas (mankštos)"}, {"n": "Vilkaviškio \"Rudenėlis\"", "loc": "Vilkaviškis", "sky": "Vilkaviškis", "reg": "Pietūs", "v": [0, 0, 1, 0, 57, 0, 57, 0, 0, 0, 0, 56], "u": [0, 0, 1, 0, 57, 0, 57, 0, 0, 0, 0, 56], "ut12": 58, "ut9": 58, "s": [0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1], "ua": false, "top": "Švenčių minėjimas (Kalėdos, Velykos, Senjorų diena)"}, {"n": "Vilkaviškio \"Sūduviai\"", "loc": "Vilkaviškis", "sky": "Vilkaviškis", "reg": "Pietūs", "v": [0, 0, 0, 0, 0, 32, 31, 0, 15, 0, 0, 0], "u": [0, 0, 0, 0, 0, 16, 16, 0, 15, 0, 0, 0], "ut12": 16, "ut9": 16, "s": [0, 0, 0, 0, 0, 2, 2, 0, 1, 0, 0, 0], "ua": false, "top": "Renginys „Karščio bangos“"}, {"n": "Vilkaviškio \"Žemaitės kiemas\"", "loc": "Vilkaviškis", "sky": "Vilkaviškis", "reg": "Pietūs", "v": [0, 0, 1, 10, 0, 11, 9, 9, 20, 29, 0, 0], "u": [0, 0, 1, 10, 0, 9, 9, 9, 10, 10, 0, 0], "ut12": 10, "ut9": 10, "s": [0, 0, 1, 1, 0, 2, 1, 1, 2, 3, 0, 0], "ua": false, "top": "Fizinio aktyvumo užsiėmimas (mankštos)"}, {"n": "Vilkaviškio \"Židinys\"", "loc": "Vilkaviškis", "sky": "Vilkaviškis", "reg": "Pietūs", "v": [0, 39, 39, 0, 0, 39, 39, 38, 39, 0, 0, 0], "u": [0, 39, 39, 0, 0, 39, 39, 38, 39, 0, 0, 0], "ut12": 39, "ut9": 39, "s": [0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0], "ua": false, "top": "Fizinio aktyvumo užsiėmimas (mankštos)"}, {"n": "Vilniaus \"Senjorų centras\"", "loc": "Vilnius", "sky": "Vilnius", "reg": "Rytai", "v": [0, 40, 24, 0, 0, 0, 0, 0, 30, 0, 0, 0], "u": [0, 36, 24, 0, 0, 0, 0, 0, 29, 0, 0, 0], "ut12": 75, "ut9": 29, "s": [0, 3, 1, 0, 0, 0, 0, 0, 2, 0, 0, 0], "ua": false, "top": "Šventinės dirbtuvės"}, {"n": "Vilniaus „Jasinskio“ klubas", "loc": "Vilnius", "sky": "Vilnius", "reg": "Rytai", "v": [0, 0, 12, 3, 1, 0, 0, 0, 0, 0, 0, 0], "u": [0, 0, 12, 3, 1, 0, 0, 0, 0, 0, 0, 0], "ut12": 12, "ut9": 3, "s": [0, 0, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0], "ua": false, "top": "Smulkiosios motorikos užsiėmimas"}, {"n": "Vilniaus ukrainiečių klubas", "loc": "Vilnius", "sky": "Vilnius", "reg": "Rytai", "v": [0, 0, 19, 9, 18, 12, 25, 24, 6, 0, 0, 0], "u": [0, 0, 19, 9, 14, 12, 21, 17, 6, 0, 0, 0], "ut12": 50, "ut9": 38, "s": [0, 0, 1, 1, 2, 2, 2, 2, 1, 0, 0, 0], "ua": true, "top": "Atminties lavinimo užduotys ir žaidimai"}, {"n": "Šiaulių \"ŠLSR\"", "loc": "Šiauliai", "sky": "Šiauliai", "reg": "Šiaurė", "v": [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "u": [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "ut12": 1, "ut9": 0, "s": [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "ua": false, "top": "Lietuvos policijos paskaita / užsiėmimas"}, {"n": "Vilniaus \"Biblioteka\"", "loc": "Vilnius", "sky": "Vilnius", "reg": "Rytai", "v": [13, 0, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0], "u": [13, 0, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0], "ut12": 13, "ut9": 0, "s": [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], "ua": false, "top": "Stalo žaidimai"}, {"n": "Vilniaus \"Senjorų universitetas\"", "loc": "Vilnius", "sky": "Vilnius", "reg": "Rytai", "v": [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "u": [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "ut12": 1, "ut9": 0, "s": [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "ua": false, "top": "Muzikos ar dainavimo popietė"}, {"n": "Vilniaus „Atgaiva“", "loc": "Šalčininkai", "sky": "Vilnius", "reg": "Rytai", "v": [0, 8, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0], "u": [0, 8, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0], "ut12": 12, "ut9": 0, "s": [0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], "ua": false, "top": "Šventinės dirbtuvės"}, {"n": "Visagino senjorų klubas \"Auksinis protas\"", "loc": "Visaginas", "sky": "Visaginas", "reg": "Šiaurė", "v": [26, 53, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0], "u": [13, 19, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0], "ut12": 21, "ut9": 0, "s": [3, 4, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], "ua": false, "top": "Kalbų mokinimasis"}, {"n": "Visagino senjorų klubas \"VILTIS\"", "loc": "Visaginas", "sky": "Visaginas", "reg": "Šiaurė", "v": [0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "u": [0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "ut12": 8, "ut9": 0, "s": [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "ua": false, "top": "Arbatos vakaras / pažintinis pokalbis"}], "coords": {"Mažeikiai": [56.316, 22.333], "Vilkaviškis": [54.651, 23.035], "Šiauliai": [55.934, 23.315], "Vilnius": [54.687, 25.28], "Panevėžys": [55.734, 24.357], "Pasvalys": [56.061, 24.403], "Ukmergė": [55.245, 24.76], "Jonava": [55.083, 24.28], "Klaipėda": [55.703, 21.144], "Raseiniai": [55.381, 23.116], "Pumpėnai": [55.932, 24.348], "Palanga": [55.918, 21.068], "Tauragė": [55.252, 22.29], "Leliūnai": [55.493, 25.41], "Radviliškis": [55.816, 23.546], "Rokiškis": [55.962, 25.585], "Molėtai": [55.229, 25.418], "Upninkai": [55.18, 24.48], "Telšiai": [55.981, 22.247], "Naujamiestis": [55.684, 24.157], "Josvainiai": [55.245, 23.833], "Utena": [55.497, 25.599], "Kintai": [55.42, 21.262], "Kaunas": [54.898, 23.904], "Beižionys": [54.62, 24.735], "Alytus": [54.396, 24.046], "Kretinga": [55.889, 21.243], "Mūro Strėvininkai": [54.79, 24.42], "Elektrėnai": [54.785, 24.661], "Balskai": [55.52, 22.15], "Didkiemis": [55.43, 22.3], "Batakiai": [55.355, 22.528], "Visaginas": [55.598, 26.438], "Šalčininkai": [54.309, 25.385]}, "acts": {"Kita veikla": [0, 0, 0, 2, 1, 8, 16, 13, 18, 22, 4, 13], "Psichoedukacija “Kai šeimoje bendrauti tampa sunku“": [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1], "Atminties lavinimo užduotys ir žaidimai": [0, 0, 0, 0, 11, 27, 13, 15, 15, 15, 17, 16], "Psichoedukacija “Pagalba sau”": [0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 1, 0], "Psichoedukacija 'Nemiga\"": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1], "Smulkiosios motorikos užsiėmimas": [2, 0, 0, 3, 4, 5, 12, 2, 3, 8, 4, 11], "Veikla nenurodyta": [57, 63, 48, 44, 35, 43, 38, 12, 5, 2, 0, 5], "Civilinės saugos užsiėmimas": [0, 1, 0, 2, 1, 0, 2, 4, 0, 0, 0, 1], "Renginys „Karščio bangos“": [0, 0, 0, 0, 0, 0, 0, 1, 6, 13, 1, 0], "Stalo žaidimai": [2, 0, 0, 2, 5, 0, 0, 0, 0, 0, 0, 0], "Švenčių minėjimas (Kalėdos, Velykos, Senjorų diena)": [0, 0, 0, 0, 1, 2, 17, 0, 0, 2, 0, 2], "Kalbų mokinimasis": [5, 6, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0], "Kitų specialistų edukacija / paskaita": [0, 0, 0, 0, 1, 8, 3, 3, 4, 2, 6, 16], "Pirmosios pagalbos (PP) užsiėmimas": [0, 1, 0, 2, 0, 1, 1, 1, 0, 0, 0, 0], "Fizinio aktyvumo užsiėmimas (mankštos)": [0, 0, 0, 0, 1, 2, 1, 8, 6, 5, 1, 4], "Arbatos vakaras / pažintinis pokalbis": [0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0], "Savanorystės skatinimo veikla (senjorų įsitraukimas į savanorystės veiklas)": [0, 0, 0, 0, 3, 0, 0, 3, 2, 0, 2, 4], "Skaitymo valanda / garsinis skaitymas": [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0], "IT edukacijos": [0, 0, 0, 0, 4, 13, 2, 0, 1, 0, 0, 0], "Psichoedukacija vedama psichologo": [0, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0], "Lietuvos policijos paskaita / užsiėmimas": [0, 3, 0, 2, 1, 0, 0, 1, 5, 0, 1, 0], "Kritimo prevencijos mokymai / užsiėmimas": [0, 0, 0, 0, 1, 0, 0, 7, 1, 0, 0, 2], "Muzikos ar dainavimo popietė": [0, 3, 0, 2, 1, 0, 0, 0, 0, 0, 0, 0], "Kita teminė veikla: gimtadienių paminėjimai, ne pagrindinės šventės (pyragų diena,  Atvelykis, Žolinės, Joninės ir pan.)": [0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0], "Šventinės dirbtuvės": [0, 4, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Išvyka": [0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0], "Muziejų / parodų lankymas": [0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Kartu gaminame (kulinarinės dirbtuvės)": [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0], "PAGD pareigūnų paskaita / užsiėmimas": [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0], "Kalėdinė popietė": [0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, "totU": [305, 359, 385, 280, 351, 449, 481, 346, 344, 326, 197, 459], "totUall": 1032, "totV": [507, 713, 585, 412, 622, 954, 876, 588, 627, 580, 345, 814], "totVall": 7623, "totU2026": 883, "months": ["2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03", "2026-04", "2026-05", "2026-06", "2026-07", "2026-08", "2026-09"]};
+const G = {"W":1000,"H":767,"lon0":20.6,"lat1":56.55,"k":0.5707135676844317,"sx":273.7800691053421,"shapes":{"Belarus":"M469.9,1377.8L469.3,1374.1L467.1,1372.8L464.3,1371.8L462.6,1367.7L463.7,1367.7L464.8,1367.7L461.4,1361.2L459.8,1357.0L459.2,1353.3L460.3,1345.9L459.8,1343.2L458.1,1341.3L458.1,1339.0L459.8,1339.0L460.3,1338.1L462.6,1335.3L462.0,1334.4L460.9,1332.5L460.3,1330.7L460.9,1329.8L462.6,1329.3L462.0,1327.4L460.9,1325.6L460.3,1324.2L461.4,1317.7L462.0,1315.0L462.6,1313.1L465.4,1309.4L468.8,1307.6L471.6,1304.3L473.3,1297.9L470.4,1293.7L467.6,1288.6L469.9,1286.3L470.4,1280.3L472.1,1279.4L472.1,1278.0L472.1,1277.5L471.6,1277.5L471.0,1277.5L472.1,1274.3L472.1,1265.5L473.3,1260.4L476.1,1253.0L478.3,1249.3L480.6,1247.5L478.9,1242.8L476.6,1232.2L475.5,1229.0L475.5,1225.7L474.4,1222.5L472.7,1221.1L471.0,1220.7L470.4,1218.8L469.3,1216.5L468.2,1214.2L465.4,1212.3L458.1,1212.8L455.3,1211.4L450.8,1202.2L451.3,1201.2L451.9,1198.0L451.3,1196.2L448.5,1198.9L447.4,1197.5L446.3,1196.2L445.1,1194.8L443.4,1197.5L441.8,1197.1L440.6,1195.7L438.4,1194.8L436.1,1195.7L435.6,1195.2L436.7,1192.9L436.7,1191.1L433.3,1190.6L423.8,1186.9L422.1,1184.6L419.3,1185.5L408.0,1182.3L404.6,1180.0L405.8,1174.9L405.2,1171.2L403.5,1168.9L402.4,1167.5L401.3,1166.6L400.7,1166.6L408.0,1150.4L410.8,1145.8L417.0,1137.4L436.1,1106.0L450.2,1094.0L463.7,1085.2L490.1,1077.3L510.9,1062.1L517.1,1054.2L519.4,1042.2L518.8,1034.3L517.7,1001.1L517.1,998.8L516.6,997.4L516.0,996.0L516.0,992.7L516.0,990.9L517.7,987.2L518.3,985.3L518.3,983.0L517.1,975.6L517.1,973.8L517.1,970.6L517.1,968.2L515.4,964.5L510.4,958.1L509.3,953.4L509.3,947.9L510.9,944.2L512.6,941.0L514.3,936.8L514.9,930.3L513.2,927.1L510.4,924.8L507.6,921.5L505.9,917.4L504.2,913.2L503.1,909.5L500.3,905.4L497.4,898.0L491.3,872.1L487.9,863.3L480.6,847.1L467.1,804.6L463.7,785.6L463.1,768.5L459.2,763.0L458.1,757.4L456.4,742.6L454.7,735.7L452.4,729.7L451.3,722.8L450.8,714.9L456.4,716.3L470.4,725.1L473.3,726.0L475.5,726.0L483.4,722.3L492.9,720.9L495.8,719.1L498.0,717.7L499.1,718.1L501.9,720.0L503.1,720.4L504.2,720.0L516.6,713.1L518.8,712.6L521.1,713.5L525.6,716.7L528.4,717.2L538.5,717.2L543.0,715.8L552.6,710.3L557.6,709.4L562.7,711.2L567.2,716.7L570.0,724.6L571.7,727.4L574.5,727.8L579.6,727.4L584.6,729.2L590.3,729.2L595.9,726.0L613.9,709.4L621.8,704.7L631.9,702.9L635.3,699.6L635.8,699.6L636.4,699.6L636.9,700.1L639.2,705.7L641.4,708.0L644.3,708.0L654.4,706.6L657.2,704.7L659.4,700.1L659.4,692.7L658.3,687.6L656.1,683.0L654.4,677.0L653.3,672.8L653.8,671.9L654.9,671.9L656.1,670.1L658.9,668.2L659.4,666.8L658.9,665.0L658.9,663.1L659.4,661.3L663.9,658.5L665.1,658.0L672.4,657.1L679.7,658.0L691.5,663.1L698.8,661.7L705.6,657.6L711.8,650.2L714.6,644.2L717.9,631.2L719.6,628.0L722.4,627.5L732.6,631.2L745.5,630.3L748.9,627.5L755.1,618.3L759.0,616.4L761.3,616.9L762.4,617.8L762.9,619.2L774.2,634.9L772.5,635.8L769.1,635.4L765.8,637.2L765.8,640.0L769.1,642.3L770.3,644.6L769.1,646.5L764.6,648.3L763.5,650.2L764.6,654.8L768.0,658.5L772.5,660.8L786.0,663.1L789.4,663.1L791.1,661.7L793.9,658.5L795.6,657.6L801.2,658.5L802.9,658.0L806.8,655.3L807.9,651.1L807.9,638.6L808.5,637.2L810.2,634.5L810.8,633.5L810.2,631.7L809.6,631.2L809.1,630.8L807.9,629.8L807.4,627.1L805.7,624.3L804.6,622.4L802.9,620.6L802.3,620.6L800.6,621.1L800.1,621.1L799.5,620.1L797.8,615.0L797.3,612.7L796.1,610.4L793.9,609.0L791.6,609.5L782.6,614.6L775.9,615.0L772.5,613.7L770.3,610.4L770.3,603.5L773.1,597.5L780.4,588.7L783.2,582.7L783.8,577.6L783.8,571.6L784.3,564.7L786.0,559.1L788.3,555.9L797.8,549.9L801.2,546.6L803.4,542.5L804.0,536.9L802.9,531.8L799.5,522.1L798.4,516.6L798.4,513.3L798.9,510.6L800.1,507.8L800.6,505.0L800.6,502.2L800.1,488.4L800.6,484.7L802.3,481.9L805.7,479.1L807.4,478.2L808.5,478.2L809.1,477.7L809.6,475.4L809.6,473.1L808.5,467.6L807.9,465.3L809.6,460.2L813.0,456.9L816.4,453.7L819.8,450.0L820.9,447.2L820.9,444.9L821.4,442.6L823.7,441.2L829.3,438.4L832.1,438.4L837.8,439.8L840.6,439.8L859.7,436.1L865.3,432.9L867.6,430.1L870.4,426.4L873.2,421.8L878.8,409.3L879.4,407.0L879.9,403.8L879.9,396.8L879.9,393.6L885.0,386.2L892.3,384.8L909.2,389.4L910.9,389.4L912.0,389.0L913.1,387.6L914.3,386.2L915.4,384.8L917.6,384.4L933.9,391.8L937.9,391.3L940.1,387.1L941.8,379.3L942.9,371.9L944.1,368.6L946.3,365.4L950.8,360.8L953.1,359.4L959.3,358.0L963.2,356.6L967.1,353.8L968.8,349.7L967.7,345.1L963.8,342.3L937.9,337.7L928.3,340.0L926.1,340.0L916.5,336.7L914.3,334.9L913.1,332.1L914.8,327.0L918.8,320.1L919.9,317.3L921.6,307.2L923.3,303.9L928.9,298.4L928.9,295.1L926.1,289.6L926.6,283.1L930.0,278.0L933.9,273.4L936.8,268.8L938.4,262.8L938.4,255.4L937.9,248.4L936.8,242.0L940.1,236.0L943.5,234.1L948.0,234.6L956.4,237.8L959.8,237.3L972.2,230.9L975.6,227.6L984.6,211.0L993.6,200.4L996.9,198.0L1017.2,195.3L1023.4,196.7L1027.3,198.5L1036.9,206.4L1040.8,208.7L1044.2,207.8L1051.5,200.4L1054.9,196.7L1058.3,201.3L1063.3,204.1L1068.4,205.9L1088.1,207.3L1092.6,206.8L1094.3,202.7L1095.4,196.7L1096.5,183.7L1101.0,171.7L1116.2,161.5L1121.3,152.7L1121.8,146.3L1126.9,141.2L1137.6,132.9L1139.3,129.6L1140.9,125.9L1142.6,123.2L1144.9,120.8L1146.6,119.5L1153.3,118.1L1160.1,115.3L1164.0,112.1L1166.8,110.2L1173.6,107.4L1179.8,111.6L1182.6,116.2L1193.3,127.8L1198.3,134.7L1201.7,138.0L1205.1,138.9L1208.5,137.0L1213.5,128.7L1216.9,126.4L1240.5,123.6L1249.0,125.5L1251.8,126.4L1253.5,127.8L1255.7,132.4L1261.3,140.3L1262.5,143.0L1264.1,149.5L1264.7,156.0L1266.4,161.5L1270.9,165.2L1282.7,168.5L1286.1,167.5L1286.6,161.1L1290.6,156.9L1300.1,152.7L1309.7,146.7L1317.6,144.0L1326.6,144.4L1335.0,147.2L1342.9,152.7L1347.4,156.4L1371.6,163.4L1374.4,164.8L1377.2,167.5L1380.0,171.2L1381.1,174.0L1381.7,175.9L1381.1,177.7L1380.0,178.2L1378.9,178.2L1377.8,178.6L1376.1,179.6L1375.0,180.0L1373.8,180.9L1372.7,183.3L1372.1,186.0L1371.0,192.5L1370.5,195.3L1367.1,204.5L1366.0,208.7L1367.1,214.7L1369.3,218.4L1377.2,225.3L1384.5,236.4L1387.9,237.8L1391.8,236.9L1404.2,222.1L1419.4,213.3L1423.3,212.4L1434.6,215.2L1438.5,213.3L1444.7,201.7L1448.1,197.1L1454.3,193.4L1460.5,192.0L1466.6,192.5L1485.2,199.4L1489.7,198.0L1496.5,191.1L1499.8,189.3L1502.6,190.2L1508.3,194.8L1511.1,197.1L1542.0,207.3L1543.1,208.7L1543.1,211.0L1542.6,213.3L1542.0,215.6L1543.7,217.9L1557.8,224.4L1559.5,225.8L1560.6,227.6L1561.1,231.3L1560.6,233.6L1560.0,236.0L1560.0,238.3L1561.7,242.4L1565.1,244.3L1568.5,245.2L1575.2,244.7L1576.9,245.7L1578.6,248.4L1580.3,252.6L1584.8,261.8L1589.3,262.3L1594.3,259.5L1601.1,257.2L1607.3,260.0L1610.6,266.0L1611.2,267.9L1612.3,278.0L1609.5,287.7L1611.8,289.1L1612.3,289.6L1611.2,292.8L1607.3,296.1L1606.7,300.7L1607.8,305.8L1610.1,309.0L1612.3,312.7L1612.3,318.2L1610.1,321.5L1601.1,328.4L1595.5,335.8L1593.2,340.9L1592.6,346.0L1594.3,349.7L1597.1,352.0L1602.8,354.8L1604.5,358.0L1607.3,368.2L1609.5,371.9L1616.8,377.4L1618.5,379.7L1619.1,381.1L1618.5,383.4L1618.5,384.8L1619.1,385.3L1620.8,385.7L1621.3,386.2L1621.9,387.6L1622.5,388.5L1622.5,389.9L1621.9,392.7L1620.8,394.5L1620.2,396.4L1620.8,398.7L1621.9,400.5L1624.1,406.1L1625.8,412.6L1625.8,418.1L1621.9,419.0L1614.6,417.2L1611.2,417.6L1610.6,420.9L1611.8,425.5L1614.0,428.3L1615.1,431.5L1612.3,437.1L1609.5,438.9L1600.0,441.2L1596.0,444.0L1596.6,446.8L1598.3,450.9L1597.7,457.9L1595.5,462.5L1592.1,466.2L1588.7,470.8L1588.1,478.7L1589.3,482.8L1591.5,484.7L1598.3,487.0L1621.9,505.0L1624.1,509.2L1624.7,514.3L1628.1,513.8L1641.6,515.2L1645.0,522.6L1651.1,528.1L1646.6,538.8L1638.8,551.2L1634.8,563.3L1639.9,567.0L1651.1,570.2L1652.8,573.9L1657.9,575.3L1660.1,580.8L1664.1,595.2L1665.8,598.4L1668.0,600.7L1669.7,603.0L1670.8,607.6L1672.0,623.4L1673.6,631.2L1675.9,635.4L1700.1,655.3L1704.0,659.0L1708.0,660.3L1715.8,662.7L1729.3,670.1L1733.8,671.4L1738.3,671.4L1740.0,672.4L1741.7,674.7L1742.8,677.5L1744.0,681.6L1745.6,684.9L1747.3,685.8L1751.3,683.0L1752.4,682.5L1753.5,683.5L1753.5,684.4L1753.5,685.8L1757.5,700.1L1756.3,702.4L1756.3,704.3L1756.3,706.6L1755.8,708.4L1754.1,714.4L1751.8,730.2L1749.0,737.1L1742.8,747.7L1741.1,754.2L1747.9,754.7L1761.4,759.3L1794.6,750.0L1798.0,751.0L1807.0,757.9L1826.6,763.4L1832.3,767.6L1837.3,775.0L1839.6,776.4L1846.9,775.9L1850.3,776.4L1853.6,778.2L1856.5,782.4L1857.6,784.2L1857.6,786.6L1857.6,788.4L1856.5,790.7L1844.6,796.7L1843.5,798.1L1843.5,800.0L1844.1,805.0L1845.8,812.4L1848.6,818.0L1852.0,822.2L1856.5,825.4L1864.3,829.1L1867.7,831.9L1870.5,836.9L1871.6,838.8L1872.8,839.3L1873.9,838.8L1875.0,836.9L1877.8,836.5L1880.6,836.9L1882.9,838.3L1882.3,840.6L1881.8,843.4L1882.3,846.7L1884.0,847.1L1889.1,845.3L1890.8,845.3L1893.6,851.7L1893.6,854.1L1891.3,871.6L1893.6,880.4L1890.2,882.7L1888.0,882.3L1885.1,881.3L1882.9,880.4L1871.6,883.2L1872.2,884.1L1873.9,886.4L1874.5,887.3L1870.0,890.1L1865.5,891.0L1860.4,890.6L1856.5,888.3L1852.5,889.6L1851.4,892.9L1852.5,895.7L1855.9,896.6L1854.8,902.1L1852.5,907.2L1847.5,916.0L1844.6,919.2L1841.8,920.6L1836.2,922.5L1831.1,927.6L1827.2,933.6L1823.3,937.7L1814.8,937.7L1814.3,938.7L1813.7,940.0L1813.7,941.0L1813.7,941.9L1813.7,943.3L1813.1,944.7L1812.6,945.1L1812.0,945.1L1810.9,944.7L1805.3,945.6L1800.8,948.8L1799.6,949.7L1794.0,949.3L1782.8,944.7L1778.3,945.1L1774.3,947.4L1770.4,947.9L1767.0,947.0L1758.6,941.9L1756.9,941.4L1751.3,941.9L1749.6,941.0L1746.8,936.8L1745.1,925.7L1743.4,920.6L1740.6,919.2L1733.3,919.2L1730.5,918.3L1720.9,914.6L1717.5,914.2L1714.7,915.1L1708.5,918.8L1705.1,918.8L1697.3,917.4L1690.0,917.4L1684.3,922.0L1681.5,935.4L1681.5,938.7L1681.5,939.1L1682.1,941.9L1682.1,944.7L1682.1,947.4L1680.4,949.3L1676.5,950.2L1674.8,951.1L1666.9,964.1L1663.5,967.8L1675.3,978.4L1678.1,983.5L1682.1,996.9L1685.5,1002.4L1690.5,1007.5L1695.6,1011.2L1700.1,1012.6L1704.0,1013.1L1705.1,1015.4L1705.7,1019.1L1706.8,1023.3L1709.1,1026.5L1710.8,1028.3L1712.5,1030.2L1714.1,1035.7L1714.1,1047.3L1710.8,1052.4L1700.1,1058.9L1701.8,1063.0L1708.5,1073.2L1713.6,1084.3L1715.3,1087.5L1720.9,1092.6L1723.1,1095.8L1722.6,1098.6L1720.3,1099.1L1714.7,1097.7L1712.5,1097.7L1713.0,1098.6L1715.3,1101.8L1712.5,1103.2L1710.8,1105.5L1711.3,1108.3L1713.6,1110.6L1717.0,1113.4L1717.0,1120.3L1716.4,1128.7L1715.8,1135.6L1717.5,1138.4L1718.6,1140.7L1719.8,1143.9L1720.3,1148.5L1719.2,1152.2L1717.5,1155.9L1715.8,1158.7L1713.6,1160.6L1718.1,1168.0L1720.9,1170.7L1723.7,1173.0L1726.5,1174.4L1731.6,1175.3L1734.4,1176.7L1732.7,1179.0L1731.6,1182.7L1731.0,1186.4L1731.6,1190.6L1732.7,1193.4L1734.4,1194.8L1742.3,1200.8L1744.0,1204.5L1744.5,1210.0L1744.5,1218.3L1726.5,1219.3L1699.0,1213.3L1684.9,1213.7L1672.5,1218.8L1669.1,1223.4L1666.9,1229.0L1664.6,1233.6L1660.7,1235.4L1656.8,1233.6L1650.0,1227.1L1646.1,1224.8L1639.9,1223.9L1618.5,1225.3L1614.6,1226.7L1612.3,1229.4L1613.5,1234.1L1612.3,1235.4L1611.8,1236.8L1611.8,1238.2L1611.2,1239.6L1615.7,1240.1L1617.4,1243.8L1615.7,1247.5L1611.8,1247.9L1610.6,1246.1L1610.1,1245.6L1609.0,1246.1L1607.8,1247.5L1606.1,1248.9L1606.1,1250.7L1606.1,1252.1L1606.1,1253.0L1604.5,1255.3L1602.8,1257.2L1601.1,1259.0L1598.8,1260.4L1594.3,1262.3L1594.3,1263.2L1594.3,1265.0L1595.5,1266.0L1595.5,1268.3L1593.2,1271.0L1592.1,1272.9L1590.4,1273.8L1585.9,1273.4L1584.8,1273.8L1584.2,1275.2L1584.2,1278.0L1583.6,1280.3L1580.3,1282.1L1579.1,1284.0L1578.6,1285.8L1577.5,1286.8L1577.5,1287.7L1574.1,1292.3L1573.0,1294.2L1572.4,1295.1L1572.4,1296.0L1573.5,1298.8L1573.5,1302.9L1570.7,1306.2L1567.3,1308.5L1565.1,1311.3L1568.5,1312.7L1569.6,1313.1L1569.6,1315.0L1567.9,1316.8L1567.3,1320.0L1567.3,1323.7L1566.2,1326.1L1564.5,1327.0L1560.0,1327.0L1557.8,1327.9L1558.9,1331.6L1557.2,1337.2L1557.8,1341.3L1556.6,1342.2L1555.5,1344.6L1555.0,1345.0L1555.0,1345.9L1555.5,1348.7L1553.8,1349.6L1549.3,1354.3L1549.3,1356.1L1552.1,1358.9L1553.8,1359.8L1553.8,1361.7L1552.1,1362.1L1551.6,1362.6L1551.0,1363.0L1550.5,1363.5L1550.5,1365.4L1552.1,1368.1L1557.2,1369.5L1560.0,1370.9L1558.9,1374.1L1557.8,1375.5L1556.6,1376.4L1558.3,1378.3L1560.0,1380.1L1561.1,1382.0L1560.0,1384.3L1560.6,1387.5L1562.3,1389.9L1564.0,1390.8L1565.1,1391.7L1565.1,1393.6L1563.4,1393.1L1561.7,1394.0L1560.6,1395.9L1560.0,1399.1L1560.6,1402.3L1561.7,1403.3L1563.4,1403.3L1565.1,1404.6L1566.2,1406.5L1567.3,1414.4L1568.5,1415.7L1569.6,1417.6L1569.6,1419.0L1567.3,1419.9L1568.5,1427.3L1564.0,1432.4L1559.5,1436.5L1558.9,1440.2L1556.1,1445.8L1555.5,1446.3L1555.5,1452.7L1555.5,1453.2L1555.0,1454.6L1553.3,1455.0L1552.1,1452.7L1549.9,1450.4L1548.2,1449.0L1546.0,1448.1L1543.7,1448.6L1541.5,1447.6L1538.1,1442.1L1535.8,1439.8L1533.6,1438.9L1528.5,1438.9L1526.3,1437.9L1524.0,1436.1L1519.5,1429.2L1518.4,1426.4L1519.0,1425.9L1520.1,1420.4L1520.1,1418.1L1520.1,1415.3L1520.1,1413.0L1519.5,1411.1L1519.0,1409.3L1516.7,1407.4L1508.8,1403.3L1506.6,1400.5L1501.0,1391.7L1496.5,1388.0L1492.0,1387.1L1470.0,1387.5L1466.6,1388.5L1457.1,1394.0L1454.8,1394.0L1452.6,1392.2L1450.9,1392.2L1449.2,1393.6L1446.4,1399.1L1444.7,1401.0L1441.9,1401.9L1427.8,1399.1L1425.6,1396.3L1424.5,1392.2L1421.6,1387.1L1419.4,1384.8L1416.0,1384.3L1412.1,1385.2L1409.3,1386.6L1405.9,1389.9L1403.6,1393.1L1401.4,1396.3L1397.5,1398.2L1393.5,1398.6L1391.3,1399.6L1390.1,1402.8L1387.9,1409.7L1385.1,1413.9L1382.3,1413.9L1375.5,1411.1L1371.6,1412.5L1367.6,1416.2L1366.0,1418.1L1362.6,1419.4L1358.6,1417.1L1357.0,1412.0L1355.8,1406.0L1354.1,1401.0L1350.8,1396.8L1348.0,1394.9L1346.8,1391.7L1348.5,1384.3L1348.0,1377.4L1346.3,1372.8L1340.6,1364.4L1337.8,1354.3L1335.6,1351.0L1331.6,1348.2L1325.5,1346.9L1322.6,1346.9L1319.3,1348.2L1316.5,1351.5L1312.5,1359.8L1309.7,1363.5L1305.2,1365.4L1295.6,1365.4L1291.1,1366.3L1286.1,1369.5L1281.0,1373.7L1277.1,1379.7L1273.7,1387.1L1273.1,1391.7L1273.7,1401.9L1273.1,1406.0L1270.3,1409.7L1268.6,1407.0L1267.5,1401.9L1266.4,1398.2L1264.1,1398.2L1262.5,1399.6L1260.2,1400.5L1257.4,1399.1L1255.7,1396.3L1254.6,1392.6L1252.3,1377.4L1251.8,1371.8L1250.6,1368.1L1246.7,1366.3L1232.6,1363.0L1228.1,1363.0L1224.2,1364.4L1216.3,1370.4L1212.4,1374.6L1210.7,1375.5L1208.5,1374.6L1207.3,1372.8L1205.6,1364.9L1205.1,1362.1L1202.8,1359.8L1198.3,1356.6L1196.6,1354.7L1195.0,1351.5L1195.0,1349.2L1195.0,1346.9L1194.4,1344.1L1192.1,1341.3L1189.3,1340.9L1185.4,1342.7L1182.0,1345.9L1179.2,1351.5L1174.1,1362.1L1170.2,1365.8L1167.4,1366.7L1152.2,1366.7L1149.4,1365.8L1146.0,1364.4L1137.0,1352.9L1133.6,1351.0L1129.7,1351.5L1126.9,1354.7L1125.2,1359.3L1124.1,1364.9L1124.1,1368.1L1124.6,1371.4L1124.6,1374.1L1124.1,1377.8L1122.9,1379.7L1115.6,1390.3L1113.9,1392.2L1111.7,1392.6L1109.4,1391.7L1106.6,1389.4L1104.9,1386.6L1103.8,1385.2L1103.8,1384.8L1108.9,1370.9L1110.0,1364.0L1108.3,1358.0L1105.5,1356.6L1097.1,1356.1L1080.2,1348.7L1074.6,1348.7L1071.8,1350.6L1067.3,1355.6L1063.9,1357.5L1060.5,1358.0L1051.5,1356.1L1045.3,1358.4L1041.9,1358.4L1039.7,1356.6L1040.8,1351.9L1043.1,1345.9L1043.6,1341.3L1038.6,1339.9L1035.2,1340.4L1031.8,1339.9L1029.6,1337.6L1028.4,1332.5L1028.4,1325.1L1029.0,1319.1L1027.9,1315.0L1023.4,1312.2L1017.2,1310.8L1003.1,1310.3L987.4,1316.4L977.3,1314.5L948.0,1300.2L913.1,1298.8L911.4,1297.9L909.2,1294.6L908.6,1291.8L909.2,1289.5L909.2,1287.7L907.5,1286.8L870.9,1284.9L866.4,1282.6L856.3,1272.9L851.8,1272.0L840.6,1272.0L807.4,1265.5L794.4,1268.3L773.1,1267.8L742.7,1267.3L716.3,1259.5L708.9,1259.5L702.2,1262.3L688.1,1270.1L644.3,1278.0L640.9,1278.0L631.3,1275.2L592.5,1278.4L589.1,1279.8L585.8,1283.5L580.1,1292.8L577.3,1298.3L573.9,1315.9L569.4,1322.8L551.4,1336.2L528.4,1358.9L522.2,1360.3L517.7,1355.6L513.2,1349.6L507.0,1346.9L503.1,1346.9L492.4,1343.2L488.4,1342.7L473.3,1347.3L471.6,1348.2L469.9,1350.1L467.6,1353.8L467.6,1356.1L468.8,1358.4L472.7,1371.4L473.3,1374.1L472.7,1378.3L471.0,1379.2L469.9,1377.8Z","Lithuania":"M936.8,242.0L937.9,248.4L938.4,255.4L938.4,262.8L936.8,268.8L933.9,273.4L930.0,278.0L926.6,283.1L926.1,289.6L928.9,295.1L928.9,298.4L923.3,303.9L921.6,307.2L919.9,317.3L918.8,320.1L914.8,327.0L913.1,332.1L914.3,334.9L916.5,336.7L926.1,340.0L928.3,340.0L937.9,337.7L963.8,342.3L967.7,345.1L968.8,349.7L967.1,353.8L963.2,356.6L959.3,358.0L953.1,359.4L950.8,360.8L946.3,365.4L944.1,368.6L942.9,371.9L941.8,379.3L940.1,387.1L937.9,391.3L933.9,391.8L917.6,384.4L915.4,384.8L914.3,386.2L913.1,387.6L912.0,389.0L910.9,389.4L909.2,389.4L892.3,384.8L885.0,386.2L879.9,393.6L879.9,396.8L879.9,403.8L879.4,407.0L878.8,409.3L873.2,421.8L870.4,426.4L867.6,430.1L865.3,432.9L859.7,436.1L840.6,439.8L837.8,439.8L832.1,438.4L829.3,438.4L823.7,441.2L821.4,442.6L820.9,444.9L820.9,447.2L819.8,450.0L816.4,453.7L813.0,456.9L809.6,460.2L807.9,465.3L808.5,467.6L809.6,473.1L809.6,475.4L809.1,477.7L808.5,478.2L807.4,478.2L805.7,479.1L802.3,481.9L800.6,484.7L800.1,488.4L800.6,502.2L800.6,505.0L800.1,507.8L798.9,510.6L798.4,513.3L798.4,516.6L799.5,522.1L802.9,531.8L804.0,536.9L803.4,542.5L801.2,546.6L797.8,549.9L788.3,555.9L786.0,559.1L784.3,564.7L783.8,571.6L783.8,577.6L783.2,582.7L780.4,588.7L773.1,597.5L770.3,603.5L770.3,610.4L772.5,613.7L775.9,615.0L782.6,614.6L791.6,609.5L793.9,609.0L796.1,610.4L797.3,612.7L797.8,615.0L799.5,620.1L800.1,621.1L800.6,621.1L802.3,620.6L802.9,620.6L804.6,622.4L805.7,624.3L807.4,627.1L807.9,629.8L809.1,630.8L809.6,631.2L810.2,631.7L810.8,633.5L810.2,634.5L808.5,637.2L807.9,638.6L807.9,651.1L806.8,655.3L802.9,658.0L801.2,658.5L795.6,657.6L793.9,658.5L791.1,661.7L789.4,663.1L786.0,663.1L772.5,660.8L768.0,658.5L764.6,654.8L763.5,650.2L764.6,648.3L769.1,646.5L770.3,644.6L769.1,642.3L765.8,640.0L765.8,637.2L769.1,635.4L772.5,635.8L774.2,634.9L762.9,619.2L762.4,617.8L761.3,616.9L759.0,616.4L755.1,618.3L748.9,627.5L745.5,630.3L732.6,631.2L722.4,627.5L719.6,628.0L717.9,631.2L714.6,644.2L711.8,650.2L705.6,657.6L698.8,661.7L691.5,663.1L679.7,658.0L672.4,657.1L665.1,658.0L663.9,658.5L659.4,661.3L658.9,663.1L658.9,665.0L659.4,666.8L658.9,668.2L656.1,670.1L654.9,671.9L653.8,671.9L653.3,672.8L654.4,677.0L656.1,683.0L658.3,687.6L659.4,692.7L659.4,700.1L657.2,704.7L654.4,706.6L644.3,708.0L641.4,708.0L639.2,705.7L636.9,700.1L636.4,699.6L635.8,699.6L635.3,699.6L631.9,702.9L621.8,704.7L613.9,709.4L595.9,726.0L590.3,729.2L584.6,729.2L579.6,727.4L574.5,727.8L571.7,727.4L570.0,724.6L567.2,716.7L562.7,711.2L557.6,709.4L552.6,710.3L543.0,715.8L538.5,717.2L528.4,717.2L525.6,716.7L521.1,713.5L518.8,712.6L516.6,713.1L504.2,720.0L503.1,720.4L501.9,720.0L499.1,718.1L498.0,717.7L495.8,719.1L492.9,720.9L483.4,722.3L475.5,726.0L473.3,726.0L470.4,725.1L456.4,716.3L450.8,714.9L451.3,713.1L451.9,711.7L451.3,710.3L450.2,708.9L448.5,707.5L447.4,705.7L446.8,703.3L446.8,700.1L447.4,699.2L448.5,697.8L450.2,696.4L452.4,692.2L452.4,685.8L450.2,673.3L449.1,667.3L447.4,661.3L445.1,655.7L442.3,651.6L441.2,651.1L437.8,650.2L436.1,648.8L435.0,646.5L431.6,640.9L430.5,638.6L427.7,636.3L424.3,633.5L411.9,628.4L405.8,624.8L396.2,616.4L393.4,615.0L390.0,616.0L386.6,617.4L382.7,617.4L379.9,613.2L379.9,610.4L381.0,607.2L381.6,604.9L380.4,603.5L375.4,602.6L373.1,601.2L372.6,599.8L371.4,597.5L370.9,595.2L369.2,593.8L367.5,593.3L364.1,594.2L362.4,593.8L352.9,588.7L349.5,588.2L345.6,590.1L345.6,590.5L341.6,597.9L338.8,600.7L329.3,583.6L325.3,573.9L324.2,563.3L325.3,542.0L328.7,529.1L329.3,524.0L329.3,521.2L328.1,514.7L328.1,512.0L328.7,510.1L332.1,505.0L332.6,504.1L332.1,502.7L331.5,501.3L332.1,499.9L332.6,499.5L333.8,499.5L335.4,497.6L338.3,496.2L339.4,494.8L341.6,491.1L346.7,487.4L348.9,485.1L350.6,480.1L351.2,475.4L350.6,470.3L348.4,459.2L347.3,455.6L345.0,453.2L336.0,449.1L334.3,446.8L336.0,443.1L334.3,442.6L332.6,440.8L331.5,438.9L330.4,437.5L329.3,437.1L320.3,437.1L318.0,435.7L315.8,432.4L314.1,426.4L311.3,413.9L309.6,408.4L307.9,407.0L307.3,405.6L303.4,403.8L287.1,408.4L261.2,405.2L257.8,405.2L240.9,409.3L239.3,411.6L237.0,413.9L234.2,416.3L230.8,416.7L226.3,415.3L222.9,412.1L221.8,407.5L221.8,403.3L221.3,400.1L219.6,398.7L215.1,399.1L211.1,402.4L210.0,402.8L208.3,402.4L204.4,399.6L198.8,398.2L195.9,396.4L190.9,391.8L179.6,389.4L176.8,387.1L174.6,383.4L163.3,374.6L157.1,371.9L141.4,370.9L135.8,366.3L125.6,349.7L121.1,345.1L117.2,345.5L104.3,356.2L104.8,354.8L103.7,348.8L103.7,346.4L104.8,345.5L105.9,346.0L107.1,346.0L108.2,343.2L107.6,340.9L106.5,337.7L105.4,334.9L104.3,333.5L103.1,332.1L102.6,329.3L102.6,323.3L100.9,322.9L91.9,331.7L91.3,329.8L91.3,328.9L97.5,315.0L98.6,313.2L101.4,309.9L101.4,303.5L99.2,292.4L97.5,284.0L97.5,281.7L96.4,280.8L95.3,279.4L93.6,277.1L93.0,274.3L93.0,271.1L93.6,269.2L93.6,266.9L93.0,264.2L87.4,248.4L85.7,243.8L85.7,238.7L84.6,236.0L77.8,224.9L76.7,223.0L75.0,222.1L73.9,220.2L73.3,213.8L72.2,208.2L69.4,185.1L69.4,173.1L69.9,170.3L71.1,166.2L71.6,163.8L71.6,140.3L71.1,130.6L76.7,129.2L85.7,129.2L92.4,127.3L94.7,122.2L95.8,114.8L98.6,106.1L102.6,100.0L107.6,94.0L113.8,88.9L118.3,86.6L125.6,86.2L127.9,85.7L149.8,69.1L155.4,66.3L169.5,65.8L213.4,45.5L216.2,44.1L233.6,36.2L240.4,36.7L243.2,38.1L249.4,42.3L252.2,43.6L298.9,42.3L308.4,44.6L309.0,44.6L313.5,46.9L320.3,53.8L323.1,55.2L325.3,54.7L347.3,46.0L352.9,41.8L357.4,38.6L363.0,37.6L368.1,40.4L372.0,48.3L377.6,62.1L384.9,67.2L392.8,65.4L400.7,57.0L399.0,54.3L401.8,52.4L419.8,48.3L423.8,49.2L433.9,53.4L450.2,60.3L455.8,60.7L465.4,55.2L470.4,53.8L481.1,54.3L485.6,53.4L486.8,53.8L487.9,56.1L488.4,58.0L487.9,59.8L488.4,60.7L492.9,61.2L503.6,58.9L509.3,58.9L510.9,59.8L528.4,64.9L543.0,76.5L548.1,79.2L553.1,80.2L557.1,79.2L576.2,69.5L581.3,68.6L586.3,70.9L595.9,77.9L600.9,79.2L606.6,76.9L615.6,71.8L618.4,68.6L631.3,52.0L637.5,47.3L643.1,45.0L657.2,38.6L658.9,38.6L662.3,39.9L663.4,39.9L664.5,37.2L664.5,34.4L665.1,31.2L667.3,29.3L670.7,30.2L673.5,34.9L677.4,46.4L681.4,63.1L683.1,68.1L684.8,70.9L689.8,76.5L691.5,79.2L694.3,88.0L698.8,96.3L704.4,100.5L742.1,107.0L758.4,109.8L769.1,107.9L777.0,111.6L779.8,112.1L788.8,111.1L791.1,112.1L792.2,114.4L795.0,123.6L796.1,126.4L798.4,128.2L807.4,134.7L811.9,139.8L823.7,152.7L837.8,162.0L846.8,167.5L856.3,178.6L871.5,191.6L875.4,198.0L879.4,206.4L887.3,220.7L897.4,228.1L918.8,238.7L927.8,241.0L936.8,242.0ZM60.9,349.7L50.8,346.9L62.6,326.6L68.8,310.4L75.6,288.2L77.3,265.1L77.8,260.5L77.3,259.1L77.8,256.8L76.7,251.2L77.3,234.1L75.6,226.2L80.6,232.7L82.9,244.7L83.4,268.8L82.9,272.0L81.8,276.6L81.2,279.9L81.2,290.5L79.5,294.7L77.3,299.3L76.1,303.5L78.9,307.2L78.9,309.0L76.7,311.8L73.9,317.3L71.6,323.3L70.5,328.9L68.3,334.4L60.9,344.6L60.9,349.7Z","Russia":"M338.8,600.7L328.1,604.4L298.3,602.6L262.3,600.7L218.4,598.4L175.1,596.1L107.6,592.4L51.4,589.2L6.4,586.8L-38.6,584.5L-99.4,580.8L-131.4,579.4L-143.8,578.5L-151.7,575.7L-154.5,573.0L-152.3,572.0L-152.3,569.7L-135.4,554.0L-120.2,534.6L-111.8,518.4L-111.2,517.5L-110.6,517.0L-110.1,517.0L-109.5,515.6L-108.9,514.3L-109.5,511.0L-109.5,510.1L-108.4,507.8L-107.3,505.9L-104.4,501.3L-100.5,490.7L-99.9,486.5L-99.9,480.1L-101.1,474.5L-105.6,460.6L-106.1,458.3L-106.1,454.6L-103.9,447.2L-102.8,442.1L-100.5,437.5L-97.1,434.3L-94.3,432.9L-90.4,437.5L-88.7,438.4L-81.9,437.1L-71.2,437.5L-61.7,435.7L-36.4,438.9L-30.2,437.5L-18.4,431.0L5.3,411.2L32.8,376.0L34.5,374.6L50.8,346.9L60.9,349.7L60.9,350.1L54.8,354.8L53.1,356.2L53.6,357.1L53.6,357.5L52.5,359.4L49.1,360.3L47.4,362.6L48.0,364.5L46.3,364.9L45.2,366.3L45.2,368.2L44.6,370.0L43.5,371.9L40.7,374.6L39.6,376.5L36.8,382.5L35.1,385.3L27.2,393.1L13.7,410.7L-6.6,429.2L-8.2,430.6L-9.4,430.6L-10.5,431.5L-11.1,433.8L-10.5,435.2L-9.4,437.5L-7.7,439.4L-6.6,440.8L-3.7,441.2L25.5,438.9L32.3,440.8L40.7,448.6L57.6,451.9L68.8,450.5L70.5,449.1L71.1,447.7L72.8,449.1L74.4,450.9L75.0,451.9L76.7,451.4L77.8,450.5L78.4,449.1L78.9,448.2L92.4,444.5L98.6,441.2L100.3,434.7L99.2,429.7L96.9,420.9L93.0,387.1L92.4,385.3L92.4,383.9L91.3,378.3L90.8,377.4L90.8,371.4L91.3,369.1L91.9,367.3L94.1,365.9L95.3,366.3L96.4,368.2L97.5,369.1L99.8,369.6L101.4,369.1L103.1,368.2L104.3,366.3L104.8,364.0L105.4,360.8L104.8,357.5L104.3,356.2L117.2,345.5L121.1,345.1L125.6,349.7L135.8,366.3L141.4,370.9L157.1,371.9L163.3,374.6L174.6,383.4L176.8,387.1L179.6,389.4L190.9,391.8L195.9,396.4L198.8,398.2L204.4,399.6L208.3,402.4L210.0,402.8L211.1,402.4L215.1,399.1L219.6,398.7L221.3,400.1L221.8,403.3L221.8,407.5L222.9,412.1L226.3,415.3L230.8,416.7L234.2,416.3L237.0,413.9L239.3,411.6L240.9,409.3L257.8,405.2L261.2,405.2L287.1,408.4L303.4,403.8L307.3,405.6L307.9,407.0L309.6,408.4L311.3,413.9L314.1,426.4L315.8,432.4L318.0,435.7L320.3,437.1L329.3,437.1L330.4,437.5L331.5,438.9L332.6,440.8L334.3,442.6L336.0,443.1L334.3,446.8L336.0,449.1L345.0,453.2L347.3,455.6L348.4,459.2L350.6,470.3L351.2,475.4L350.6,480.1L348.9,485.1L346.7,487.4L341.6,491.1L339.4,494.8L338.3,496.2L335.4,497.6L333.8,499.5L332.6,499.5L332.1,499.9L331.5,501.3L332.1,502.7L332.6,504.1L332.1,505.0L328.7,510.1L328.1,512.0L328.1,514.7L329.3,521.2L329.3,524.0L328.7,529.1L325.3,542.0L324.2,563.3L325.3,573.9L329.3,583.6L338.8,600.7Z","Latvia":"M1054.9,-267.5L1082.4,-267.9L1081.9,-257.8L1081.9,-251.3L1080.2,-245.8L1079.6,-241.1L1083.6,-237.0L1099.9,-229.6L1108.3,-220.8L1110.6,-218.5L1126.3,-209.2L1129.1,-206.5L1131.4,-202.8L1131.9,-196.3L1131.4,-181.0L1130.3,-172.7L1128.6,-166.7L1124.1,-162.5L1109.4,-155.6L1106.6,-151.4L1108.9,-146.8L1112.8,-144.5L1116.2,-141.7L1117.3,-134.8L1116.8,-132.0L1113.9,-126.0L1112.8,-122.8L1112.8,-120.0L1112.3,-114.5L1111.7,-111.7L1101.6,-90.0L1098.2,-80.7L1100.4,-79.8L1103.3,-79.3L1116.2,-86.3L1122.9,-88.1L1129.7,-86.3L1133.1,-83.5L1139.3,-76.6L1142.6,-73.8L1143.8,-70.1L1140.4,-63.6L1137.0,-57.1L1135.3,-53.0L1138.1,-47.9L1153.3,-37.7L1155.0,-32.6L1155.0,-20.6L1155.6,-14.6L1157.8,-10.4L1160.6,-7.2L1173.0,-1.2L1175.8,0.6L1177.0,3.9L1175.8,6.2L1171.9,9.9L1170.8,13.1L1171.3,15.9L1172.5,18.2L1180.9,28.4L1182.0,30.7L1182.6,33.5L1182.0,43.2L1182.6,49.2L1183.7,54.7L1189.9,73.7L1190.5,76.5L1189.9,80.6L1188.8,82.5L1187.6,84.3L1186.5,87.1L1184.8,93.6L1184.3,100.0L1182.6,106.5L1179.8,111.6L1173.6,107.4L1166.8,110.2L1164.0,112.1L1160.1,115.3L1153.3,118.1L1146.6,119.5L1144.9,120.8L1142.6,123.2L1140.9,125.9L1139.3,129.6L1137.6,132.9L1126.9,141.2L1121.8,146.3L1121.3,152.7L1116.2,161.5L1101.0,171.7L1096.5,183.7L1095.4,196.7L1094.3,202.7L1092.6,206.8L1088.1,207.3L1068.4,205.9L1063.3,204.1L1058.3,201.3L1054.9,196.7L1051.5,200.4L1044.2,207.8L1040.8,208.7L1036.9,206.4L1027.3,198.5L1023.4,196.7L1017.2,195.3L996.9,198.0L993.6,200.4L984.6,211.0L975.6,227.6L972.2,230.9L959.8,237.3L956.4,237.8L948.0,234.6L943.5,234.1L940.1,236.0L936.8,242.0L927.8,241.0L918.8,238.7L897.4,228.1L887.3,220.7L879.4,206.4L875.4,198.0L871.5,191.6L856.3,178.6L846.8,167.5L837.8,162.0L823.7,152.7L811.9,139.8L807.4,134.7L798.4,128.2L796.1,126.4L795.0,123.6L792.2,114.4L791.1,112.1L788.8,111.1L779.8,112.1L777.0,111.6L769.1,107.9L758.4,109.8L742.1,107.0L704.4,100.5L698.8,96.3L694.3,88.0L691.5,79.2L689.8,76.5L684.8,70.9L683.1,68.1L681.4,63.1L677.4,46.4L673.5,34.9L670.7,30.2L667.3,29.3L665.1,31.2L664.5,34.4L664.5,37.2L663.4,39.9L662.3,39.9L658.9,38.6L657.2,38.6L643.1,45.0L637.5,47.3L631.3,52.0L618.4,68.6L615.6,71.8L606.6,76.9L600.9,79.2L595.9,77.9L586.3,70.9L581.3,68.6L576.2,69.5L557.1,79.2L553.1,80.2L548.1,79.2L543.0,76.5L528.4,64.9L510.9,59.8L509.3,58.9L503.6,58.9L492.9,61.2L488.4,60.7L487.9,59.8L488.4,58.0L487.9,56.1L486.8,53.8L485.6,53.4L481.1,54.3L470.4,53.8L465.4,55.2L455.8,60.7L450.2,60.3L433.9,53.4L423.8,49.2L419.8,48.3L401.8,52.4L399.0,54.3L400.7,57.0L392.8,65.4L384.9,67.2L377.6,62.1L372.0,48.3L368.1,40.4L363.0,37.6L357.4,38.6L352.9,41.8L347.3,46.0L325.3,54.7L323.1,55.2L320.3,53.8L313.5,46.9L309.0,44.6L308.4,44.6L298.9,42.3L252.2,43.6L249.4,42.3L243.2,38.1L240.4,36.7L233.6,36.2L216.2,44.1L213.4,45.5L169.5,65.8L155.4,66.3L149.8,69.1L127.9,85.7L125.6,86.2L118.3,86.6L113.8,88.9L107.6,94.0L102.6,100.0L98.6,106.1L95.8,114.8L94.7,122.2L92.4,127.3L85.7,129.2L76.7,129.2L71.1,130.6L70.5,129.2L69.4,119.0L67.1,110.2L59.8,93.1L58.1,87.1L57.6,81.1L58.1,79.7L59.3,74.2L59.8,70.9L59.8,68.1L59.8,65.4L58.1,54.7L57.6,49.2L58.1,44.1L59.3,39.9L61.5,36.2L62.1,33.9L63.2,31.6L63.2,28.4L63.2,23.3L64.3,20.5L63.2,15.9L62.6,10.8L63.8,8.0L66.6,10.8L67.1,13.6L68.3,21.0L69.4,24.2L67.1,27.9L68.3,28.8L69.4,29.3L69.4,33.5L69.4,35.3L67.1,39.0L71.1,43.6L72.2,44.6L73.3,44.1L74.4,42.3L75.0,40.4L73.3,34.4L72.8,29.8L73.3,25.1L73.9,21.9L73.3,20.1L72.2,15.4L71.6,12.7L70.5,10.8L69.9,9.4L67.1,7.1L65.4,6.2L64.3,6.2L63.2,5.3L62.1,3.4L61.5,0.2L61.5,-0.7L62.6,-2.1L64.3,-13.2L69.9,-28.9L71.6,-38.2L72.8,-61.3L72.2,-66.8L71.1,-71.9L70.5,-76.6L72.8,-81.2L85.7,-89.5L86.8,-91.8L97.5,-97.8L100.3,-101.1L105.9,-109.4L107.6,-111.2L109.3,-112.2L113.8,-115.9L118.9,-120.5L122.3,-125.6L125.1,-133.4L127.3,-143.1L127.3,-154.2L126.8,-157.5L125.1,-164.9L125.6,-167.6L126.8,-171.3L127.3,-173.6L126.8,-191.7L127.3,-197.2L128.4,-202.3L130.1,-206.9L132.9,-210.6L135.2,-212.5L137.4,-214.3L143.6,-229.1L154.3,-243.4L171.8,-275.3L176.3,-280.4L183.0,-283.7L211.7,-285.5L218.4,-287.4L249.4,-303.1L294.4,-326.7L301.1,-328.5L304.5,-328.5L306.2,-329.4L308.4,-330.4L310.1,-331.3L312.4,-330.8L314.1,-329.9L314.1,-329.4L313.5,-329.0L312.4,-326.7L311.3,-316.5L310.7,-305.4L311.3,-299.8L312.4,-295.7L321.4,-283.7L356.3,-255.0L367.5,-241.6L379.9,-231.4L387.8,-226.8L393.4,-225.4L395.1,-224.5L395.6,-222.6L395.6,-219.9L396.8,-217.1L400.1,-210.6L400.7,-209.2L402.4,-204.6L403.5,-199.1L404.6,-189.8L406.3,-184.7L408.6,-182.4L409.7,-179.6L414.2,-154.7L415.9,-150.1L418.1,-148.7L420.9,-147.7L428.3,-139.4L441.2,-134.3L454.7,-131.6L456.4,-130.2L464.3,-119.5L465.4,-118.2L466.5,-117.7L473.8,-115.4L483.4,-114.5L510.4,-120.5L519.9,-125.1L523.9,-126.9L530.1,-131.6L532.9,-135.7L534.6,-139.4L536.8,-142.2L543.0,-143.6L549.2,-147.3L564.4,-157.0L565.5,-161.2L568.3,-163.9L572.3,-166.2L574.5,-167.2L575.1,-170.4L576.2,-172.3L580.1,-174.6L590.3,-186.1L593.6,-194.0L595.3,-204.6L594.8,-217.6L590.8,-251.8L590.8,-261.9L589.7,-267.9L588.0,-270.7L587.4,-274.0L588.0,-280.9L589.7,-291.1L588.0,-307.2L586.9,-310.9L580.1,-321.6L577.9,-326.7L577.9,-331.7L576.2,-344.7L576.2,-351.2L576.2,-354.4L577.3,-358.1L579.0,-360.9L585.8,-358.1L590.3,-358.6L594.2,-360.4L595.9,-363.2L598.1,-369.7L600.4,-372.0L606.6,-374.7L614.4,-382.1L617.8,-382.6L628.5,-381.7L638.1,-382.6L640.9,-384.4L643.7,-391.8L645.9,-394.6L651.0,-393.7L654.9,-391.4L658.9,-390.5L660.6,-391.8L663.9,-394.6L667.3,-396.9L679.7,-398.8L683.6,-401.1L693.2,-410.3L694.9,-412.2L698.3,-414.5L702.2,-415.4L709.5,-415.4L713.4,-413.1L715.7,-407.6L717.4,-400.6L719.1,-394.6L721.3,-392.8L723.6,-392.8L728.6,-395.5L732.0,-399.2L730.9,-403.4L726.4,-410.8L726.9,-415.9L728.6,-417.7L731.4,-417.3L734.3,-415.0L735.4,-413.1L737.1,-408.0L738.2,-406.6L739.9,-405.7L740.4,-405.7L741.6,-406.6L743.3,-406.6L749.4,-403.4L759.0,-392.8L765.2,-389.1L770.8,-387.7L771.9,-386.8L773.6,-384.9L773.6,-383.1L773.6,-381.2L774.8,-378.9L778.1,-374.7L781.5,-372.9L785.4,-372.4L788.8,-372.9L797.3,-375.7L798.9,-376.1L801.8,-376.1L804.0,-372.0L805.7,-366.4L807.4,-360.9L811.3,-357.6L843.9,-354.9L846.2,-353.9L847.3,-352.5L847.9,-349.8L847.3,-348.4L846.2,-346.5L845.6,-344.2L846.2,-338.7L847.9,-335.0L864.8,-321.6L869.8,-316.0L885.0,-293.4L890.1,-287.4L896.8,-282.7L898.5,-282.3L910.9,-277.2L913.7,-274.4L918.8,-267.5L921.6,-264.2L924.4,-264.7L926.6,-266.6L928.3,-267.9L930.0,-267.5L932.8,-265.6L934.5,-265.2L936.2,-265.6L936.8,-267.5L937.3,-269.3L938.4,-271.2L942.9,-274.9L948.0,-277.7L953.1,-279.5L965.4,-279.0L968.3,-279.5L971.1,-282.3L973.3,-286.0L975.0,-290.1L977.3,-293.8L980.1,-294.8L981.8,-293.4L984.0,-291.5L986.3,-291.1L989.1,-291.5L991.9,-291.5L996.9,-290.1L1000.9,-287.4L1006.5,-279.0L1009.9,-275.3L1013.3,-273.5L1025.6,-273.0L1049.8,-264.7L1054.9,-267.5Z","Poland":"M-276.0,1927.5L-275.4,1922.9L-276.0,1917.3L-278.3,1905.3L-278.8,1903.0L-280.5,1898.4L-281.6,1895.6L-282.2,1885.9L-283.3,1884.1L-285.6,1882.2L-287.8,1882.7L-290.1,1883.6L-292.3,1884.1L-294.6,1882.7L-297.4,1878.5L-299.6,1876.7L-301.9,1875.7L-306.9,1875.3L-308.6,1873.4L-309.8,1871.6L-311.4,1863.7L-314.8,1854.9L-317.6,1846.6L-317.6,1839.2L-313.7,1833.7L-317.6,1831.4L-318.2,1827.7L-317.6,1823.5L-318.8,1818.9L-321.0,1817.0L-327.2,1821.6L-331.1,1821.6L-342.4,1814.2L-348.6,1811.9L-354.8,1812.9L-354.2,1812.9L-354.2,1813.3L-354.2,1813.8L-358.1,1817.9L-360.4,1818.4L-363.8,1815.6L-364.3,1813.8L-365.4,1809.6L-366.0,1808.2L-368.3,1806.4L-371.6,1805.5L-373.9,1804.5L-378.4,1799.9L-381.2,1798.5L-390.8,1796.2L-393.0,1793.4L-391.9,1788.4L-400.9,1781.9L-403.1,1781.0L-405.9,1780.5L-405.4,1786.5L-404.3,1787.0L-403.1,1786.5L-402.0,1786.5L-400.9,1788.4L-400.3,1791.1L-401.4,1792.5L-406.5,1794.4L-412.7,1794.4L-415.5,1795.3L-420.0,1799.9L-425.6,1801.8L-431.3,1800.4L-441.4,1789.3L-443.1,1786.5L-444.2,1783.3L-445.3,1779.6L-446.4,1776.8L-448.1,1774.5L-449.8,1772.6L-449.8,1771.3L-449.8,1769.4L-448.1,1768.0L-448.1,1767.6L-448.1,1767.1L-450.4,1766.6L-454.3,1764.3L-456.6,1763.9L-458.3,1764.3L-459.4,1765.2L-461.1,1765.2L-463.9,1764.3L-471.2,1753.2L-471.8,1751.4L-470.6,1748.6L-468.9,1747.7L-461.1,1747.2L-457.1,1745.4L-450.4,1740.7L-447.0,1738.0L-445.9,1733.8L-448.1,1728.7L-449.8,1726.9L-450.4,1724.1L-449.8,1721.3L-448.1,1716.2L-447.6,1715.8L-447.6,1714.9L-447.6,1713.9L-448.1,1713.5L-450.9,1708.8L-452.1,1707.9L-454.3,1707.0L-455.4,1707.9L-456.0,1709.8L-456.6,1711.6L-461.6,1719.0L-463.9,1721.3L-467.8,1722.7L-481.9,1719.9L-489.2,1720.4L-493.7,1726.9L-494.8,1727.3L-495.4,1727.8L-495.9,1727.3L-497.1,1726.9L-498.2,1721.8L-502.1,1718.6L-505.5,1719.0L-507.2,1724.1L-508.9,1722.2L-510.0,1719.5L-510.6,1715.8L-510.6,1712.1L-511.1,1711.6L-511.7,1710.7L-512.3,1709.8L-512.8,1708.8L-510.0,1707.5L-512.8,1706.1L-520.1,1706.1L-524.1,1705.1L-529.7,1701.0L-530.8,1699.1L-531.9,1696.8L-533.1,1693.6L-533.6,1690.4L-533.1,1689.4L-534.8,1689.0L-539.8,1690.4L-542.1,1689.9L-543.8,1689.0L-547.7,1685.3L-549.4,1684.3L-565.1,1679.3L-569.1,1679.7L-571.3,1678.3L-575.8,1675.1L-579.2,1674.6L-583.7,1677.4L-583.7,1681.6L-578.6,1689.9L-576.9,1694.5L-575.3,1700.5L-574.1,1706.1L-571.3,1709.3L-567.4,1711.6L-564.6,1715.3L-562.9,1719.9L-562.3,1726.9L-560.6,1729.6L-560.1,1733.3L-561.2,1735.7L-562.9,1735.2L-564.6,1732.0L-565.7,1730.6L-566.3,1729.6L-568.5,1729.6L-569.1,1730.6L-569.1,1733.8L-569.6,1734.7L-570.8,1734.7L-573.6,1733.8L-575.3,1733.8L-576.9,1735.2L-579.8,1739.4L-580.9,1740.7L-583.1,1741.2L-584.8,1741.7L-587.6,1741.7L-591.0,1742.1L-594.4,1745.4L-597.2,1750.4L-598.9,1754.1L-601.1,1756.9L-604.5,1759.7L-609.0,1767.1L-615.8,1768.0L-621.9,1763.9L-627.6,1758.3L-630.4,1754.1L-631.5,1750.9L-633.2,1741.7L-634.9,1736.6L-639.9,1731.0L-641.6,1726.9L-643.9,1723.2L-648.4,1715.3L-650.1,1711.6L-654.0,1708.8L-660.8,1706.1L-663.6,1701.9L-664.1,1699.6L-663.6,1697.3L-664.1,1694.5L-665.3,1692.2L-666.4,1691.3L-673.7,1691.3L-675.4,1692.2L-676.5,1693.1L-677.6,1693.6L-679.9,1691.7L-680.4,1689.9L-682.7,1683.0L-687.8,1682.0L-688.9,1676.9L-687.8,1672.8L-684.9,1673.7L-684.9,1672.8L-685.5,1669.5L-684.9,1669.5L-683.3,1668.6L-682.7,1668.2L-679.9,1665.8L-677.1,1664.0L-674.8,1661.7L-673.7,1658.5L-671.4,1657.5L-666.4,1658.9L-663.6,1658.5L-662.4,1656.1L-659.1,1652.4L-657.4,1650.6L-657.9,1650.6L-657.9,1648.7L-657.9,1646.9L-657.4,1645.5L-656.8,1643.7L-656.3,1643.2L-656.3,1642.3L-657.4,1640.0L-652.3,1637.6L-653.4,1632.6L-666.9,1616.8L-672.0,1614.1L-677.1,1612.2L-682.7,1612.2L-684.4,1612.7L-685.5,1615.5L-686.6,1619.2L-688.9,1621.9L-691.1,1622.4L-693.9,1621.0L-698.4,1616.8L-705.2,1616.4L-714.8,1626.6L-721.5,1627.9L-722.1,1627.0L-722.1,1626.1L-722.1,1625.6L-721.5,1624.7L-719.3,1622.4L-718.7,1619.2L-719.8,1615.5L-720.9,1611.8L-723.2,1607.6L-725.4,1605.3L-727.7,1604.8L-737.3,1608.5L-741.2,1609.0L-742.3,1608.5L-750.2,1593.3L-750.8,1591.9L-751.3,1590.0L-755.3,1589.6L-768.2,1592.8L-769.9,1592.3L-771.0,1591.0L-772.7,1587.7L-774.9,1586.3L-805.9,1574.3L-812.6,1574.8L-813.8,1576.6L-815.4,1579.9L-817.1,1581.7L-819.4,1580.8L-820.5,1578.5L-820.5,1576.2L-819.9,1573.4L-819.9,1570.6L-821.6,1565.5L-823.9,1563.2L-826.7,1561.8L-830.1,1559.1L-831.8,1556.3L-833.4,1551.7L-835.1,1547.0L-835.7,1542.9L-834.6,1537.8L-832.9,1535.0L-832.9,1532.2L-835.1,1528.1L-839.6,1525.8L-848.6,1525.3L-849.8,1521.6L-850.9,1517.5L-852.6,1516.5L-854.3,1517.9L-855.9,1521.6L-856.5,1524.4L-858.2,1524.8L-860.4,1523.5L-862.1,1521.6L-863.3,1518.8L-871.1,1517.0L-874.5,1513.8L-875.1,1516.1L-875.6,1517.5L-877.9,1519.3L-878.4,1519.3L-879.6,1519.8L-880.1,1520.7L-881.3,1521.6L-880.7,1524.4L-877.9,1526.7L-875.6,1530.9L-875.1,1538.7L-875.6,1540.1L-877.3,1542.0L-877.9,1542.9L-877.9,1544.3L-877.9,1545.2L-877.9,1546.1L-877.3,1555.8L-877.9,1558.1L-895.9,1556.7L-901.5,1558.1L-904.9,1558.1L-904.9,1553.0L-902.6,1548.9L-897.0,1542.4L-889.1,1521.6L-881.8,1501.7L-881.3,1499.0L-881.3,1493.4L-881.3,1490.6L-880.1,1488.8L-879.0,1487.9L-877.9,1486.0L-877.9,1482.3L-877.9,1475.4L-876.2,1467.5L-874.5,1460.6L-871.7,1454.6L-872.3,1454.1L-872.8,1453.2L-871.7,1444.9L-874.5,1439.8L-877.9,1435.2L-880.7,1429.6L-881.3,1427.8L-881.8,1422.7L-882.9,1411.1L-883.5,1403.7L-881.8,1400.5L-883.5,1396.3L-886.3,1393.1L-889.1,1391.2L-892.5,1389.4L-899.8,1387.1L-903.2,1384.8L-906.6,1382.0L-916.7,1378.3L-920.1,1374.1L-920.6,1371.4L-921.2,1369.5L-920.1,1364.0L-916.7,1358.9L-915.0,1353.3L-915.0,1346.4L-916.7,1339.5L-918.9,1334.4L-926.3,1327.4L-930.2,1323.3L-931.3,1316.4L-931.9,1309.0L-934.1,1305.7L-936.9,1303.9L-939.8,1299.2L-940.3,1293.7L-938.1,1288.6L-929.1,1278.9L-926.3,1274.7L-924.0,1269.7L-922.3,1264.6L-921.8,1247.9L-921.2,1245.2L-917.8,1238.7L-917.3,1235.9L-916.7,1233.1L-916.1,1230.8L-915.0,1228.5L-912.2,1224.8L-922.3,1216.5L-924.0,1212.3L-922.9,1205.4L-921.2,1200.3L-920.6,1196.6L-922.9,1192.9L-922.9,1191.1L-920.1,1186.9L-920.1,1180.9L-922.3,1176.3L-926.8,1174.4L-931.3,1173.0L-936.4,1170.3L-939.8,1166.1L-939.2,1161.0L-942.6,1153.2L-945.9,1141.1L-947.1,1130.0L-938.6,1122.6L-935.3,1116.2L-932.4,1109.7L-933.0,1106.9L-935.8,1104.2L-934.7,1097.7L-930.8,1088.0L-935.3,1083.4L-936.4,1082.4L-945.4,1071.3L-954.9,1067.6L-958.9,1061.2L-962.3,1059.3L-963.9,1057.9L-969.0,1046.8L-971.3,1043.6L-988.1,1030.6L-992.6,1028.3L-997.7,1021.9L-1000.5,1020.5L-1003.9,1020.0L-1007.3,1019.1L-1010.1,1016.8L-1011.8,1012.6L-1007.8,1008.9L-1006.1,1005.7L-1005.6,1000.6L-1005.6,996.9L-1007.8,987.2L-1008.9,984.4L-1008.9,983.0L-1001.1,977.0L-991.5,971.5L-982.5,964.1L-977.4,958.5L-975.8,953.4L-975.2,951.6L-970.1,935.9L-970.7,931.7L-971.8,928.0L-972.4,923.4L-971.8,920.2L-970.7,916.5L-969.0,914.2L-967.3,913.2L-966.2,911.4L-962.3,903.1L-964.5,901.2L-965.1,899.4L-967.3,897.5L-968.4,895.7L-968.4,892.9L-969.0,887.8L-969.0,885.5L-970.1,880.4L-973.5,864.7L-975.2,850.4L-978.6,844.3L-979.7,838.8L-983.6,832.8L-984.8,827.2L-984.8,820.8L-984.8,811.1L-984.8,808.3L-988.1,797.7L-990.4,792.1L-989.8,787.9L-989.8,780.1L-988.7,780.1L-985.9,778.7L-983.6,776.8L-983.6,774.5L-985.9,772.7L-984.8,771.8L-984.2,770.8L-984.8,769.9L-985.9,769.0L-985.3,766.7L-983.6,768.1L-981.4,769.5L-979.7,770.8L-978.0,776.4L-975.8,777.8L-971.3,780.1L-968.4,783.8L-966.2,785.2L-959.4,786.6L-951.0,789.3L-948.2,791.6L-945.9,795.3L-940.9,805.5L-939.2,808.3L-938.1,807.4L-938.1,802.7L-937.5,800.4L-935.8,798.6L-933.6,796.7L-934.1,795.8L-934.1,794.9L-933.6,793.0L-935.3,792.6L-939.2,792.1L-941.4,791.2L-945.9,779.2L-944.8,773.1L-941.4,761.1L-939.2,763.0L-938.1,762.5L-936.4,761.6L-933.6,761.1L-934.7,754.2L-934.1,748.6L-933.0,744.0L-932.4,738.9L-933.6,738.9L-934.1,742.2L-935.3,744.0L-939.2,748.2L-938.1,750.0L-939.8,749.6L-940.9,748.6L-941.4,747.7L-942.6,746.3L-941.4,745.4L-940.3,743.6L-939.2,742.6L-941.4,738.0L-944.8,735.7L-962.3,733.9L-964.5,731.1L-962.8,725.5L-963.4,725.1L-963.9,723.7L-965.1,726.5L-966.8,726.9L-967.9,726.5L-969.6,725.5L-971.3,726.5L-972.4,727.8L-972.9,729.2L-974.6,731.1L-970.1,732.0L-967.3,733.4L-966.2,735.2L-966.2,738.5L-967.9,740.8L-970.1,741.7L-971.3,740.8L-975.8,743.6L-977.4,744.0L-979.7,744.5L-979.7,746.3L-978.0,747.3L-978.0,747.7L-979.7,748.2L-981.4,747.7L-983.6,746.8L-985.9,746.3L-988.1,744.5L-996.0,733.4L-999.4,731.5L-999.9,731.5L-1001.1,727.4L-1003.9,723.7L-1002.2,723.2L-1001.1,722.3L-998.3,714.9L-996.0,716.3L-994.3,717.7L-989.3,719.5L-974.1,720.9L-967.9,719.5L-961.7,716.3L-950.4,707.5L-908.8,688.5L-873.4,678.8L-830.1,660.3L-801.9,652.5L-771.0,643.7L-740.6,629.8L-715.3,626.6L-698.4,620.6L-700.1,622.4L-708.0,626.1L-704.6,628.4L-690.6,626.1L-690.6,624.3L-691.7,624.3L-691.7,622.4L-684.4,622.4L-684.4,621.1L-684.9,621.1L-685.5,620.6L-684.9,616.0L-688.9,616.0L-697.3,618.7L-691.7,616.0L-685.5,611.8L-675.9,599.8L-677.6,603.9L-681.0,607.6L-682.7,610.0L-681.0,609.5L-678.2,608.6L-675.9,607.6L-673.7,604.9L-668.1,602.6L-666.4,599.8L-668.1,596.1L-670.9,596.1L-672.6,597.5L-674.8,599.8L-668.1,588.2L-650.1,564.7L-650.1,566.0L-650.6,568.8L-649.5,569.3L-646.7,568.4L-645.0,566.0L-643.9,562.3L-644.4,561.4L-646.7,562.3L-648.9,564.7L-646.1,557.7L-640.5,552.2L-629.8,545.7L-597.2,540.6L-584.3,535.5L-577.5,534.6L-571.9,532.3L-556.7,515.6L-510.0,493.0L-450.9,481.9L-423.9,472.7L-382.3,468.5L-357.0,468.5L-353.1,469.9L-347.4,475.0L-345.2,475.9L-342.4,476.8L-288.9,509.2L-278.8,522.1L-277.7,524.9L-276.0,529.5L-276.0,533.2L-278.3,534.6L-279.4,533.2L-279.9,531.4L-281.1,529.5L-283.9,527.2L-285.6,522.1L-288.4,518.9L-295.7,505.9L-297.4,505.5L-302.4,504.1L-304.1,503.6L-305.3,501.3L-309.8,499.5L-319.3,493.0L-328.3,488.4L-330.0,486.5L-335.1,482.4L-336.2,481.9L-338.4,482.8L-339.0,484.2L-341.3,492.1L-341.8,493.9L-341.8,497.6L-340.7,498.5L-337.3,500.4L-336.2,501.3L-334.5,505.0L-332.3,510.1L-332.3,512.0L-332.8,513.8L-332.8,515.6L-331.1,517.5L-331.7,523.0L-330.0,525.4L-327.2,524.4L-324.4,521.2L-325.5,525.8L-324.4,529.5L-322.1,532.3L-318.2,544.8L-317.1,547.5L-317.6,553.6L-317.6,564.7L-316.5,574.8L-314.3,579.4L-312.0,580.4L-306.9,584.1L-304.7,585.0L-302.4,585.0L-300.2,585.9L-297.9,587.3L-296.8,589.6L-294.0,593.8L-267.6,602.1L-261.9,602.6L-256.9,599.8L-255.8,601.2L-254.1,602.6L-249.6,603.5L-191.1,594.7L-178.1,588.2L-171.9,586.8L-166.9,584.5L-157.3,574.4L-154.5,573.0L-151.7,575.7L-143.8,578.5L-131.4,579.4L-99.4,580.8L-38.6,584.5L6.4,586.8L51.4,589.2L107.6,592.4L175.1,596.1L218.4,598.4L262.3,600.7L298.3,602.6L328.1,604.4L338.8,600.7L341.6,597.9L345.6,590.5L345.6,590.1L349.5,588.2L352.9,588.7L362.4,593.8L364.1,594.2L367.5,593.3L369.2,593.8L370.9,595.2L371.4,597.5L372.6,599.8L373.1,601.2L375.4,602.6L380.4,603.5L381.6,604.9L381.0,607.2L379.9,610.4L379.9,613.2L382.7,617.4L386.6,617.4L390.0,616.0L393.4,615.0L396.2,616.4L405.8,624.8L411.9,628.4L424.3,633.5L427.7,636.3L430.5,638.6L431.6,640.9L435.0,646.5L436.1,648.8L437.8,650.2L441.2,651.1L442.3,651.6L445.1,655.7L447.4,661.3L449.1,667.3L450.2,673.3L452.4,685.8L452.4,692.2L450.2,696.4L448.5,697.8L447.4,699.2L446.8,700.1L446.8,703.3L447.4,705.7L448.5,707.5L450.2,708.9L451.3,710.3L451.9,711.7L451.3,713.1L450.8,714.9L451.3,722.8L452.4,729.7L454.7,735.7L456.4,742.6L458.1,757.4L459.2,763.0L463.1,768.5L463.7,785.6L467.1,804.6L480.6,847.1L487.9,863.3L491.3,872.1L497.4,898.0L500.3,905.4L503.1,909.5L504.2,913.2L505.9,917.4L507.6,921.5L510.4,924.8L513.2,927.1L514.9,930.3L514.3,936.8L512.6,941.0L510.9,944.2L509.3,947.9L509.3,953.4L510.4,958.1L515.4,964.5L517.1,968.2L517.1,970.6L517.1,973.8L517.1,975.6L518.3,983.0L518.3,985.3L517.7,987.2L516.0,990.9L516.0,992.7L516.0,996.0L516.6,997.4L517.1,998.8L517.7,1001.1L518.8,1034.3L519.4,1042.2L517.1,1054.2L510.9,1062.1L490.1,1077.3L463.7,1085.2L450.2,1094.0L436.1,1106.0L417.0,1137.4L410.8,1145.8L408.0,1150.4L400.7,1166.6L401.3,1166.6L402.4,1167.5L403.5,1168.9L405.2,1171.2L405.8,1174.9L404.6,1180.0L408.0,1182.3L419.3,1185.5L422.1,1184.6L423.8,1186.9L433.3,1190.6L436.7,1191.1L436.7,1192.9L435.6,1195.2L436.1,1195.7L438.4,1194.8L440.6,1195.7L441.8,1197.1L443.4,1197.5L445.1,1194.8L446.3,1196.2L447.4,1197.5L448.5,1198.9L451.3,1196.2L451.9,1198.0L451.3,1201.2L450.8,1202.2L455.3,1211.4L458.1,1212.8L465.4,1212.3L468.2,1214.2L469.3,1216.5L470.4,1218.8L471.0,1220.7L472.7,1221.1L474.4,1222.5L475.5,1225.7L475.5,1229.0L476.6,1232.2L478.9,1242.8L480.6,1247.5L478.3,1249.3L476.1,1253.0L473.3,1260.4L472.1,1265.5L472.1,1274.3L471.0,1277.5L471.6,1277.5L472.1,1277.5L472.1,1278.0L472.1,1279.4L470.4,1280.3L469.9,1286.3L467.6,1288.6L470.4,1293.7L473.3,1297.9L471.6,1304.3L468.8,1307.6L465.4,1309.4L462.6,1313.1L462.0,1315.0L461.4,1317.7L460.3,1324.2L460.9,1325.6L462.0,1327.4L462.6,1329.3L460.9,1329.8L460.3,1330.7L460.9,1332.5L462.0,1334.4L462.6,1335.3L460.3,1338.1L459.8,1339.0L458.1,1339.0L458.1,1341.3L459.8,1343.2L460.3,1345.9L459.2,1353.3L459.8,1357.0L461.4,1361.2L464.8,1367.7L463.7,1367.7L462.6,1367.7L464.3,1371.8L467.1,1372.8L469.3,1374.1L469.9,1377.8L469.9,1379.7L471.0,1383.4L473.3,1385.2L476.1,1386.2L478.3,1388.0L476.1,1393.6L476.6,1395.4L482.8,1405.6L483.9,1408.8L482.3,1409.7L481.1,1411.6L481.1,1414.4L481.7,1418.1L478.9,1419.4L476.1,1422.7L473.8,1426.4L473.3,1430.1L474.4,1436.1L476.6,1437.5L479.4,1437.5L482.3,1439.3L491.3,1460.1L494.6,1465.2L502.5,1470.8L509.8,1479.1L511.5,1482.3L509.3,1483.7L508.7,1486.0L510.9,1491.6L514.9,1498.5L516.0,1502.2L518.3,1513.8L518.3,1515.6L517.7,1517.5L518.8,1518.8L520.5,1519.8L522.8,1521.1L524.4,1523.9L524.4,1526.2L525.0,1528.5L525.6,1532.2L527.8,1536.4L538.5,1547.5L551.4,1555.4L553.7,1558.6L551.4,1563.7L546.9,1564.6L541.9,1564.6L538.5,1566.5L534.6,1563.7L530.1,1564.1L526.7,1567.4L524.4,1572.0L525.0,1577.1L527.3,1580.8L531.2,1582.6L535.1,1583.1L535.1,1584.9L533.4,1589.6L535.7,1593.7L539.6,1597.0L544.1,1597.9L543.0,1604.4L544.1,1609.9L548.1,1620.5L548.1,1621.0L544.7,1627.9L546.4,1640.9L547.5,1644.6L548.1,1645.0L548.1,1646.0L545.8,1648.7L543.0,1652.4L532.9,1658.5L532.3,1661.7L532.9,1666.8L532.3,1670.5L531.8,1673.2L528.4,1682.5L519.9,1686.2L491.8,1686.7L486.2,1688.5L483.9,1689.9L481.7,1692.7L480.0,1696.4L477.8,1703.8L477.8,1704.2L475.5,1707.5L463.1,1722.7L458.6,1726.9L450.2,1734.3L443.4,1740.3L407.4,1783.7L402.9,1792.1L397.3,1797.1L391.1,1805.0L373.7,1833.2L367.5,1840.6L366.4,1842.9L365.3,1848.5L364.7,1850.3L363.0,1852.2L360.2,1853.1L359.1,1854.0L357.4,1856.3L347.8,1876.2L345.0,1879.0L343.3,1879.9L339.9,1880.8L338.3,1882.7L337.1,1885.0L334.9,1893.8L323.1,1911.8L319.1,1922.4L321.9,1932.1L323.1,1936.3L324.2,1947.9L324.8,1950.6L324.8,1952.5L327.0,1956.2L330.4,1959.9L330.9,1962.2L332.1,1966.3L333.8,1991.8L333.2,1995.5L330.9,2003.8L328.7,2013.5L325.9,2019.5L325.3,2022.7L326.4,2024.1L327.0,2023.7L329.3,2020.9L331.5,2022.7L330.9,2023.2L336.0,2027.4L340.5,2034.3L343.3,2036.6L350.1,2041.2L352.3,2044.0L352.3,2046.3L350.6,2051.4L350.6,2055.1L351.2,2057.9L353.4,2063.0L354.0,2063.4L354.0,2064.3L352.3,2068.5L348.9,2067.1L345.6,2063.4L342.8,2062.0L341.1,2061.1L338.3,2056.5L336.6,2054.6L334.9,2054.6L331.5,2056.0L325.9,2055.1L322.5,2055.6L319.1,2055.1L315.2,2052.3L309.6,2044.9L306.2,2043.5L302.8,2047.2L297.8,2044.0L285.4,2043.5L279.8,2041.7L271.9,2032.5L268.5,2031.1L260.1,2031.1L252.8,2028.8L251.1,2027.4L251.1,2026.0L251.6,2024.1L251.6,2022.3L249.9,2020.0L248.3,2019.5L244.9,2020.0L243.2,2020.0L241.5,2019.0L236.4,2015.3L225.2,2013.0L220.7,2009.3L219.6,2000.6L217.9,1990.8L213.4,1982.5L207.8,1976.5L199.3,1971.9L193.7,1965.4L190.3,1963.6L187.5,1964.5L184.7,1967.3L182.4,1970.0L180.8,1971.4L178.5,1969.1L173.4,1959.9L170.6,1957.1L168.9,1956.6L166.7,1957.1L165.6,1956.6L163.9,1955.7L161.1,1952.5L159.4,1951.1L156.6,1950.2L145.3,1951.5L143.1,1952.9L140.3,1954.3L138.0,1953.4L131.8,1954.8L129.6,1954.8L114.4,1949.7L105.4,1944.6L103.1,1944.2L100.3,1946.0L95.3,1954.3L93.0,1957.6L89.6,1958.0L86.8,1956.2L85.1,1953.4L81.8,1951.1L79.5,1950.6L73.3,1952.5L71.1,1953.4L67.7,1957.6L69.4,1960.3L73.3,1962.6L75.0,1966.8L73.9,1969.1L71.1,1970.0L67.7,1970.0L65.4,1970.5L62.1,1974.2L57.0,1982.5L53.6,1986.2L49.7,1987.6L46.9,1987.1L44.6,1984.8L41.8,1981.6L39.0,1979.3L36.8,1978.8L33.9,1978.8L30.6,1978.4L27.8,1976.5L14.3,1957.6L11.4,1957.1L5.8,1958.0L2.4,1957.6L0.8,1957.6L-0.9,1958.5L-3.2,1962.2L-4.9,1964.0L-8.8,1965.4L-12.2,1964.5L-25.1,1956.6L-27.9,1957.6L-27.9,1962.2L-35.8,1962.6L-42.0,1959.9L-44.2,1959.9L-45.9,1961.3L-46.5,1963.1L-46.5,1965.4L-47.6,1969.1L-48.7,1973.3L-49.3,1974.2L-61.1,1975.6L-63.9,1977.0L-67.3,1981.6L-68.4,1983.4L-72.4,1983.0L-72.4,1982.5L-73.5,1983.9L-76.3,1991.3L-77.4,1994.5L-78.6,1997.8L-80.2,2000.6L-81.4,2010.3L-83.1,2016.7L-85.9,2019.5L-90.9,2016.7L-99.4,2007.9L-103.3,2005.6L-108.4,2006.1L-111.2,2008.4L-114.6,2012.1L-116.3,2014.9L-120.2,2016.3L-126.9,2015.3L-130.9,2014.0L-133.1,2010.7L-132.6,2007.0L-126.4,1995.9L-125.8,1995.5L-124.7,1995.0L-124.1,1994.5L-123.6,1992.7L-124.1,1991.8L-125.3,1990.4L-125.3,1989.9L-125.3,1989.5L-127.5,1987.6L-128.1,1986.7L-128.1,1985.8L-126.9,1983.4L-126.4,1982.5L-127.5,1969.1L-128.6,1964.5L-129.8,1959.4L-131.4,1958.0L-136.5,1960.8L-139.9,1960.8L-143.3,1960.3L-152.3,1957.1L-151.7,1953.9L-151.7,1949.2L-151.7,1947.9L-150.6,1946.0L-157.3,1946.0L-160.1,1945.1L-162.9,1942.8L-164.1,1940.9L-166.3,1932.1L-169.1,1918.3L-170.8,1912.7L-174.8,1909.9L-175.9,1908.6L-178.7,1903.5L-179.8,1902.5L-180.9,1902.1L-181.5,1902.5L-182.1,1903.9L-195.6,1921.0L-196.7,1922.4L-198.9,1923.3L-200.6,1923.8L-205.7,1923.3L-208.5,1924.3L-211.3,1925.7L-213.6,1928.0L-215.8,1932.1L-218.1,1940.9L-217.5,1941.4L-217.5,1942.3L-216.9,1943.2L-217.5,1945.1L-218.1,1946.0L-219.8,1946.0L-220.3,1946.0L-221.4,1951.1L-222.0,1954.8L-223.1,1957.1L-227.6,1958.9L-231.6,1959.9L-233.3,1959.9L-234.9,1958.9L-237.8,1956.6L-239.4,1955.7L-242.8,1956.6L-249.0,1960.8L-252.9,1961.3L-255.8,1960.3L-256.9,1957.6L-256.3,1948.3L-256.3,1944.2L-257.4,1940.5L-257.4,1936.8L-256.3,1932.1L-260.8,1928.9L-276.0,1927.5Z"}};
+const MON = ["Spa","Lap","Gru","Sau","Vas","Kov","Bal","Geg","Bir","Lie","Rgp","Rgs"];
+const MONF = ["2025 m. spalis","2025 m. lapkritis","2025 m. gruodis","2026 m. sausis","2026 m. vasaris","2026 m. kovas","2026 m. balandis","2026 m. gegužė","2026 m. birželis","2026 m. liepa","2026 m. rugpjūtis","2026 m. rugsėjis"];
+const NM = 12, LAST = 11;
+const PER = {S:[11,11], Y:[3,11], A:[0,11]};
+const PLAB = {S:"rugsėjis", Y:"2026 m. sausis–rugsėjis", A:"2025-10–2026-09"};
+const REGS = ["Rytai","Pietūs","Vakarai","Šiaurė"];
+const fmt = n => Math.round(n).toLocaleString("lt-LT");
+const fmt1 = n => isFinite(n) ? n.toLocaleString("lt-LT",{minimumFractionDigits:1,maximumFractionDigits:1}) : "–";
+const svgNS = "http://www.w3.org/2000/svg";
+const el = (t,a={},p)=>{const e=document.createElementNS(svgNS,t);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;};
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
+const tip = document.getElementById("tip");
+function showTip(html,ev){tip.innerHTML=html;tip.hidden=false;moveTip(ev);}
+function moveTip(ev){const w=tip.offsetWidth,h=tip.offsetHeight;let x=ev.clientX+14,y=ev.clientY+14;if(x+w>innerWidth-8)x=ev.clientX-w-14;if(y+h>innerHeight-8)y=ev.clientY-h-14;tip.style.left=x+"px";tip.style.top=y+"px";}
+function hideTip(){tip.hidden=true;}
+const sumR = (a,[f,t]) => a.slice(f,t+1).reduce((x,y)=>x+y,0);
+const kl = n => `${n} ${n%10===1&&n%100!==11?"klubas":(n%10===0||(n%100>10&&n%100<20))?"klubų":"klubai"}`;
+
+/* ---------- derived per club ---------- */
+D.clubs.forEach(c=>{
+  c.act = c.v.map((x,i)=>x>0||c.s[i]>0);
+  const last = c.act.lastIndexOf(true);
+  c.last = last; c.idle = last<0 ? NM : LAST-last;
+  c.am = c.act.filter(Boolean).length;
+  for(const p in PER){c["v"+p]=sumR(c.v,PER[p]);c["s"+p]=sumR(c.s,PER[p]);c["a"+p]=c.act.slice(PER[p][0],PER[p][1]+1).some(Boolean);}
+  c.utS=c.u[11]; c.utY=c.ut9; c.utA=c.ut12;
+});
+
+/* ---------- status thresholds ---------- */
+let TY=2, TR=3, TD=6;
+const ST = {ok:{l:"Veikia",i:"&#9829;&#xFE0E;"},warn:{l:"Stebėti",i:"▲"},crit:{l:"Dėmesio!",i:"■"},dead:{l:"Neaktyvus",i:"✕"}};
+const STN = {ok:0,warn:1,crit:2,dead:3};
+const status = idle => idle>=TD?"dead":idle>=TR?"crit":idle>=TY?"warn":"ok";
+const stChip = s => `<span class="st ${s}"><i aria-hidden="true">${ST[s].i}</i>${ST[s].l}</span>`;
+function applyStatus(){D.clubs.forEach(c=>{c.st=status(c.idle);c.stn=STN[c.st];});}
+applyStatus();
+
+/* ---------- KPI bands ---------- */
+const locsActive = p => new Set(D.clubs.filter(c=>c["a"+p]).map(c=>c.loc)).size;
+const allLocs = new Set(D.clubs.map(c=>c.loc)).size;
+const kpiHTML=a=>a.map(([l,v,s,al])=>`<div class="kpi"><span class="lab">${l}</span><span class="val">${v}</span><span class="sub">${s}</span>${al?`<span class="also">12 mėn.: <b>${al}</b></span>`:""}</div>`).join("");
+const sessM = MON.map((_,i)=>D.clubs.reduce((s,c)=>s+c.s[i],0));
+const clubsM = MON.map((_,i)=>D.clubs.filter(c=>c.act[i]).length);
+function kpiVals(p,uniq){const v=sumR(D.totV,PER[p]),s=sumR(sessM,PER[p]),n=D.clubs.filter(c=>c["a"+p]).length;return [fmt(uniq),fmt(v),fmt1(v/uniq),fmt(s),String(n),String(locsActive(p))];}
+function kpis(p,uniq,subs,also){
+  const k=kpiVals(p,uniq), a=also?kpiVals(also[0],also[1]):[];
+  return kpiHTML([
+    ["<b>Unikalių senjorų</b>",k[0],subs[0],a[0]],
+    ["<b>Apsilankymų</b>",k[1],subs[1],a[1]],
+    ["<b>Apsilankymų</b>",k[2],subs[2],a[2]],
+    ["<b>Užsiėmimų</b>",k[3],"dienos, kai klube vyko veikla",a[3]],
+    ["<b>Veikusių klubų</b>",k[4],`iš ${D.clubs.length} klubų`,a[4]],
+    ["<b>Vietovių</b>",k[5],`iš ${allLocs} vietovių`,a[5]]
+  ]);
+}
+const avgPrev = a => a.slice(0,11).reduce((x,y)=>x+y,0)/11;
+document.getElementById("kpisS").innerHTML=kpis("S",D.totU[11],[`vid. per mėn. 2025-10–2026-08: <b>${fmt(avgPrev(D.totU))}</b>`,`vid. per mėn. 2025-10–2026-08: <b>${fmt(avgPrev(D.totV))}</b>`,"<b>vienam senjorui</b> per rugsėjį"]);
+document.getElementById("kpisY").innerHTML=kpis("Y",D.totU2026,["skirtingi žmonės per 9 mėn.","dalyvavimo užsiėmimuose kartų","<b>vienam senjorui</b>, vid. per 9 mėn."],["A",D.totUall]);
+
+/* ---------- trend ---------- */
+(function(){
+  const s=document.getElementById("trend"),W=1000,H=310,m={l:52,r:16,t:24,b:52};
+  const max=Math.ceil(Math.max(...D.totV)/200)*200, cw=(W-m.l-m.r)/NM;
+  const x=i=>m.l+(i+.5)*cw, y=v=>H-m.b-(v/max)*(H-m.t-m.b), bw=cw*0.56;
+  const ax=el("g",{class:"axis"},s);
+  for(let v=0;v<=max;v+=200){el("line",{x1:m.l,x2:W-m.r,y1:y(v),y2:y(v),stroke:"var(--grid)","stroke-width":1},ax);el("text",{x:m.l-8,y:y(v)+4,"text-anchor":"end"},ax).textContent=fmt(v);}
+  const xs=m.l+3*cw; el("line",{x1:xs,x2:xs,y1:m.t-6,y2:H-m.b+40,stroke:"var(--line)","stroke-width":1.5,"stroke-dasharray":"4 3"},s);
+  el("text",{x:m.l+1.5*cw,y:H-8,"text-anchor":"middle","font-size":14,"font-weight":700,style:"fill:var(--ink)"},s).textContent="2025";
+  el("text",{x:m.l+7.5*cw,y:H-8,"text-anchor":"middle","font-size":14,"font-weight":700,style:"fill:var(--ink)"},s).textContent="2026";
+  D.totV.forEach((v,i)=>{el("path",{d:`M${x(i)-bw/2},${H-m.b}V${y(v)+4}q0,-4 4,-4H${x(i)+bw/2-4}q4,0 4,4V${H-m.b}Z`,fill:"var(--c1)",opacity:.9},s);
+    el("text",{x:x(i),y:y(v)-7,"text-anchor":"middle","font-size":14,"font-weight":700,style:"fill:var(--ink)"},s).textContent=fmt(v);
+    el("text",{x:x(i),y:H-m.b+20,"text-anchor":"middle","font-size":14},ax).textContent=MON[i];});
+  const pts=D.totU.map((v,i)=>[x(i),y(v)]);
+  el("path",{d:"M"+pts.map(p=>p.join(",")).join("L"),fill:"none",stroke:"var(--c2)","stroke-width":2.5},s);
+  pts.forEach(p=>el("circle",{cx:p[0],cy:p[1],r:5,fill:"var(--c2)",stroke:"var(--surface)","stroke-width":2},s));
+  D.totV.forEach((v,i)=>{const r=el("rect",{x:x(i)-cw/2,y:m.t,width:cw,height:H-m.t-m.b,fill:"transparent"},s);
+    r.addEventListener("mousemove",ev=>showTip(`<b>${MONF[i]}</b><br>Apsilankymai: <b>${fmt(v)}</b><br>Unikalūs senjorai: <b>${fmt(D.totU[i])}</b><br>Užsiėmimai: <b>${fmt(sessM[i])}</b><br>Veikę klubai: <b>${clubsM[i]}</b>`,ev));
+    r.addEventListener("mouseleave",hideTip);});
+})();
+(function(){
+  const S=PER.Y,A=PER.A;
+  const rows=[
+    ["Apsilankymai",D.totV.map(fmt),fmt(sumR(D.totV,S)),fmt(D.totVall)],
+    ["Unikalūs senjorai",D.totU.map(fmt),fmt(D.totU2026),fmt(D.totUall)],
+    ["Apsilankymų vienam senjorui",D.totV.map((v,i)=>fmt1(v/D.totU[i])),fmt1(sumR(D.totV,S)/D.totU2026),fmt1(D.totVall/D.totUall)],
+    ["Užsiėmimai",sessM.map(fmt),fmt(sumR(sessM,S)),fmt(sumR(sessM,A))],
+    ["Veikę klubai",clubsM.map(String),String(D.clubs.filter(c=>c.aY).length),String(D.clubs.filter(c=>c.aA).length)]
+  ];
+  document.getElementById("mtbl").innerHTML=`<thead><tr><th scope="col">Rodiklis</th>${MON.map((m,i)=>`<th scope="col">${i===0||i===3?`<span style="font-weight:400;color:var(--ink-2)">${i?2026:2025}</span><br>`:"<br>"}${m}</th>`).join("")}<th scope="col" class="tot">2026<br>01–09</th><th scope="col" class="tot">12 mėn.</th></tr></thead><tbody>`+
+    rows.map(([n,v,y,a])=>`<tr><td>${n}</td>${v.map(x=>`<td>${x}</td>`).join("")}<td class="tot">${y}</td><td class="tot">${a}</td></tr>`).join("")+"</tbody>";
+})();
+
+/* ---------- regions & branches ---------- */
+function stCounts(list){const o={ok:0,warn:0,crit:0,dead:0};list.forEach(c=>o[c.st]++);return o;}
+function chipsFor(list){const o=stCounts(list);return ["warn","crit","dead"].filter(k=>o[k]).map(k=>`<span class="st ${k}" title="${ST[k].l}"><i aria-hidden="true">${ST[k].i}</i>${o[k]}</span>`).join("")||`<span style="color:var(--ink-2)">–</span>`;}
+function aggRow(list){return {n:list.length,aS:list.filter(c=>c.aS).length,vS:list.reduce((s,c)=>s+c.vS,0),vY:list.reduce((s,c)=>s+c.vY,0),vA:list.reduce((s,c)=>s+c.vA,0),sA:list.reduce((s,c)=>s+c.sA,0),ut:list.reduce((s,c)=>s+c.utA,0)};}
+const SKY = [...new Set(D.clubs.map(c=>c.sky))];
+function drawRegions(){
+  const head=`<thead><tr><th class="l">#COL#</th>#EXTRA#<th>Klubai</th><th>Veikė rugsėjį</th><th>Apsilankymai<br>09</th><th>Apsilankymai<br>01–09</th><th>Apsilankymai<br>12 mėn.</th><th>Užsiėmimai<br>12 mėn.</th><th>Unikalūs senjorai 12 mėn. (klubų suma)</th><th>Signalai</th></tr></thead>`;
+  const row=(name,list,extra="")=>{const a=aggRow(list);return `<tr><td><b>${name}</b></td>${extra}<td>${a.n}</td><td>${a.aS} iš ${a.n}</td><td><b>${fmt(a.vS)}</b></td><td>${fmt(a.vY)}</td><td>${fmt(a.vA)}</td><td>${fmt(a.sA)}</td><td>${fmt(a.ut)}</td><td><span class="chips">${chipsFor(list)}</span></td></tr>`;};
+  document.getElementById("regtbl").innerHTML=head.replace("#COL#","Regionas").replace("#EXTRA#","<th class=\"l\">Skyriai</th>")+"<tbody>"+
+    REGS.map(r=>{const l=D.clubs.filter(c=>c.reg===r);return row(r,l,`<td class="l">${[...new Set(l.map(c=>c.sky))].sort((a,b)=>a.localeCompare(b,"lt")).join(", ")}</td>`);}).join("")+
+    row("Iš viso",D.clubs,"<td></td>").replace("<tr>",'<tr class="grp">')+"</tbody>";
+  document.getElementById("skytbl").innerHTML=head.replace("#COL#","Skyrius").replace("#EXTRA#","<th class=\"l\">Regionas</th>")+"<tbody>"+
+    REGS.flatMap(r=>SKY.filter(s=>D.clubs.find(c=>c.sky===s).reg===r).map(s=>({s,r,l:D.clubs.filter(c=>c.sky===s)})).sort((a,b)=>aggRow(b.l).vA-aggRow(a.l).vA)
+      .map(o=>row(o.s,o.l,`<td class="l">${o.r}</td>`))).join("")+"</tbody>";
+}
+(function(){
+  const box=document.getElementById("multi");
+  const series=REGS.map(r=>MON.map((_,i)=>D.clubs.filter(c=>c.reg===r).reduce((s,c)=>s+c.v[i],0)));
+  const max=Math.ceil(Math.max(...series.flat())/100)*100;
+  REGS.forEach((r,k)=>{
+    const d=document.createElement("div");d.className="mini";
+    const tot=series[k].reduce((a,b)=>a+b,0);
+    d.innerHTML=`<h4>${r}<span>${fmt(tot)}</span></h4><p>apsilankymai per 12 mėn.</p>`;
+    const W=300,H=150,m={l:34,r:4,t:18,b:22},cw=(W-m.l-m.r)/NM,bw=cw*.62;
+    const s=el("svg",{viewBox:`0 0 ${W} ${H}`,role:"img","aria-label":`${r}: apsilankymai pagal mėnesį`});
+    const y=v=>H-m.b-(v/max)*(H-m.t-m.b);
+    [0,max/2,max].forEach(v=>{el("line",{x1:m.l,x2:W-m.r,y1:y(v),y2:y(v),stroke:"var(--grid)"},s);el("text",{x:m.l-4,y:y(v)+4,"text-anchor":"end","font-size":12},s).textContent=fmt(v);});
+    series[k].forEach((v,i)=>{const x=m.l+i*cw+(cw-bw)/2;
+      if(v>0)el("rect",{x,y:y(v),width:bw,height:H-m.b-y(v),rx:2,fill:"var(--c1)",opacity:.9},s);
+      if(i===0||i===3||i===11)el("text",{x:x+bw/2,y:H-4,"text-anchor":"middle","font-size":12},s).textContent=MON[i];
+      const hit=el("rect",{x:m.l+i*cw,y:m.t,width:cw,height:H-m.t-m.b,fill:"transparent"},s);
+      hit.addEventListener("mousemove",ev=>showTip(`<b>${r}</b> · ${MONF[i]}<br>Apsilankymai: <b>${fmt(v)}</b><br>Veikę klubai: <b>${D.clubs.filter(c=>c.reg===r&&c.act[i]).length}</b>`,ev));
+      hit.addEventListener("mouseleave",hideTip);});
+    const lastV=series[k][11];el("text",{x:m.l+11*cw+cw/2,y:y(lastV)-4,"text-anchor":"middle","font-size":13,"font-weight":700,style:"fill:var(--ink)"},s).textContent=fmt(lastV);
+    d.appendChild(s);box.appendChild(d);
+  });
+})();
+
+/* ---------- activity signal ---------- */
+const gapsAll=[]; // resumed pauses
+D.clubs.forEach(c=>{const idx=c.act.map((a,i)=>a?i:-1).filter(i=>i>=0);for(let k=1;k<idx.length;k++){const g=idx[k]-idx[k-1]-1;if(g>0)gapsAll.push({c:c.n,len:g,from:idx[k-1]+1,to:idx[k]-1});}});
+["tY","tR","tD"].forEach((id,j)=>{const s=document.getElementById(id);for(let i=1;i<=11;i++){const o=document.createElement("option");o.value=i;o.textContent=`po ${i} mėn. be veiklos`;s.appendChild(o);}s.value=[TY,TR,TD][j];
+  s.addEventListener("change",()=>{let y=+tY.value,r=+tR.value,d=+tD.value;
+    if(id==="tY"){if(r<=y)r=y+1;if(d<=r)d=r+1;} if(id==="tR"){if(y>=r)y=r-1;if(d<=r)d=r+1;} if(id==="tD"){if(r>=d)r=d-1;if(y>=r)y=r-1;}
+    y=Math.max(1,y);r=Math.min(Math.max(r,y+1),10);d=Math.min(Math.max(d,r+1),11);
+    TY=y;TR=r;TD=d;tY.value=y;tR.value=r;tD.value=d;applyStatus();refreshStatus();});});
+const tY=document.getElementById("tY"),tR=document.getElementById("tR"),tD=document.getElementById("tD");
+const stColor = s => `var(--${s})`;
+function drawIdle(){
+  const s=document.getElementById("idle");s.innerHTML="";const W=560,H=300,m={l:34,r:8,t:22,b:58};
+  const bins=Array.from({length:12},(_,i)=>D.clubs.filter(c=>Math.min(c.idle,11)===i));
+  const max=Math.max(...bins.map(b=>b.length)), cw=(W-m.l-m.r)/12, bw=cw*.64;
+  const y=v=>H-m.b-(v/max)*(H-m.t-m.b);
+  [0,10,20,30].filter(v=>v<=max+5).forEach(v=>{el("line",{x1:m.l,x2:W-m.r,y1:y(v),y2:y(v),stroke:"var(--grid)"},s);el("text",{x:m.l-6,y:y(v)+4,"text-anchor":"end","font-size":12},s).textContent=v;});
+  bins.forEach((b,i)=>{const x=m.l+i*cw+(cw-bw)/2,st=status(i);
+    if(b.length)el("path",{d:`M${x},${H-m.b}V${y(b.length)+3}q0,-3 3,-3H${x+bw-3}q3,0 3,3V${H-m.b}Z`,fill:stColor(st)},s);
+    el("text",{x:x+bw/2,y:y(b.length)-6,"text-anchor":"middle","font-size":13,"font-weight":700,style:"fill:var(--ink)"},s).textContent=b.length;
+    el("text",{x:x+bw/2,y:H-m.b+17,"text-anchor":"middle","font-size":13},s).textContent=i===11?"11+":i;
+    const hit=el("rect",{x:m.l+i*cw,y:m.t,width:cw,height:H-m.t-m.b,fill:"transparent"},s);
+    hit.addEventListener("mousemove",ev=>showTip(`<b>${i===0?"Veikė rugsėjį":`${i===11?"11 ir daugiau":i} mėn. be veiklos`}</b> · ${ST[st].l}<br>${kl(b.length)}${b.length&&i>0?": "+b.map(c=>esc(c.n)).join(", "):""}`,ev));
+    hit.addEventListener("mouseleave",hideTip);});
+  el("text",{x:(W+m.l)/2,y:H-m.b+38,"text-anchor":"middle","font-size":13},s).textContent="mėnesiai be veiklos (0 – veikė rugsėjį)";
+  // legend
+  let lx=m.l;["ok","warn","crit","dead"].forEach(k=>{el("rect",{x:lx,y:H-14,width:12,height:12,rx:2,fill:stColor(k)},s);const t=el("text",{x:lx+16,y:H-4,"font-size":12,style:"fill:var(--ink)"},s);t.textContent=ST[k].l;lx+=16+ST[k].l.length*7+18;});
+}
+function drawGaps(){
+  const s=document.getElementById("gaps");s.innerHTML="";const W=560,H=300,m={l:34,r:8,t:22,b:58};
+  const bins=Array.from({length:8},(_,i)=>gapsAll.filter(g=>Math.min(g.len,8)===i+1));
+  const max=Math.max(...bins.map(b=>b.length)),cw=(W-m.l-m.r)/8,bw=cw*.6;
+  const y=v=>H-m.b-(v/max)*(H-m.t-m.b);
+  [0,10,20,30].filter(v=>v<=max+5).forEach(v=>{el("line",{x1:m.l,x2:W-m.r,y1:y(v),y2:y(v),stroke:"var(--grid)"},s);el("text",{x:m.l-6,y:y(v)+4,"text-anchor":"end","font-size":12},s).textContent=v;});
+  bins.forEach((b,i)=>{const len=i+1,x=m.l+i*cw+(cw-bw)/2,st=status(len);
+    if(b.length)el("path",{d:`M${x},${H-m.b}V${y(b.length)+3}q0,-3 3,-3H${x+bw-3}q3,0 3,3V${H-m.b}Z`,fill:"var(--c2)",opacity:.9},s);
+    el("text",{x:x+bw/2,y:y(b.length)-6,"text-anchor":"middle","font-size":13,"font-weight":700,style:"fill:var(--ink)"},s).textContent=b.length;
+    el("text",{x:x+bw/2,y:H-m.b+17,"text-anchor":"middle","font-size":13},s).textContent=len===8?"8+":len;
+    if(st!=="ok")el("rect",{x:x,y:H-m.b+24,width:bw,height:5,rx:2,fill:stColor(st)},s);
+    const hit=el("rect",{x:m.l+i*cw,y:m.t,width:cw,height:H-m.t-m.b,fill:"transparent"},s);
+    hit.addEventListener("mousemove",ev=>showTip(`<b>${len===8?"8 ir daugiau":len} mėn. pertrauka</b>, po kurios klubas grįžo<br>${b.length} kart.${b.length?"<br>"+b.map(g=>`${esc(g.c)} (${MON[g.from]}${g.to>g.from?"–"+MON[g.to]:""})`).join("<br>"):""}`,ev));
+    hit.addEventListener("mouseleave",hideTip);});
+  el("text",{x:(W+m.l)/2,y:H-m.b+50,"text-anchor":"middle","font-size":13},s).textContent="pertraukos trukmė, mėn.";
+  }
+function refreshStatus(){
+  const o=stCounts(D.clubs);
+  document.getElementById("sumchips").innerHTML=["ok","warn","crit","dead"].map(k=>`<div class="sc"><b>${o[k]}</b><span>${stChip(k)}</span></div>`).join("");
+  drawIdle();drawGaps();
+  const total=gapsAll.length, short=gapsAll.filter(g=>g.len<TY).length, warnG=gapsAll.filter(g=>g.len>=TY&&g.len<TR).length, redG=gapsAll.filter(g=>g.len>=TR&&g.len<TD).length, deadG=gapsAll.filter(g=>g.len>=TD).length;
+  document.getElementById("insight").innerHTML=`Per 12 mėnesių klubai <b>${total} kartus</b> darė pertrauką ir vėl grįžo. ${short} iš jų truko trumpiau nei „Stebėti“ riba, ${warnG} būtų įjungę signalą „Stebėti“, <b>${redG}</b> – „Dėmesio!“, <b>${deadG}</b> – klubas būtų laikytas neaktyviu, nors vėliau grįžo. ${redG+deadG===0?"Su šiomis ribomis nė viena grįžusi pertrauka nebūtų sukėlusi signalo „Dėmesio!“.":"Šie atvejai rodo, kiek būtų klaidingų pavojaus signalų."} Nuo vasaros pertraukos (liepa–rugpjūtis) grįžę klubai matomi kaip 1–2 mėn. pertraukos.`;
+  const list=D.clubs.filter(c=>c.st!=="ok").sort((a,b)=>b.idle-a.idle||a.n.localeCompare(b.n,"lt"));
+  document.getElementById("sigtbl").innerHTML=`<thead><tr><th class="l">Klubas</th><th class="l">Regionas / skyrius</th><th class="l">Paskutinė veikla</th><th>Mėn. be veiklos</th><th class="l">Būsena</th><th>Apsilankymai 12 mėn.</th><th>Mėn. su veikla</th></tr></thead><tbody>`+
+    (list.map(c=>`<tr><td class="l"><button type="button" class="lnk" data-club="${esc(c.n)}">${esc(c.n)}</button></td><td class="l">${c.reg} / ${c.sky}</td><td class="l">${c.last<0?"–":MONF[c.last]}</td><td><b>${c.idle}</b></td><td class="l">${stChip(c.st)}</td><td>${fmt(c.vA)}</td><td>${c.am}/12</td></tr>`).join("")||`<tr><td colspan="7" class="l">Klubų su signalu nėra.</td></tr>`)+"</tbody>";
+  document.querySelectorAll("#sigtbl .lnk").forEach(b=>b.addEventListener("click",()=>openClub(b.dataset.club)));
+  drawRegions();drawTable();if(LOCS_READY)drawMap();
+}
+
+/* ---------- map ---------- */
+let metric="vt", period="A", selLoc=null;
+const MLAB={vt:"apsilankymai",ut:"unikalūs senjorai (klubų suma)",n:"veikę klubai"};
+const locs={};
+D.clubs.forEach(c=>{(locs[c.loc]||(locs[c.loc]={name:c.loc,all:[],clubs:[]})).all.push(c);});
+const stSel=new Set(["ok","warn","crit","dead"]);
+const LOCS=Object.values(locs);LOCS_READY=true;
+function val(L,m,p=period){if(m==="vt")return L.clubs.reduce((s,c)=>s+c["v"+p],0);if(m==="ut")return L.clubs.reduce((s,c)=>s+c["ut"+p],0);return L.clubs.filter(c=>c["a"+p]).length;}
+const map=document.getElementById("map");
+map.setAttribute("viewBox",`0 0 ${G.W} ${G.H}`);
+const proj=([la,lo])=>[(lo-G.lon0)*G.k*G.sx,(G.lat1-la)*G.sx];
+["Latvia","Belarus","Poland","Russia"].forEach(n=>G.shapes[n]&&el("path",{d:G.shapes[n],fill:"var(--land-out)",stroke:"var(--border-land)","stroke-width":1},map));
+el("path",{d:G.shapes.Lithuania,fill:"var(--land)",stroke:"var(--border-land)","stroke-width":1.6},map);
+[["LATVIJA",[56.4,24.2]],["BALTARUSIJA",[54.1,26.2]],["LENKIJA",[53.95,22.9]],["BALTIJOS",[55.2,20.9]],["JŪRA",[55.12,20.9]]].forEach(([t,c])=>{const [px,py]=proj(c);el("text",{x:px,y:py,"font-size":19,"letter-spacing":"2",style:"fill:var(--muted)","text-anchor":(t==="BALTIJOS"||t==="JŪRA")?"start":"middle"},map).textContent=t;});
+const gB=el("g",{},map), gL=el("g",{},map);
+function drawMap(){
+  gB.innerHTML="";gL.innerHTML="";
+  LOCS.forEach(L=>{L.clubs=L.all.filter(c=>stSel.has(c.st));});
+  drawStChips();
+  const VL=LOCS.filter(L=>L.clubs.length);
+  const ul=document.getElementById("loclist");
+  if(!VL.length){ul.innerHTML='<li style="padding:8px;color:var(--ink-2)">Pasirinkite bent vieną būseną.</li>';return;}
+  const max=Math.max(1,...VL.map(l=>val(l,metric)));
+  const R=v=>5+Math.sqrt(v/max)*44;
+  const sorted=[...VL].sort((a,b)=>val(b,metric)-val(a,metric)||a.name.localeCompare(b.name,"lt"));
+  sorted.forEach(L=>{const [px,py]=proj(D.coords[L.name]);const on=selLoc===L.name;const v=val(L,metric);
+    const c=v>0?el("circle",{cx:px,cy:py,r:R(v),fill:"var(--red)","fill-opacity":selLoc&&!on?.25:.72,stroke:on?"var(--ink)":"var(--surface)","stroke-width":on?3:2,class:"bub",tabindex:0,role:"button","aria-label":`${L.name}: ${fmt(v)} ${MLAB[metric]}, ${PLAB[period]}`},gB)
+      :el("circle",{cx:px,cy:py,r:6,fill:"var(--land)",stroke:on?"var(--ink)":"var(--muted)","stroke-width":on?3:2,"stroke-dasharray":"3 2",class:"bub",tabindex:0,role:"button","aria-label":`${L.name}: klubai neveikė, ${PLAB[period]}`},gB);
+    c.addEventListener("mousemove",ev=>showTip(locTip(L),ev));c.addEventListener("mouseleave",hideTip);
+    c.addEventListener("click",()=>selectLoc(L.name));c.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();selectLoc(L.name);}});});
+  const boxes=sorted.filter(L=>val(L,metric)>0).map(L=>{const [px,py]=proj(D.coords[L.name]);const r=R(val(L,metric));return [px-r*.55,py-r*.55,px+r*.55,py+r*.55];});
+  const hits=(b,list)=>list.some(o=>!(b[2]<o[0]||b[0]>o[2]||b[3]<o[1]||b[1]>o[3]));
+  const lab=[];
+  sorted.forEach(L=>{const v=val(L,metric);if(v<=0)return;const [px,py]=proj(D.coords[L.name]);const r=R(v);const t=`${L.name} ${fmt(v)}`;const w=t.length*11.8+6;
+    const cands=[[px+r+5,py+7,"start"],[px-r-5,py+7,"end"],[px,py-r-7,"middle"],[px,py+r+21,"middle"]];
+    for(const [tx,ty,an] of cands){const x0=an==="start"?tx:an==="end"?tx-w:tx-w/2;const b=[x0,ty-19,x0+w,ty+6];
+      if(b[0]<2||b[2]>G.W-2||b[1]<2||b[3]>G.H-2)continue;
+      if(hits(b,lab)||hits(b,boxes))continue;
+      lab.push(b);const g=el("text",{x:tx,y:ty,"text-anchor":an,"font-size":21,style:"fill:var(--ink);paint-order:stroke;stroke:var(--land);stroke-width:4px;stroke-linejoin:round","pointer-events":"none"},gL);
+      g.innerHTML=`<tspan font-weight="700">${L.name}</tspan> ${fmt(v)}`;break;}});
+  const lmax=val(sorted[0],metric)||1;
+  ul.innerHTML=sorted.map(L=>{const v=val(L,metric);const n=L.clubs.length,na=L.clubs.filter(c=>c["a"+period]).length;
+    const sub=period==="A"?`${kl(n)} · ${L.clubs[0].sky} sk.`:(na?`veikė ${na} iš ${kl(n)}`:`neveikė (${kl(n)})`);
+    return `<li><button type="button" data-loc="${L.name}" class="${selLoc===L.name?"on":""}${v?"":" off"}"><span><span class="nm">${L.name}</span><span class="cl">${sub}</span>${v?`<div class="bar" style="width:${Math.max(2,v/lmax*100)}%"></div>`:""}</span><span class="n">${fmt(v)}</span></button></li>`;}).join("");
+  ul.querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>selectLoc(b.dataset.loc)));
+}
+function drawStChips(){const box=document.getElementById("segS");
+  box.innerHTML=["ok","warn","crit","dead"].map(k=>`<button type="button" data-s="${k}" aria-pressed="${stSel.has(k)}"><i aria-hidden="true" class="si ${k}">${ST[k].i}</i>${ST[k].l} <span class="sn">${D.clubs.filter(c=>c.st===k).length}</span></button>`).join("");
+  box.querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{const k=b.dataset.s;stSel.has(k)?stSel.delete(k):stSel.add(k);drawMap();}));}
+function locTip(L){const p=period,cl=[...L.clubs].sort((a,b)=>b["v"+p]-a["v"+p]);
+  return `<b>${L.name}</b> · ${PLAB[p]}<br>${L.clubs[0].reg} regionas, ${L.clubs[0].sky} skyrius<br>Apsilankymai: <b>${fmt(val(L,"vt"))}</b><br>Unikalūs senjorai: <b>${fmt(val(L,"ut"))}</b><br>Veikė klubų: <b>${val(L,"n")} iš ${L.clubs.length}</b><br>${cl.map(c=>esc(c.n)+(c["a"+p]?"":" (neveikė)")).join(", ")}`;}
+document.querySelectorAll("#segM button").forEach(b=>b.addEventListener("click",()=>{metric=b.dataset.m;document.querySelectorAll("#segM button").forEach(x=>x.setAttribute("aria-pressed",x===b));drawMap();}));
+document.querySelectorAll("#segP button").forEach(b=>b.addEventListener("click",()=>{period=b.dataset.p;document.querySelectorAll("#segP button").forEach(x=>x.setAttribute("aria-pressed",x===b));drawMap();}));
+function selectLoc(n,go=true){selLoc=selLoc===n&&!go?null:n;if(go){q="";qEl().value="";fSt=stSel.size===1?[...stSel][0]:"";document.getElementById("fSt").value=fSt;}drawMap();drawTable();if(go&&selLoc)showTab("klubai",true);}
+const qEl=()=>document.getElementById("q");
+function openClub(name){selLoc=null;fReg="";fSt="";document.getElementById("fReg").value="";document.getElementById("fSt").value="";q=name.toLowerCase();qEl().value=name;drawMap();drawTable();showTab("klubai",true);}
+/* ---------- tabs ---------- */
+const TABS=["apzvalga","regionai","signalas","veiklos","klubai"];
+function showTab(id,scroll){if(!TABS.includes(id))id="apzvalga";
+  TABS.forEach(t=>{const on=t===id;document.getElementById("tab-"+t).hidden=!on;const b=document.getElementById("t-"+t);b.setAttribute("aria-selected",on);b.tabIndex=on?0:-1;});
+  try{history.replaceState(null,"","#"+id);}catch(e){}
+  hideTip(); if(scroll)document.querySelector(".tabs").scrollIntoView({block:"start"});}
+document.querySelectorAll(".tabs button").forEach((b,i,all)=>{b.addEventListener("click",()=>showTab(b.dataset.tab));
+  b.addEventListener("keydown",e=>{if(e.key==="ArrowRight"||e.key==="ArrowLeft"){const n=all[(i+(e.key==="ArrowRight"?1:all.length-1))%all.length];n.focus();showTab(n.dataset.tab);}});});
+
+/* ---------- activities ---------- */
+(function(){
+  const short={"Kita teminė veikla: gimtadienių paminėjimai, ne pagrindinės šventės (pyragų diena,  Atvelykis, Žolinės, Joninės ir pan.)":"Kita teminė veikla (gimtadieniai, Joninės ir pan.)",
+    "Savanorystės skatinimo veikla (senjorų įsitraukimas į savanorystės veiklas)":"Savanorystės skatinimo veikla"};
+  const agg={};
+  for(const [a,v] of Object.entries(D.acts)){let n=a;if(/^Psichoedukacija/.test(a))n="Psichoedukacija (visos temos)";n=short[n]||n;agg[n]=(agg[n]||0)+v.reduce((s,x)=>s+x,0);}
+  const arr=Object.entries(agg).filter(([n])=>n!=="Veikla nenurodyta").sort((a,b)=>b[1]-a[1]);
+  const top=arr.slice(0,14),rest=arr.slice(14);
+  if(rest.length)top.push([`Kitos rūšys (${rest.length}): ${rest.map(r=>r[0].toLowerCase().replace(/ \/ .*/,"").replace(/ \(.*\)/,"")).join(", ")}`,rest.reduce((s,r)=>s+r[1],0)]);
+  if(agg["Veikla nenurodyta"])top.push(["Veikla nenurodyta",agg["Veikla nenurodyta"]]);
+  const max=Math.max(...top.map(t=>t[1]));
+  document.getElementById("acts").innerHTML=top.map(([n,v])=>`<div class="arow${n==="Veikla nenurodyta"?" na":""}"><span class="t">${n}</span><span class="track"><span class="fill" style="display:block;width:${v/max*100}%"></span></span><span class="v">${fmt(v)}</span></div>`).join("");
+})();
+
+/* ---------- club table ---------- */
+let sortK="vA",sortDir=-1,q="",fReg="",fSt="";
+REGS.forEach(r=>{const o=document.createElement("option");o.value=r;o.textContent=r;document.getElementById("fReg").appendChild(o);});
+const hc=v=>v===0?"z":v<10?"var(--h1)":v<20?"var(--h2)":v<40?"var(--h3)":"var(--h4)";
+function drawTable(){
+  let rows=D.clubs.filter(c=>(!selLoc||c.loc===selLoc)&&(!fReg||c.reg===fReg)&&(!fSt||c.st===fSt)&&(!q||(c.n+" "+c.loc+" "+c.sky).toLowerCase().includes(q)));
+  rows.sort((a,b)=>{const x=a[sortK],y=b[sortK];return (typeof x==="string"?x.localeCompare(y,"lt"):x-y)*sortDir||b.vA-a.vA;});
+  document.querySelector("#tbl tbody").innerHTML=rows.map(c=>`<tr><td><b>${esc(c.n)}</b>${c.ua?'<span class="tag">UA</span>':""}<span class="cmeta">${c.loc} · ${c.sky} sk. · ${c.reg}</span></td>
+    <td>${stChip(c.st)}<span class="cmeta">${c.last<0?"veiklos nėra":c.idle===0?"veikė rugsėjį":`pask. veikla: ${D.months[c.last]}`}</span></td>
+    <td class="num">${fmt(c.ut12)}</td><td class="num">${fmt(c.vA)}</td><td class="num">${fmt(c.sA)}</td><td class="num">${c.am}/12</td>
+    <td><div class="strip">${c.v.map((v,i)=>(i===3?'<i class="yr"></i>':"")+(v===0?`<i class="z" title="${MONF[i]}: 0"></i>`:`<i style="background:${hc(v)}" title="${MONF[i]}: ${v}"></i>`)).join("")}</div></td>
+    <td class="topa">${c.top||"–"}</td></tr>`).join("")||`<tr><td colspan="8">Pagal pasirinktus filtrus klubų nerasta.</td></tr>`;
+  document.getElementById("chip").innerHTML=selLoc?`<span class="chip">Vietovė: ${selLoc}<button type="button" aria-label="Rodyti visas vietoves" id="clr">×</button></span>`:"";
+  const clr=document.getElementById("clr");if(clr)clr.onclick=()=>{selLoc=null;drawMap();drawTable();};
+  document.querySelectorAll("#tbl th").forEach(th=>{th.dataset.k===sortK?th.setAttribute("aria-sort",sortDir<0?"descending":"ascending"):th.removeAttribute("aria-sort");});
+}
+document.querySelectorAll("#tbl th").forEach(th=>{if(["none","top"].includes(th.dataset.k))return;const go=()=>{const k=th.dataset.k;if(sortK===k)sortDir*=-1;else{sortK=k;sortDir=["n","reg"].includes(k)?1:-1;}drawTable();};th.addEventListener("click",go);th.addEventListener("keydown",e=>{if(e.key==="Enter")go();});});
+document.getElementById("q").addEventListener("input",e=>{q=e.target.value.trim().toLowerCase();drawTable();});
+document.getElementById("fReg").addEventListener("change",e=>{fReg=e.target.value;drawTable();});
+document.getElementById("fSt").addEventListener("change",e=>{fSt=e.target.value;drawTable();});
+
+drawMap();refreshStatus();showTab((location.hash||"").replace("#",""));
+</script>
+
+</body>
+</html>
