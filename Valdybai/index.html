@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="lt">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Valdybai · LRK</title>
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700;900&display=swap" rel="stylesheet">
@@ -11,6 +11,8 @@
   --navy:     #1B2A4A;
   --teal:     #0098A5;
   --amber:    #D9A521;
+  --amber-dk: #8A6510;
+  --purple:   #6C4AB6;
   --gray-05:  #F5F6F8;
   --gray-10:  #EAECEE;
   --gray-30:  #BFC9CA;
@@ -33,51 +35,74 @@ body { font-family: var(--font); background: var(--gray-05); color: var(--gray-8
   font-weight: 900; font-size: 13px; color: white; letter-spacing: .3px;
 }
 .brand-main { font-size: 16px; font-weight: 700; color: white; }
-.brand-sub  { font-size: 13px; color: rgba(255,255,255,.45); margin-top: 2px; letter-spacing: .3px; }
+.brand-sub  { font-size: 13px; color: rgba(255,255,255,.55); margin-top: 2px; letter-spacing: .3px; }
 
 .page { padding: 32px 36px 48px; max-width: 900px; margin: 0 auto; }
 .page-title h1 { font-size: 26px; font-weight: 900; color: var(--navy); letter-spacing: -.3px; }
 .page-title h1 span { color: var(--red); }
-.page-title .meta { font-size: 14px; color: var(--gray-50); margin-top: 6px; line-height: 1.5; }
+.page-title .meta { font-size: 15px; color: var(--gray-80); margin-top: 6px; line-height: 1.5; }
 
 .section { margin-top: 30px; }
 .section-title {
-  font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px;
-  color: var(--gray-50); margin-bottom: 10px; display: flex; align-items: center; gap: 10px;
+  font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px;
+  color: var(--gray-80); margin-bottom: 10px; display: flex; align-items: center; gap: 10px;
 }
 .section-title::after { content: ''; flex: 1; height: 1px; background: var(--gray-10); }
 
 .card-list { display: flex; flex-direction: column; gap: 10px; }
+
+/* Kortelė — viena tema, joje gali būti kelios ataskaitos (pagal mėnesius) */
 .doc-card {
-  display: flex; align-items: center; gap: 14px;
+  --accent: var(--gray-30);
+  --accent-text: var(--gray-80);
+  display: flex; align-items: flex-start; gap: 14px;
   background: white; border-radius: 9px; padding: 14px 18px;
   box-shadow: 0 1px 4px rgba(0,0,0,.06);
-  border-left: 4px solid var(--gray-30);
-  text-decoration: none; color: inherit;
-  transition: box-shadow .15s, transform .15s;
+  border-left: 4px solid var(--accent);
 }
-.doc-card:hover { box-shadow: 0 3px 10px rgba(0,0,0,.10); transform: translateY(-1px); }
-.doc-card.c-teal  { border-left-color: var(--teal); }
-.doc-card.c-amber { border-left-color: var(--amber); }
-.doc-card.c-red   { border-left-color: var(--red); }
-.doc-icon { font-size: 22px; flex-shrink: 0; }
-.doc-body { flex: 1; min-width: 0; }
-.doc-title { font-size: 15.5px; font-weight: 700; color: var(--navy); }
-.doc-desc  { font-size: 13px; color: var(--gray-50); margin-top: 2px; }
-.doc-arrow { color: var(--gray-30); font-size: 18px; flex-shrink: 0; }
+.doc-card.c-teal   { --accent: var(--teal);   --accent-text: #00707A; }
+.doc-card.c-amber  { --accent: var(--amber);  --accent-text: var(--amber-dk); }
+.doc-card.c-purple { --accent: var(--purple); --accent-text: var(--purple); }
 
-.doc-card.placeholder {
-  border-left-style: dashed;
-  border-left-color: var(--gray-30);
-  cursor: default;
-  opacity: .7;
+.doc-icon { font-size: 22px; flex-shrink: 0; line-height: 1.3; }
+.doc-body { flex: 1; min-width: 0; }
+.doc-title { font-size: 16px; font-weight: 700; color: var(--navy); }
+.doc-desc  { font-size: 14px; color: var(--gray-80); margin-top: 2px; line-height: 1.4; }
+
+/* Mėnesių mygtukai */
+.versions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.ver {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: var(--font); font-size: 14.5px; font-weight: 700;
+  padding: 5px 12px; border-radius: 6px;
+  text-decoration: none; white-space: nowrap;
+  border: 2px solid var(--accent); color: var(--accent-text); background: white;
+  transition: background .15s, color .15s, transform .15s;
 }
-.doc-card.placeholder:hover { box-shadow: 0 1px 4px rgba(0,0,0,.06); transform: none; }
-.doc-card.placeholder .doc-title { color: var(--gray-50); }
+.ver:hover { background: var(--accent); color: white; transform: translateY(-1px); }
+.ver.latest { background: var(--accent); color: white; }
+.ver.latest::after { content: '→'; font-weight: 400; }
+.ver.latest:hover { filter: brightness(.92); }
+.doc-card.c-amber .ver.latest,
+.doc-card.c-amber .ver:hover { color: var(--navy); }
+
+/* Dar neįkeltos ataskaitos */
+.ver.soon {
+  border-style: dashed; border-color: var(--gray-30);
+  color: var(--gray-50); background: var(--gray-05);
+  cursor: default; font-weight: 600;
+}
+.ver.soon:hover { background: var(--gray-05); color: var(--gray-50); transform: none; }
 
 .footer {
   margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--gray-10);
-  font-size: 12.5px; color: var(--gray-50);
+  font-size: 13px; color: var(--gray-50);
+}
+
+@media (max-width: 600px) {
+  .header { padding: 0 16px; }
+  .page { padding: 24px 16px 40px; }
+  .doc-card { padding: 12px 14px; gap: 10px; }
 }
 </style>
 </head>
@@ -95,69 +120,125 @@ body { font-family: var(--font); background: var(--gray-05); color: var(--gray-8
 
   <div class="page-title">
     <h1>Informacija <span>valdybos</span> nariams</h1>
-    <div class="meta">Čia rasite ataskaitas ir dokumentus, kuriuos sutarta reguliariai dalintis su valdyba, sugrupuotus pagal sritį.</div>
+    <div class="meta">Čia rasite ataskaitas ir dokumentus, kuriuos sutarta reguliariai dalintis su valdyba, sugrupuotus pagal sritį. Paspauskite mėnesį, kad atvertumėte to mėnesio ataskaitą.</div>
   </div>
 
   <!-- ═══════════════════════════════════════════════════════════
-       Kaip pridėti naują dokumentą:
-       1. Įkelkite .html (ar kito formato) failą į atitinkamą poaplankį
-          (pvz. Lesu-Pritraukimas/, Savanoriai/, ar naują poaplankį).
-       2. Nukopijuokite vieną <a class="doc-card ..."> bloką žemiau,
-          pakeiskite href, doc-title ir doc-desc.
-       3. Jei tai nauja sritis (ne Lėšų pritraukimas / Savanoriai),
-          nukopijuokite visą <div class="section">...</div> bloką
-          ir pakeiskite jo section-title.
+       Kaip pridėti NAUJO MĖNESIO ataskaitą prie esamos temos:
+       1. Įkelkite .html failą į atitinkamą poaplankį.
+       2. Toje temos kortelėje, <div class="versions"> viduje:
+          - iš esamo naujausio mygtuko išimkite klasę "latest"
+            (lieka tik class="ver");
+          - PIRMU nauju įrašu įdėkite:
+            <a class="ver latest" href="Poaplankis/Failas-2026-10.html">2026-10</a>
+       Naujausias mėnuo visada pirmas ir paryškintas.
+
+       Kaip pridėti NAUJĄ TEMĄ:
+       Nukopijuokite visą <div class="doc-card ...">...</div> bloką,
+       pakeiskite ikoną, pavadinimą, aprašymą ir mygtukus.
+       Spalvos: c-teal (Lėšų pritraukimas), c-amber (Savanoriai),
+       c-purple (Programos).
+
+       Kol ataskaitos dar nėra — naudokite:
+       <span class="ver soon">Ruošiama</span>
        ═══════════════════════════════════════════════════════════ -->
 
   <div class="section">
     <div class="section-title">Lėšų pritraukimas</div>
     <div class="card-list">
-      <a class="doc-card c-teal" href="Lesu-Pritraukimas/Bendra-Ataskaita-2026-08.html">
+
+      <div class="doc-card c-teal">
         <div class="doc-icon">📊</div>
         <div class="doc-body">
-          <div class="doc-title">Bendra ataskaita — 2026-08</div>
+          <div class="doc-title">Bendra ataskaita</div>
           <div class="doc-desc">LP departamento pajamų suvestinė: planas, faktas, palyginimas su 2025 m.</div>
+          <div class="versions">
+            <a class="ver latest" href="Lesu-Pritraukimas/Bendra-Ataskaita-2026-08.html">2026-08</a>
+          </div>
         </div>
-        <div class="doc-arrow">→</div>
-      </a>
-      <a class="doc-card c-teal" href="Lesu-Pritraukimas/Verslo-parama-2026-08.html">
+      </div>
+
+      <div class="doc-card c-teal">
         <div class="doc-icon">💼</div>
         <div class="doc-body">
-          <div class="doc-title">Verslo paramos dashboard'as — 2026-08</div>
+          <div class="doc-title">Verslo paramos dashboard'as</div>
           <div class="doc-desc">Kontaktai, pardavimų pipeline pagal etapus, geografija pagal savivaldybes.</div>
+          <div class="versions">
+            <a class="ver latest" href="Lesu-Pritraukimas/Verslo-parama-2026-08.html">2026-08</a>
+          </div>
         </div>
-        <div class="doc-arrow">→</div>
-      </a>
-      <a class="doc-card c-teal" href="Lesu-Pritraukimas/F2F_2026-09.html">
+      </div>
+
+      <div class="doc-card c-teal">
         <div class="doc-icon">🤝</div>
         <div class="doc-body">
-          <div class="doc-title">F2F ataskaita valdybai — iki 2026-09</div>
+          <div class="doc-title">F2F ataskaita valdybai</div>
           <div class="doc-desc">Nuolatinė parama: pajamos, nauji rėmėjai, churn, rėmėjų analitika (retencija, ABC, demografija).</div>
+          <div class="versions">
+            <a class="ver latest" href="Lesu-Pritraukimas/F2F_2026-09.html">iki 2026-09</a>
+          </div>
         </div>
-        <div class="doc-arrow">→</div>
-      </a>
-      <a class="doc-card c-teal" href="Lesu-Pritraukimas/Komerciniai-Mokymai-2026-09.html">
+      </div>
+
+      <div class="doc-card c-teal">
         <div class="doc-icon">🎓</div>
         <div class="doc-body">
-          <div class="doc-title">Komercinių mokymų dashboard'as — 2026-09</div>
+          <div class="doc-title">Komercinių mokymų dashboard'as</div>
           <div class="doc-desc">Pardavimai + kontaktai, pipeline.</div>
+          <div class="versions">
+            <a class="ver latest" href="Lesu-Pritraukimas/Komerciniai-Mokymai-2026-09.html">2026-09</a>
+          </div>
         </div>
-        <div class="doc-arrow">→</div>
-      </a>
       </div>
+
+    </div>
   </div>
 
-    <div class="section">
+  <div class="section">
     <div class="section-title">Savanoriai</div>
     <div class="card-list">
-      <a class="doc-card c-amber" href="Savanoriai/Iveiklinimas-sutartys-mokymai-2026-09.html">
+
+      <div class="doc-card c-amber">
         <div class="doc-icon">👥</div>
         <div class="doc-body">
-          <div class="doc-title">Įveiklinimas / sutartys / mokymai — 2026-09</div>
+          <div class="doc-title">Įveiklinimas / sutartys / mokymai</div>
           <div class="doc-desc">Savanorių įveiklinimo, sutarčių ir mokymų suvestinė.</div>
+          <div class="versions">
+            <a class="ver latest" href="Savanoriai/Iveiklinimas-sutartys-mokymai-2026-09.html">2026-09</a>
+            <a class="ver" href="Savanoriai/Iveiklinimas-sutartys-mokymai-2026-08.html">2026-08</a>
+          </div>
         </div>
-        <div class="doc-arrow">→</div>
-      </a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Programos</div>
+    <div class="card-list">
+
+      <div class="doc-card c-purple">
+        <div class="doc-icon">☕</div>
+        <div class="doc-body">
+          <div class="doc-title">Senjorų klubai</div>
+          <div class="doc-desc">Senjorų klubų veikla skyriuose.</div>
+          <div class="versions">
+            <span class="ver soon">Ruošiama</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="doc-card c-purple">
+        <div class="doc-icon">🎒</div>
+        <div class="doc-body">
+          <div class="doc-title">Jaunimo programa</div>
+          <div class="doc-desc">Jaunimo programos veikla mokyklose.</div>
+          <div class="versions">
+            <span class="ver soon">Ruošiama</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
