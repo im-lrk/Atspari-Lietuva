@@ -354,7 +354,7 @@ body { font-family: var(--font); background: var(--gray-05); color: var(--gray-8
     </div>
     <div class="kpi c-blue">
       <div class="kpi-lbl">Viso kontaktų</div>
-      <div class="kpi-val">33 627</div>
+      <div class="kpi-val">33 637</div>
       <div class="kpi-sub">su pakartotiniais (be susitikimų)</div>
     </div>
     <div class="kpi c-orange">
@@ -527,7 +527,7 @@ const DATA = {
   // Sonatos sprendimu ĮSKAIČIUOTA į bendrą "Gauta parama" sumą (bank_sum/bank_count = 64 621 € / 73),
   // bet SĄMONINGAI NEĮTRAUKTA į vidutinės įmokos (bank_sum_avg/bank_count_avg) ir pipeline prognozės
   // skaičiavimus, kad viena didelė vienkartinė suma neiškreiptų vidurkio/prognozės.
-  all:{ uniq:13712, uniq_sum:19011, grand_total:33627, sutarta:755, derybos:194, pasiulymas:2431, atsakymas:80, laukiama:1618, susisiekta:59, perskambinti:8238, neaktualu:443, nenurodyta:1883, nekele_uniq:5074, nekele_uniq_sum:6475, nekele_occurrences:11133, neprileidzia:460, atsisakė:5023, neigiamas:0, numeris:1310, bank_count:893, bank_sum:270660, bank_count_avg:892, bank_sum_avg:220660 },
+  all:{ uniq:13712, uniq_sum:19011, grand_total:33637, sutarta:755, derybos:194, pasiulymas:2431, atsakymas:80, laukiama:1618, susisiekta:59, perskambinti:8238, neaktualu:443, nenurodyta:1883, nekele_uniq:5074, nekele_uniq_sum:6475, nekele_occurrences:11133, neprileidzia:460, atsisakė:5023, neigiamas:0, numeris:1310, bank_count:893, bank_sum:270660, bank_count_avg:892, bank_sum_avg:220660 },
   m1: { uniq:964,  grand_total:2781,  sutarta:1,   derybos:0,  pasiulymas:12,  atsakymas:20, laukiama:224,  susisiekta:1,  perskambinti:67,   neaktualu:0,  nenurodyta:94,   nekele_uniq:2170, nekele_truly:2170, neprileidzia:9,   atsisakė:183,  neigiamas:0,   numeris:0,   bank_count:76,  bank_sum:20789 },
   m2: { uniq:1006, grand_total:1626,  sutarta:13,  derybos:0,  pasiulymas:1,   atsakymas:3,  laukiama:484,  susisiekta:0,  perskambinti:9,    neaktualu:0,  nenurodyta:220,  nekele_uniq:636,  nekele_truly:636,  neprileidzia:24,  atsisakė:236,  neigiamas:0,   numeris:0,   bank_count:54,  bank_sum:14268 },
   m3: { uniq:1278, grand_total:2580,  sutarta:160, derybos:2,  pasiulymas:74,  atsakymas:31, laukiama:553,  susisiekta:7,  perskambinti:364,  neaktualu:25, nenurodyta:517,  nekele_uniq:284,  nekele_truly:284,  neprileidzia:142, atsisakė:419,  neigiamas:0,   numeris:2,   bank_count:107, bank_sum:29291 },
@@ -536,7 +536,7 @@ const DATA = {
   m6: { uniq:203,  grand_total:228,   sutarta:51,  derybos:2,  pasiulymas:40,  atsakymas:0,  laukiama:17,   susisiekta:3,  perskambinti:66,   neaktualu:1,  nenurodyta:34,   nekele_uniq:6,    nekele_truly:6,    neprileidzia:0,   atsisakė:8,    neigiamas:0,   numeris:0,   bank_count:103, bank_sum:22079 },
   m7: { uniq:2900, grand_total:3503,  sutarta:24,  derybos:54, pasiulymas:267, atsakymas:0,  laukiama:60,   susisiekta:0,  perskambinti:985,  neaktualu:42, nenurodyta:97,   nekele_uniq:665,  nekele_truly:665,  neprileidzia:12,  atsisakė:932,  neigiamas:0,   numeris:365, bank_count:93,  bank_sum:19828 },
   m8: { uniq:3567, grand_total:7536,  sutarta:100, derybos:96, pasiulymas:706, atsakymas:0,  laukiama:200,  susisiekta:0,  perskambinti:2088, neaktualu:285,nenurodyta:398,  nekele_uniq:2620, nekele_truly:2620, neprileidzia:167, atsisakė:606,  neigiamas:0,   numeris:270, bank_count:160, bank_sum:38198 },
-  m9: { uniq:1208, grand_total:2091,  sutarta:10,  derybos:15, pasiulymas:289, atsakymas:0,  laukiama:13,   susisiekta:0,  perskambinti:581,  neaktualu:23, nenurodyta:253,  nekele_uniq:689,  nekele_truly:689,  neprileidzia:47,  atsisakė:123,  neigiamas:0,   numeris:48,  bank_count:73,  bank_sum:64621, bank_count_avg:72, bank_sum_avg:14621 }
+  m9: { uniq:1208, grand_total:2101,  sutarta:10,  derybos:15, pasiulymas:289, atsakymas:0,  laukiama:13,   susisiekta:0,  perskambinti:581,  neaktualu:23, nenurodyta:253,  nekele_uniq:689,  nekele_truly:689,  neprileidzia:47,  atsisakė:123,  neigiamas:0,   numeris:48,  bank_count:73,  bank_sum:64621, bank_count_avg:72, bank_sum_avg:14621 }
 };
 
 // Susitikimai (VISO, ne unikalūs) - iš "VISI SUSITIKIMAI" pjūvio, ATSKIRAI nuo grand_total/uniq (kaip ir
@@ -544,7 +544,7 @@ const DATA = {
 // 2026-08-22: rugpjūčio (m8) reikšmė sumažinta 36->11, nes Telemarketing per klaidą suvedė 25 vnt.
 // "Meeting" įrašų, kurie realybėje nebuvo susitikimai - pašalinta iš ataskaitos.
 // 2026-10-14: rugsėjo (m9) reikšmė - 12, tiesiai iš pjūvio (klaidos požymių nepastebėta).
-const MEETINGS_BY_MONTH = [1,3,7,9,16,3,9,11,12];
+const MEETINGS_BY_MONTH = [1,3,7,9,16,3,9,11,22];
 
 const MONTH_META = {
   m1:{name:'Sausis',   bank:'20 789', bank_c:76},
