@@ -1,0 +1,176 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<meta charset="utf-8">
+<title>Žino – Moka – Gali – Nori</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;800&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&display=swap">
+<style>
+/* Layout: viena A4 lapo kortelė — 4 „antklodės kampai“ aplink centrinį rezultatą, apačioje naudojimo juosta */
+:root{
+  --bg:#f6f4f4; --paper:#ffffff; --ink:#1d1a1b; --muted:#5b5355; --line:#e4dddf;
+  --red:#c8102e; --red-soft:#fbe9ec; --tag-ink:#ffffff;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Atkinson Hyperlegible Next", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141112; --paper:#1e1a1b; --ink:#f3eeef; --muted:#b9adb0; --line:#3a3234;
+  --red:#ff5a6e; --red-soft:#3a1d22; --tag-ink:#1a0d10; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141112; --paper:#1e1a1b; --ink:#f3eeef; --muted:#b9adb0; --line:#3a3234;
+  --red:#ff5a6e; --red-soft:#3a1d22; --tag-ink:#1a0d10; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.45;
+  padding-block:24px;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+.sheet{max-width:1000px;margin:0 auto;background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:28px 32px;display:grid;gap:20px}
+
+header{display:flex;gap:16px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
+.brand{display:flex;gap:14px;align-items:center}
+.lrk{background:var(--red);color:var(--tag-ink);font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:.06em;
+  width:52px;height:52px;display:grid;place-items:center;flex:none}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(26px,4vw,38px);line-height:1.05;margin:0;text-wrap:balance}
+.sub{margin:4px 0 0;color:var(--muted);font-size:15px}
+.lead{max-width:62ch;margin:0;font-size:17px}
+.lead b{color:var(--red)}
+
+.corners{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.c{border:2px solid var(--line);border-radius:4px;padding:16px 18px 16px;display:grid;gap:8px;align-content:start;min-width:0}
+.c-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.tag{background:var(--red);color:var(--tag-ink);font-family:var(--display);font-weight:800;font-size:22px;padding:2px 12px;letter-spacing:.02em}
+.q{font-weight:800;font-size:17px;margin:0}
+.c h3{margin:4px 0 0;font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:800}
+.c ul{margin:0;padding-left:18px;display:grid;gap:3px}
+.c li{font-size:15px}
+.ask li{font-style:normal}
+.ask li::marker{content:"„ ";color:var(--red);font-weight:800}
+.fix{background:var(--red-soft);padding:8px 10px;border-radius:3px;font-size:15px;margin:2px 0 0}
+.fix b{color:var(--red)}
+
+/* Kampai: kiekviena kortelė pažymima savo išoriniu kampu */
+.c1{border-top-color:var(--red);border-left-color:var(--red)}
+.c2{border-top-color:var(--red);border-right-color:var(--red)}
+.c3{border-bottom-color:var(--red);border-left-color:var(--red)}
+.c4{border-bottom-color:var(--red);border-right-color:var(--red)}
+
+.center{grid-column:1 / -1;justify-self:center;border:3px solid var(--red);border-radius:999px;padding:8px 22px;text-align:center}
+.center span{font-family:var(--display);font-weight:800;font-size:18px;line-height:1.2}
+.center small{font-family:var(--body);font-weight:600;font-size:14px;color:var(--muted);margin-left:8px}
+
+.how{display:grid;grid-template-columns:1.3fr 1fr;gap:14px}
+.box{border-top:3px solid var(--ink);padding-top:10px;min-width:0}
+.box h2{font-family:var(--display);font-size:19px;margin:0 0 6px;font-weight:800}
+.box ol{margin:0;padding-left:20px;display:grid;gap:4px;font-size:15px}
+.box p{margin:0 0 6px;font-size:15px}
+.src{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px;margin:0}
+
+@media (max-width:760px){
+  .corners,.how{grid-template-columns:1fr}
+  .center{border-radius:6px}
+  .sheet{padding:20px 18px}
+}
+@page{size:A4;margin:10mm}
+@media print{
+  body{background:#fff;padding:0;font-size:13px}
+  .sheet{border:0;padding:0;gap:12px;max-width:none}
+  .c li,.fix,.box ol,.box p{font-size:12.5px}
+  .lead{font-size:14px}
+}
+</style>
+
+<main class="sheet">
+  <header>
+    <div class="brand">
+      <div class="lrk" aria-hidden="true">LRK</div>
+      <div>
+        <h1>Žino – Moka – Gali – Nori</h1>
+        <p class="sub"><b>Keturi antklodės kampai</b> · vadovo savikontrolės įrankis</p>
+      </div>
+    </div>
+  </header>
+
+  <p class="lead">Užduotis bus atlikta tik tada, kai <b>visi keturi kampai</b> yra „ištempti“. Jei bent vienas nusvyra – rezultatas nukenčia, kad ir kaip stengtųsi žmogus. Tinka ir <b>darbuotojams</b>, ir <b>savanoriams</b>.</p>
+
+  <section class="corners" aria-label="Keturi kampai">
+    <article class="c c1">
+      <div class="c-head"><span class="tag">ŽINO</span><p class="q">Ar žino, ką tiksliai turi padaryti?</p></div>
+      <h3>Vadovas užtikrina</h3>
+      <ul>
+        <li><b>SMART</b> tikslas: konkretus, išmatuojamas, pasiekiamas, aktualus, su terminu</li>
+        <li>Dėl užduoties <b>susitarta</b>, o ne tik pranešta</li>
+      </ul>
+      <h3>Pasitikrinantys klausimai</h3>
+      <ul class="ask">
+        <li>Nuo ko pradėsite ir kokiais žingsniais eisite?“</li>
+        <li>Iš ko abu suprasime, kad pavyko?“</li>
+      </ul>
+      <p class="fix"><b>Jei ne:</b> suformuluoti iš naujo, užrašyti, susitarti dar kartą.</p>
+    </article>
+
+    <article class="c c2">
+      <div class="c-head"><span class="tag">MOKA</span><p class="q">Ar moka tai padaryti?</p></div>
+      <h3>Vadovas užtikrina</h3>
+      <ul>
+        <li>Reikiamos <b>žinios ir įgūdžiai</b> šiai konkrečiai užduočiai</li>
+        <li>Aišku, į ką kreiptis, kai užstringa</li>
+      </ul>
+      <h3>Pasitikrinantys klausimai</h3>
+      <ul class="ask">
+        <li>Ar esate darę panašų darbą?“</li>
+        <li>Kurioje vietoje jums reikėtų pagalbos?“</li>
+      </ul>
+      <p class="fix"><b>Jei ne:</b> mokymai, instrukcija, pavyzdys, kolegos ar mentoriaus pagalba.</p>
+    </article>
+
+    <article class="c c3">
+      <div class="c-head"><span class="tag">GALI</span><p class="q">Ar turi viską, ko reikia?</p></div>
+      <h3>Vadovas užtikrina</h3>
+      <ul>
+        <li><b>Laikas</b>, priemonės, prieigos prie sistemų, biudžetas</li>
+        <li><b>Įgaliojimai</b> priimti sprendimus</li>
+      </ul>
+      <h3>Pasitikrinantys klausimai</h3>
+      <ul class="ask">
+        <li>Ko trūksta, kad galėtumėte pradėti?“</li>
+        <li>Ką reikėtų atidėti, kad atsirastų laiko?“</li>
+      </ul>
+      <p class="fix"><b>Jei ne:</b> perskirstyti prioritetus, suteikti prieigas, resursus, įgaliojimus.</p>
+    </article>
+
+    <article class="c c4">
+      <div class="c-head"><span class="tag">NORI</span><p class="q">Ar nori tai atlikti?</p></div>
+      <h3>Vadovas užtikrina</h3>
+      <ul>
+        <li>Žmogus mato <b>prasmę</b>: kodėl to reikia ir kam tai padės</li>
+        <li>Indėlis pastebimas ir <b>įvertinamas</b></li>
+      </ul>
+      <h3>Pasitikrinantys klausimai</h3>
+      <ul class="ask">
+        <li>Kas šioje užduotyje jums svarbu?“</li>
+        <li>Kas galėtų trukdyti ar atimti norą?“</li>
+      </ul>
+      <p class="fix"><b>Jei ne:</b> paaiškinti „kodėl“, susieti su misija, įtraukti į sprendimą, pripažinti pastangas.</p>
+    </article>
+
+    <div class="center" aria-hidden="true"><span>Užduotis atlikta<small>kai laikomi visi 4 kampai</small></span></div>
+  </section>
+
+  <section class="how">
+    <div class="box">
+      <h2>Kaip naudoti</h2>
+      <ol>
+        <li><b>Prieš deleguojant</b> – pereikite visus keturis kampus.</li>
+        <li><b>Kai darbas stringa</b> – tikrinkite iš eilės: Žino → Moka → Gali → Nori.</li>
+        <li><b>Pokalbyje</b> – užduokite pasitikrinančius klausimus, o ne „Ar aišku?“.</li>
+      </ol>
+    </div>
+    <div class="box">
+      <h2>Svarbiausia</h2>
+      <p>Pirmus tris kampus vadovas <b>sutvarko pats</b>. Ketvirtam gali tik sudaryti sąlygas.</p>
+      <p>Prieš sakant „nenori“, patikrinkite, ar tikrai <b>žino, moka ir gali</b>.</p>
+    </div>
+  </section>
+
+  <p class="src"><b>Kilmė:</b> vokiečių vadybos ir darbuotojų saugos praktikoje žinomas kaip <i>Wissen – Können – Dürfen – Wollen</i> modelis (žinoti, mokėti, turėti galimybę, norėti). Artimas Hersey ir Blanchard situacinio vadovavimo idėjai, kad vadovo veiksmai priklauso nuo darbuotojo kompetencijos ir motyvacijos.</p>
+</main>
+
+</body></html>
