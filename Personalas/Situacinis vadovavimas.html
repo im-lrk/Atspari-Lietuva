@@ -1,0 +1,163 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<meta charset="utf-8">
+<title>Situacinis vadovavimas</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;800&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&display=swap">
+<style>
+/* Layout: vieno A4 lapo kortelė — 4 pasirengimo lygiai (D1→D4) su atitinkamu stiliumi, apačioje naudojimo juosta. Tas pats stilius kaip „Žino – Moka – Gali – Nori“ */
+:root{
+  --bg:#f6f4f4; --paper:#ffffff; --ink:#1d1a1b; --muted:#5b5355; --line:#e4dddf;
+  --red:#c8102e; --red-soft:#fbe9ec; --tag-ink:#ffffff; --track:#ece6e7;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Atkinson Hyperlegible Next", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141112; --paper:#1e1a1b; --ink:#f3eeef; --muted:#b9adb0; --line:#3a3234;
+  --red:#ff5a6e; --red-soft:#3a1d22; --tag-ink:#1a0d10; --track:#332b2d; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141112; --paper:#1e1a1b; --ink:#f3eeef; --muted:#b9adb0; --line:#3a3234;
+  --red:#ff5a6e; --red-soft:#3a1d22; --tag-ink:#1a0d10; --track:#332b2d; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.45;
+  padding-block:24px;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+.sheet{max-width:1000px;margin:0 auto;background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:28px 32px;display:grid;gap:20px}
+
+header{display:flex;gap:14px;align-items:center}
+.lrk{background:var(--red);color:var(--tag-ink);font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:.06em;
+  width:52px;height:52px;display:grid;place-items:center;flex:none}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(26px,4vw,38px);line-height:1.05;margin:0;text-wrap:balance}
+.sub{margin:4px 0 0;color:var(--muted);font-size:15px}
+.lead{max-width:68ch;margin:0;font-size:17px}
+.lead b{color:var(--red)}
+
+.levels{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.c{border:2px solid var(--line);border-top:5px solid var(--red);border-radius:4px;padding:14px 18px 16px;display:grid;gap:8px;align-content:start;min-width:0}
+.c-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.tag{background:var(--red);color:var(--tag-ink);font-family:var(--display);font-weight:800;font-size:22px;padding:2px 12px;letter-spacing:.02em}
+.style{font-family:var(--display);font-weight:800;font-size:22px}
+.who{margin:0;font-size:15px;color:var(--muted)}
+.who b{color:var(--ink)}
+
+.meters{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;align-items:center;font-size:13px;font-weight:600;color:var(--muted)}
+.bar{height:8px;background:var(--track);border-radius:4px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--red)}
+.hi{width:90%}.lo{width:25%}
+
+.c h3{margin:4px 0 0;font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:800}
+.c ul{margin:0;padding-left:18px;display:grid;gap:3px}
+.c li,.c p{font-size:15px}
+.c p{margin:0}
+.say{font-weight:600}
+.say::before{content:"„";color:var(--red);font-weight:800}
+.say::after{content:"“"}
+.ex{border-left:3px solid var(--red);padding-left:10px}
+.trap{background:var(--red-soft);padding:8px 10px;border-radius:3px}
+.trap b{color:var(--red)}
+
+.flow{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;color:var(--muted);flex-wrap:wrap}
+.flow .line{flex:1;min-width:60px;height:2px;background:var(--red);position:relative}
+.flow .line::after{content:"";position:absolute;right:-1px;top:-5px;border:6px solid transparent;border-left:9px solid var(--red);border-right:0}
+
+.how{display:grid;grid-template-columns:1.2fr 1fr;gap:14px}
+.box{border-top:3px solid var(--ink);padding-top:10px;min-width:0}
+.box h2{font-family:var(--display);font-size:19px;margin:0 0 6px;font-weight:800}
+.box ol{margin:0;padding-left:20px;display:grid;gap:4px;font-size:15px}
+.box p{margin:0 0 6px;font-size:15px}
+.src{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px;margin:0}
+
+@media (max-width:760px){
+  .levels,.how{grid-template-columns:1fr}
+  .sheet{padding:20px 18px}
+}
+@page{size:A4;margin:10mm}
+@media print{
+  body{background:#fff;padding:0;font-size:12px}
+  .sheet{border:0;padding:0;gap:10px;max-width:none}
+  .c li,.c p,.box ol,.box p{font-size:12px}
+  .lead{font-size:13.5px}
+}
+</style>
+
+<main class="sheet">
+  <header>
+    <div class="lrk" aria-hidden="true">LRK</div>
+    <div>
+      <h1>Situacinis vadovavimas</h1>
+      <p class="sub"><b>Vienas stilius visiems netinka</b> · vadovo savikontrolės įrankis</p>
+    </div>
+  </header>
+
+  <p class="lead">Vadovo stilius priklauso ne nuo žmogaus, o nuo jo <b>pasirengimo konkrečiai užduočiai</b>: ar jis <b>moka</b> ir ar <b>nori / pasitiki savimi</b>. Tas pats savanoris ar darbuotojas vienoje užduotyje gali būti savarankiškas ekspertas, o kitoje – naujokas.</p>
+
+  <p class="flow">Žmogui augant: mažiau nurodymų, daugiau savarankiškumo <span class="line" aria-hidden="true"></span> D1 → D4</p>
+
+  <section class="levels" aria-label="Keturi pasirengimo lygiai">
+    <article class="c">
+      <div class="c-head"><span class="tag">D1</span><span class="style">Nurodyti</span></div>
+      <p class="who"><b>Entuziastingas naujokas:</b> dar nemoka, bet labai nori.</p>
+      <div class="meters"><span>Kryptis</span><span class="bar"><i class="hi"></i></span><span>Palaikymas</span><span class="bar"><i class="lo"></i></span></div>
+      <h3>Ką daro vadovas</h3>
+      <ul><li>Aiškiai pasako <b>ką, kaip ir iki kada</b></li><li>Parodo, daro kartu, dažnai pasitikrina</li></ul>
+      <p class="ex"><b>LRK pavyzdys:</b> naujas savanoris pirmą kartą ateina vesti Senjorų klubo.</p>
+      <p class="say">Pirmą susitikimą praveskime kartu, po jo aptarsime.</p>
+      <p class="trap"><b>Spąstai:</b> „mesti į vandenį“ – <i>pats susigaudysi</i>.</p>
+    </article>
+
+    <article class="c">
+      <div class="c-head"><span class="tag">D2</span><span class="style">Treniruoti</span></div>
+      <p class="who"><b>Nusivylęs besimokantysis:</b> šiek tiek moka, bet noras krenta.</p>
+      <div class="meters"><span>Kryptis</span><span class="bar"><i class="hi"></i></span><span>Palaikymas</span><span class="bar"><i class="hi"></i></span></div>
+      <h3>Ką daro vadovas</h3>
+      <ul><li>Vis dar duoda aiškią kryptį, bet <b>paaiškina kodėl</b></li><li>Klausia nuomonės, pastebi pažangą, padrąsina</li></ul>
+      <p class="ex"><b>LRK pavyzdys:</b> savanorių koordinatorė po kelių mėnesių pavargsta nuo dalyvių žymėjimo Salesforce.</p>
+      <p class="say">Matau, kad tai užima daug laiko. Pažiūrėkime kartu, kur galime palengvinti.</p>
+      <p class="trap"><b>Spąstai:</b> kritikuoti už lėtumą. Šioje stadijoje žmonės dažniausiai ir atkrinta.</p>
+    </article>
+
+    <article class="c">
+      <div class="c-head"><span class="tag">D3</span><span class="style">Palaikyti</span></div>
+      <p class="who"><b>Atsargus atlikėjas:</b> moka, bet ne visada pasitiki savimi.</p>
+      <div class="meters"><span>Kryptis</span><span class="bar"><i class="lo"></i></span><span>Palaikymas</span><span class="bar"><i class="hi"></i></span></div>
+      <h3>Ką daro vadovas</h3>
+      <ul><li>Klausia <b>„Kaip tu manai?“</b> ir įsiklauso</li><li>Sprendimus priima kartu, sustiprina pasitikėjimą</li></ul>
+      <p class="ex"><b>LRK pavyzdys:</b> patyręs savanoris treneris abejoja, ar pavyks vesti naujus PPP mokymus.</p>
+      <p class="say">Tu jau vedei daug PPB grupių. Ką iš ten gali panaudoti?</p>
+      <p class="trap"><b>Spąstai:</b> vėl pradėti nurodinėti smulkmenas (mikrovadyba).</p>
+    </article>
+
+    <article class="c">
+      <div class="c-head"><span class="tag">D4</span><span class="style">Deleguoti</span></div>
+      <p class="who"><b>Savarankiškas profesionalas:</b> moka ir nori.</p>
+      <div class="meters"><span>Kryptis</span><span class="bar"><i class="lo"></i></span><span>Palaikymas</span><span class="bar"><i class="lo"></i></span></div>
+      <h3>Ką daro vadovas</h3>
+      <ul><li>Susitaria dėl <b>rezultato ir termino</b>, kelią palieka žmogui</li><li>Būna pasiekiamas, kai prireikia</li></ul>
+      <p class="ex"><b>LRK pavyzdys:</b> skyriaus vadovė pati sudaro ketvirčio mokymų planą savo skyriui.</p>
+      <p class="say">Planą sudarai tu. Iki 25 d. aptarkime, ko iš manęs reikia.</p>
+      <p class="trap"><b>Spąstai:</b> deleguoti ir pamiršti. Pripažinimo reikia ir ekspertams.</p>
+    </article>
+  </section>
+
+  <section class="how">
+    <div class="box">
+      <h2>Kaip naudoti</h2>
+      <ol>
+        <li>Įvardinkite <b>konkrečią užduotį</b>, ne žmogų apskritai.</li>
+        <li>Įvertinkite: ar <b>moka</b>? ar <b>nori ir pasitiki</b>?</li>
+        <li>Pasirinkite stilių ir <b>atvirai susitarkite</b>: „Šįkart dažniau tikrinsiu, nes darai pirmą kartą.“</li>
+        <li>Žmogui augant – <b>mažinkite kryptį</b>, keiskite stilių kartu su juo.</li>
+      </ol>
+    </div>
+    <div class="box">
+      <h2>LRK kontekste</h2>
+      <p><b>Savanoriai</b> dirba iš noro, todėl palaikymas (D2, D3) lemia, ar jie liks.</p>
+      <p><b>Krizės metu</b> (paieškos operacija, evakuacija) nurodomasis stilius tinka visiems. Tai ne nepasitikėjimas, o koordinacija.</p>
+      <p>Ryšys su <b>Žino – Moka – Gali – Nori</b>: D lygis = <b>Moka + Nori</b>. Kad žmogus <b>žinotų ir galėtų</b>, vadovas užtikrina visada.</p>
+    </div>
+  </section>
+
+  <p class="src"><b>Kilmė:</b> Paul Hersey ir Ken Blanchard situacinio vadovavimo modelis (1969). Vėlesnė Blanchard versija SLII išskiria keturis pasirengimo lygius (D1–D4) ir keturis stilius: <i>Directing, Coaching, Supporting, Delegating</i>.</p>
+</main>
+
+</body></html>
