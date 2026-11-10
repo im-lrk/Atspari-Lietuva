@@ -25,6 +25,10 @@ h3{font-size:18px;margin:18px 0 6px}
 p{margin:0 0 10px}
 ul{margin:4px 0 12px;padding-left:22px}
 li{margin:6px 0}
+.reason{border:1px solid var(--line);border-left:5px solid var(--red);border-radius:10px;padding:12px 16px 6px;margin:14px 0;background:var(--soft)}
+.reason h3{margin:6px 0 6px}
+.chip{display:inline-block;background:var(--red);color:#fff;font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:999px}
+.reason .ex{background:var(--ex)}
 .ex{background:var(--ex);border:1px solid var(--ex-line);border-radius:10px;padding:10px 14px;margin:10px 0 12px;font-size:16px}
 .ex b:first-child{display:block;margin-bottom:2px}
 .prob{border-left:4px solid var(--red);padding:2px 0 2px 14px;margin:10px 0}
@@ -60,6 +64,7 @@ footer .wrap{padding:18px 16px 34px}
   <h2><span class="n">1</span>Slenkantis grafikas</h2>
   <p class="sub">Pagal Darbo kodeksą grafikas turi būti suplanuotas <b>ne mažiau kaip 7 dienas į priekį</b>.</p>
   <p>Slenkantis grafikas LRK reikalingas dėl <b>dviejų skirtingų priežasčių</b>:</p>
+  <div class="reason"><span class="chip">1 priežastis</span>
   <h3>Programų darbuotojai – projektinės veiklos</h3>
   <ul>
     <li>Jų <b>tabeliai privalo sutapti su projektų veiklų planais</b>, kuriuos jie teikia donorams.</li>
@@ -67,11 +72,14 @@ footer .wrap{padding:18px 16px 34px}
   </ul>
   <div class="ex"><b>Pavyzdys</b>Kas antrą savaitę antradieniais ir ketvirtadieniais vykstama į kitą miestą konsultuoti paslaugų gavėjų – dirbama <b>po 12 val. per dieną</b>. Valandų perviršis kompensuojamas <b>papildoma poilsio diena</b> kas antrą penktadienį.</div>
   <button class="look" data-img="1" data-title="Slenkantis grafikas: 12 val. dienos ir poilsio diena" data-cap="Antradienį ir ketvirtadienį – po 12 val. (9 + 3 val. dviem projektams), penktadienį – poilsio diena (OFF). Savaitės suma – 40 val."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg> Kaip atrodo: slenkantis grafikas</button>
+  </div>
+  <div class="reason"><span class="chip">2 priežastis</span>
   <h3>KESV ir Tinklo savanorių koordinatoriai – kintantis grafikas</h3>
   <ul>
     <li>Dalyvauja <b>pratybose, paieškose ir veiklose kartu su savanoriais</b>.</li>
     <li>Neretai dirbama <b>po standartinių darbo valandų ir savaitgaliais</b> – grafikas <b>kintantis ir dalinai nesuplanuojamas iš anksto</b>.</li>
   </ul>
+  </div>
 </section>
 
 <section>
