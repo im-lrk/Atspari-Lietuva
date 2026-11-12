@@ -183,25 +183,25 @@ a.htab-link { text-decoration: none; margin-left: 10px; font-size: 13px; border-
 
   <div class="card" style="margin-bottom:18px; border-top:3px solid var(--cyan);">
     <div class="card-head">
-      <span class="card-title">🔮 Prognozė pagal suplanuotus mokymus · XI</span>
+      <span class="card-title">🔮 Prognozė pagal suplanuotus mokymus · XI–XII</span>
       <span class="card-sub">Lektorių grafiko sistema · patvirtinti + įvykę, be atšauktų</span>
     </div>
     <div class="card-body">
       <div class="kpi-strip" style="grid-template-columns:repeat(3,1fr); margin-bottom:14px;">
         <div class="kpi c-cyan">
           <div class="kpi-lbl">Suplanuoti mokymai</div>
-          <div class="kpi-val">71</div>
-          <div class="kpi-sub">vnt., lapkritis</div>
+          <div class="kpi-val">83</div>
+          <div class="kpi-sub">vnt., XI–XII</div>
         </div>
         <div class="kpi c-blue">
           <div class="kpi-lbl">Prognozuojami dalyviai</div>
-          <div class="kpi-val">921</div>
-          <div class="kpi-sub">PP 829 + HG 92</div>
+          <div class="kpi-val">1 077</div>
+          <div class="kpi-sub">PP 940 + HG 137</div>
         </div>
         <div class="kpi c-orange">
           <div class="kpi-lbl">Prognozuojamos pajamos</div>
-          <div class="kpi-val">18 100 €</div>
-          <div class="kpi-sub">viso, lapkritis</div>
+          <div class="kpi-val">20 105 €</div>
+          <div class="kpi-sub">viso, XI–XII</div>
         </div>
       </div>
 
@@ -517,16 +517,16 @@ document.getElementById('dt-revenue-holder').innerHTML = buildDT(P_MONTHS, [
 ], true);
 
 /* ---- Forecast: planned trainings XI ---- */
-document.getElementById('dt-forecast-month-holder').innerHTML = buildDT(['Lap'], [
-  {label:'Mokymai, sk.', values:[71]},
-  {label:'Dalyviai, sk.', values:[921]},
-  {label:'Pajamos, €', values:[18100]},
+document.getElementById('dt-forecast-month-holder').innerHTML = buildDT(['Lap','Gruod'], [
+  {label:'Mokymai, sk.', values:[75,8]},
+  {label:'Dalyviai, sk.', values:[981,96]},
+  {label:'Pajamos, €', values:[18775,1330]},
 ], true);
 
 document.getElementById('dt-forecast-type-holder').innerHTML = buildDT(['CS','PP','PPP','HG'], [
-  {label:'Mokymai, sk.', values:['–',63,'–',8]},
-  {label:'Dalyviai, sk.', values:['–',829,'–',92]},
-  {label:'Pajamos, €', values:['–',17170,'–',930]},
+  {label:'Mokymai, sk.', values:['–',71,'–',12]},
+  {label:'Dalyviai, sk.', values:['–',940,'–',137]},
+  {label:'Pajamos, €', values:['–',18500,'–',1605]},
 ], true);
 
 new Chart(document.getElementById('chart-course'), {
