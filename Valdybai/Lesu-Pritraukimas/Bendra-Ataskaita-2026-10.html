@@ -153,7 +153,17 @@ body { font-family: var(--font); background: var(--bg); color: var(--gray-80); p
 .kpi-sub strong { font-weight: 700; }
 .kpi-lbl { color: var(--gray-80); }
 .card-sub { font-size: 12.5px; color: var(--gray-80); margin-top: 3px; }
-.link-box a { color: var(--teal); font-weight: 700; }
+.detail-cta { display:flex; align-items:center; gap:14px; margin-top:14px; padding:14px 18px; background:#E6F5F6; border:2px solid var(--teal); border-radius:10px; text-decoration:none; color:var(--gray-80); transition: box-shadow .15s, transform .15s; }
+.detail-cta:hover { box-shadow:0 4px 14px rgba(0,152,165,.25); transform:translateY(-1px); }
+.cta-ico { font-size:26px; flex-shrink:0; }
+.cta-txt { flex:1; display:flex; flex-direction:column; gap:2px; font-size:14px; line-height:1.4; }
+.cta-txt strong { font-size:17px; color:var(--navy); }
+.cta-btn { flex-shrink:0; background:var(--teal); color:#fff; font-weight:700; font-size:15px; padding:10px 16px; border-radius:7px; white-space:nowrap; }
+.detail-cta:hover .cta-btn { background:#007F8A; }
+@media (max-width:720px){ .detail-cta{flex-wrap:wrap;} .cta-btn{width:100%; text-align:center; white-space:normal;} }
+.dt-mon td:first-child { white-space: normal; width: 1%; min-width: 90px; }
+.dt-mon td.note, .dt-mon th.note-h { text-align:left; white-space:normal; min-width:220px; font-size:13px; color:var(--gray-80); line-height:1.35; }
+.dt-mon td.note strong { color: var(--red); }
 .page-title .meta { font-size: 14.5px; color: var(--gray-80); }
 @media (max-width: 720px) { .header-tabs { width: 100%; overflow-x: auto; flex-wrap: nowrap; } .htab { padding: 10px 12px; font-size: 15px; } }
 
@@ -186,10 +196,10 @@ body { font-family: var(--font); background: var(--bg); color: var(--gray-80); p
     </div>
     <div class="kpi-strip">
       <div class="kpi c-teal"><div class="kpi-lbl">Planas 1–10 mėn.</div><div class="kpi-val">2 209 070 €</div><div class="kpi-sub">1–12 planas: <strong>2 707 815 €</strong></div></div>
-      <div class="kpi c-amber"><div class="kpi-lbl">Faktas 1–10 mėn.</div><div class="kpi-val">1 797 568 €</div><div class="kpi-sub">1–12 prognozė: <strong>2 199 568 €</strong></div></div>
-      <div class="kpi c-navy"><div class="kpi-lbl">Vykdymas 1–10 mėn.</div><div class="kpi-val">81.4%</div><div class="kpi-sub">1–12 prognozė: <strong>81.2%</strong></div></div>
-      <div class="kpi c-red"><div class="kpi-lbl">Augimas vs 2025, €</div><div class="kpi-val red">-86 651 €</div><div class="kpi-sub">1–12 prognozė: <strong>-12 816 €</strong></div></div>
-      <div class="kpi c-red"><div class="kpi-lbl">Augimas vs 2025, %</div><div class="kpi-val red">-4.6%</div><div class="kpi-sub">1–12 prognozė: <strong>-0.6%</strong></div></div>
+      <div class="kpi c-amber"><div class="kpi-lbl">Faktas 1–10 mėn.</div><div class="kpi-val">1 797 568 €</div><div class="kpi-sub">1–12 prognozė: <strong>2 153 310 €</strong></div></div>
+      <div class="kpi c-navy"><div class="kpi-lbl">Vykdymas 1–10 mėn.</div><div class="kpi-val">81.4%</div><div class="kpi-sub">1–12 prognozė: <strong>79.5%</strong></div></div>
+      <div class="kpi c-red"><div class="kpi-lbl">Augimas vs 2025, €</div><div class="kpi-val red">-86 651 €</div><div class="kpi-sub">1–12 prognozė: <strong>-59 074 €</strong></div></div>
+      <div class="kpi c-red"><div class="kpi-lbl">Augimas vs 2025, %</div><div class="kpi-val red">-4.6%</div><div class="kpi-sub">1–12 prognozė: <strong>-2.7%</strong></div></div>
     </div>
     <div class="note-box" style="margin-top:8px;margin-bottom:14px;">
       Gautų pajamų sumos — iš buhalterinių ataskaitų. Detalesnę analizę pagal kryptį (kontaktai, pipeline, geografija, rėmėjų analitika ir kt.) rasite atskiruose dashboard'uose – nuorodos į juos yra kiekvienos krypties tab'o viršuje, po rodiklių juosta.
@@ -236,8 +246,8 @@ body { font-family: var(--font); background: var(--bg); color: var(--gray-80); p
         <table class="dt dt-summary">
           <tr><th>Kryptis</th><th>2025 Faktas</th><th>2026 Planas</th><th>2026 Faktas+Prognozė</th><th>Vykdymas</th><th>Augimas, €</th><th>Augimas, %</th></tr>
 <tr>
-      <td>Verslo parama</td><td>386 491 €</td><td>550 000 €</td><td>406 653 €</td><td>73.9%</td>
-      <td class="g-pos">+20 162 €</td><td class="g-pos">+5.2%</td>
+      <td>Verslo parama</td><td>386 491 €</td><td>550 000 €</td><td>360 395 €</td><td>65.5%</td>
+      <td class="g-neg">-26 096 €</td><td class="g-neg">-6.8%</td>
     </tr>
 <tr>
       <td>Fizinių vienkartinė parama</td><td>45 768 €</td><td>55 000 €</td><td>29 785 €</td><td>54.2%</td>
@@ -256,8 +266,8 @@ body { font-family: var(--font); background: var(--bg); color: var(--gray-80); p
       <td class="g-neg">-10 871 €</td><td class="g-neg">-5.8%</td>
     </tr>
 <tr class="row-total">
-      <td>Viso LP departamentas</td><td>2 212 384 €</td><td>2 707 815 €</td><td>2 199 568 €</td><td>81.2%</td>
-      <td class="g-neg">-12 816 €</td><td class="g-neg">-0.6%</td>
+      <td>Viso LP departamentas</td><td>2 212 384 €</td><td>2 707 815 €</td><td>2 153 310 €</td><td>79.5%</td>
+      <td class="g-neg">-59 074 €</td><td class="g-neg">-2.7%</td>
     </tr>
         </table>
       </div>
@@ -276,7 +286,11 @@ body { font-family: var(--font); background: var(--bg); color: var(--gray-80); p
       <div class="kpi c-red"><div class="kpi-lbl">Augimas vs 2025, €</div><div class="kpi-val red">-26 096 €</div></div>
       <div class="kpi c-red"><div class="kpi-lbl">Augimas vs 2025, %</div><div class="kpi-val red">-8.2%</div></div>
     </div>
-    <div class="link-box"><strong>Detali analizė</strong> (kontaktai, pipeline pagal etapus, geografija pagal savivaldybes) yra atskirame dashboard'e: <a href="https://im-lrk.github.io/Atspari-Lietuva/Valdybai/Lesu-Pritraukimas/Verslo-parama-2026-10.html" target="_blank" rel="noopener">Verslo paramos dashboard'as</a>.</div>
+    <a class="detail-cta" href="https://im-lrk.github.io/Atspari-Lietuva/Valdybai/Lesu-Pritraukimas/Verslo-parama-2026-10.html" target="_blank" rel="noopener">
+      <span class="cta-ico">📊</span>
+      <span class="cta-txt"><strong>Detali analizė</strong><span>kontaktai, pipeline pagal etapus, geografija pagal savivaldybes</span></span>
+      <span class="cta-btn">Atidaryti Verslo paramos dashboard'ą →</span>
+    </a>
     <div class="card" style="margin-top:14px;">
       <div class="card-head"><div class="card-title">Mėnesio pajamos — planas vs. faktas/prognozė</div><div class="card-sub">Sausis–spalis: faktas &nbsp;·&nbsp; Lapkritis–gruodis: prognozė (šviesesni stulpeliai, punktyrinė linija) &nbsp;·&nbsp; linija = plano vykdymas, % (dešinė ašis)</div></div>
       <div class="card-body"><div class="chart-wrap"><canvas id="chart-verslo"></canvas></div></div>
@@ -285,75 +299,87 @@ body { font-family: var(--font); background: var(--bg); color: var(--gray-80); p
       <div class="card-head"><div class="card-title">Mėnesio duomenų lentelė</div></div>
       <div class="card-body table-scroll">
         <table class="dt dt-mon">
-          <tr><th>Mėn.</th><th>2025 Faktas</th><th>2026 Planas</th><th>2026 Faktas / Prognozė</th><th>Vykdymas</th><th>Augimas, €</th><th>Augimas, %</th></tr>
+          <tr><th>Mėn.</th><th>2025 Faktas</th><th>2026 Planas</th><th>2026 Faktas / Prognozė</th><th>Vykdymas</th><th>Augimas, €</th><th>Augimas, %</th><th class="note-h">Komentaras</th></tr>
 <tr class="">
           <td>Sausis</td><td>28 893 €</td><td>55 000 €</td>
           <td class="">17 789 €</td>
           <td>32.3%</td><td class="g-neg">-11 104 €</td><td class="g-neg">-38.4%</td>
+          <td class="note"></td>
         </tr>
 <tr class="">
           <td>Vasaris</td><td>38 808 €</td><td>55 000 €</td>
           <td class="">14 268 €</td>
           <td>25.9%</td><td class="g-neg">-24 540 €</td><td class="g-neg">-63.2%</td>
+          <td class="note"></td>
         </tr>
 <tr class="">
           <td>Kovas</td><td>53 113 €</td><td>55 000 €</td>
           <td class="">29 291 €</td>
           <td>53.3%</td><td class="g-neg">-23 822 €</td><td class="g-neg">-44.9%</td>
+          <td class="note"></td>
         </tr>
 <tr class="">
           <td>Balandis</td><td>23 287 €</td><td>52 000 €</td>
           <td class="">30 620 €</td>
           <td>58.9%</td><td class="g-pos">+7 333 €</td><td class="g-pos">+31.5%</td>
+          <td class="note"></td>
         </tr>
 <tr class="">
           <td>Gegužė</td><td>20 779 €</td><td>40 000 €</td>
           <td class="">30 666 €</td>
           <td>76.7%</td><td class="g-pos">+9 887 €</td><td class="g-pos">+47.6%</td>
+          <td class="note"></td>
         </tr>
 <tr class="">
           <td>Birželis</td><td>12 314 €</td><td>30 000 €</td>
           <td class="">22 079 €</td>
           <td>73.6%</td><td class="g-pos">+9 765 €</td><td class="g-pos">+79.3%</td>
+          <td class="note"></td>
         </tr>
 <tr class="">
           <td>Liepa</td><td>16 076 €</td><td>29 000 €</td>
           <td class="">19 828 €</td>
           <td>68.4%</td><td class="g-pos">+3 752 €</td><td class="g-pos">+23.3%</td>
+          <td class="note"></td>
         </tr>
 <tr class="">
           <td>Rugpjūtis</td><td>14 151 €</td><td>29 000 €</td>
           <td class="">38 048 €</td>
           <td>131.2%</td><td class="g-pos">+23 897 €</td><td class="g-pos">+168.9%</td>
+          <td class="note"></td>
         </tr>
 <tr class="">
           <td>Rugsėjis</td><td>12 740 €</td><td>30 000 €</td>
           <td class="">64 620 €</td>
           <td>215.4%</td><td class="g-pos">+51 880 €</td><td class="g-pos">+407.2%</td>
+          <td class="note">Lidl parama 50 tūkst. € – 2025 m. gauta spalį, 2026 m. – rugsėjį</td>
         </tr>
 <tr class="">
           <td>Spalis</td><td>98 588 €</td><td>52 000 €</td>
           <td class="">25 444 €</td>
           <td>48.9%</td><td class="g-neg">-73 144 €</td><td class="g-neg">-74.2%</td>
+          <td class="note"><strong>−50 tūkst. €</strong>: Lidl parama persikėlė į rugsėjį</td>
         </tr>
 <tr class="row-total">
           <td>Viso 1–10 mėn. (faktas)</td><td>318 749 €</td><td>427 000 €</td><td>292 653 €</td><td>68.5%</td>
-          <td class="g-neg">-26 096 €</td><td class="g-neg">-8.2%</td>
+          <td class="g-neg">-26 096 €</td><td class="g-neg">-8.2%</td><td class="note"></td>
         </tr>
 <tr class="fc-row">
           <td>Lapkritis</td><td>24 230 €</td><td>66 000 €</td>
-          <td class="fc-val">60 000 € <span class="fc-badge">Prognozė</span></td>
-          <td>90.9%</td><td class="g-pos">+35 770 €</td><td class="g-pos">+147.6%</td>
+          <td class="fc-val">24 230 € <span class="fc-badge">Prognozė</span></td>
+          <td>36.7%</td><td class="g-pos">+0 €</td><td class="g-pos">+0.0%</td>
+          <td class="note">Prognozė – 2025 m. lygis</td>
         </tr>
 <tr class="fc-row">
           <td>Gruodis</td><td>43 512 €</td><td>57 000 €</td>
-          <td class="fc-val">54 000 € <span class="fc-badge">Prognozė</span></td>
-          <td>94.7%</td><td class="g-pos">+10 488 €</td><td class="g-pos">+24.1%</td>
+          <td class="fc-val">43 512 € <span class="fc-badge">Prognozė</span></td>
+          <td>76.3%</td><td class="g-pos">+0 €</td><td class="g-pos">+0.0%</td>
+          <td class="note">Prognozė – 2025 m. lygis</td>
         </tr>
 <tr class="row-forecast-total">
           <td>Viso 1–12 mėn. (su prognoze)</td><td>386 491 €</td><td>550 000 €</td>
-          <td>406 653 € <span class="fc-badge">Prognozė</span></td><td>73.9%</td>
-          <td class="g-pos">+20 162 €</td><td class="g-pos">+5.2%</td>
+          <td>360 395 € <span class="fc-badge">Prognozė</span></td><td>65.5%</td>
+          <td class="g-neg">-26 096 €</td><td class="g-neg">-6.8%</td><td class="note"></td>
         </tr>
         </table>
       </div>
@@ -374,7 +400,11 @@ body { font-family: var(--font); background: var(--bg); color: var(--gray-80); p
       <div class="kpi c-red"><div class="kpi-lbl">Augimas vs 2025, €</div><div class="kpi-val red">-35 787 €</div></div>
       <div class="kpi c-red"><div class="kpi-lbl">Augimas vs 2025, %</div><div class="kpi-val red">-2.7%</div></div>
     </div>
-    <div class="link-box"><strong>Detali analizė</strong> (rėmėjų klasifikacija, retencija, ABC segmentacija, demografija, churn dinamika) yra atskiroje F2F ataskaitoje valdybai: <a href="https://im-lrk.github.io/Atspari-Lietuva/Valdybai/Lesu-Pritraukimas/F2F_2026-09.html" target="_blank" rel="noopener">F2F ataskaita valdybai</a>.</div>
+    <a class="detail-cta" href="https://im-lrk.github.io/Atspari-Lietuva/Valdybai/Lesu-Pritraukimas/F2F_2026-09.html" target="_blank" rel="noopener">
+      <span class="cta-ico">📊</span>
+      <span class="cta-txt"><strong>Detali analizė</strong><span>rėmėjų klasifikacija, retencija, ABC segmentacija, demografija, churn dinamika</span></span>
+      <span class="cta-btn">Atidaryti F2F ataskaitą valdybai →</span>
+    </a>
     <div class="card" style="margin-top:14px;">
       <div class="card-head"><div class="card-title">Mėnesio pajamos — planas vs. faktas/prognozė</div><div class="card-sub">Sausis–spalis: faktas &nbsp;·&nbsp; Lapkritis–gruodis: prognozė (šviesesni stulpeliai, punktyrinė linija) &nbsp;·&nbsp; linija = plano vykdymas, % (dešinė ašis)</div></div>
       <div class="card-body"><div class="chart-wrap"><canvas id="chart-f2f"></canvas></div></div>
@@ -383,75 +413,87 @@ body { font-family: var(--font); background: var(--bg); color: var(--gray-80); p
       <div class="card-head"><div class="card-title">Mėnesio duomenų lentelė</div></div>
       <div class="card-body table-scroll">
         <table class="dt dt-mon">
-          <tr><th>Mėn.</th><th>2025 Faktas</th><th>2026 Planas</th><th>2026 Faktas / Prognozė</th><th>Vykdymas</th><th>Augimas, €</th><th>Augimas, %</th></tr>
+          <tr><th>Mėn.</th><th>2025 Faktas</th><th>2026 Planas</th><th>2026 Faktas / Prognozė</th><th>Vykdymas</th><th>Augimas, €</th><th>Augimas, %</th><th class="note-h">Komentaras</th></tr>
 <tr class="">
           <td>Sausis</td><td>135 004 €</td><td>126 560 €</td>
           <td class="">145 218 €</td>
           <td>114.7%</td><td class="g-pos">+10 214 €</td><td class="g-pos">+7.6%</td>
+          <td class="note">Įskaityta dalis 2025 m. gruodį nenuskaitytų įmokų</td>
         </tr>
 <tr class="">
           <td>Vasaris</td><td>133 474 €</td><td>139 420 €</td>
           <td class="">132 423 €</td>
           <td>95.0%</td><td class="g-neg">-1 051 €</td><td class="g-neg">-0.8%</td>
+          <td class="note"></td>
         </tr>
 <tr class="">
           <td>Kovas</td><td>132 625 €</td><td>141 190 €</td>
           <td class="">131 041 €</td>
           <td>92.8%</td><td class="g-neg">-1 584 €</td><td class="g-neg">-1.2%</td>
+          <td class="note"></td>
         </tr>
 <tr class="">
           <td>Balandis</td><td>132 624 €</td><td>145 300 €</td>
           <td class="">129 050 €</td>
           <td>88.8%</td><td class="g-neg">-3 574 €</td><td class="g-neg">-2.7%</td>
+          <td class="note"></td>
         </tr>
 <tr class="">
           <td>Gegužė</td><td>132 262 €</td><td>146 850 €</td>
           <td class="">130 090 €</td>
           <td>88.6%</td><td class="g-neg">-2 172 €</td><td class="g-neg">-1.6%</td>
+          <td class="note"></td>
         </tr>
 <tr class="">
           <td>Birželis</td><td>132 670 €</td><td>150 450 €</td>
           <td class="">128 743 €</td>
           <td>85.6%</td><td class="g-neg">-3 927 €</td><td class="g-neg">-3.0%</td>
+          <td class="note"></td>
         </tr>
 <tr class="">
           <td>Liepa</td><td>133 698 €</td><td>152 550 €</td>
           <td class="">125 423 €</td>
           <td>82.2%</td><td class="g-neg">-8 275 €</td><td class="g-neg">-6.2%</td>
+          <td class="note"></td>
         </tr>
 <tr class="">
           <td>Rugpjūtis</td><td>131 768 €</td><td>154 300 €</td>
           <td class="">121 831 €</td>
           <td>79.0%</td><td class="g-neg">-9 937 €</td><td class="g-neg">-7.5%</td>
+          <td class="note"></td>
         </tr>
 <tr class="">
           <td>Rugsėjis</td><td>130 300 €</td><td>154 950 €</td>
           <td class="">122 792 €</td>
           <td>79.2%</td><td class="g-neg">-7 508 €</td><td class="g-neg">-5.8%</td>
+          <td class="note"></td>
         </tr>
 <tr class="">
           <td>Spalis</td><td>130 200 €</td><td>157 000 €</td>
           <td class="">122 227 €</td>
           <td>77.9%</td><td class="g-neg">-7 973 €</td><td class="g-neg">-6.1%</td>
+          <td class="note"></td>
         </tr>
 <tr class="row-total">
           <td>Viso 1–10 mėn. (faktas)</td><td>1 324 625 €</td><td>1 468 570 €</td><td>1 288 838 €</td><td>87.8%</td>
-          <td class="g-neg">-35 787 €</td><td class="g-neg">-2.7%</td>
+          <td class="g-neg">-35 787 €</td><td class="g-neg">-2.7%</td><td class="note"></td>
         </tr>
 <tr class="fc-row">
           <td>Lapkritis</td><td>131 867 €</td><td>159 575 €</td>
           <td class="fc-val">123 000 € <span class="fc-badge">Prognozė</span></td>
           <td>77.1%</td><td class="g-neg">-8 867 €</td><td class="g-neg">-6.7%</td>
+          <td class="note">Keičiasi telemarketingo partneris</td>
         </tr>
 <tr class="fc-row">
           <td>Gruodis</td><td>72 528 €</td><td>161 470 €</td>
           <td class="fc-val">123 000 € <span class="fc-badge">Prognozė</span></td>
           <td>76.2%</td><td class="g-pos">+50 472 €</td><td class="g-pos">+69.6%</td>
+          <td class="note">2025 m. IT klaida – neišrašytos periodinio rėmimo sąskaitos (~70 tūkst. €)</td>
         </tr>
 <tr class="row-forecast-total">
           <td>Viso 1–12 mėn. (su prognoze)</td><td>1 529 020 €</td><td>1 789 615 €</td>
           <td>1 534 838 € <span class="fc-badge">Prognozė</span></td><td>85.8%</td>
-          <td class="g-pos">+5 818 €</td><td class="g-pos">+0.4%</td>
+          <td class="g-pos">+5 818 €</td><td class="g-pos">+0.4%</td><td class="note"></td>
         </tr>
         </table>
       </div>
@@ -478,7 +520,11 @@ body { font-family: var(--font); background: var(--bg); color: var(--gray-80); p
       <div class="kpi c-green"><div class="kpi-lbl">Augimas vs 2025, €</div><div class="kpi-val green">+4 658 €</div></div>
       <div class="kpi c-green"><div class="kpi-lbl">Augimas vs 2025, %</div><div class="kpi-val green">+3.4%</div></div>
     </div>
-    <div class="link-box"><strong>Detali analizė</strong> (kontaktai, pardavimų pipeline) yra atskirame dashboard'e: <a href="https://im-lrk.github.io/Atspari-Lietuva/Valdybai/Lesu-Pritraukimas/Komerciniai-Mokymai-2026-09.html" target="_blank" rel="noopener">Komercinių mokymų dashboard'as</a>.</div>
+    <a class="detail-cta" href="https://im-lrk.github.io/Atspari-Lietuva/Valdybai/Lesu-Pritraukimas/Komerciniai-Mokymai-2026-09.html" target="_blank" rel="noopener">
+      <span class="cta-ico">📊</span>
+      <span class="cta-txt"><strong>Detali analizė</strong><span>kontaktai, pardavimų pipeline</span></span>
+      <span class="cta-btn">Atidaryti Komercinių mokymų dashboard'ą →</span>
+    </a>
     <div class="card" style="margin-top:14px;">
       <div class="card-head"><div class="card-title">Mėnesio pajamos — planas vs. faktas/prognozė</div><div class="card-sub">Sausis–spalis: faktas &nbsp;·&nbsp; Lapkritis–gruodis: prognozė (šviesesni stulpeliai, punktyrinė linija) &nbsp;·&nbsp; linija = plano vykdymas, % (dešinė ašis)</div></div>
       <div class="card-body"><div class="chart-wrap"><canvas id="chart-mokymai"></canvas></div></div>
@@ -487,75 +533,87 @@ body { font-family: var(--font); background: var(--bg); color: var(--gray-80); p
       <div class="card-head"><div class="card-title">Mėnesio duomenų lentelė</div></div>
       <div class="card-body table-scroll">
         <table class="dt dt-mon">
-          <tr><th>Mėn.</th><th>2025 Faktas</th><th>2026 Planas</th><th>2026 Faktas / Prognozė</th><th>Vykdymas</th><th>Augimas, €</th><th>Augimas, %</th></tr>
+          <tr><th>Mėn.</th><th>2025 Faktas</th><th>2026 Planas</th><th>2026 Faktas / Prognozė</th><th>Vykdymas</th><th>Augimas, €</th><th>Augimas, %</th><th class="note-h">Komentaras</th></tr>
 <tr class="">
           <td>Sausis</td><td>9 165 €</td><td>15 600 €</td>
           <td class="">6 885 €</td>
           <td>44.1%</td><td class="g-neg">-2 280 €</td><td class="g-neg">-24.9%</td>
+          <td class="note"></td>
         </tr>
 <tr class="">
           <td>Vasaris</td><td>13 250 €</td><td>17 600 €</td>
           <td class="">9 205 €</td>
           <td>52.3%</td><td class="g-neg">-4 045 €</td><td class="g-neg">-30.5%</td>
+          <td class="note"></td>
         </tr>
 <tr class="">
           <td>Kovas</td><td>18 255 €</td><td>23 600 €</td>
           <td class="">16 608 €</td>
           <td>70.4%</td><td class="g-neg">-1 647 €</td><td class="g-neg">-9.0%</td>
+          <td class="note"></td>
         </tr>
 <tr class="">
           <td>Balandis</td><td>19 322 €</td><td>23 600 €</td>
           <td class="">16 929 €</td>
           <td>71.7%</td><td class="g-neg">-2 393 €</td><td class="g-neg">-12.4%</td>
+          <td class="note"></td>
         </tr>
 <tr class="">
           <td>Gegužė</td><td>20 258 €</td><td>23 600 €</td>
           <td class="">27 998 €</td>
           <td>118.6%</td><td class="g-pos">+7 740 €</td><td class="g-pos">+38.2%</td>
+          <td class="note"></td>
         </tr>
 <tr class="">
           <td>Birželis</td><td>14 418 €</td><td>17 600 €</td>
           <td class="">14 505 €</td>
           <td>82.4%</td><td class="g-pos">+87 €</td><td class="g-pos">+0.6%</td>
+          <td class="note"></td>
         </tr>
 <tr class="">
           <td>Liepa</td><td>8 105 €</td><td>15 600 €</td>
           <td class="">7 840 €</td>
           <td>50.3%</td><td class="g-neg">-265 €</td><td class="g-neg">-3.3%</td>
+          <td class="note"></td>
         </tr>
 <tr class="">
           <td>Rugpjūtis</td><td>6 601 €</td><td>13 600 €</td>
           <td class="">8 020 €</td>
           <td>59.0%</td><td class="g-pos">+1 419 €</td><td class="g-pos">+21.5%</td>
+          <td class="note"></td>
         </tr>
 <tr class="">
           <td>Rugsėjis</td><td>13 959 €</td><td>23 600 €</td>
           <td class="">16 609 €</td>
           <td>70.4%</td><td class="g-pos">+2 650 €</td><td class="g-pos">+19.0%</td>
+          <td class="note"></td>
         </tr>
 <tr class="">
           <td>Spalis</td><td>14 414 €</td><td>25 600 €</td>
           <td class="">17 806 €</td>
           <td>69.6%</td><td class="g-pos">+3 392 €</td><td class="g-pos">+23.5%</td>
+          <td class="note"></td>
         </tr>
 <tr class="row-total">
           <td>Viso 1–10 mėn. (faktas)</td><td>137 747 €</td><td>200 000 €</td><td>142 405 €</td><td>71.2%</td>
-          <td class="g-pos">+4 658 €</td><td class="g-pos">+3.4%</td>
+          <td class="g-pos">+4 658 €</td><td class="g-pos">+3.4%</td><td class="note"></td>
         </tr>
 <tr class="fc-row">
           <td>Lapkritis</td><td>19 675 €</td><td>24 600 €</td>
           <td class="fc-val">20 000 € <span class="fc-badge">Prognozė</span></td>
           <td>81.3%</td><td class="g-pos">+325 €</td><td class="g-pos">+1.7%</td>
+          <td class="note"></td>
         </tr>
 <tr class="fc-row">
           <td>Gruodis</td><td>30 854 €</td><td>18 600 €</td>
           <td class="fc-val">15 000 € <span class="fc-badge">Prognozė</span></td>
           <td>80.6%</td><td class="g-neg">-15 854 €</td><td class="g-neg">-51.4%</td>
+          <td class="note"></td>
         </tr>
 <tr class="row-forecast-total">
           <td>Viso 1–12 mėn. (su prognoze)</td><td>188 276 €</td><td>243 200 €</td>
           <td>177 405 € <span class="fc-badge">Prognozė</span></td><td>72.9%</td>
-          <td class="g-neg">-10 871 €</td><td class="g-neg">-5.8%</td>
+          <td class="g-neg">-10 871 €</td><td class="g-neg">-5.8%</td><td class="note"></td>
         </tr>
         </table>
       </div>
@@ -566,7 +624,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--gray-80); p
 </div>
 
 <script>
-const CHART_DATA = {"summary": {"labels": [["Verslo", "parama"], ["Fizinių vienk.", "parama"], ["F2F nuolatinė", "parama"], ["GPM 1,2%"], ["Komerciniai", "mokymai"], ["Viso"]], "fact25": [386491, 45768, 1529020, 62829, 188276, 2212384], "plan": [550000, 55000, 1789615, 70000, 243200, 2707815], "fc": [406653, 29785, 1534838, 50887, 177405, 2199568]}, "verslo": {"labels": ["Sau", "Vas", "Kov", "Bal", "Geg", "Bir", "Lie", "Rgp", "Rgs", "Spa", "Lap", "Gru"], "fact25": [28893, 38808, 53113, 23287, 20779, 12314, 16076, 14151, 12740, 98588, 24230, 43512], "plan26": [55000, 55000, 55000, 52000, 40000, 30000, 29000, 29000, 30000, 52000, 66000, 57000], "val26": [17789, 14268, 29291, 30620, 30666, 22079, 19828, 38048, 64620, 25444, 60000, 54000], "forecast": [false, false, false, false, false, false, false, false, false, false, true, true]}, "f2f": {"labels": ["Sau", "Vas", "Kov", "Bal", "Geg", "Bir", "Lie", "Rgp", "Rgs", "Spa", "Lap", "Gru"], "fact25": [135004, 133474, 132625, 132624, 132262, 132670, 133698, 131768, 130300, 130200, 131867, 72528], "plan26": [126560, 139420, 141190, 145300, 146850, 150450, 152550, 154300, 154950, 157000, 159575, 161470], "val26": [145218, 132423, 131041, 129050, 130090, 128743, 125423, 121831, 122792, 122227, 123000, 123000], "forecast": [false, false, false, false, false, false, false, false, false, false, true, true]}, "mokymai": {"labels": ["Sau", "Vas", "Kov", "Bal", "Geg", "Bir", "Lie", "Rgp", "Rgs", "Spa", "Lap", "Gru"], "fact25": [9165, 13250, 18255, 19322, 20258, 14418, 8105, 6601, 13959, 14414, 19675, 30854], "plan26": [15600, 17600, 23600, 23600, 23600, 17600, 15600, 13600, 23600, 25600, 24600, 18600], "val26": [6885, 9205, 16608, 16929, 27998, 14505, 7840, 8020, 16609, 17806, 20000, 15000], "forecast": [false, false, false, false, false, false, false, false, false, false, true, true]}};
+const CHART_DATA = {"summary": {"labels": [["Verslo", "parama"], ["Fizinių vienk.", "parama"], ["F2F nuolatinė", "parama"], ["GPM 1,2%"], ["Komerciniai", "mokymai"], ["Viso"]], "fact25": [386491, 45768, 1529020, 62829, 188276, 2212384], "plan": [550000, 55000, 1789615, 70000, 243200, 2707815], "fc": [360395, 29785, 1534838, 50887, 177405, 2153310]}, "verslo": {"labels": ["Sau", "Vas", "Kov", "Bal", "Geg", "Bir", "Lie", "Rgp", "Rgs", "Spa", "Lap", "Gru"], "fact25": [28893, 38808, 53113, 23287, 20779, 12314, 16076, 14151, 12740, 98588, 24230, 43512], "plan26": [55000, 55000, 55000, 52000, 40000, 30000, 29000, 29000, 30000, 52000, 66000, 57000], "val26": [17789, 14268, 29291, 30620, 30666, 22079, 19828, 38048, 64620, 25444, 24230, 43512], "forecast": [false, false, false, false, false, false, false, false, false, false, true, true]}, "f2f": {"labels": ["Sau", "Vas", "Kov", "Bal", "Geg", "Bir", "Lie", "Rgp", "Rgs", "Spa", "Lap", "Gru"], "fact25": [135004, 133474, 132625, 132624, 132262, 132670, 133698, 131768, 130300, 130200, 131867, 72528], "plan26": [126560, 139420, 141190, 145300, 146850, 150450, 152550, 154300, 154950, 157000, 159575, 161470], "val26": [145218, 132423, 131041, 129050, 130090, 128743, 125423, 121831, 122792, 122227, 123000, 123000], "forecast": [false, false, false, false, false, false, false, false, false, false, true, true]}, "mokymai": {"labels": ["Sau", "Vas", "Kov", "Bal", "Geg", "Bir", "Lie", "Rgp", "Rgs", "Spa", "Lap", "Gru"], "fact25": [9165, 13250, 18255, 19322, 20258, 14418, 8105, 6601, 13959, 14414, 19675, 30854], "plan26": [15600, 17600, 23600, 23600, 23600, 17600, 15600, 13600, 23600, 25600, 24600, 18600], "val26": [6885, 9205, 16608, 16929, 27998, 14505, 7840, 8020, 16609, 17806, 20000, 15000], "forecast": [false, false, false, false, false, false, false, false, false, false, true, true]}};
 
 function switchTab(key, el) {
   document.querySelectorAll('.d-view').forEach(v => v.classList.remove('active'));
