@@ -217,6 +217,25 @@ body { font-family: var(--font); background: var(--gray-05); color: var(--gray-8
   background: var(--gray-05);
   width: 140px;
 }
+.dt td.y25,.dt th.y25{background:#EBF2F9;}
+.dt td.y26,.dt th.y26{background:#FBEFEA;}
+.dt td.viso25,.dt th.viso25{background:#D4E4F3;font-weight:700;}
+.dt td.viso26,.dt th.viso26{background:#F6DBCE;font-weight:700;}
+.dt th.y25,.dt th.viso25{color:#1A5276;}
+.dt th.y26,.dt th.viso26{color:#943126;}
+.dt tr.viso td.y25,.dt tr.viso td.viso25{background:#C2D9EE;}
+.dt tr.viso td.y26,.dt tr.viso td.viso26{background:#F2CBB5;}
+.dt th.y25:first-child,.dt th.y26:first-child,.dt th.viso25:first-child,.dt th.viso26:first-child{text-align:center;font-weight:700;}
+.sponsors{font-size:12.5px;color:var(--gray-80);margin-top:12px;background:var(--gray-05);border-radius:6px;padding:10px 12px;}
+.sponsors b{color:var(--navy);}
+.sponsors table{width:100%;border-collapse:collapse;margin-top:6px;font-size:12px;}
+.sponsors td{padding:3px 6px;border-bottom:1px solid var(--gray-10);}
+.legend2{display:flex;flex-wrap:wrap;gap:22px;justify-content:center;padding:4px 0 14px;font-size:12.5px;}
+.legend2 .grp{display:flex;align-items:center;gap:9px;}
+.legend2 .lbl{font-weight:700;color:var(--gray-80);}
+.legend2 .def{color:var(--gray-50);font-weight:400;}
+.legend2 .dot{display:inline-flex;align-items:center;gap:4px;}
+.legend2 .dot span.sw{width:10px;height:10px;border-radius:50%;display:inline-block;}
 .dt-channel td:first-child {
   display: flex;
   align-items: center;
@@ -406,34 +425,6 @@ body { font-family: var(--font); background: var(--gray-05); color: var(--gray-8
     </div>
   </div>
 
-  <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:14px;">
-    <div class="card">
-      <div class="card-head">
-        <span class="card-title">💶 Gauta parama pagal pritraukimo šaltinį</span>
-        <span style="font-size:12px;color:var(--gray-80)">Rugpjūtis vs Rugsėjis · Bankas, suma (€)</span>
-      </div>
-      <div class="card-body" style="padding-bottom:6px;padding-top:10px;">
-        <div style="position:relative;height:200px;"><canvas id="chart-saltinis"></canvas></div>
-        <table id="dt-saltinis" class="dt"></table>
-        <div style="font-size:11.5px;color:var(--gray-50);margin-top:8px;font-style:italic">Šaltinis: Bankas lapas, „Pritraukimo šaltinis" stulpelis · RĖMĖJAI+AMBASADORIAI+JANT PARAMA įrašai, su 50 000 € UAB „Lidl Lietuva" parama (09-01, šaltinis „Vidinis darbuotojas"). Spalio (X) mėn. šis stulpelis Bankas lape dar neužpildytas — kai tik bus suvesta, grafiką papildysime.</div>
-      </div>
-    </div>
-  </div>
-
-  <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:14px;">
-    <div class="card">
-      <div class="card-head">
-        <span class="card-title">🏷️ Rėmėjų kategorijos</span>
-        <span style="font-size:12px;color:var(--gray-80)">Rugpjūtis–Spalis · Bankas, suma (€)</span>
-      </div>
-      <div class="card-body" style="padding-bottom:6px;padding-top:10px;">
-        <div style="position:relative;height:200px;"><canvas id="chart-kategorijos"></canvas></div>
-        <table id="dt-kategorijos" class="dt"></table>
-        <div style="font-size:11.5px;color:var(--gray-50);margin-top:8px;font-style:italic">Šaltinis: Bankas lapas, „Dokumento Nr." stulpelis · Dideli rėmėjai = JANT PARAMA (šiuo metu tik 50 000 € UAB „Lidl Lietuva", 09-01) · Ambasadoriai = doc. tipas AMBASADORIAI (1000–2000 € įmokos) · Rėmėjai = doc. tipas RĖMĖJAI (iki 1000 €). Pilnas metų pjūvis (I–X) bus paruoštas, kai gausime likusių mėnesių duomenis.</div>
-      </div>
-    </div>
-  </div>
-
   <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:18px;">
     <div class="card">
       <div class="card-head">
@@ -452,6 +443,54 @@ body { font-family: var(--font); background: var(--gray-05); color: var(--gray-8
       </div>
       <div class="card-body" style="padding:16px 18px;">
         <table id="dt-contacts2" class="dt dt-channel"></table>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:14px;">
+    <div class="card">
+      <div class="card-head">
+        <span class="card-title">🏷️ Rėmėjų kategorijos pagal mėnesį</span>
+        <span style="font-size:12px;color:var(--gray-80)">2025 vs 2026 · Bankas, suma (€)</span>
+      </div>
+      <div class="card-body" style="padding-bottom:6px;padding-top:10px;">
+        <div class="legend2">
+          <div class="grp"><span class="lbl">Rėmėjai</span><span class="def">iki 1000€</span>
+            <span class="dot"><span class="sw" style="background:#7FB3D5"></span>2025</span>
+            <span class="dot"><span class="sw" style="background:#2471A3"></span>2026</span></div>
+          <div class="grp"><span class="lbl">Ambasadoriai</span><span class="def">1000-10000€</span>
+            <span class="dot"><span class="sw" style="background:#EFA95B"></span>2025</span>
+            <span class="dot"><span class="sw" style="background:#E67E22"></span>2026</span></div>
+          <div class="grp"><span class="lbl">Dideli rėmėjai</span><span class="def">10000€+</span>
+            <span class="dot"><span class="sw" style="background:#D98880"></span>2025</span>
+            <span class="dot"><span class="sw" style="background:#C0392B"></span>2026</span></div>
+        </div>
+        <div style="position:relative;height:340px;"><canvas id="chart-kategorijos"></canvas></div>
+        <table id="dt-kategorijos" class="dt"></table>
+        <div class="sponsors">
+          <b>🏆 Dideli rėmėjai (10000€+) – visi atvejai 2025-2026:</b>
+          <table>
+            <tr><td>2025-03-10</td><td>UAB „Elmoris“</td><td style="text-align:right">10 000 €</td></tr>
+            <tr><td>2025-10-31</td><td>UAB „Lidl Lietuva“</td><td style="text-align:right">57 000 €</td></tr>
+            <tr><td>2026-03-09</td><td>UAB „Elmoris“</td><td style="text-align:right">10 000 €</td></tr>
+            <tr><td>2026-04-27</td><td>UAB „Ecoservice“</td><td style="text-align:right">10 000 €</td></tr>
+            <tr><td>2026-09-01</td><td>UAB „Lidl Lietuva“</td><td style="text-align:right">50 000 €</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:14px;">
+    <div class="card">
+      <div class="card-head">
+        <span class="card-title">💶 Gauta parama pagal pritraukimo šaltinį</span>
+        <span style="font-size:12px;color:var(--gray-80)">Rugpjūtis vs Rugsėjis · Bankas, suma (€)</span>
+      </div>
+      <div class="card-body" style="padding-bottom:6px;padding-top:10px;">
+        <div style="position:relative;height:200px;"><canvas id="chart-saltinis"></canvas></div>
+        <table id="dt-saltinis" class="dt"></table>
+        <div style="font-size:11.5px;color:var(--gray-50);margin-top:8px;font-style:italic">Šaltinis: Bankas lapas, „Pritraukimo šaltinis" stulpelis · RĖMĖJAI+AMBASADORIAI+JANT PARAMA įrašai, su 50 000 € UAB „Lidl Lietuva" parama (09-01, šaltinis „Vidinis darbuotojas"). Spalio (X) mėn. šis stulpelis Bankas lape dar neužpildytas — kai tik bus suvesta, grafiką papildysime.</div>
       </div>
     </div>
   </div>
@@ -585,19 +624,11 @@ const SALTINIS_DATA = {
   sep: [51000, 6700, 5080, 1841]
 };
 
-// 2026-11-12: "Rėmėjų kategorijos" pjūvis (Bankas lapas, "Dokumento Nr." stulpelis) - Inga (Gen. sekretorė)
-// paprašė kategorijų suvestinės. VIII-X mėn. (anksčiau šis stulpelis detaliai nenagrinėtas). Kategorijos:
-// Dideli rėmėjai = doc. tipas JANT PARAMA (vienkartinės didelės sumos, pvz. 50 000 € UAB "Lidl Lietuva");
-// Ambasadoriai = doc. tipas AMBASADORIAI (1000-2000 € įmokos); Rėmėjai = doc. tipas RĖMĖJAI (iki 1000 €).
-const KATEGORIJOS_DATA = {
-  labels: ['Dideli rėmėjai', 'Ambasadoriai', 'Rėmėjai'],
-  aug: [0, 6500, 31698],
-  sep: [50000, 4000, 10621],
-  okt: [0, 5000, 20445],
-  aug_c: [0, 6, 154],
-  sep_c: [1, 4, 68],
-  okt_c: [0, 4, 101]
-};
+// 2026-11-15: "Rėmėjų kategorijos" išplėsta iš VIII-X/2026 (doc.-tipo pjūvio) į pilną 2025-2026
+// periodą, pagal vieno mokėjimo sumos taisyklę (iki 1000€ = Rėmėjas, 1000-10000€ = Ambasadorius,
+// 10000€+ = Didelis rėmėjas), patvirtintą Sonatos (žr. Verslo_paramos_2025-2026_analize.xlsx).
+// Duomenys iš Verslas_2025.xlsx (pilnas, patikrintas) + Verslas_2026.xlsx (I-X, jau švarus eksportas).
+const KAT_MONTHLY = {"months": ["2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03", "2026-04", "2026-05", "2026-06", "2026-07", "2026-08", "2026-09", "2026-10"], "D_sum": [0.0, 0.0, 10000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 57000.0, 0.0, 0.0, 0.0, 0.0, 10000.0, 10000.0, 0.0, 0.0, 0.0, 0.0, 50000.0, 0.0], "A_sum": [20076.0, 6276.0, 6276.0, 0.0, 0.0, 0.0, 3000.0, 4000.0, 0.0, 3000.0, 1500.0, 10000.0, 5000.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1500.0, 1500.0, 0.0, 2000.0], "R_sum": [17319.0, 37400.0, 50948.0, 21965.0, 20718.0, 10753.0, 13213.0, 10090.0, 12681.0, 33420.0, 22674.0, 34012.0, 15789.0, 14268.0, 28891.0, 20620.0, 30966.0, 21679.0, 18328.0, 36698.0, 14620.7, 23444.8], "D_c": [0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0], "A_c": [5, 2, 2, 0, 0, 0, 1, 2, 0, 1, 1, 2, 2, 0, 0, 0, 0, 0, 1, 1, 0, 1], "R_c": [92, 161, 205, 103, 95, 62, 69, 59, 74, 151, 106, 122, 74, 54, 106, 89, 137, 102, 92, 160, 72, 104]};
 
 function fmt(v){ return v===0?'—':v.toLocaleString('lt-LT'); }
 function pct(a,b){ if(!b||!a) return '—'; return (a/b*100).toFixed(1).replace('.',',')+'%'; }
@@ -885,54 +916,93 @@ function buildCharts() {
     el.innerHTML += row;
   })();
 
-  // CHART 2.6: Rėmėjų kategorijos — Rugpjūtis vs Rugsėjis vs Spalis, grupuoti stulpeliai (Dokumento Nr. pjūvis)
-  new Chart(document.getElementById('chart-kategorijos'), {
-    type:'bar',
-    data:{ labels:KATEGORIJOS_DATA.labels, datasets:[
-      { label:'Rugpjūtis', data:KATEGORIJOS_DATA.aug,
-        backgroundColor:'rgba(26,82,118,.72)', borderRadius:5, borderSkipped:false,
-        datalabels:{ ...dlBar, formatter: v=>v===0?'':v.toLocaleString('lt-LT')+' €', color:'#1A5276' } },
-      { label:'Rugsėjis', data:KATEGORIJOS_DATA.sep,
-        backgroundColor:'rgba(23,165,137,.72)', borderRadius:5, borderSkipped:false,
-        datalabels:{ ...dlBar, formatter: v=>v===0?'':v.toLocaleString('lt-LT')+' €', color:'#0E6655' } },
-      { label:'Spalis', data:KATEGORIJOS_DATA.okt,
-        backgroundColor:'rgba(230,126,34,.72)', borderRadius:5, borderSkipped:false,
-        datalabels:{ ...dlBar, formatter: v=>v===0?'':v.toLocaleString('lt-LT')+' €', color:'#9C5000' } },
-    ]},
-    options:{ ...baseOpts,
-      plugins:{ ...baseOpts.plugins,
-        legend:{ display:true, position:'top', align:'end', labels:{font:tf, boxWidth:12, boxHeight:12} },
-        datalabels:{ display:true },
-        tooltip:{ callbacks:{ label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y.toLocaleString('lt-LT')} €` }}
-      },
-      scales:{
-        x:{ grid:{color:gc}, ticks:{font:tf} },
-        y:{ grid:{color:gc}, ticks:{font:tf, callback:v=>v.toLocaleString('lt-LT')+' €'} }
-      }
-    }
-  });
-  const kAug = KATEGORIJOS_DATA.labels.map((_,i)=> `${KATEGORIJOS_DATA.aug[i].toLocaleString('lt-LT')} € (${KATEGORIJOS_DATA.aug_c[i]} vnt.)`);
-  const kSep = KATEGORIJOS_DATA.labels.map((_,i)=> `${KATEGORIJOS_DATA.sep[i].toLocaleString('lt-LT')} € (${KATEGORIJOS_DATA.sep_c[i]} vnt.)`);
-  const kOkt = KATEGORIJOS_DATA.labels.map((_,i)=> `${KATEGORIJOS_DATA.okt[i].toLocaleString('lt-LT')} € (${KATEGORIJOS_DATA.okt_c[i]} vnt.)`);
-  buildDT('dt-kategorijos', [
-    { label:'Rugpjūtis', color:'rgba(26,82,118,.85)',  values:kAug, fmt: v=>v },
-    { label:'Rugsėjis',  color:'rgba(23,165,137,.85)', values:kSep, fmt: v=>v },
-    { label:'Spalis',    color:'rgba(230,126,34,.85)', values:kOkt, fmt: v=>v },
-  ], KATEGORIJOS_DATA.labels);
-  // VISO eilutė - suma per kategoriją (VIII+IX+X) ir % nuo bendros sumos
+  // CHART 2.6: Rėmėjų kategorijos pagal mėnesį — 2025 vs 2026, sukrauti stulpeliai (suma-pagrįsta taisyklė)
   (function(){
-    const catSums = KATEGORIJOS_DATA.labels.map((_,i)=> KATEGORIJOS_DATA.aug[i]+KATEGORIJOS_DATA.sep[i]+KATEGORIJOS_DATA.okt[i]);
-    const catCounts = KATEGORIJOS_DATA.labels.map((_,i)=> KATEGORIJOS_DATA.aug_c[i]+KATEGORIJOS_DATA.sep_c[i]+KATEGORIJOS_DATA.okt_c[i]);
-    const grandTotal = catSums.reduce((a,b)=>a+b,0);
-    const el = document.getElementById('dt-kategorijos');
-    if(!el) return;
-    let row = '<tr style="font-weight:700;border-top:2px solid var(--gray-10)"><td>VISO</td>';
-    catSums.forEach((s,i) => {
-      const p = pct(s, grandTotal);
-      row += `<td>${s.toLocaleString('lt-LT')} € (${catCounts[i]} vnt.) · ${p}</td>`;
+    const D = KAT_MONTHLY;
+    const monthNames = ['Sausis','Vasaris','Kovas','Balandis','Gegužė','Birželis','Liepa','Rugpjūtis','Rugsėjis','Spalis','Lapkritis','Gruodis'];
+    function idxFor(year, monthNo){ return D.months.indexOf(year+'-'+String(monthNo).padStart(2,'0')); }
+    function val(arr, year, monthNo){ const i = idxFor(year, monthNo); return i<0 ? null : arr[i]; }
+    const y25 = { D:[],A:[],R:[] }, y26 = { D:[],A:[],R:[] };
+    for(let m=1;m<=12;m++){
+      y25.D.push(val(D.D_sum,2025,m)); y25.A.push(val(D.A_sum,2025,m)); y25.R.push(val(D.R_sum,2025,m));
+      y26.D.push(val(D.D_sum,2026,m)); y26.A.push(val(D.A_sum,2026,m)); y26.R.push(val(D.R_sum,2026,m));
+    }
+    const SMALL = 7000; // segmentai po šios sumos (€) - etiketė išnešama už stulpelio
+    function buriedAbove(ctx){
+      const idx = ctx.dataIndex, myStack = ctx.dataset.stack, datasets = ctx.chart.data.datasets;
+      for (let j = ctx.datasetIndex + 1; j < datasets.length; j++){
+        if (datasets[j].stack === myStack && (datasets[j].data[idx] || 0) > 0) return true;
+      }
+      return false;
+    }
+    function mkDl(segColor){
+      return {
+        display: ctx => {
+          const v = ctx.dataset.data[ctx.dataIndex];
+          if (!(v > 0)) return false;
+          if (v < SMALL && buriedAbove(ctx)) return false;
+          return true;
+        },
+        anchor: ctx => (ctx.dataset.data[ctx.dataIndex] < SMALL) ? 'end' : 'center',
+        align:   ctx => (ctx.dataset.data[ctx.dataIndex] < SMALL) ? 'end' : 'center',
+        offset:  ctx => (ctx.dataset.data[ctx.dataIndex] < SMALL) ? 4 : 0,
+        clip: false,
+        color: ctx => (ctx.dataset.data[ctx.dataIndex] < SMALL) ? segColor : '#fff',
+        font:{ family:ff, size:9, weight:'700' },
+        formatter: v => v>=1000 ? Math.round(v/1000)+'k' : v>0 ? Math.round(v) : ''
+      };
+    }
+    new Chart(document.getElementById('chart-kategorijos'), {
+      type:'bar',
+      data:{ labels: monthNames, datasets:[
+        { label:'2025 · Rėmėjai', data:y25.R, backgroundColor:'#7FB3D5', stack:'y25', datalabels:mkDl('#2E6A96') },
+        { label:'2025 · Ambasadoriai', data:y25.A, backgroundColor:'#EFA95B', stack:'y25', datalabels:mkDl('#A1680F') },
+        { label:'2025 · Dideli rėmėjai', data:y25.D, backgroundColor:'#D98880', stack:'y25', datalabels:mkDl('#943126') },
+        { label:'2026 · Rėmėjai', data:y26.R, backgroundColor:'#2471A3', stack:'y26', datalabels:mkDl('#1B4F6E') },
+        { label:'2026 · Ambasadoriai', data:y26.A, backgroundColor:'#E67E22', stack:'y26', datalabels:mkDl('#A1570F') },
+        { label:'2026 · Dideli rėmėjai', data:y26.D, backgroundColor:'#C0392B', stack:'y26', datalabels:mkDl('#7B241C') },
+      ]},
+      options:{
+        responsive:true, maintainAspectRatio:false,
+        layout:{ padding:{ top:18 } },
+        scales:{ x:{ grid:{display:false}, ticks:{font:tf} },
+                 y:{ ticks:{ font:tf, callback:v=>v.toLocaleString('lt-LT')+' €' }, grid:{color:gc} } },
+        plugins:{ legend:{ display:false },
+          datalabels:{ display:true },
+          tooltip:{ callbacks:{ label: ctx => `${ctx.dataset.label}: ${(ctx.raw||0).toLocaleString('lt-LT')} €` } } }
+      }
     });
-    row += '</tr>';
-    el.innerHTML += row;
+    function e(v){ return v==null ? '—' : v.toLocaleString('lt-LT',{maximumFractionDigits:0})+'€'; }
+    function sumv(arr){ return arr.reduce((a,b)=>a+(b||0),0); }
+    function rowTotal(R,A,Dd,m){ if(R[m]==null && A[m]==null && Dd[m]==null) return null; return (R[m]||0)+(A[m]||0)+(Dd[m]||0); }
+    let html = `<tr>
+      <th rowspan="2">Mėnuo</th>
+      <th colspan="4" class="y25">2025</th>
+      <th colspan="4" class="y26">2026</th>
+    </tr>
+    <tr>
+      <th class="y25">Rėmėjai</th><th class="y25">Ambasad.</th><th class="y25">Dideli</th><th class="viso25">VISO 2025</th>
+      <th class="y26">Rėmėjai</th><th class="y26">Ambasad.</th><th class="y26">Dideli</th><th class="viso26">VISO 2026</th>
+    </tr>`;
+    for(let m=0;m<12;m++){
+      const t25 = rowTotal(y25.R,y25.A,y25.D,m), t26 = rowTotal(y26.R,y26.A,y26.D,m);
+      html += `<tr><td>${monthNames[m]}</td>
+        <td class="y25">${e(y25.R[m])}</td>
+        <td class="y25">${e(y25.A[m])}</td>
+        <td class="y25">${e(y25.D[m])}</td>
+        <td class="viso25">${e(t25)}</td>
+        <td class="y26">${e(y26.R[m])}</td>
+        <td class="y26">${e(y26.A[m])}</td>
+        <td class="y26">${e(y26.D[m])}</td>
+        <td class="viso26">${e(t26)}</td></tr>`;
+    }
+    const vR25=sumv(y25.R), vA25=sumv(y25.A), vD25=sumv(y25.D), vT25=vR25+vA25+vD25;
+    const vR26=sumv(y26.R), vA26=sumv(y26.A), vD26=sumv(y26.D), vT26=vR26+vA26+vD26;
+    function pc(part,total){ return total>0 ? ' <span style="font-weight:700;font-size:12.5px">('+Math.round(part/total*100)+'%)</span>' : ''; }
+    html += `<tr class="viso"><td>VISO</td>
+      <td class="y25">${e(vR25)}${pc(vR25,vT25)}</td><td class="y25">${e(vA25)}${pc(vA25,vT25)}</td><td class="y25">${e(vD25)}${pc(vD25,vT25)}</td><td class="viso25">${e(vT25)}</td>
+      <td class="y26">${e(vR26)}${pc(vR26,vT26)}</td><td class="y26">${e(vA26)}${pc(vA26,vT26)}</td><td class="y26">${e(vD26)}${pc(vD26,vT26)}</td><td class="viso26">${e(vT26)}</td></tr>`;
+    document.getElementById('dt-kategorijos').innerHTML = html;
   })();
 
   // CHART 3: Kontaktų aktyvumas — antrinė ašis: unikalios (kairė) + pasiūlymai (dešinė)
