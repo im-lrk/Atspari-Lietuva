@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="lt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DU palyginimas: LRK ir kitos NVO</title>
+<style>
+:root{
+  --bg:#f6f5f2; --card:#ffffff; --ink:#1c1c1c; --ink2:#454545; --muted:#6b6b6b;
+  --line:#e2e0db; --grid:#ecebe7; --lrk:#c8102e; --lrkSoft:#f7d9de;
+  --peer:#5b6b7f; --peerSoft:#d5dbe3; --small:#a7b0bb; --warnBg:#fff6e0; --warnLine:#e6b84a;
+}
+*{box-sizing:border-box}
+html{font-size:17.6px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 20px 48px}
+header{display:flex;align-items:center;gap:16px;margin-bottom:22px}
+.logo-svg{height:64px;width:auto;flex:none;padding-right:18px;margin-right:2px;border-right:1px solid var(--line)}
+h1{font-size:1.75rem;margin:0;line-height:1.2}
+.sub{color:var(--ink2);margin:2px 0 0;font-size:1rem}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px 24px;margin-bottom:20px}
+h2{font-size:1.35rem;margin:0 0 6px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.badge{background:var(--ink);color:#fff;font-size:1rem;font-weight:700;padding:4px 12px;border-radius:999px;letter-spacing:.02em}
+.lead{color:var(--ink2);margin:0 0 16px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.kpi{border:1px solid var(--line);border-radius:10px;padding:16px 18px;border-left:6px solid var(--lrk)}
+.kpi .lab{font-size:1.05rem;font-weight:700;color:var(--ink)}
+.kpi .val{font-size:2.3rem;font-weight:800;line-height:1.15;margin:6px 0 2px}
+.kpi .note{font-size:.95rem;color:var(--ink2)}
+.kpi .note b{color:var(--ink)}
+.chart{width:100%;overflow-x:auto}
+svg text{font-family:inherit}
+.legend{display:flex;gap:22px;flex-wrap:wrap;font-size:.95rem;color:var(--ink2);margin:4px 0 10px}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.sw{width:22px;height:12px;border-radius:3px;display:inline-block}
+.dot{width:12px;height:12px;border-radius:50%;display:inline-block;background:#fff;border:3px solid var(--ink)}
+table{width:100%;border-collapse:collapse;font-size:1rem}
+th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th{font-size:.92rem;color:var(--ink2);font-weight:700;background:#faf9f7;vertical-align:bottom}
+td:first-child,th:first-child{text-align:left;white-space:normal}
+tr.lrk td{background:var(--lrkSoft);font-weight:700}
+td.na{color:#b5b5b5}
+.tag{display:inline-block;font-size:.78rem;font-weight:700;color:#5a4a12;background:var(--warnBg);border:1px solid var(--warnLine);border-radius:4px;padding:0 6px;margin-left:6px;vertical-align:middle}
+.findings{margin:0;padding-left:1.2em}
+.findings li{margin-bottom:10px}
+.limits{background:var(--warnBg);border:2px solid var(--warnLine)}
+.limits h2{color:#5a4a12}
+.limits ol{margin:0;padding-left:1.3em}
+.limits li{margin-bottom:10px}
+.tip{position:fixed;pointer-events:none;background:#1c1c1c;color:#fff;padding:10px 12px;border-radius:8px;font-size:.95rem;line-height:1.4;opacity:0;transition:opacity .1s;max-width:300px;z-index:10}
+.src{font-size:.92rem;color:var(--ink2)}
+details summary{cursor:pointer;font-weight:700;font-size:1.05rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <svg class="logo-svg" role="img" aria-label="Lietuvos Raudonasis Kryžius" width="212" height="69" viewBox="0 0 212 69" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M98.3613 5.03389V17.3265H101.771V5.03389H98.3613ZM98.7695 2.94511C99.1323 3.28123 99.5671 3.4493 100.074 3.4493C100.581 3.4493 101.013 3.28123 101.37 2.94511C101.733 2.60364 101.915 2.19549 101.915 1.72065C101.915 1.25114 101.733 0.848319 101.37 0.512193C101.013 0.170731 100.581 0 100.074 0C99.5671 0 99.1323 0.170731 98.7695 0.512193C98.412 0.848319 98.2333 1.25114 98.2333 1.72065C98.2333 2.19549 98.412 2.60364 98.7695 2.94511ZM124.509 7.59485V5.03389H122.196V2.08878H118.787V5.03389H117.106V7.59485H118.787V13.9973C118.782 14.8029 118.95 15.4698 119.291 15.998C119.633 16.5262 120.11 16.9157 120.724 17.1664C121.343 17.4172 122.063 17.5266 122.885 17.4946C123.327 17.4786 123.704 17.4332 124.013 17.3585C124.322 17.2892 124.563 17.2278 124.733 17.1744L124.197 14.6375C124.112 14.6535 123.989 14.6775 123.829 14.7095C123.669 14.7362 123.509 14.7495 123.349 14.7495C123.119 14.7495 122.917 14.7149 122.74 14.6455C122.57 14.5761 122.436 14.4561 122.34 14.2854C122.244 14.1093 122.196 13.8639 122.196 13.5491V7.59485H124.509ZM159.112 17.5665C157.869 17.5665 156.793 17.3024 155.886 16.7742C154.985 16.2407 154.289 15.4991 153.798 14.5494C153.307 13.5944 153.061 12.4873 153.061 11.2282C153.061 9.95835 153.307 8.8486 153.798 7.89891C154.289 6.94389 154.985 6.20228 155.886 5.67408C156.793 5.14055 157.869 4.87378 159.112 4.87378C160.355 4.87378 161.427 5.14055 162.329 5.67408C163.236 6.20228 163.935 6.94389 164.426 7.89891C164.917 8.8486 165.162 9.95835 165.162 11.2282C165.162 12.4873 164.917 13.5944 164.426 14.5494C163.935 15.4991 163.236 16.2407 162.329 16.7742C161.427 17.3024 160.355 17.5665 159.112 17.5665ZM159.128 14.9256C159.693 14.9256 160.165 14.7655 160.544 14.4454C160.923 14.1199 161.208 13.6771 161.401 13.1169C161.598 12.5567 161.697 11.9191 161.697 11.2042C161.697 10.4892 161.598 9.85165 161.401 9.29144C161.208 8.73123 160.923 8.28839 160.544 7.96294C160.165 7.63748 159.693 7.47476 159.128 7.47476C158.557 7.47476 158.077 7.63748 157.687 7.96294C157.303 8.28839 157.012 8.73123 156.815 9.29144C156.623 9.85165 156.527 10.4892 156.527 11.2042C156.527 11.9191 156.623 12.5567 156.815 13.1169C157.012 13.6771 157.303 14.1199 157.687 14.4454C158.077 14.7655 158.557 14.9256 159.128 14.9256ZM177.607 8.5392L174.486 8.73127C174.433 8.46451 174.318 8.22442 174.142 8.011C173.966 7.79225 173.734 7.61886 173.446 7.49081C173.163 7.35742 172.824 7.29073 172.429 7.29073C171.901 7.29073 171.455 7.40278 171.093 7.62686C170.73 7.84561 170.548 8.13905 170.548 8.50719C170.548 8.80063 170.666 9.04873 170.901 9.25147C171.135 9.45421 171.538 9.61694 172.109 9.73965L174.334 10.1878C175.529 10.4332 176.42 10.8281 177.007 11.3723C177.594 11.9165 177.887 12.6314 177.887 13.5171C177.887 14.3227 177.65 15.0296 177.175 15.6379C176.705 16.2461 176.06 16.7209 175.238 17.0624C174.422 17.3985 173.48 17.5666 172.413 17.5666C170.786 17.5666 169.489 17.2278 168.524 16.5502C167.563 15.8673 167 14.9389 166.835 13.7652L170.188 13.5891C170.29 14.0853 170.535 14.4641 170.925 14.7255C171.314 14.9816 171.813 15.1097 172.421 15.1097C173.019 15.1097 173.499 14.995 173.862 14.7655C174.23 14.5308 174.417 14.2293 174.422 13.8612C174.417 13.5518 174.286 13.2983 174.03 13.1009C173.774 12.8982 173.379 12.7434 172.845 12.6367L170.717 12.2126C169.516 11.9725 168.622 11.5563 168.036 10.9641C167.454 10.3719 167.163 9.61694 167.163 8.69926C167.163 7.90963 167.377 7.22938 167.803 6.6585C168.236 6.08762 168.841 5.64745 169.62 5.338C170.404 5.02855 171.322 4.87383 172.373 4.87383C173.926 4.87383 175.148 5.20195 176.039 5.8582C176.935 6.51444 177.458 7.40811 177.607 8.5392ZM147.912 17.3266L152.21 5.03394H148.601L146.056 13.8292H145.928L143.375 5.03394H139.773L144.071 17.3266H147.912ZM134.613 12.0926V5.03394H138.023V17.3266H134.749V15.0937H134.621C134.344 15.814 133.882 16.3929 133.237 16.8304C132.597 17.2679 131.815 17.4866 130.892 17.4866C130.07 17.4866 129.347 17.2999 128.723 16.9264C128.099 16.5529 127.611 16.0221 127.259 15.3338C126.912 14.6455 126.736 13.8212 126.73 12.8609V5.03394H130.14V12.2526C130.145 12.9783 130.34 13.5518 130.724 13.9733C131.108 14.3948 131.623 14.6055 132.268 14.6055C132.679 14.6055 133.063 14.5122 133.421 14.3254C133.778 14.1334 134.066 13.8506 134.285 13.4771C134.509 13.1036 134.619 12.6421 134.613 12.0926ZM110.104 17.5665C108.84 17.5665 107.751 17.3104 106.839 16.7983C105.932 16.2807 105.233 15.5498 104.742 14.6054C104.251 13.6557 104.006 12.5327 104.006 11.2362C104.006 9.97169 104.251 8.86194 104.742 7.90692C105.233 6.95189 105.924 6.20761 106.815 5.67408C107.711 5.14055 108.762 4.87378 109.968 4.87378C110.779 4.87378 111.534 5.00449 112.233 5.26593C112.937 5.52202 113.551 5.90883 114.074 6.42636C114.602 6.94389 115.013 7.5948 115.306 8.3791C115.599 9.15805 115.746 10.0704 115.746 11.1161V12.0525H107.375V12.0605C107.375 12.6687 107.487 13.1942 107.711 13.6371C107.941 14.0799 108.263 14.4214 108.679 14.6615C109.096 14.9015 109.589 15.0216 110.16 15.0216C110.539 15.0216 110.886 14.9682 111.2 14.8615C111.515 14.7548 111.785 14.5948 112.009 14.3813C112.233 14.1679 112.404 13.9065 112.521 13.5971L115.674 13.8051C115.514 14.5628 115.186 15.2243 114.69 15.7899C114.199 16.3501 113.564 16.7876 112.785 17.1024C112.011 17.4118 111.118 17.5665 110.104 17.5665ZM107.378 9.93968H112.537C112.537 9.44883 112.43 9.014 112.217 8.63519C112.003 8.25638 111.707 7.96027 111.328 7.74686C110.955 7.52811 110.52 7.41873 110.024 7.41873C109.506 7.41873 109.048 7.53878 108.647 7.77887C108.253 8.01362 107.943 8.33108 107.719 8.73123C107.512 9.09545 107.399 9.49827 107.378 9.93968ZM85.6385 17.3265V0.936373H89.1039V14.4695H96.1305V17.3265H85.6385ZM208.599 31.9319L211.72 31.7398C211.571 30.6087 211.048 29.7151 210.152 29.0588C209.261 28.4026 208.039 28.0745 206.486 28.0745C205.435 28.0745 204.517 28.2292 203.733 28.5386C202.954 28.8481 202.349 29.2883 201.916 29.8591C201.49 30.43 201.276 31.1103 201.276 31.8999C201.276 32.8176 201.567 33.5725 202.149 34.1647C202.735 34.757 203.629 35.1731 204.83 35.4132L206.958 35.8374C207.492 35.9441 207.887 36.0988 208.143 36.3016C208.399 36.499 208.53 36.7524 208.535 37.0618C208.53 37.43 208.343 37.7314 207.975 37.9662C207.612 38.1956 207.132 38.3103 206.534 38.3103C205.926 38.3103 205.427 38.1823 205.038 37.9262C204.648 37.6647 204.403 37.2859 204.301 36.7897L200.948 36.9658C201.114 38.1396 201.676 39.0679 202.637 39.7508C203.602 40.4284 204.899 40.7672 206.526 40.7672C207.593 40.7672 208.535 40.5992 209.351 40.263C210.173 39.9216 210.818 39.4467 211.288 38.8385C211.763 38.2303 212 37.5233 212 36.7177C212 35.832 211.707 35.1171 211.12 34.5729C210.533 34.0287 209.642 33.6339 208.447 33.3885L206.222 32.9403C205.651 32.8176 205.248 32.6549 205.014 32.4521C204.779 32.2494 204.661 32.0013 204.661 31.7078C204.661 31.3397 204.843 31.0462 205.206 30.8275C205.569 30.6034 206.014 30.4914 206.542 30.4914C206.937 30.4914 207.276 30.5581 207.559 30.6914C207.847 30.8195 208.079 30.9929 208.255 31.2116C208.431 31.4251 208.546 31.6651 208.599 31.9319ZM195.352 40.5272V28.2346H198.761V40.5272H195.352ZM197.064 26.65C196.558 26.65 196.123 26.482 195.76 26.1458C195.402 25.8044 195.224 25.3962 195.224 24.9214C195.224 24.4519 195.402 24.049 195.76 23.7129C196.123 23.3715 196.558 23.2007 197.064 23.2007C197.571 23.2007 198.003 23.3715 198.361 23.7129C198.724 24.049 198.905 24.4519 198.905 24.9214C198.905 25.3962 198.724 25.8044 198.361 26.1458C198.003 26.482 197.571 26.65 197.064 26.65ZM189.804 31.9319L192.925 31.7398C192.776 30.6087 192.253 29.7151 191.357 29.0588C190.466 28.4026 189.244 28.0745 187.691 28.0745C186.64 28.0745 185.723 28.2292 184.938 28.5386C184.159 28.8481 183.554 29.2883 183.122 29.8591C182.695 30.43 182.481 31.1103 182.481 31.8999C182.481 32.8176 182.772 33.5725 183.354 34.1647C183.941 34.757 184.834 35.1731 186.035 35.4132L188.163 35.8374C188.697 35.9441 189.092 36.0988 189.348 36.3016C189.604 36.499 189.735 36.7524 189.74 37.0618C189.735 37.43 189.548 37.7314 189.18 37.9662C188.817 38.1956 188.337 38.3103 187.739 38.3103C187.131 38.3103 186.632 38.1823 186.243 37.9262C185.853 37.6647 185.608 37.2859 185.506 36.7897L182.153 36.9658C182.319 38.1396 182.881 39.0679 183.842 39.7508C184.808 40.4284 186.104 40.7672 187.731 40.7672C188.798 40.7672 189.74 40.5992 190.556 40.263C191.378 39.9216 192.024 39.4467 192.493 38.8385C192.968 38.2303 193.205 37.5233 193.205 36.7177C193.205 35.832 192.912 35.1171 192.325 34.5729C191.738 34.0287 190.847 33.6339 189.652 33.3885L187.427 32.9403C186.856 32.8176 186.453 32.6549 186.219 32.4521C185.984 32.2494 185.867 32.0013 185.867 31.7078C185.867 31.3397 186.048 31.0462 186.411 30.8275C186.774 30.6034 187.219 30.4914 187.747 30.4914C188.142 30.4914 188.481 30.5581 188.764 30.6914C189.052 30.8195 189.284 30.9929 189.46 31.2116C189.636 31.4251 189.751 31.6651 189.804 31.9319ZM173.129 40.7593C172.345 40.7593 171.646 40.6233 171.033 40.3512C170.419 40.0737 169.934 39.6656 169.576 39.1267C169.224 38.5825 169.048 37.9049 169.048 37.0939C169.048 36.411 169.173 35.8375 169.424 35.3733C169.675 34.9091 170.016 34.5356 170.448 34.2529C170.881 33.9701 171.371 33.7567 171.921 33.6126C172.476 33.4686 173.057 33.3672 173.666 33.3085C174.381 33.2338 174.957 33.1645 175.394 33.1004C175.832 33.0311 176.149 32.9297 176.347 32.7963C176.544 32.6629 176.643 32.4655 176.643 32.2041V32.1561C176.643 31.6492 176.483 31.2571 176.163 30.9796C175.848 30.7022 175.4 30.5635 174.818 30.5635C174.204 30.5635 173.716 30.6995 173.353 30.9716C172.991 31.2384 172.751 31.5745 172.633 31.98L169.48 31.7239C169.64 30.977 169.955 30.3314 170.424 29.7872C170.894 29.2377 171.499 28.8162 172.241 28.5227C172.988 28.2239 173.852 28.0745 174.834 28.0745C175.517 28.0745 176.171 28.1546 176.795 28.3146C177.424 28.4747 177.982 28.7228 178.467 29.0589C178.958 29.395 179.345 29.8272 179.628 30.3554C179.911 30.8783 180.052 31.5052 180.052 32.2361V40.5272H176.819V38.8226H176.723C176.525 39.2067 176.261 39.5455 175.93 39.839C175.6 40.1271 175.202 40.3538 174.738 40.5192C174.274 40.6793 173.738 40.7593 173.129 40.7593ZM174.106 38.4064C174.607 38.4064 175.05 38.3077 175.434 38.1103C175.818 37.9076 176.12 37.6355 176.339 37.294C176.557 36.9525 176.667 36.5657 176.667 36.1336V34.8291C176.56 34.8984 176.413 34.9625 176.227 35.0212C176.045 35.0745 175.84 35.1252 175.61 35.1732C175.381 35.2159 175.151 35.2559 174.922 35.2933C174.693 35.3253 174.485 35.3546 174.298 35.3813C173.898 35.44 173.548 35.5333 173.249 35.6614C172.951 35.7894 172.719 35.9628 172.553 36.1816C172.388 36.395 172.305 36.6618 172.305 36.9819C172.305 37.4461 172.473 37.8009 172.809 38.0463C173.151 38.2864 173.583 38.4064 174.106 38.4064ZM159.014 40.5271V33.4205C159.019 32.8923 159.118 32.4414 159.31 32.068C159.507 31.6892 159.779 31.401 160.126 31.2036C160.478 31.0062 160.884 30.9075 161.343 30.9075C162.025 30.9075 162.562 31.1209 162.951 31.5478C163.341 31.9693 163.533 32.5561 163.527 33.3084V40.5271H166.937V32.7002C166.937 31.7452 166.761 30.9235 166.408 30.2353C166.056 29.5417 165.563 29.0081 164.928 28.6347C164.293 28.2612 163.549 28.0745 162.695 28.0745C161.783 28.0745 161.006 28.2852 160.366 28.7067C159.726 29.1229 159.27 29.6884 158.998 30.4033H158.854V28.2345H155.604V40.5271H159.014ZM147.337 40.7672C146.094 40.7672 145.019 40.5031 144.112 39.9749C143.21 39.4414 142.514 38.6998 142.023 37.7501C141.532 36.7951 141.287 35.688 141.287 34.4288C141.287 33.159 141.532 32.0493 142.023 31.0996C142.514 30.1446 143.21 29.403 144.112 28.8748C145.019 28.3412 146.094 28.0745 147.337 28.0745C148.58 28.0745 149.653 28.3412 150.554 28.8748C151.461 29.403 152.16 30.1446 152.651 31.0996C153.142 32.0493 153.388 33.159 153.388 34.4288C153.388 35.688 153.142 36.7951 152.651 37.7501C152.16 38.6998 151.461 39.4414 150.554 39.9749C149.653 40.5031 148.58 40.7672 147.337 40.7672ZM147.353 38.1262C147.919 38.1262 148.391 37.9662 148.77 37.6461C149.149 37.3206 149.434 36.8778 149.626 36.3176C149.824 35.7573 149.922 35.1198 149.922 34.4048C149.922 33.6899 149.824 33.0523 149.626 32.4921C149.434 31.9319 149.149 31.4891 148.77 31.1636C148.391 30.8382 147.919 30.6754 147.353 30.6754C146.782 30.6754 146.302 30.8382 145.913 31.1636C145.529 31.4891 145.238 31.9319 145.04 32.4921C144.848 33.0523 144.752 33.6899 144.752 34.4048C144.752 35.1198 144.848 35.7573 145.04 36.3176C145.238 36.8778 145.529 37.3206 145.913 37.6461C146.302 37.9662 146.782 38.1262 147.353 38.1262ZM129.449 40.0071C130.207 40.4872 131.052 40.7273 131.986 40.7273C132.648 40.7273 133.208 40.618 133.667 40.3992C134.131 40.1805 134.507 39.9057 134.795 39.5749C135.088 39.2388 135.315 38.9 135.475 38.5585H135.619V40.5273H138.981V24.1371H135.579V30.2994H135.475C135.326 29.9686 135.107 29.6325 134.819 29.291C134.536 28.9442 134.163 28.6561 133.699 28.4267C133.24 28.192 132.666 28.0746 131.978 28.0746C131.076 28.0746 130.247 28.3093 129.489 28.7788C128.737 29.243 128.134 29.9446 127.68 30.8836C127.227 31.8173 127 32.9884 127 34.3969C127 35.7681 127.219 36.9259 127.656 37.8703C128.099 38.8093 128.697 39.5215 129.449 40.0071ZM134.459 37.5661C134.08 37.8649 133.616 38.0143 133.066 38.0143C132.506 38.0143 132.034 37.8623 131.65 37.5581C131.271 37.2487 130.98 36.8219 130.777 36.2777C130.58 35.7281 130.481 35.0959 130.481 34.3809C130.481 33.6713 130.58 33.0471 130.777 32.5082C130.975 31.9694 131.266 31.5479 131.65 31.2438C132.034 30.9397 132.506 30.7876 133.066 30.7876C133.616 30.7876 134.083 30.9343 134.467 31.2278C134.851 31.5212 135.144 31.9374 135.347 32.4762C135.55 33.0151 135.651 33.65 135.651 34.3809C135.651 35.1119 135.547 35.7495 135.339 36.2937C135.136 36.8379 134.843 37.262 134.459 37.5661ZM121.32 35.2933V28.2346H124.73V40.5272H121.456V38.2944H121.328C121.051 39.0147 120.589 39.5936 119.944 40.0311C119.304 40.4685 118.522 40.6873 117.599 40.6873C116.777 40.6873 116.054 40.5006 115.43 40.1271C114.806 39.7536 114.318 39.2227 113.966 38.5345C113.619 37.8462 113.443 37.0219 113.437 36.0616V28.2346H116.847V35.4533C116.852 36.1789 117.047 36.7525 117.431 37.174C117.815 37.5955 118.33 37.8062 118.975 37.8062C119.386 37.8062 119.77 37.7128 120.128 37.5261C120.485 37.334 120.773 37.0513 120.992 36.6778C121.216 36.3043 121.326 35.8428 121.32 35.2933ZM101.773 40.3512C102.386 40.6233 103.085 40.7593 103.869 40.7593C104.478 40.7593 105.014 40.6793 105.478 40.5192C105.942 40.3538 106.34 40.1271 106.67 39.839C107.001 39.5455 107.265 39.2067 107.463 38.8226H107.559V40.5272H110.792V32.2361C110.792 31.5052 110.651 30.8783 110.368 30.3554C110.085 29.8272 109.698 29.395 109.207 29.0589C108.722 28.7228 108.164 28.4747 107.535 28.3146C106.911 28.1546 106.257 28.0745 105.574 28.0745C104.592 28.0745 103.728 28.2239 102.981 28.5227C102.239 28.8162 101.634 29.2377 101.164 29.7872C100.695 30.3314 100.38 30.977 100.22 31.7239L103.373 31.98C103.491 31.5745 103.731 31.2384 104.093 30.9716C104.456 30.6995 104.944 30.5635 105.558 30.5635C106.14 30.5635 106.588 30.7022 106.903 30.9796C107.223 31.2571 107.383 31.6492 107.383 32.1561V32.2041C107.383 32.4655 107.284 32.6629 107.087 32.7963C106.889 32.9297 106.572 33.0311 106.134 33.1004C105.697 33.1645 105.121 33.2338 104.406 33.3085C103.797 33.3672 103.216 33.4686 102.661 33.6126C102.111 33.7567 101.621 33.9701 101.188 34.2529C100.756 34.5356 100.415 34.9091 100.164 35.3733C99.9132 35.8375 99.7879 36.411 99.7879 37.0939C99.7879 37.9049 99.9639 38.5825 100.316 39.1267C100.674 39.6656 101.159 40.0737 101.773 40.3512ZM106.174 38.1103C105.79 38.3077 105.347 38.4064 104.846 38.4064C104.323 38.4064 103.891 38.2864 103.549 38.0463C103.213 37.8009 103.045 37.4461 103.045 36.9819C103.045 36.6618 103.128 36.395 103.293 36.1816C103.459 35.9628 103.691 35.7894 103.989 35.6614C104.288 35.5333 104.638 35.44 105.038 35.3813C105.225 35.3546 105.433 35.3253 105.662 35.2933C105.891 35.2559 106.121 35.2159 106.35 35.1732C106.58 35.1252 106.785 35.0745 106.967 35.0212C107.153 34.9625 107.3 34.8984 107.407 34.8291V36.1336C107.407 36.5657 107.297 36.9525 107.079 37.294C106.86 37.6355 106.558 37.9076 106.174 38.1103ZM85.6385 40.5273V24.1371H92.105C93.3428 24.1371 94.3992 24.3585 95.2742 24.8013C96.1545 25.2388 96.8241 25.8604 97.2829 26.666C97.7471 27.4663 97.9792 28.408 97.9792 29.4911C97.9792 30.5795 97.7444 31.5159 97.2749 32.3002C96.8054 33.0791 96.1252 33.6767 95.2342 34.0928C95.1853 34.1158 95.1359 34.1381 95.0859 34.1598L98.5634 40.5273H94.738L91.6334 34.7171H89.1039V40.5273H85.6385ZM89.1039 31.932H91.4567C92.1183 31.932 92.6679 31.8413 93.1054 31.6599C93.5429 31.4785 93.8683 31.2064 94.0817 30.8436C94.3005 30.4808 94.4098 30.03 94.4098 29.4911C94.4098 28.9469 94.3005 28.4881 94.0817 28.1146C93.8683 27.7411 93.5402 27.4583 93.0974 27.2663C92.6599 27.0689 92.1076 26.9702 91.4407 26.9702H89.1039V31.932ZM164.054 55.2047L167.175 55.0127C167.026 53.8816 166.503 52.9879 165.607 52.3317C164.716 51.6754 163.494 51.3473 161.941 51.3473C160.89 51.3473 159.972 51.502 159.188 51.8115C158.409 52.1209 157.804 52.5611 157.371 53.132C156.945 53.7028 156.731 54.3831 156.731 55.1727C156.731 56.0904 157.022 56.8454 157.604 57.4376C158.19 58.0298 159.084 58.4459 160.285 58.686L162.413 59.1102C162.947 59.2169 163.342 59.3716 163.598 59.5744C163.854 59.7718 163.985 60.0252 163.99 60.3347C163.985 60.7028 163.798 61.0042 163.43 61.239C163.067 61.4684 162.587 61.5831 161.989 61.5831C161.381 61.5831 160.882 61.4551 160.493 61.199C160.103 60.9376 159.858 60.5587 159.756 60.0626L156.403 60.2386C156.569 61.4124 157.131 62.3407 158.092 63.0237C159.057 63.7013 160.354 64.0401 161.981 64.0401C163.048 64.0401 163.99 63.872 164.806 63.5359C165.628 63.1944 166.273 62.7196 166.743 62.1113C167.218 61.5031 167.455 60.7962 167.455 59.9905C167.455 59.1049 167.162 58.3899 166.575 57.8457C165.988 57.3015 165.097 56.9067 163.902 56.6613L161.677 56.2131C161.106 56.0904 160.703 55.9277 160.469 55.7249C160.234 55.5222 160.117 55.2741 160.117 54.9806C160.117 54.6125 160.298 54.3191 160.661 54.1003C161.024 53.8762 161.469 53.7642 161.997 53.7642C162.392 53.7642 162.731 53.8309 163.014 53.9643C163.302 54.0923 163.534 54.2657 163.71 54.4845C163.886 54.6979 164.001 54.938 164.054 55.2047ZM150.811 58.566V51.5073H154.22V63.7999H150.947V61.5671H150.819C150.541 62.2874 150.08 62.8663 149.434 63.3038C148.794 63.7413 148.012 63.96 147.089 63.96C146.268 63.96 145.545 63.7733 144.92 63.3998C144.296 63.0263 143.808 62.4955 143.456 61.8072C143.109 61.1189 142.933 60.2946 142.928 59.3343V51.5073H146.337V58.726C146.342 59.4516 146.537 60.0252 146.921 60.4467C147.305 60.8682 147.82 61.0789 148.466 61.0789C148.876 61.0789 149.261 60.9855 149.618 60.7988C149.976 60.6067 150.264 60.324 150.482 59.9505C150.707 59.577 150.816 59.1155 150.811 58.566ZM136.788 51.5073V63.7999H140.197V51.5073H136.788ZM137.196 49.4185C137.559 49.7546 137.994 49.9227 138.501 49.9227C139.008 49.9227 139.44 49.7546 139.797 49.4185C140.16 49.077 140.341 48.6689 140.341 48.194C140.341 47.7245 140.16 47.3217 139.797 46.9856C139.44 46.6441 139.008 46.4734 138.501 46.4734C137.994 46.4734 137.559 46.6441 137.196 46.9856C136.839 47.3217 136.66 47.7245 136.66 48.194C136.66 48.6689 136.839 49.077 137.196 49.4185ZM123.848 63.7999V61.7671L129.867 54.3163V54.2283H124.057V51.5073H133.972V53.7241L128.322 60.9908V61.0789H134.18V63.7999H123.848ZM127.37 46.4014L128.978 48.3541L130.587 46.4014H133.492V46.5134L130.251 50.0347H127.714L124.465 46.5134V46.4014H127.37ZM111.596 68.3056C111.975 68.375 112.38 68.4097 112.812 68.4097C113.655 68.4097 114.376 68.2736 114.973 68.0015C115.571 67.7347 116.064 67.3533 116.454 66.8571C116.849 66.3662 117.161 65.79 117.39 65.1284L122.168 51.5073H118.559L115.99 60.5347H115.862L113.317 51.5073H109.731L114.141 64.1521L113.941 64.6723C113.792 65.0564 113.597 65.3285 113.357 65.4886C113.122 65.6486 112.842 65.7233 112.516 65.7127C112.196 65.702 111.836 65.6353 111.436 65.5126L110.668 68.0575C110.913 68.1589 111.223 68.2416 111.596 68.3056ZM101.112 63.7999V51.5073H104.418V53.6521H104.546C104.77 52.8892 105.146 52.3129 105.674 51.9235C106.202 51.5286 106.81 51.3312 107.499 51.3312C107.669 51.3312 107.854 51.3419 108.051 51.3632C108.248 51.3846 108.422 51.4139 108.571 51.4513V54.4764C108.411 54.4284 108.19 54.3857 107.907 54.3484C107.624 54.311 107.365 54.2923 107.131 54.2923C106.629 54.2923 106.181 54.4017 105.786 54.6205C105.397 54.8339 105.087 55.1327 104.858 55.5168C104.634 55.9009 104.522 56.3438 104.522 56.8453V63.7999H101.112ZM85.6385 47.4098V63.7999H89.1039V59.1422L90.8085 57.0614L95.2982 63.7999H99.4437L93.2894 54.7485L99.3717 47.4098H95.2181L89.3199 54.6365H89.1039V47.4098H85.6385Z" fill="black"/>
+<rect x="21.4092" y="1.12683" width="21.4096" height="65.3557" fill="#E30613"/>
+<rect y="43.946" width="21.4096" height="65.3557" transform="rotate(-90 0 43.946)" fill="#E30613"/>
+</svg>
+  <div>
+    <h1>Darbo užmokesčio palyginimas: LRK ir kitos NVO</h1>
+    <p class="sub">Sodros draudžiamųjų pajamų duomenys (per Rekvizitai.lt) · bruto, €/mėn. · 8 organizacijos</p>
+  </div>
+</header>
+
+<section>
+  <h2>LRK vieta tarp NVO <span class="badge">2026 m. liepa–rugsėjis</span></h2>
+  <p class="lead">Rodikliai – 3 mėnesių vidurkis, skaičiuojant tik darbuotojus, draustus <b>visą kalendorinį mėnesį</b>.</p>
+  <div class="kpis" id="kpis"></div>
+</section>
+
+<section>
+  <h2>Atlyginimų pasiskirstymas: nuo P25 iki P75 <span class="badge">2026 m. liepa–rugsėjis</span></h2>
+  <p class="lead">Juosta – vidurinė pusė darbuotojų (nuo 25 % iki 75 % kvantilio), taškas – <b>mediana</b>. Rikiuota pagal medianą. Organizacijos be kvartilių duomenų čia nerodomos.</p>
+  <div class="legend">
+    <span><i class="sw" style="background:var(--lrk)"></i><b>LRK</b></span>
+    <span><i class="sw" style="background:var(--peer)"></i>Kitos NVO (≥ 100 darbuotojų)</span>
+    <span><i class="sw" style="background:var(--small)"></i>Mažos organizacijos (&lt; 50 darbuotojų)</span>
+    <span><i class="dot"></i>Mediana</span>
+  </div>
+  <div class="chart" id="rangeChart"></div>
+</section>
+
+<section>
+  <h2>Vidutinis atlyginimas <span class="badge">2026 m. liepa–rugsėjis</span></h2>
+  <p class="lead">Visos 8 organizacijos. Mažose organizacijose (&lt; 50 darbuotojų) vidurkį stipriai keičia vienas ar du žmonės.</p>
+  <div class="chart" id="avgChart"></div>
+</section>
+
+<section>
+  <h2>Pagrindinės išvados</h2>
+  <ul class="findings">
+    <li><b>LRK mediana (2 129 €) yra 3-ia iš 6</b> organizacijų, kurių kvartiliai žinomi. Tarp didelių NVO (≥ 100 darbuotojų) LRK yra <b>2-a</b>, po SOS vaikų kaimų.</li>
+    <li><b>SOS vaikų kaimai moka gerokai daugiau:</b> jų mediana 2 835 €, t. y. <b>+33 %</b> daugiau nei LRK. Net jų P25 (2 434 €) viršija LRK P75 (2 419 €).</li>
+    <li><b>LRK aukščiau už Vilniaus Caritas (+14 %), Maisto banką (+46 %) ir Maltiečius (+58 %)</b> pagal medianą.</li>
+    <li><b>Lėšų pritraukimo organizacijos</b> (Rimanto Kaukėno paramos grupė, Mamų unija) moka vidutiniškai <b>2 700–3 200 €</b>. Tai maži specialistų kolektyvai, todėl jie aktualūs lyginant LRK rėmėjų, komunikacijos ir marketingo pareigybes.</li>
+    <li><b>LRK mediana didesnė už vidurkį</b> (2 129 € ir 2 048 €): vidurkį žemyn tempia grupė mažiau uždirbančiųjų, labai didelių algų nėra. LRK P25 tris mėnesius yra lygiai ~1 593 €, matyt, dažna pareiginė alga.</li>
+    <li><b>Darbuotojų skaičius:</b> LRK per metus sumažėjo (metinis vidurkis 121, dabar 114), Maltiečių padidėjo (209 → 238).</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Visi rodikliai <span class="badge">2026 m. liepa–rugsėjis</span></h2>
+  <p class="lead">Bruto €/mėn. „3 mėn.“ – liepos–rugsėjo vidurkis (visą mėnesį drausti). „Visi drausti“ – įskaitant pradėjusius ar baigusius darbą mėnesio viduryje.</p>
+  <div class="chart"><table id="tbl"></table></div>
+</section>
+
+<section>
+  <details>
+    <summary>Mėnesiniai vidurkiai (2026-07, 2026-08, 2026-09)</summary>
+    <div class="chart" style="margin-top:12px"><table id="tblM"></table></div>
+  </details>
+</section>
+
+<section class="limits">
+  <h2>⚠ Duomenų ribotumai: būtina žinoti prieš darant išvadas</h2>
+  <ol>
+    <li><b>Ne visu etatu dirbantys neatskirti.</b> Sodra skelbia draudžiamąsias pajamas vienam asmeniui, o ne etatui perskaičiuotą algą. Organizacijose, kur daug dirbančių ne visu etatu (pvz., Maltiečiai, kurių P25 ~884 €), <b>P25, mediana ir vidurkis atrodo mažesni</b>, nei yra pilno etato atlyginimai.</li>
+    <li><b>Skirtinga pareigybių sudėtis.</b> Organizacijose, kur daugiausia biuro specialistų (GV, Mamų unija, R. Kaukėno paramos grupė), atlyginimai natūraliai aukštesni nei ten, kur daug paslaugų teikėjų, sandėlio, transporto ar slaugos darbuotojų. Sodra pareigybių lygiu duomenų neskelbia, todėl <b>tos pačios pareigybės atlyginimų tiesiogiai palyginti negalima</b>.</li>
+    <li><b>Mažos organizacijos – nestabilūs skaičiai.</b> Kai darbuotojų 10–45, vienas naujas ar išėjęs žmogus, priedas ar atostoginiai labai pakeičia vidurkį (pvz., R. Kaukėno paramos grupės liepos vidurkis 3 837 €, rugpjūčio – 2 926 €). Organizacijoms, kuriose darbuotojų labai mažai, Sodra kvartilių neskelbia.</li>
+    <li><b>Draudžiamosios pajamos ≠ pareiginė alga.</b> Į sumą patenka priedai, premijos, atostoginiai, kompensacijos už nepanaudotas atostogas. Pvz., SOS vaikų kaimų rugsėjo vidurkis pakilo +13 %, o kiek iš to yra nuolatinis kėlimas, o kiek vienkartinės išmokos, iš duomenų pasakyti negalima.</li>
+    <li><b>Vienas juridinis asmuo ≠ visa organizacija.</b> Duomenys rodo tik konkretų juridinį asmenį. Caritas paslaugas teikia atskiri vyskupijų Caritas (todėl lyginamas tik Vilniaus arkivyskupijos Caritas), o Rimanto Kaukėno paramos grupė yra tik viena grupės organizacija (16 darbuotojų).</li>
+    <li><b>Regionas.</b> Organizacijų darbuotojai pasiskirstę skirtinguose regionuose, o atlyginimų lygis Vilniuje ir regionuose skiriasi.</li>
+  </ol>
+</section>
+
+<p class="src"><b>Šaltinis:</b> VSDFV (Sodra) atviri duomenys, paimti per Rekvizitai.lt 2026-11-18. Darbuotojų skaičius – apdraustieji 2026-11-18 dienos pradžioje; metinis vidurkis – Rekvizitai.lt skaičiavimas. Rodikliai be skaičiaus („–“) – Sodra jų šiai organizacijai neskelbia.</p>
+</div>
+<div class="tip" id="tip"></div>
+
+<script>
+const D=[{"code":"LRK","name":"Lietuvos Raudonasis Kryžius","emp":114,"empYear":121,"avg3":2048,"med3":2129,"p25_3":1600,"p75_3":2419,"w3":2075,"m3":1883,"avgSep":2053,"medSep":2144,"monthlyFull":[2070,2020,2053],"monthlyAll":[2196,1940,2016],"allAvg3":2051,"small":false},{"code":"SOS","name":"SOS vaikų kaimai","emp":147,"empYear":148,"avg3":2991,"med3":2835,"p25_3":2434,"p75_3":3546,"w3":2975,"m3":3105,"avgSep":3215,"medSep":3174,"monthlyFull":[2918,2841,3215],"monthlyAll":[2837,2681,3145],"allAvg3":2887,"small":false},{"code":"GV","name":"Gelbėkit vaikus","emp":43,"empYear":42,"avg3":2580,"med3":2506,"p25_3":2099,"p75_3":2962,"w3":null,"m3":null,"avgSep":2564,"medSep":2517,"monthlyFull":[2604,2571,2564],"monthlyAll":[2439,2427,2557],"allAvg3":2475,"small":true},{"code":"VAC","name":"Vilniaus arkivyskupijos Caritas","emp":123,"empYear":117,"avg3":1825,"med3":1860,"p25_3":1213,"p75_3":2415,"w3":1841,"m3":1768,"avgSep":1814,"medSep":1795,"monthlyFull":[1856,1807,1814],"monthlyAll":[1810,1751,1754],"allAvg3":1772,"small":false},{"code":"MB","name":"Maisto bankas","emp":127,"empYear":127,"avg3":1632,"med3":1454,"p25_3":1293,"p75_3":1766,"w3":1625,"m3":1658,"avgSep":1619,"medSep":1480,"monthlyFull":[1600,1679,1619],"monthlyAll":[1506,1548,1487],"allAvg3":1514,"small":false},{"code":"MOPT","name":"Maltos ordino pagalbos tarnyba","emp":238,"empYear":209,"avg3":1414,"med3":1348,"p25_3":884,"p75_3":1697,"w3":1409,"m3":1460,"avgSep":1436,"medSep":1399,"monthlyFull":[1394,1412,1436],"monthlyAll":[1361,1366,1345],"allAvg3":1358,"small":false},{"code":"RKPG","name":"Rimanto Kaukėno paramos grupė","emp":16,"empYear":14,"avg3":3230,"med3":null,"p25_3":null,"p75_3":null,"w3":null,"m3":null,"avgSep":2927,"medSep":null,"monthlyFull":[3837,2926,2927],"monthlyAll":[3593,2838,2927],"allAvg3":3120,"small":true},{"code":"MU","name":"Mamų unija","emp":10,"empYear":10,"avg3":2697,"med3":null,"p25_3":null,"p75_3":null,"w3":null,"m3":null,"avgSep":2803,"medSep":null,"monthlyFull":[2560,2729,2803],"monthlyAll":[2560,2429,2494],"allAvg3":2494,"small":true}];
+const fmt=v=>v==null?'–':v.toLocaleString('lt-LT').replace(/ /g,' ')+' €';
+const num=v=>v==null?'–':v.toLocaleString('lt-LT').replace(/ /g,' ');
+const col=o=>o.code==='LRK'?'#c8102e':(o.small?'#a7b0bb':'#5b6b7f');
+const tip=document.getElementById('tip');
+function showTip(e,html){tip.innerHTML=html;tip.style.opacity=1;const x=Math.min(e.clientX+14,innerWidth-320);tip.style.left=x+'px';tip.style.top=(e.clientY+14)+'px'}
+function hideTip(){tip.style.opacity=0}
+const L=D.find(o=>o.code==='LRK');
+const withQ=D.filter(o=>o.med3!=null).sort((a,b)=>b.med3-a.med3);
+const rankMed=withQ.findIndex(o=>o.code==='LRK')+1;
+const byAvg=[...D].sort((a,b)=>b.avg3-a.avg3);
+const rankAvg=byAvg.findIndex(o=>o.code==='LRK')+1;
+
+document.getElementById('kpis').innerHTML=`
+<div class="kpi"><div class="lab">LRK mediana</div><div class="val">${fmt(L.med3)}</div><div class="note"><b>${rankMed}-a vieta iš ${withQ.length}</b> (pagal medianą)</div></div>
+<div class="kpi"><div class="lab">LRK vidutinis atlyginimas</div><div class="val">${fmt(L.avg3)}</div><div class="note"><b>${rankAvg}-a vieta iš ${D.length}</b> (pagal vidurkį)</div></div>
+<div class="kpi"><div class="lab">LRK P25 – P75</div><div class="val" style="font-size:1.9rem;white-space:nowrap">${num(L.p25_3)}–${num(L.p75_3)} €</div><div class="note">Vidurinė pusė darbuotojų</div></div>
+<div class="kpi"><div class="lab">LRK darbuotojai</div><div class="val">${L.emp}</div><div class="note">Metinis vidurkis <b>${L.empYear}</b></div></div>`;
+
+// Range chart
+(function(){
+  const W=1100,rowH=48,top=34,left=340,right=40,H=top+withQ.length*rowH+10;
+  const max=4000,min=0,sx=v=>left+(v-min)/(max-min)*(W-left-right);
+  let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Atlyginimų kvartilių diapazonai">`;
+  for(let t=0;t<=max;t+=500){s+=`<line x1="${sx(t)}" x2="${sx(t)}" y1="${top-8}" y2="${H-6}" stroke="#ecebe7"/><text x="${sx(t)}" y="${top-14}" font-size="14" fill="#6b6b6b" text-anchor="middle">${t.toLocaleString('lt-LT').replace(/ /g,' ')}</text>`}
+  withQ.forEach((o,i)=>{
+    const y=top+i*rowH+rowH/2, c=col(o), isL=o.code==='LRK';
+    s+=`<g class="row" data-i="${i}">
+      <rect x="0" y="${y-rowH/2}" width="${W}" height="${rowH}" fill="${isL?'#fbecef':'transparent'}"/>
+      <text x="${left-14}" y="${y+6}" text-anchor="end" font-size="16.5" font-weight="${isL?800:600}" fill="#1c1c1c">${o.name}${o.small?' *':''}</text>
+      <rect x="${sx(o.p25_3)}" y="${y-11}" width="${sx(o.p75_3)-sx(o.p25_3)}" height="22" rx="4" fill="${c}"/>
+      <circle cx="${sx(o.med3)}" cy="${y}" r="8" fill="#fff" stroke="#1c1c1c" stroke-width="3"/>
+      <text x="${sx(o.p75_3)+10}" y="${y+5}" font-size="14.5" fill="#454545">${isL||i===0?'<tspan font-weight="700" fill="#1c1c1c">'+fmt(o.med3)+'</tspan>':fmt(o.med3)}</text>
+    </g>`;
+  });
+  s+=`</svg><p class="src">* mažos organizacijos (&lt; 50 darbuotojų)</p>`;
+  const el=document.getElementById('rangeChart');el.innerHTML=s;
+  el.querySelectorAll('.row').forEach(g=>{const o=withQ[+g.dataset.i];
+    g.addEventListener('mousemove',e=>showTip(e,`<b>${o.name}</b><br>P25: ${fmt(o.p25_3)}<br>Mediana: ${fmt(o.med3)}<br>P75: ${fmt(o.p75_3)}<br>Vidurkis: ${fmt(o.avg3)}<br>Darbuotojai: ${o.emp}`));
+    g.addEventListener('mouseleave',hideTip)});
+})();
+
+// Avg chart
+(function(){
+  const W=1100,rowH=40,top=34,left=340,right=80,H=top+byAvg.length*rowH+10,max=3500,sx=v=>left+v/max*(W-left-right);
+  let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Vidutinis atlyginimas">`;
+  for(let t=0;t<=max;t+=500){s+=`<line x1="${sx(t)}" x2="${sx(t)}" y1="${top-8}" y2="${H-6}" stroke="#ecebe7"/><text x="${sx(t)}" y="${top-14}" font-size="14" fill="#6b6b6b" text-anchor="middle">${t.toLocaleString('lt-LT').replace(/ /g,' ')}</text>`}
+  byAvg.forEach((o,i)=>{const y=top+i*rowH+rowH/2,isL=o.code==='LRK';
+    s+=`<g class="row" data-i="${i}"><rect x="0" y="${y-rowH/2}" width="${W}" height="${rowH}" fill="${isL?'#fbecef':'transparent'}"/>
+    <text x="${left-14}" y="${y+6}" text-anchor="end" font-size="16.5" font-weight="${isL?800:600}" fill="#1c1c1c">${o.name}${o.small?' *':''}</text>
+    <rect x="${left}" y="${y-11}" width="${sx(o.avg3)-left}" height="22" rx="4" fill="${col(o)}"/>
+    <text x="${sx(o.avg3)+8}" y="${y+5}" font-size="15" font-weight="${isL?800:500}" fill="#1c1c1c">${fmt(o.avg3)}</text></g>`});
+  s+=`</svg><p class="src">* mažos organizacijos (&lt; 50 darbuotojų)</p>`;
+  const el=document.getElementById('avgChart');el.innerHTML=s;
+  el.querySelectorAll('.row').forEach(g=>{const o=byAvg[+g.dataset.i];
+    g.addEventListener('mousemove',e=>showTip(e,`<b>${o.name}</b><br>Vidurkis (3 mėn.): ${fmt(o.avg3)}<br>Rugsėjis: ${fmt(o.avgSep)}<br>Darbuotojai: ${o.emp}`));
+    g.addEventListener('mouseleave',hideTip)});
+})();
+
+// Tables
+(function(){
+  const rows=[...D].sort((a,b)=>(b.med3??-1)-(a.med3??-1)||b.avg3-a.avg3);
+  let h=`<tr><th>Organizacija</th><th>Darbuotojai<br>dabar</th><th>Metinis<br>vid.</th><th>P25<br>3 mėn.</th><th>Mediana<br>3 mėn.</th><th>P75<br>3 mėn.</th><th>Vidurkis<br>3 mėn.</th><th>Vidurkis<br>2026-09</th><th>Visi drausti<br>vidurkis 3 mėn.</th><th>Moterys<br>vid.</th><th>Vyrai<br>vid.</th></tr>`;
+  const td=(v,f)=>`<td class="${v==null?'na':''}">${f(v)}</td>`;
+  rows.forEach(o=>{h+=`<tr class="${o.code==='LRK'?'lrk':''}"><td>${o.name}${o.small?'<span class="tag">maža org.</span>':''}</td>${td(o.emp,num)}${td(o.empYear,num)}${td(o.p25_3,num)}${td(o.med3,num)}${td(o.p75_3,num)}${td(o.avg3,num)}${td(o.avgSep,num)}${td(o.allAvg3,num)}${td(o.w3,num)}${td(o.m3,num)}</tr>`});
+  document.getElementById('tbl').innerHTML=h;
+  let m=`<tr><th>Organizacija</th><th>2026-07</th><th>2026-08</th><th>2026-09</th><th>Pokytis 07→09</th></tr>`;
+  byAvg.forEach(o=>{const f=o.monthlyFull,ch=Math.round((f[2]/f[0]-1)*100);m+=`<tr class="${o.code==='LRK'?'lrk':''}"><td>${o.name}</td><td>${num(f[0])}</td><td>${num(f[1])}</td><td>${num(f[2])}</td><td>${ch>0?'+':''}${ch} %</td></tr>`});
+  document.getElementById('tblM').innerHTML=m+`<tr><td colspan="5" class="src" style="text-align:left">Vidutinis atlyginimas, darbuotojai drausti visą kalendorinį mėnesį, bruto €.</td></tr>`;
+})();
+</script>
+</body>
+</html>
