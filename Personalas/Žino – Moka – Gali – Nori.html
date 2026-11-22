@@ -1,0 +1,217 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<meta charset="utf-8">
+<title>Žino – Moka – Gali – Nori</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;800&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&display=swap">
+<style>
+/* Layout: viršuje autorių schema (4 persidengiančios sritys, rezultatas sankirtoje) + daugybos taisyklė; po ja 4 spalvotos kortelės; apačioje naudojimas */
+:root{
+  --bg:#f5f5f7; --paper:#ffffff; --ink:#1b1c22; --muted:#575a66; --line:#e2e3ea;
+  --red:#c8102e; --tag-ink:#ffffff;
+  --k1:#2f5fd0; --k1-soft:#e4ebfb;   /* Žino */
+  --k2:#0f7a6e; --k2-soft:#dcf2ee;   /* Moka */
+  --k3:#b45309; --k3-soft:#fdeed8;   /* Gali */
+  --k4:#c8102e; --k4-soft:#fbe4e8;   /* Nori */
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Atkinson Hyperlegible Next", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121318; --paper:#1b1c23; --ink:#f1f1f5; --muted:#b1b3bf; --line:#343642;
+  --red:#ff6b7c; --tag-ink:#121318;
+  --k1:#7f9dff; --k1-soft:#1d2546; --k2:#3cc9b5; --k2-soft:#12312d;
+  --k3:#f5a524; --k3-soft:#382914; --k4:#ff6b7c; --k4-soft:#3a1d24; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121318; --paper:#1b1c23; --ink:#f1f1f5; --muted:#b1b3bf; --line:#343642;
+  --red:#ff6b7c; --tag-ink:#121318;
+  --k1:#7f9dff; --k1-soft:#1d2546; --k2:#3cc9b5; --k2-soft:#12312d;
+  --k3:#f5a524; --k3-soft:#382914; --k4:#ff6b7c; --k4-soft:#3a1d24; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.45;
+  padding-block:24px;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+.sheet{max-width:1000px;margin:0 auto;background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:28px 32px;display:grid;gap:20px}
+
+header{display:flex;gap:14px;align-items:center}
+.lrk{background:var(--red);color:var(--tag-ink);font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:.06em;
+  width:52px;height:52px;display:grid;place-items:center;flex:none}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(26px,4vw,38px);line-height:1.05;margin:0;text-wrap:balance}
+.sub{margin:4px 0 0;color:var(--muted);font-size:15px}
+
+/* Schema */
+.top{display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);gap:28px;align-items:center}
+.schema{margin:0}
+.schema svg{width:100%;max-width:380px;height:auto;display:block;margin:0 auto}
+.schema circle{fill-opacity:.22;stroke-width:3}
+.c-z{fill:var(--k1);stroke:var(--k1)}.c-m{fill:var(--k2);stroke:var(--k2)}
+.c-g{fill:var(--k3);stroke:var(--k3)}.c-n{fill:var(--k4);stroke:var(--k4)}
+.schema .lbl{font-family:var(--display);font-weight:800;font-size:22px}
+.schema .de{font-family:var(--body);font-size:12px;fill:var(--muted);font-style:italic}
+.t-z{fill:var(--k1)}.t-m{fill:var(--k2)}.t-g{fill:var(--k3)}.t-n{fill:var(--k4)}
+.schema .core{fill:var(--paper);stroke:var(--ink);stroke-width:2.5}
+.schema .res{font-family:var(--display);font-weight:800;font-size:15px;fill:var(--ink)}
+
+.read{display:grid;gap:12px;min-width:0}
+.lead{margin:0;font-size:17px}
+.formula{font-family:var(--display);font-weight:800;font-size:clamp(18px,2.6vw,24px);line-height:1.25;
+  border:2px solid var(--ink);border-radius:4px;padding:10px 14px;margin:0;white-space:nowrap;overflow-x:auto}
+.formula .z{color:var(--k1)}.formula .m{color:var(--k2)}.formula .g{color:var(--k3)}.formula .n{color:var(--k4)}
+.formula .x{color:var(--muted);font-weight:700;padding:0 2px}
+.rule{margin:0;font-size:15px}
+
+/* Kortelės */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.c{--k:var(--k1);--soft:var(--k1-soft);border:2px solid var(--line);border-left:6px solid var(--k);border-radius:4px;padding:14px 18px 16px;display:grid;gap:8px;align-content:start;min-width:0}
+.c.m{--k:var(--k2);--soft:var(--k2-soft)}.c.g{--k:var(--k3);--soft:var(--k3-soft)}.c.n{--k:var(--k4);--soft:var(--k4-soft)}
+.c-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.tag{background:var(--k);color:var(--tag-ink);font-family:var(--display);font-weight:800;font-size:22px;padding:2px 12px;letter-spacing:.02em}
+.q{font-weight:800;font-size:17px;margin:0}
+.c h3{margin:4px 0 0;font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:800}
+.c ul{margin:0;padding-left:18px;display:grid;gap:3px}
+.c li{font-size:15px}
+.ask li::marker{content:"„ ";color:var(--k);font-weight:800}
+.fix{background:var(--soft);padding:8px 10px;border-radius:3px;font-size:15px;margin:2px 0 0}
+.fix b{color:var(--k)}
+
+.how{display:grid;grid-template-columns:1.3fr 1fr;gap:14px}
+.box{border-top:3px solid var(--ink);padding-top:10px;min-width:0}
+.box h2{font-family:var(--display);font-size:19px;margin:0 0 6px;font-weight:800}
+.box ol{margin:0;padding-left:20px;display:grid;gap:4px;font-size:15px}
+.box p{margin:0 0 6px;font-size:15px}
+.src{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px;margin:0}
+
+@media (max-width:760px){
+  .top,.cards,.how{grid-template-columns:1fr}
+  .sheet{padding:20px 16px}
+  .formula{white-space:normal}
+}
+@page{size:A4;margin:9mm}
+@media print{
+  body{background:#fff;padding:0;font-size:12.5px}
+  .sheet{border:0;padding:0;gap:11px;max-width:none}
+  .c li,.fix,.box ol,.box p,.rule{font-size:12px}
+  .lead{font-size:13.5px}
+  .schema svg{max-width:270px}
+  .c{padding:9px 13px}
+}
+</style>
+
+<main class="sheet">
+  <header>
+    <div class="lrk" aria-hidden="true">LRK</div>
+    <div>
+      <h1>Žino – Moka – Gali – Nori</h1>
+      <p class="sub"><b>Keturios elgesio prielaidos</b> · vadovo savikontrolės įrankis</p>
+    </div>
+  </header>
+
+  <section class="top">
+    <figure class="schema" aria-label="Keturios persidengiančios sritys, rezultatas jų sankirtoje">
+      <svg viewBox="0 0 360 360" role="img" aria-labelledby="schTitle">
+        <title id="schTitle">Žino, Moka, Gali ir Nori sritys persidengia; rezultatas yra ten, kur susikerta visos keturios</title>
+        <circle class="c-z" cx="138" cy="138" r="104"/>
+        <circle class="c-m" cx="222" cy="138" r="104"/>
+        <circle class="c-g" cx="138" cy="222" r="104"/>
+        <circle class="c-n" cx="222" cy="222" r="104"/>
+        <text class="lbl t-z" x="62" y="86">ŽINO</text>
+        <text class="de" x="62" y="104">Wissen</text>
+        <text class="lbl t-m" x="298" y="86" text-anchor="end">MOKA</text>
+        <text class="de" x="298" y="104" text-anchor="end">Können</text>
+        <text class="lbl t-g" x="62" y="282">GALI</text>
+        <text class="de" x="62" y="300">Dürfen</text>
+        <text class="lbl t-n" x="298" y="282" text-anchor="end">NORI</text>
+        <text class="de" x="298" y="300" text-anchor="end">Wollen</text>
+        <rect class="core" x="128" y="164" width="104" height="32" rx="16"/>
+        <text class="res" x="180" y="185" text-anchor="middle">Rezultatas</text>
+      </svg>
+    </figure>
+
+    <div class="read">
+      <p class="lead">Žmogus atlieka užduotį tada, kai susikerta <b>visos keturios</b> sąlygos. Tinka ir <b>darbuotojams</b>, ir <b>savanoriams</b>.</p>
+      <p class="formula"><span class="z">Žino</span><span class="x"> × </span><span class="m">Moka</span><span class="x"> × </span><span class="g">Gali</span><span class="x"> × </span><span class="n">Nori</span><span class="x"> = </span>Rezultatas</p>
+      <p class="rule">Tai <b>daugyba, ne sudėtis</b>: jei bent viena sąlyga lygi nuliui, rezultatas taip pat nulis. Didelis noras neatperka to, kad žmogus neturi laiko ar prieigų.</p>
+    </div>
+  </section>
+
+  <section class="cards" aria-label="Keturios sąlygos">
+    <article class="c">
+      <div class="c-head"><span class="tag">ŽINO</span><p class="q">Ar žino, ką tiksliai turi padaryti?</p></div>
+      <h3>Vadovas užtikrina</h3>
+      <ul>
+        <li><b>SMART</b> tikslas: konkretus, išmatuojamas, pasiekiamas, aktualus, su terminu</li>
+        <li>Dėl užduoties <b>susitarta</b>, o ne tik pranešta</li>
+      </ul>
+      <h3>Pasitikrinantys klausimai</h3>
+      <ul class="ask">
+        <li>Nuo ko pradėsite ir kokiais žingsniais eisite?“</li>
+        <li>Iš ko abu suprasime, kad pavyko?“</li>
+      </ul>
+      <p class="fix"><b>Jei ne:</b> suformuluoti iš naujo, užrašyti, susitarti dar kartą.</p>
+    </article>
+
+    <article class="c m">
+      <div class="c-head"><span class="tag">MOKA</span><p class="q">Ar moka tai padaryti?</p></div>
+      <h3>Vadovas užtikrina</h3>
+      <ul>
+        <li>Reikiamos <b>žinios ir įgūdžiai</b> šiai konkrečiai užduočiai</li>
+        <li>Aišku, į ką kreiptis, kai užstringa</li>
+      </ul>
+      <h3>Pasitikrinantys klausimai</h3>
+      <ul class="ask">
+        <li>Ar esate darę panašų darbą?“</li>
+        <li>Kurioje vietoje jums reikėtų pagalbos?“</li>
+      </ul>
+      <p class="fix"><b>Jei ne:</b> mokymai, instrukcija, pavyzdys, kolegos ar mentoriaus pagalba.</p>
+    </article>
+
+    <article class="c g">
+      <div class="c-head"><span class="tag">GALI</span><p class="q">Ar turi viską, ko reikia?</p></div>
+      <h3>Vadovas užtikrina</h3>
+      <ul>
+        <li><b>Laikas</b>, priemonės, prieigos prie sistemų, biudžetas</li>
+        <li><b>Įgaliojimai</b> priimti sprendimus</li>
+      </ul>
+      <h3>Pasitikrinantys klausimai</h3>
+      <ul class="ask">
+        <li>Ko trūksta, kad galėtumėte pradėti?“</li>
+        <li>Ką reikėtų atidėti, kad atsirastų laiko?“</li>
+      </ul>
+      <p class="fix"><b>Jei ne:</b> perskirstyti prioritetus, suteikti prieigas, resursus, įgaliojimus.</p>
+    </article>
+
+    <article class="c n">
+      <div class="c-head"><span class="tag">NORI</span><p class="q">Ar nori tai atlikti?</p></div>
+      <h3>Vadovas užtikrina</h3>
+      <ul>
+        <li>Žmogus mato <b>prasmę</b>: kodėl to reikia ir kam tai padės</li>
+        <li>Indėlis pastebimas ir <b>įvertinamas</b></li>
+      </ul>
+      <h3>Pasitikrinantys klausimai</h3>
+      <ul class="ask">
+        <li>Kas šioje užduotyje jums svarbu?“</li>
+        <li>Kas galėtų trukdyti ar atimti norą?“</li>
+      </ul>
+      <p class="fix"><b>Jei ne:</b> paaiškinti „kodėl“, susieti su misija, įtraukti į sprendimą, pripažinti pastangas.</p>
+    </article>
+  </section>
+
+  <section class="how">
+    <div class="box">
+      <h2>Kaip naudoti</h2>
+      <ol>
+        <li><b>Prieš deleguojant</b> – patikrinkite visas keturias sąlygas.</li>
+        <li><b>Kai darbas stringa</b> – ieškokite, kuri sąlyga „lygi nuliui“: Žino → Moka → Gali → Nori.</li>
+        <li><b>Pokalbyje</b> – užduokite pasitikrinančius klausimus, o ne „Ar aišku?“.</li>
+      </ol>
+    </div>
+    <div class="box">
+      <h2>Svarbiausia</h2>
+      <p><b>Žino, Moka ir Gali</b> vadovas gali sutvarkyti pats. <b>Norui</b> gali tik sudaryti sąlygas.</p>
+      <p>Prieš sakant „nenori“, patikrinkite, ar tikrai <b>žino, moka ir gali</b>.</p>
+    </div>
+  </section>
+
+  <p class="src"><b>Kilmė:</b> vokiečių organizacinės psichologijos modelis. Lutzas von Rosenstielis elgesį aiškino kaip keturių veiksnių sankirtą: <i>Wollen</i> (noras), <i>Können</i> (gebėjimai), <i>Dürfen</i> (leidžiama, normos) ir <i>situative Ermöglichung</i> (situacija leidžia). Vadybos ir darbuotojų saugos praktikoje dažnai pridedamas <i>Wissen</i> (žinojimas). Mūsų <b>Gali</b> apima ir leidimą, ir resursus.</p>
+</main>
+
+</body></html>
