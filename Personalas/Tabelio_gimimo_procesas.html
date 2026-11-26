@@ -17,11 +17,14 @@
 body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 "Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif}
 .wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 header{background:var(--red);color:#fff;margin-top:calc(-1 * env(safe-area-inset-top,0px));padding-top:env(safe-area-inset-top,0px)}
-header .wrap{padding-block:26px 30px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:700}
-.logo{border:2.5px solid #fff;border-radius:8px;padding:2px 8px;font-weight:800;letter-spacing:.04em}
-h1{font-size:clamp(26px,4.4vw,38px);line-height:1.18;margin:14px 0 8px;text-wrap:balance}
-header p{margin:0;font-size:18px;max-width:70ch;opacity:.95}
+header .wrap{padding-block:14px 16px;display:grid;grid-template-columns:1fr auto;column-gap:32px;align-items:center}
+.htxt{min-width:0}
+.brand{font-weight:700;font-size:15px;line-height:1.25;border:2px solid rgba(255,255,255,.85);border-radius:10px;padding:8px 14px;text-align:center;white-space:nowrap}
+.bname{line-height:1.2}
+.logo{background:#fff;border-radius:8px;padding:6px 10px;display:inline-flex;line-height:0}
+.logo svg{height:42px;width:auto;display:block}
+h1{font-size:clamp(24px,3.4vw,32px);line-height:1.15;margin:0 0 2px;text-wrap:balance}
+header p{margin:0;font-size:16px;max-width:80ch;opacity:.95}
 main .wrap{padding-block:20px 32px}
 .flow{display:grid;grid-template-columns:minmax(0,1fr) 92px minmax(0,1fr) 92px minmax(0,1fr);gap:14px 0;align-items:start}
 .colh{border-radius:12px 12px 0 0;padding:10px 16px;font-weight:800;font-size:17px;letter-spacing:.01em}
@@ -64,6 +67,9 @@ footer .wrap{padding-block:18px 34px}
 .lb-stage.full img{max-width:none;max-height:none;cursor:zoom-out}
 .lb-cap{color:#fff;margin:0;font-size:16px;max-width:110ch}
 @media (max-width:900px){
+ header .wrap{grid-template-columns:1fr;row-gap:10px}
+ .brand{justify-self:start;order:-1;padding:4px 10px;font-size:13.5px}
+ .brand br{display:none}
  .flow{grid-template-columns:minmax(0,1fr);gap:12px}
  .colh,.ar{display:none}
  .fstack{display:contents}
@@ -75,9 +81,9 @@ footer .wrap{padding-block:18px 34px}
 </head>
 <body>
 <header><div class="wrap">
- <div class="brand"><span class="logo">LRK</span> Slenkančio grafiko įrankis</div>
- <h1>Kaip gimsta tabelis</h1>
- <p>Programų departamento pavyzdys: nuo <b>veiklų plano</b> iki <b>darbo užmokesčio Rivilėje</b> – vieni ir tie patys duomenys. Kiekvienas departamentas atsako už savo dalį.</p>
+ <div class="htxt"><h1>Kaip gimsta tabelis</h1>
+ <p>Programų departamento pavyzdys: nuo <b>veiklų plano</b> iki <b>darbo užmokesčio Rivilėje</b> – vieni ir tie patys duomenys. Kiekvienas departamentas atsako už savo dalį.</p></div>
+ <div class="brand">Slenkančio grafiko<br>įrankis</div>
 </div></header>
 <main><div class="wrap">
 <div class="flow">
@@ -92,7 +98,7 @@ footer .wrap{padding-block:18px 34px}
  <div class="ar a2" aria-hidden="true"><span class="al">tabeliai</span><span class="line l"></span></div>
  <article class="r3 step d-z" style="--n:4" data-n="4"><div class="sh"><span class="n">4</span><h3>Grafiko paskelbimas</h3></div><p class="dtag">ŽI skyrius</p><p>Patikrintas grafikas <b>paskelbiamas darbuotojams</b> ne vėliau kaip <b>7 dienos prieš</b> jo pradžią.</p><div class="looks"><button class="look" type="button" title="Kaip atrodo" data-img="zi_val" data-title="Grafikas: valandos ir eksportas" data-cap="Vaizdas „Valandos“: darbuotojų valandos pagal dienas ir projektus. Mygtukas „Eksportuoti į Excel“ – paskelbtai grafiko versijai išsaugoti."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg> Grafikas ir eksportas</button></div></article>
  <div class="ar a3" aria-hidden="true"><span class="al">tabeliai</span><span class="line r"></span></div>
- <div class="fstack r3"><article class="step d-f" style="--n:6" data-n="6"><div class="sh"><span class="n">6</span><h3>Tabeliai į Rivilę</h3></div><p class="dtag">Finansų departamentas</p><p>Tabeliai suvedami į <b>Rivilę</b> pagal slenkančio grafiko informaciją.</p></article><article class="step d-f" style="--n:7" data-n="7"><div class="sh"><span class="n">7</span><h3>Atitikimas</h3></div><p class="dtag">Finansų departamentas</p><p><b>Darbo užmokestis ir priskyrimai projektams</b> Rivilėje atitinka slenkantį grafiką.</p></article></div>
+ <div class="fstack r3"><article class="step d-f" style="--n:6" data-n="6"><div class="sh"><span class="n">6</span><h3>Tabeliai į Rivilę</h3></div><p class="dtag">Finansų departamentas</p><p>Tabeliai suvedami į <b>Rivilę</b> pagal slenkančio grafiko informaciją.</p></article><article class="step d-f" style="--n:7" data-n="7"><div class="sh"><span class="n">7</span><h3>Atitikimas</h3></div><p class="dtag">Finansų departamentas</p><p><b>Darbo užmokestis ir priskyrimai projektams</b> Rivilėje atitinka <b>slenkantį grafiką</b> ir <b>donorams pateiktus tabelius</b>.</p></article></div>
 </div>
 <p class="note">Įrankis pats tik <b>sudeda</b> duomenis: grafikas susidaro iš darbuotojų įrašų, o tabeliai – iš grafiko. Už tai, kad duomenys būtų <b>teisingi</b>, atsako kiekvienas departamentas savo dalyje.</p>
 </div></main>
